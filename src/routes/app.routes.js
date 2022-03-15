@@ -1,4 +1,4 @@
-export const AppRoutes = {
-  home: "/home",
-  login: "login",
+export const APP_ROUTE = {
+  HOME: "/home",
+  LOGIN: "/login",
 };
