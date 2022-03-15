@@ -1,7 +1,8 @@
 import "./App.scss";
+import AppRoutes from "./routes/routes";
 
 function App() {
-  return <main className="App">xc</main>;
+  return <AppRoutes />;
 }
 
 export default App;
