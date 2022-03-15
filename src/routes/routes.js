@@ -20,7 +20,8 @@ export default function AppRoutes() {
 						<Route path="/" element={
 							<Navigate to={APP_ROUTE.HOME} />
 						} />
-						<Route path={APP_ROUTE.LOGIN} element={<SignInPage />}/>
+						<Route path={APP_ROUTE.SIGNIN} element={<SignInPage />}/>
+						{/* <Route path={APP_ROUTE.SIGNUP} element={<SignInPage />}/> */}
 						{/* <Route path={`${APP_ROUTE}/*`} element={
 							<RequireAuth>
 								<div>
