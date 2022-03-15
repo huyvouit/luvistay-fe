@@ -1,7 +1,7 @@
 export const APP_ROUTE = {
   HOME: "/home",
-  LOGIN: "/login",
-  SIGNUP: "/sign-up",
+  SIGNIN: "/signin",
+  SIGNUP: "/signup",
   SEARCH: "/search",
   HOTEL: "/hotel",
   HOTEL_DETAIL: "/hotel/detail/:id",
