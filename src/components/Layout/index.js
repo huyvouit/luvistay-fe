@@ -5,17 +5,13 @@ import Header from "../Header";
 import Footer from "../Footer";
 const Layout = () => {
   return (
-    <>
+    <main className="layout">
       <Header />
-      <main className="layout">
-        <div className="layout-main">
-          <div className="layout-content">
-            <Outlet />
-          </div>
-        </div>
-      </main>
+      <div className="layout-main">
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </main>
   );
 };
 
