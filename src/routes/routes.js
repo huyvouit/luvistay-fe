@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import {
 	BrowserRouter as Router, Navigate, Route, Routes, useLocation
 } from "react-router-dom";
+import { APP_ROUTE } from "./routes.const";
 
 export default function AppRoutes() {
     const dispatch = useAppDispatch();
 	useEffect(() => {
-        // dispatch()
+		// dispatch()
 	}, []);
 	return (
 		<Suspense fallback={<Loader/>}>
@@ -17,9 +18,16 @@ export default function AppRoutes() {
 				<Routes>
 					<Route>
 						<Route path="/" element={
-							<Navigate to={APP_ROUTE.ADMIN} />
+							<Navigate to={APP_ROUTE.HOME} />
 						} />
-						{/* <Route path={APP_ROUTE.SIGN_IN} element={<SignInPage />}/> */}
+						<Route path={APP_ROUTE.LOGIN} element={<SignInPage />}/>
+						{/* <Route path={`${APP_ROUTE}/*`} element={
+							<RequireAuth>
+								<div>
+									Private Pages
+								</div>
+							</RequireAuth>
+						}/> */}
 						{/* <Route path="*" element={<NotFoundPage />}/> */}
 					</Route>
 				</Routes>
