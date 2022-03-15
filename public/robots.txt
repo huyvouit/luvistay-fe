@@ -10,10 +10,13 @@ Disallow: /search
 # ---
 
 # Allow
+Allow: /logo
 Allow: /hotel
 Allow: /motel
 Allow: /house
 Allow: /room
+Allow: /signin
+Allow: /signup
 Allow: /pages/
 
 Allow: */uploads

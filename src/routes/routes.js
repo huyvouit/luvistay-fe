@@ -24,7 +24,7 @@ export default function AppRoutes() {
       <Router>
         <Routes>
           <Route>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Layout />} >
               <Route index element={<HomePage />} />
             </Route>
             <Route path={APP_ROUTE.LOGIN} element={<SignInPage />} />
