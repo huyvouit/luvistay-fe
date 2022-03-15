@@ -1,38 +1,36 @@
-import { useAppDispatch,AppRootState } from "app/redux/store";
-// import NotFoundPage from "pages/notfound";
 import React, { ReactElement, Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
-	BrowserRouter as Router, Navigate, Route, Routes, useLocation
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
 } from "react-router-dom";
-import { APP_ROUTE } from "./routes.const";
+// import { useAppDispatch, AppRootState } from "app/redux/store";
+
+import { APP_ROUTE } from "./app.routes";
+import HomePage from "../pages/Home";
+import Layout from "../components/Layout";
+import SignInPage from "../pages/Login";
 
 export default function AppRoutes() {
-    const dispatch = useAppDispatch();
-	useEffect(() => {
-		// dispatch()
-	}, []);
-	return (
-		<Suspense fallback={<Loader/>}>
-			<Router>
-				<Routes>
-					<Route>
-						<Route path="/" element={
-							<Navigate to={APP_ROUTE.HOME} />
-						} />
-						<Route path={APP_ROUTE.SIGNIN} element={<SignInPage />}/>
-						{/* <Route path={APP_ROUTE.SIGNUP} element={<SignInPage />}/> */}
-						{/* <Route path={`${APP_ROUTE}/*`} element={
-							<RequireAuth>
-								<div>
-									Private Pages
-								</div>
-							</RequireAuth>
-						}/> */}
-						{/* <Route path="*" element={<NotFoundPage />}/> */}
-					</Route>
-				</Routes>
-			</Router>
-		</Suspense>
-	);
+  //   const dispatch = useAppDispatch();
+  useEffect(() => {
+    // dispatch()
+  }, []);
+  return (
+    <Suspense>
+      <Router>
+        <Routes>
+          <Route>
+            <Route path="/" element={<Layout />} >
+              <Route index element={<HomePage />} />
+            </Route>
+            <Route path={APP_ROUTE.LOGIN} element={<SignInPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </Suspense>
+  );
 }

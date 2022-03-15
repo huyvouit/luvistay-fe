@@ -1,13 +1,8 @@
 import "./App.scss";
-// routes
-import "./routes/routes";
+import AppRoutes from "./routes/routes";
 
 function App() {
-  return (
-    <main className="App">
-      <AppRoutes />
-    </main>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
