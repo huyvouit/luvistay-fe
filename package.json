@@ -12,11 +12,13 @@
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-id-swiper": "^4.0.0",
     "react-query": "^3.34.16",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "sass": "^1.49.9",
+    "swiper": "^8.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

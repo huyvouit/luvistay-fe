@@ -2,7 +2,8 @@
 
 .header {
   box-shadow: 2px 2px 10px #000;
-
+  z-index: 1000 !important;
+  background-color: transparent;
   &-content {
     height: 80px;
     max-width: $max-width;

@@ -1,7 +1,8 @@
 import React from "react";
+import HeroSlider from "../../components/HeroSlider";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <HeroSlider />;
 };
 
 export default HomePage;
