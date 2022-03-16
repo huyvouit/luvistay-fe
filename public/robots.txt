@@ -12,6 +12,7 @@ Disallow: /search
 # Allow
 Allow: /logo
 Allow: /hotel
+Allow: /resort
 Allow: /motel
 Allow: /house
 Allow: /room
