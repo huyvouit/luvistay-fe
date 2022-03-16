@@ -61,7 +61,7 @@ export default function App() {
         spaceBetween={0}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Autoplay, EffectFade, Thumbs]}
-        className="mySwiper2"
+        className="main-swiper"
         autoplay={{ delay: 2000 }}
         effect={"fade"}
       >
