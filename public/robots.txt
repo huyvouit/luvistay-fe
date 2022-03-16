@@ -5,7 +5,7 @@ User-agent: *
 Disallow: /profile/
 Disallow: /author/
 Disallow: /payment/
-Disallow: /favorites/
+Disallow: /favourites/
 Disallow: /search
 # ---
 
