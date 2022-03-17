@@ -1,0 +1,70 @@
+@use "../../scss/" as *;
+
+.introduce {
+  display: flex;
+  @include max-width($max-width-content);
+
+  //   gap: 50px;
+  &-image {
+    flex: 6;
+    img {
+      width: 80%;
+    }
+  }
+  &-content {
+    flex: 4;
+    & > * ~ * {
+      margin-top: 50px;
+    }
+    &-title {
+      font-size: 45px;
+      font-weight: 500;
+    }
+    &-subTitle {
+      font-size: 20px;
+      //   font-weight: 300;
+      line-height: 1.5;
+    }
+
+    &-list {
+      & > * ~ * {
+        margin-top: 30px;
+      }
+      &-item {
+        cursor: pointer;
+
+        &:hover {
+          color: $brown25 !important;
+        }
+        @include flex(center, space-between);
+        .icon {
+          color: $brown25;
+          font-size: 20px;
+          font-weight: 700;
+        }
+        .item-text {
+          //   color: #000;
+          font-size: 20px;
+        }
+        .active {
+          color: $brown25;
+        }
+      }
+
+      &-child {
+        -moz-box-shadow: 0 0 3px #ccc;
+        -webkit-box-shadow: 0 0 3px #ccc;
+        box-shadow: 0 0 30px #ddc;
+        background-color: #fff;
+        padding: 30px;
+        margin: 30px 0;
+        transition: 1s;
+
+        .text {
+          line-height: 1.5;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
