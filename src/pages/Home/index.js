@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <>
       <HeroSlider />
-      <Banner />
+      {/* <Banner /> */}
     </>
   );
 };
