@@ -3,16 +3,26 @@
 .introduce {
   display: flex;
   @include max-width($max-width-content);
-
+  @include screen950 {
+    flex-direction: column;
+    justify-content: center;
+    padding: $mainPadding;
+  }
   //   gap: 50px;
   &-image {
     flex: 6;
     img {
       width: 80%;
+      @include screen950 {
+        width: 100%;
+      }
     }
   }
   &-content {
     flex: 4;
+    @include screen950 {
+      margin-top: 30px;
+    }
     & > * ~ * {
       margin-top: 50px;
     }

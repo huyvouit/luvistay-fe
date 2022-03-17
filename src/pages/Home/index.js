@@ -1,14 +1,18 @@
 import React from "react";
 // components
 import HeroSlider from "../../components/HeroSlider";
-import BoxBooking from "../../components/Home/boxbooking";
-import { BannerOne, BannerTwo } from "../../components/Home/Banner";
-import Introduce from "../../components/Home/Introduce";
+import BoxBooking from "../../components/home/boxbooking";
+import { BannerOne, BannerTwo } from "../../components/home/Banner";
+import Introduce from "../../components/home/Introduce";
 
 const HomePage = () => {
   return (
     <>
       <HeroSlider />
+      <BoxBooking />
+      <BannerOne />
+      <BannerTwo />
+      <Introduce />
     </>
   );
 };
