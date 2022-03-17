@@ -10,11 +10,9 @@ const BannerOne = ({}) => {
       <div className="__float-box-container_one">
         <div className="__float-box_one">
           <div className="flex flex-col justify-around h-full w-full text-white">
-            <h1 className="text-4xl md:text-2xl font-semibold">
-              Our Amenities
-            </h1>
+            <h1 className="text-4xl md:text-2xl font-normal">Our Amenities</h1>
             <p className="text-base md:text-lg">
-              Our Amenities The hotel is arranged on three floors without a
+              The hotel is arranged on three floors without a
               lift. On the ground floor, apart from the reception, there is a
               comfortable lounge where you can sit and drink tea.
             </p>
@@ -41,19 +39,27 @@ const BannerTwo = ({}) => {
       <div className="__bg-banner_two"></div>
       <div className="__float-box-container_two">
         <div className="__float-box_two">
-          <div className="flex flex-col justify-evenly h-full w-full text-white">
-            <h1 className="text-4xl md:text-2xl font-semibold">
-              Our Amenities
-            </h1>
-            <div className="flex flex-col justify-between pl-10">
-              <p className="text-xl md:text-lg">
-                Our Amenities The hotel is arranged on three floors without a
-                lift. On the ground floor, apart from the reception, there is a
-                comfortable lounge where you can sit and drink tea.
+          <div className="flex flex-col space-y-10 justify-between h-full w-full text-white">
+            <div className="flex flex-col justify-between h-[24%]">
+              <div className="h-1 w-1/5 bg-white"></div>
+              <h5 className="text-sm font-[500]">AT THE HEART OF COMMUNITIES</h5>
+              <h1 className="text-4xl md:text-2xl font-normal">People Say</h1>
+            </div>
+            <div className="flex flex-col justify-between space-y-10 pl-10 h-[60%]">
+              <p className="text-xl md:text-lg font-thin italic">
+                “We stayed here with our family and are fully satisfied with our
+                vacation. Rooms are very modern, have all needed amenities, the
+                kitchen is very delicious and service is just perfect. We will
+                for sure come back.”
               </p>
-              <div className="flex flex-row items-center w-full h-max">
-                <div className="h-30 w-30 bg-primary m-4">Avatar</div>
-                <span>Nguyen Tra Vi</span>
+              <div className="flex flex-row items-center w-full h-[55px]">
+                <div className="flex justify-center items-center h-full w-[55px] rounded-full bg-primary mr-4">
+                  Avatar
+                </div>
+                <div className="flex flex-col space-y-0 text-base">
+                  <span>Nguyen Tra Vi</span>
+                  <span>Chủ tịch</span>
+                </div>
               </div>
             </div>
           </div>

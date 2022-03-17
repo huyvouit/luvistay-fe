@@ -8,6 +8,9 @@ const HomePage = () => {
   return (
     <>
       <HeroSlider />
+      <BannerOne />
+      <br />
+      <BannerTwo />
     </>
   );
 };
