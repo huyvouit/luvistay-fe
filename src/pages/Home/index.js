@@ -3,15 +3,18 @@ import React from "react";
 import HeroSlider from "../../components/HeroSlider";
 import BoxBooking from "../../components/home/boxbooking";
 import { BannerOne, BannerTwo } from "../../components/home/Banner";
+import Introduce from "../../components/home/Introduce";
 import { ReviewOne, ReviewTwo } from "../../components/home/review/Review";
 
 const HomePage = () => {
   return (
     <>
       <HeroSlider />
-      <BannerOne/>
+      <BoxBooking />
+      <BannerOne />
       <ReviewOne/>
-      <BannerTwo/>
+      <BannerTwo />
+      <Introduce />
       <ReviewTwo/>
     </>
   );
