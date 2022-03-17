@@ -8,8 +8,8 @@
     @content;
   }
 }
-@mixin screen1000 {
-  @media only screen and (max-width: $screen1000) {
+@mixin screen950 {
+  @media only screen and (max-width: $screen950) {
     @content;
   }
 }
