@@ -41,7 +41,7 @@ const BoxBooking = () => {
                             <option value="15"> 15</option>
                         </select>
                     </p>
-                    <p class="">
+                    <p className="">
                         <label > Children: </label>
                         <br />
                         <select name="mphb_children">
@@ -59,7 +59,7 @@ const BoxBooking = () => {
                         </select>
                     </p>
                 </div>
-                <p class="boxbooking-section-form-submit"> <input type="submit" class="button" value="Search"/></p>
+                <p className="boxbooking-section-form-submit"> <input type="submit" class="button" value="Search"/></p>
             </form>
         </section>
     </div>;
