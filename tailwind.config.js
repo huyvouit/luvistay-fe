@@ -3,7 +3,12 @@ module.exports = {
   // https://tailwindcss.com/docs/just-in-time-mode
   // mode: "jit",
   theme: {
-      extend: {},
+      extend: {
+        colors: {
+            "float-box": "#3f9cc1",
+            "primary": "#c1b086",
+        },
+      },
   },
   variants: {},
   plugins: [],
