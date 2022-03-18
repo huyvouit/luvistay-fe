@@ -1,7 +1,7 @@
 import React from "react";
 import "./banner.scss";
 
-import { BANNER_IMAGE } from "./constants";
+import { BANNER_IMAGE } from "../constants";
 
 const BannerOne = ({}) => {
   return (
