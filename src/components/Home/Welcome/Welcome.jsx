@@ -27,7 +27,7 @@ const Welcome = () => {
         <div className="flex flex-col justify-evenly h-[75%] pl-12">
             <p className="text-gray-500 text-lg leading-7">The Hotel Luviana is the right choice for visitors who are searching for a combination of charm and a convenient position from where to explore surroundings.</p>
             <p className="text-gray-500 text-lg leading-7">The rooms are arranged on the first, second and third floors. On the top floor, there is also a charming terrace or solarium available for the use of guests, from where you can enjoy the view.</p>
-            <div className="flex justify-center items-center w-[44%] h-14 text-sm text-white font-mono rounded-full bg-primary"><a>READ MORE</a></div>
+            <div className="flex justify-center items-center w-44 h-14 text-sm text-white font-mono rounded-full bg-primary"><a>READ MORE</a></div>
         </div>
       </div>
     </div>
