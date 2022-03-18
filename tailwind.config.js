@@ -8,6 +8,9 @@ module.exports = {
             "float-box": "#3f9cc1",
             "primary": "#c1b086",
         },
+        width: {
+            "1/8": "12.5%"
+        }
       },
   },
   variants: {},
