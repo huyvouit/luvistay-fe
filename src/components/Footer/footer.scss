@@ -1,0 +1,101 @@
+.footer{
+    border-top: 1px solid #ededed; 
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+.footer-on {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.footer-on-area {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 229px;
+}
+
+.colum-one > p {
+    color: #5f6060;
+    font-family: "Open Sans",sans-serif;
+    margin: 0 0 21px;
+    font-size: 14px;
+    line-height: 1.75
+}
+
+.area-title {
+    color: #222222;
+    margin: 0 0 30px;
+    font-size: 20px;
+    line-height: 1.75;
+}
+
+.menu-one > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu > li {
+    margin-bottom: 1.25em
+}
+
+.menu > li > a, .menu-two > li > a{
+    color: #5f6060;
+    font-size: 14px;
+    font-family: "Open Sans",sans-serif;
+    text-decoration: none;
+}
+
+.menu > li > a:hover, a:focus{
+    color: #c1b086;
+}
+
+.menu-two {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-two > li {
+    margin-bottom: 25px
+}
+
+.menu-two > li > a:hover, a:focus {
+    color: #c1b086;
+    text-decoration: underline #c1b086;
+}
+
+.colum-four-addres {
+    color: #5f6060;
+    font-family: "Open Sans",sans-serif;
+    margin: 0 0 21px;
+    font-size: 14px;
+    line-height: 1.75
+}
+
+.colum-four-link {
+    padding: 0;
+    margin: 0 0 21px;
+}
+
+.colum-four > p > a {
+    text-decoration: none;
+    color: #5f6060;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+}
+
+.colum-four > p > a:hover,a:focus {
+    text-decoration: underline #c1b086;
+}
+.footer-up {
+    padding: 1.875rem 3.75rem;
+    border-top: 1px solid #ededed;
+}
+

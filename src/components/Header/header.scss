@@ -1,0 +1,167 @@
+@use "../../scss/" as *;
+
+.header {
+  box-shadow: 2px 2px 10px #000;
+  z-index: 1000 !important;
+  background-color: transparent;
+  &-content {
+    height: 80px;
+    max-width: $max-width;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  &-mobile {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    @include screen850 {
+      opacity: 1;
+      visibility: visible;
+    }
+    @include screen850 {
+      right: 20px;
+      top: 30px;
+    }
+    @include screen650 {
+      right: 10px;
+    }
+    @include screen450 {
+      top: 20px;
+    }
+
+    .icon {
+      font-size: 24px;
+      color: red;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      .icon {
+        color: red;
+        transition: 0.5s;
+        // transform: rotate(90deg);
+      }
+    }
+
+    &-item-box {
+      width: 100%;
+      height: 100%;
+      padding: 100px;
+      @include screen650 {
+        flex-direction: column;
+      }
+    }
+
+    &-item-list {
+      height: 100%;
+    }
+    &-item-item {
+      width: max-content;
+      margin: 20px 0;
+      p {
+        color: #ccc;
+        font-weight: 500;
+        font-size: 28px;
+        cursor: pointer;
+        transition: 1s;
+      }
+
+      &:hover {
+        p {
+          // color: $main;
+        }
+      }
+
+      &-active p {
+        // color: $main !important;
+      }
+    }
+
+    &-item-contact {
+      width: 50%;
+      height: 100%;
+      color: #ccc;
+      align-items: flex-end;
+      @include screen650 {
+        display: none !important;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 5px;
+      }
+
+      p,
+      a {
+        font-size: 16px;
+        margin: 20px 0;
+      }
+    }
+  }
+
+  &-mobile-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+
+    &-box {
+      position: absolute;
+      background-color: #101010;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    &-box-open {
+      display: block;
+    }
+
+    &-open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.navbar {
+  margin-left: auto;
+  @include screen850 {
+    display: none !important;
+  }
+  &-item {
+    margin-left: 60px;
+    display: inline-block;
+    vertical-align: top;
+    color: #000;
+    font-size: 1em;
+    line-height: 40px;
+    font-weight: 600;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    &-active {
+      color: #fff;
+    }
+  }
+  .divider {
+    height: 40px;
+    width: 1px;
+    background-color: #000;
+    pointer-events: none;
+  }
+}

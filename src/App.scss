@@ -1,0 +1,31 @@
+@use "./scss/" as *;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  user-select: none;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.div100vh {
+  height: 100%;
+}
+
+.flex-center {
+  @include flex(center, center);
+}
+.flex-col {
+  display: flex !important;
+  flex-direction: column;
+}

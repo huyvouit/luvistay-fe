@@ -1,0 +1,10 @@
+@mixin flex($aligin-item, $justify-content) {
+  display: flex;
+  align-items: $aligin-item;
+  justify-content: $justify-content;
+}
+
+@mixin max-width($max) {
+  max-width: $max;
+  margin: 0 auto;
+}

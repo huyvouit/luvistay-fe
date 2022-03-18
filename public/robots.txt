@@ -1,0 +1,32 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+
+# Disallow
+Disallow: /profile/
+Disallow: /author/
+Disallow: /payment/
+Disallow: /favourites/
+Disallow: /search
+# ---
+
+# Allow
+Allow: /logo
+Allow: /hotel
+Allow: /resort
+Allow: /motel
+Allow: /house
+Allow: /room
+Allow: /signin
+Allow: /signup
+Allow: /pages/
+
+Allow: */uploads
+Allow: /*/*.js
+Allow: /*/*.css
+Allow: /luvistay-*.png
+Allow: /luvistay-*.jpg
+Allow: /luvistay-*.jpeg
+Allow: /luvistay-*.gif
+Allow: /luvistay-*.svg
+Allow: /luvistay-*.pdf
+# ---

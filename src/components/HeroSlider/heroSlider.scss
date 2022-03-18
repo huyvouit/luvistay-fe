@@ -1,0 +1,131 @@
+@use "../../scss/" as *;
+.hero-slider {
+  max-width: 100%;
+  height: 800px;
+  max-height: 800px;
+  position: relative;
+  top: -80px;
+  z-index: -1;
+  position: relative;
+  &-item {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &-content {
+      position: relative;
+      max-width: $max-width;
+      margin: 0 auto;
+      &-info {
+        width: 65%;
+
+        .title {
+          font-size: 60px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: #000;
+          transition: all 0.4s ease 0.2s;
+        }
+
+        .description {
+          //   margin-top: 20px;
+          transition: all 0.4s ease 0.4s;
+          transform: translateY(50px);
+          color: #fff;
+          line-height: 1.5;
+          text-align: start;
+          margin-left: 40px;
+        }
+
+        .read-more {
+          margin-top: 2rem;
+          transition: all 0.4s ease 0.6s;
+          transform: translateY(50px);
+        }
+      }
+    }
+  }
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.main-swiper {
+  height: 100%;
+  width: 100%;
+}
+
+//thumbs
+.thumbs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  &-swiper {
+    position: absolute;
+    top: 20%;
+    right: 80px;
+
+    .swiper-slide {
+      background-size: cover;
+      background-position: center;
+      width: 140px !important;
+      height: 100px !important;
+      opacity: 0.8;
+      margin-bottom: 20px !important;
+      margin-right: 0 !important;
+
+      .img-navigation {
+        display: block;
+        width: 140px;
+        height: 100px;
+        object-fit: cover;
+      }
+
+      &-thumb-active {
+        opacity: 1;
+        .img-navigation {
+          display: block;
+          width: 140px;
+          height: 100px;
+          object-fit: cover;
+          border: 2px solid white;
+        }
+      }
+    }
+
+    .swiper-wrapper {
+      display: block;
+      width: 140px;
+    }
+  }
+}
