@@ -1,35 +1,33 @@
-.__bg-banner_one {
-    @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/amenities-new.jpg')];
-    @apply bg-cover bg-no-repeat bg-center relative flex justify-center items-center w-full h-[85%] overflow-x-hidden;
-}
+// .__bg-banner_one {
+//     @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/amenities-new.jpg')];
+//     @apply bg-cover bg-no-repeat bg-center relative flex justify-center items-center w-full h-[85%] overflow-x-hidden;
+// }
 
-.__bg-banner_two {
-    @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/People-Say-.jpg')];
-    @apply bg-cover bg-no-repeat bg-center relative flex justify-center items-center w-full h-[85%] overflow-x-hidden;
-}
+// .__bg-banner_two {
+//     @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/People-Say-.jpg')];
+//     @apply bg-cover bg-no-repeat bg-center relative flex justify-center items-center w-full h-[85%] overflow-x-hidden;
+// }
 
-.__float-box-container_one {
-    @apply absolute -inset-y-0 flex justify-center md:justify-end w-[100%] md:w-[90%];
-    // @apply md:-inset-y-6 lg:-inset-y-8 xl:-inset-y-6;
-}
+// .__float-box-container_one {
+//     @apply absolute -inset-y-0 flex justify-center md:justify-end w-[100%] md:w-[90%];
+// }
 
-.__float-box-container_two {
-    @apply absolute -inset-y-0 flex justify-center md:justify-start w-[100%] md:w-[90%];
-    // @apply md:-inset-y-6 lg:-inset-y-8 xl:-inset-y-6;
-}
+// .__float-box-container_two {
+//     @apply absolute -inset-y-0 flex justify-center md:justify-start w-[100%] md:w-[90%];
+// }
 
-.__float-box_one {
-    background-color: #3f9cc1;
-    @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_testimonials.png')] bg-no-repeat bg-contain bg-left-top;
-    @apply flex justify-center items-center h-full w-[90%] md:w-[50%] px-4 py-14 md:px-16 lg:px-20 md:py-20;
-}
+// .__float-box_one {
+//     background-color: #3f9cc1;
+//     @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_testimonials.png')] bg-no-repeat bg-contain bg-left-top;
+//     @apply flex justify-center items-center h-full w-[90%] md:w-[50%] px-4 py-14 md:px-16 lg:px-20 md:py-20;
+// }
 
-.__float-box_two {
-    background-color: #3f9cc1;
-    @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_testimonials.png')] bg-no-repeat bg-contain bg-left-top;
-    @apply flex justify-center items-center h-full w-[90%] md:w-[50%] px-4 pt-10 pb-14 md:px-16 lg:px-20 md:py-20;
-}
+// .__float-box_two {
+//     background-color: #3f9cc1;
+//     @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_testimonials.png')] bg-no-repeat bg-contain bg-left-top;
+//     @apply flex justify-center items-center h-full w-[90%] md:w-[50%] px-4 pt-10 pb-14 md:px-16 lg:px-20 md:py-20;
+// }
 
-.__float-box-grid-content {
-    @apply grid gap-6 md:gap-4 grid-cols-1 grid-rows-[8] sm:grid-cols-2 sm:grid-rows-4 font-medium text-base sm:text-xl md:text-base;
-}
+// .__float-box-grid-content {
+//     @apply grid gap-6 md:gap-4 grid-cols-1 grid-rows-[8] sm:grid-cols-2 sm:grid-rows-4 font-medium text-base sm:text-xl md:text-base;
+// }
