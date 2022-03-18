@@ -1,0 +1,159 @@
+.review-one {
+    padding: 60px 10%;
+    &-row-one {
+        display: flex;
+        justify-content: space-between;
+        .colum-one {
+            .highlinght {
+                width: 70px;
+                height: 4px;
+                background-color: #c1b086;
+                margin: 7px 0;
+            }
+
+            .content {
+                margin: 0 0 1em;
+                font-weight: 600;
+                font-size: 12px;
+                color: #000;
+            }
+            .title {
+                font-family: "Noto Serif", serif;
+                font-size: 1.9375rem;
+                color: #222;
+                line-height: 1.4;
+                font-weight: 400;
+                letter-spacing: -0.5px;
+                margin: 0;
+            }
+        }
+        .colum-two {
+            .container {
+                margin-top: 30px;
+                border-radius: 1.875rem;
+                height: auto;
+                padding: 18px 25px;
+                cursor: pointer;
+                background: #c1b086;
+                border: 1px solid;
+                border-color: transparent;
+                .btn {
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: #fff;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            .container:hover {
+                background-color: #32373c;
+            }
+        }
+    }
+
+    &-row-two {
+        padding-top: 50px;
+        display: flex;
+        justify-content: space-between;
+        .review-image {
+            width: 370px;
+            height: 450px;
+            background-color: #f1eeee;
+
+            .row-one {
+                width: 100%;
+                height: 70%;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .row-two {
+                padding: 1.875rem 2.5rem;
+
+                .name {
+                    font-size: 23px;
+                    text-align: left;
+                    color: #222;
+                    cursor: pointer;
+                    font-family: "Noto Serif", serif;
+                    line-height: 1.4;
+                    font-weight: 400;
+                    letter-spacing: -0.5px;
+                }
+
+                .name:hover {
+                    color: #c1b086;
+                }
+
+                p {
+                    padding-top: 5px;
+
+                    .span-one {
+                        color: #222222;
+                        font-family: "Open Sans", sans-serif;
+                        font-size: 20px;
+                    }
+
+                    .span-two {
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        font-size: 14px;
+                        line-height: 1.75;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.slider {
+    width: 100%;
+    padding-top: 50px;
+    .slideshow {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        .mainImg {
+            width: 270px;
+            height: 350px;
+            transition: all 500ms;
+        }
+
+        .actions {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .actions button {
+            background: #0000003d;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            padding-top: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            padding-top: 5px;
+        }
+
+        .actions button:active {
+            background: #000000a2;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            padding-top: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            padding-top: 5px;
+        }
+    }
+}
