@@ -59,7 +59,7 @@ const BannerTwo = ({}) => {
                   Avatar
                 </div>
                 <div className="flex flex-col space-y-0 text-base">
-                  <span>Nguyen Tra Vi</span>
+                  <span>Huy Vô UIT</span>
                   <span>Chủ tịch</span>
                 </div>
               </div>
