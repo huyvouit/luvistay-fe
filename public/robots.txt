@@ -1,3 +1,5 @@
+Sitemap: http://luvistay.com/sitemap.xml
+
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 

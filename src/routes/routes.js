@@ -20,14 +20,14 @@ export default function AppRoutes() {
     // dispatch()
   }, []);
   return (
-    <Suspense>
+    <Suspense fallback={null}>
       <Router>
         <Routes>
           <Route>
             <Route path="/" element={<Layout />} >
               <Route index element={<HomePage />} />
             </Route>
-            <Route path={APP_ROUTE.LOGIN} element={<SignInPage />} />
+            <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
           </Route>
         </Routes>
       </Router>
