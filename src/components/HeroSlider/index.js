@@ -8,7 +8,8 @@ import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 
-// import { Button } from "@mui/material";
+import OutlinedButton from "../OutlinedButton";
+
 import "./heroSlider.scss";
 
 const items = [
@@ -106,9 +107,9 @@ const HeroSliderItem = ({ data }) => {
         <div className="hero-slider-item-content-info">
           <h2 className="title">{data.title}</h2>
           <div className="description">{data.description}</div>
-          {/* <div className="read-more">
-            <button>Read more</button>
-          </div> */}
+          <div className="read-more">
+            <OutlinedButton title="read more" />
+          </div>
         </div>
       </div>
     </div>

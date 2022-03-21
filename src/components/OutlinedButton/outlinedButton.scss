@@ -1,0 +1,30 @@
+@use "../../scss/" as *;
+
+.outlined-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-radius: 25px;
+  letter-spacing: 1px;
+  border: 1px solid $gray25;
+  width: max-content;
+
+  &:hover {
+    transition: 0.3s ease-in;
+    background-color: $blue100;
+    border: none;
+    .outlined-button-title {
+      color: $white;
+    }
+  }
+
+  &-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+  }
+}
