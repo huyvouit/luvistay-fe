@@ -1,0 +1,23 @@
+@use "../../scss/" as *;
+
+.primary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 19px 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: $brown25;
+  border-radius: 25px;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: $blue100;
+  }
+
+  &-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: $white;
+  }
+}
