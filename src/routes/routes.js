@@ -7,12 +7,16 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-// import { useAppDispatch, AppRootState } from "app/redux/store";
 
 import { APP_ROUTE } from "./app.routes";
 import HomePage from "../pages/Home";
 import Layout from "../components/Layout";
 import SignInPage from "../pages/Login";
+import ApartmentPage from "../pages/Apartment";
+import HotelPage from "../pages/Apartment/Hotel";
+import MotelPage from "../pages/Apartment/Motel";
+import HomeStayPage from "../pages/Apartment/Homestay";
+import SearchPage from "../pages/Search";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -24,8 +28,13 @@ export default function AppRoutes() {
       <Router>
         <Routes>
           <Route>
-            <Route path="/" element={<Layout />} >
+            <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
+              <Route path={APP_ROUTE.APARTMENT} element={<ApartmentPage />} />
+              <Route path={APP_ROUTE.HOTEL} element={<HotelPage />} />
+              <Route path={APP_ROUTE.MOTEL} element={<MotelPage />} />
+              <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
+              <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
             </Route>
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
           </Route>
