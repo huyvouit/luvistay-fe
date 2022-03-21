@@ -1,10 +1,10 @@
 import React from "react";
 // components
 import HeroSlider from "../../components/HeroSlider";
-import BoxBooking from "../../components/Home/BoxBooking";
+import BoxBooking from "../../components/Home/BoxBooking/BoxBooking";
 import Welcome from "../../components/Home/Welcome/Welcome";
 import { BannerOne, BannerTwo } from "../../components/Home/Banner/Banner";
-import Introduce from "../../components/Home/Introduce";
+import Introduce from "../../components/Home/Introduce/Introduce";
 import { ReviewOne, ReviewTwo } from "../../components/Home/Review/Review";
 
 const HomePage = () => {
@@ -14,11 +14,11 @@ const HomePage = () => {
       <BoxBooking />
       <Welcome />
       <BannerOne />
-      <ReviewOne/>
+      <ReviewOne />
       <br />
       <BannerTwo />
       <Introduce />
-      <ReviewTwo/>
+      <ReviewTwo />
     </>
   );
 };
