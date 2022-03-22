@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
     </div>
     <div className="footer-up">
-    <div class="footer-up-info"> Luvíana © 2022 All Rights Reserved</div>
+    <div className="footer-up-info"> Luvíana © 2022 All Rights Reserved</div>
     </div>
 
   </div>;

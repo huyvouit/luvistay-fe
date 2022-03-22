@@ -1,3 +1,5 @@
+@use "../../../scss/" as *;
+
 .review-one {
     padding: 60px 10%;
     &-row-one {
@@ -52,6 +54,36 @@
                 background-color: #32373c;
             }
         }
+        @include screen750 {
+            display: block;
+
+            .colum-one {
+                .content {
+                    font-size: 10px;
+                    margin: 0;
+                }
+                .title {
+                    font-size: 24px;
+                }
+            }
+            .colum-two {
+                position: relative;
+                .container {
+                    position: absolute;
+                    top: 10px;
+                    right: 0;
+                    margin-top: 0;
+                    width: 170px;
+                    border-radius: 1.875rem;
+                    height: auto;
+                    text-align: center;
+                    padding: 12px 20px;
+                    .btn {
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 
     &-row-two {
@@ -59,8 +91,9 @@
         display: flex;
         justify-content: space-between;
         .review-image {
-            width: 370px;
-            height: 450px;
+            margin: 0;
+            width: 30%;
+            height: 40%;
             background-color: #f1eeee;
 
             .row-one {
@@ -109,21 +142,86 @@
                 }
             }
         }
+
+        @include screen1199 {
+            .review-image {
+                .row-two {
+                    .name {
+                        font-size: 20px;
+                    }
+    
+                    p {
+                        .span-one {
+                            font-size: 18px;
+                        }
+    
+                        .span-two {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @include screen950 {
+            .review-image {
+                margin: auto;
+                width: 90%;
+                height: 40%;
+            }
+            .image-two{
+                display: none;
+            }
+
+            .image-three{
+                display: none;
+            }
+        }
+
+        @include screen750 {
+            padding-top: 85px;
+        }
     }
 }
 
 .slider {
     width: 100%;
     padding-top: 50px;
+    @include screen750 {
+        padding-top: 85px;
+    }
     .slideshow {
         position: relative;
         display: flex;
         justify-content: space-between;
 
         .mainImg {
-            width: 270px;
+            width: 23%;
             height: 350px;
             transition: all 500ms;
+            object-fit: cover;
+        }
+
+        
+        @include screen950 {
+            .main-img-three, .main-img-four {
+                display: none;
+                visibility: hidden;
+            }
+
+            .mainImg {
+                width: 48%;
+            }
+        }
+
+        @include screen650 {
+            .main-img-two {
+                display: none;
+                visibility: hidden;
+            }
+            .mainImg {
+                width: 100%;
+            }
         }
 
         .actions {

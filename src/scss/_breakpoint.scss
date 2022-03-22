@@ -32,6 +32,12 @@
   }
 }
 
+@mixin screen550 {
+  @media only screen and (max-width: $screen550) {
+    @content;
+  }
+}
+
 @mixin screen350 {
   @media only screen and (max-width: $screen350) {
     @content;
