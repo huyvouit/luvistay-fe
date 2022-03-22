@@ -17,6 +17,7 @@ import HotelPage from "../pages/Apartment/Hotel";
 import MotelPage from "../pages/Apartment/Motel";
 import HomeStayPage from "../pages/Apartment/Homestay";
 import SearchPage from "../pages/Search";
+import ApartmentDetailPage from "../pages/Apartment/Detail";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -32,8 +33,20 @@ export default function AppRoutes() {
               <Route index element={<HomePage />} />
               <Route path={APP_ROUTE.APARTMENT} element={<ApartmentPage />} />
               <Route path={APP_ROUTE.HOTEL} element={<HotelPage />} />
+              <Route
+                path={APP_ROUTE.HOTEL_DETAIL}
+                element={<ApartmentDetailPage />}
+              />
               <Route path={APP_ROUTE.MOTEL} element={<MotelPage />} />
+              <Route
+                path={APP_ROUTE.MOTEL_DETAIL}
+                element={<ApartmentDetailPage />}
+              />
               <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
+              <Route
+                path={APP_ROUTE.HOME_STAY_DETAIL}
+                element={<ApartmentDetailPage />}
+              />
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
             </Route>
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
