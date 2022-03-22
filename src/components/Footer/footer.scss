@@ -1,3 +1,5 @@
+@use "../../scss/" as *;
+
 .footer{
     border-top: 1px solid #ededed; 
     margin: 0 auto;
@@ -18,8 +20,19 @@
 .footer-on-area {
     margin: 0 auto;
     overflow: hidden;
-    width: 229px;
+    width: 20%;
+      @include screen850 {
+        width: 22%;
+      }
+      @include screen750 {
+        width: 229px;
+      }
+      @include screen450 {
+        width: 229px;
+      }
 }
+
+//229px
 
 .colum-one > p {
     color: #5f6060;
