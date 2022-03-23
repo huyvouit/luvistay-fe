@@ -1,39 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PrimaryButton from "../../PrimaryButton";
 import "./motel.scss";
+import Slideshow from "../SlideShow";
 
-const Slideshow = ({ imgs }) => {
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        setIndex(0);
-    }, []);
-
-    const next = () => {
-        if (index === imgs.length - 1) {
-            setIndex(0);
-        } else {
-            setIndex(index + 1);
-        }
-    };
-    const prev = () => {
-        if (index === 0) {
-            setIndex(imgs.length - 1);
-        } else {
-            setIndex(index - 1);
-        }
-    };
-
-    return (
-        <section className="slideshow">
-            <img className="mainImg" src={imgs[index]} />
-            <section className="actions">
-                <button onClick={prev}>👈</button>
-                <button onClick={next}>👉</button>
-            </section>
-        </section>
-    );
-};
 
 const Motel = () => {
     return (
@@ -71,7 +41,7 @@ const Motel = () => {
                                 <p className="colum-one-review-colum-two">Size: 20m²</p>
                             </section>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon icon="fa-solid fa-bed"/>
                                 <p className="colum-one-review-colum-two">Bed Type: queen bed</p>
                             </section>
                             <section className="colum-one-review">
