@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import "react-id-swiper/src/styles/scss/swiper.scss";
+import SimpleReactLightbox from "simple-react-lightbox";
 import App from "./App";
-
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SimpleReactLightbox>
+      <App />
+    </SimpleReactLightbox>
   </React.StrictMode>,
   document.getElementById("root")
 );
