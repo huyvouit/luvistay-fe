@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import OutlinedButton from "../../OutlinedButton";
 import PrimaryButton from "../../PrimaryButton";
 import "./motel.scss";
 
