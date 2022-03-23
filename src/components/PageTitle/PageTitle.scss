@@ -1,0 +1,14 @@
+@use "../../scss/" as *;
+
+.page-title {
+    max-width: 770px;
+    margin: 1.5rem auto;
+
+    &-contain {
+        text-align: center;
+        color: #5f6060;
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+    }
+}
