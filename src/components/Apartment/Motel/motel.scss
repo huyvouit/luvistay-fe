@@ -1,0 +1,265 @@
+@use "../../../scss/" as *;
+
+.motel {
+    padding: 20px 5%;
+    &-container {
+        display: flex;
+        background-color: #ffffff;
+        box-shadow: 1px 1px 18px 1px #e0e0e0;
+        padding: 30px;
+
+        @include screen950 {
+            display: block;
+        }
+
+        .motel-colum-one {
+            width: 30%;
+            height: 100%;
+            cursor: pointer;
+            .slideshow {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+
+                .mainImg {
+                    width: 100%;
+                    height: 376px;
+                    transition: all 500ms;
+                    object-fit: cover;
+                }
+
+                .actions {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    display: flex;
+                    opacity: 0;
+                    justify-content: space-between;
+                }
+
+                .actions button {
+                    background: #ffffffa2;
+                    border: none;
+                    cursor: pointer;
+                    padding: 10px;
+                    padding-top: 10px;
+                    margin: 5px;
+                    border-radius: 15px;
+                    padding-top: 5px;
+                }
+
+                .actions button:active {
+                    background: #000000a2;
+                    border: none;
+                    cursor: pointer;
+                    padding: 10px;
+                    padding-top: 10px;
+                    margin: 5px;
+                    border-radius: 15px;
+                    padding-top: 5px;
+                }
+            }
+
+            @include screen950 {
+                width: 100%;
+                height: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .motel-colum-one:hover .actions {
+            opacity: 1;
+        }
+
+        .motel-colum-two {
+            width: 70%;
+            height: 100%;
+
+            @include screen950 {
+                width: 100%;
+                height: 100%;
+            }
+
+            &-container {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                justify-content: space-between;
+                @include screen650 {
+                    display: block;
+                }
+                .colum-one {
+                    width: 70%;
+                    margin: 0 25px;
+                    height: 376px;
+                    padding-right: 30px;
+                    border-right: 1px solid #302f2f3d;
+
+                    @include screen950 {
+                        height: 100%;
+                    }
+
+                    @include screen650 {
+                        width: 100%;
+                        height: 100%;
+                        border-right: none;
+                    }
+
+                    &-title {
+                        font-family: "Noto Serif", serif;
+                        color: #222;
+                        line-height: 1.4;
+                        font-weight: 400;
+                        letter-spacing: -0.5px;
+                        font-size: 25px;
+                        margin-bottom: 14px;
+                    }
+
+                    &-title:hover {
+                        cursor: pointer;
+                        color: #c1b086;
+                    }
+
+                    &-description {
+                        margin: 0;
+                        font-size: 16px;
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        line-height: 1.75;
+                        margin-bottom: 12px;
+                    }
+
+                    &-review {
+                        display: flex;
+
+                        &-colum-two {
+                            color: #5f6060;
+                            font-family: "Open Sans", sans-serif;
+                            font-size: 16px;
+                            line-height: 1.75;
+                            .hover-text:hover {
+                                cursor: pointer;
+                                color: #c1b086;
+                            }
+                        }
+                    }
+                }
+
+                .colum-two {
+                    width: 30%;
+                    padding: 0 20px;
+                    @include screen650 {
+                        width: 100%;
+                        height: 100%;
+                        margin-top: 25px;
+
+                        &-responsive{
+                            display: flex;
+                            margin: auto 0;
+                        }
+                    }
+
+                    @include screen450 {
+                    .responsive-two{
+                        margin-top: 20px;
+                        display: block;
+                    }
+                    }
+
+                    &-title {
+                        color: #5f6060;
+                        font-weight: 400;
+                        margin-bottom: 20px;
+                        font-size: 14px;
+
+                        @include screen650 {
+                            padding: 0;
+                            margin-bottom: 0;
+                            margin-right: 6px;
+                        }
+
+                        @include screen450 {
+                            font-size: 12px;
+                        }
+                    }
+
+                    &-price {
+                        margin-bottom: 30px;
+                        @include screen650 {
+                            margin-bottom: 0;
+                        }
+                        &-one {
+                            font-size: 30px;
+                            font-size: 1.875rem;
+                            color: #222;
+
+                            @include screen1199 {
+                                font-size: 22px;
+                            }
+
+                            @include screen450 {
+                                font-size: 16px;
+                            }
+                        }
+
+                        &-two {
+                            margin-left: 8px;
+                            color: #5f6060;
+                            font-family: "Open Sans", sans-serif;
+                            font-size: 16px;
+                            line-height: 1.75;
+
+                            @include screen450 {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    @include screen650 {
+                        .btn-primary{
+                            padding-top: 19px;
+                        }
+                    }
+
+                    .outlined-button {
+                        margin-top: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 19px 40px;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        background-color: transparent;
+                        border-radius: 25px;
+                        letter-spacing: 1px;
+                        border: 1px solid #3333;
+                        width: 100%;
+                        @include screen650 {
+                            margin-left: 15px;
+                            padding: 19px 20px;
+                        }
+
+                        @include screen450 {
+                            margin-left: 0;
+                        }
+                        &:hover {
+                            transition: 0.3s ease-in;
+                            background-color: $blue100;
+                            border: none;
+                            .outlined-button-title {
+                                color: $white;
+                            }
+                        }
+
+                        &-title {
+                            font-size: 12px;
+                            text-align: center;
+                            font-weight: 500;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
