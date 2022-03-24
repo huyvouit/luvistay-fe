@@ -17,7 +17,8 @@ const ReviewOne = ({}) => {
         </div>
       </div>
       <div className="review-one-row-two">
-        <div className="review-image image-one">
+
+        <div className="review-image">
           <div className="row-one">
             <img className="image" src={BANNER_IMAGE.IMG_1} />
           </div>
@@ -30,7 +31,7 @@ const ReviewOne = ({}) => {
           </div>
         </div>
 
-        <div className="review-image image-two">
+        <div className="review-image ">
           <div className="row-one">
             <img className="image" src={BANNER_IMAGE.IMG_2} />
           </div>
@@ -43,7 +44,7 @@ const ReviewOne = ({}) => {
           </div>
         </div>
 
-        <div className="review-image image-three">
+        <div className="review-image ">
           <div className="row-one">
             <img className="image" src={BANNER_IMAGE.IMG_3} />
           </div>

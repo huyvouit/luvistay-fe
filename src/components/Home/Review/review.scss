@@ -121,22 +121,19 @@
     }
 
     @include screen950 {
+      display: block;
         .review-image {
             margin: auto;
             width: 90%;
             height: 40%;
-        }
-        .image-two{
-            display: none;
-        }
-
-        .image-three{
-            display: none;
+            .row-one {
+              margin-top: 25px;
+            }
         }
     }
 
     @include screen750 {
-        padding-top: 85px;
+        padding-top: 45px;
     }
 }
 
