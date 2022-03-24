@@ -29,27 +29,27 @@ const Motel = () => {
                             <h2 className="colum-one-title">Standard Single Room</h2>
                             <p className="colum-one-description">Standard Single Rooms are designed in open-concept living area and have many facilities.</p>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon className="colum-one-review-colum-one" icon="fa-solid fa-person"/>
                                 <p className="colum-one-review-colum-two">Adults: 2</p>
                             </section>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon className="colum-one-review-colum-one"  icon="fa-solid fa-eye"/>
                                 <p className="colum-one-review-colum-two">View: beach</p>
                             </section>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon className="colum-one-review-colum-one" icon="fa-solid fa-expand"/>
                                 <p className="colum-one-review-colum-two">Size: 20m²</p>
                             </section>
                             <section className="colum-one-review">
-                                <FontAwesomeIcon icon="fa-solid fa-bed"/>
+                                <FontAwesomeIcon className="colum-one-review-colum-one" icon="fa-solid fa-bed"/>
                                 <p className="colum-one-review-colum-two">Bed Type: queen bed</p>
                             </section>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon className="colum-one-review-colum-one"  icon="fa-solid fa-bookmark"/>
                                 <p className="colum-one-review-colum-two">Categories: <span className="hover-text">single</span></p>
                             </section>
                             <section className="colum-one-review">
-                                <img className="colum-one-review-colum-one" />
+                                <FontAwesomeIcon className="colum-one-review-colum-one" icon="fa-solid fa-star" />
                                 <p className="colum-one-review-colum-two">Amenities: <span className="hover-text">air-conditioning</span>, <span className="hover-text">free wi-fi</span>, <span className="hover-text">hairdryer</span>, <span className="hover-text">in-room safety</span>, <span className="hover-text">laundry</span>, <span className="hover-text">minibar</span>, <span className="hover-text">telephone</span></p>
                             </section>
                         </section>
