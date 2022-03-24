@@ -1,0 +1,213 @@
+@use "../../../scss/" as *;
+
+.hotel-one {
+    padding: 25px 5%;
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        @include screen950 {
+            display: block;
+        }
+
+        .hotel-one-colum-one {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            cursor: pointer;
+            .slideshow {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+
+                .mainImg {
+                    width: 100%;
+                    height: 465px;
+                    transition: all 500ms;
+                    object-fit: cover;
+                    @include screen950 {
+                        height: 550px;
+                    }
+                    @include screen750 {
+                        height: auto;
+                    }
+                }
+
+                .actions {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    display: flex;
+                    opacity: 0;
+                    justify-content: space-between;
+                }
+
+                .actions button {
+                    background: #ffffffa2;
+                    border: none;
+                    cursor: pointer;
+                    padding: 10px;
+                    padding-top: 10px;
+                    margin: 5px;
+                    border-radius: 15px;
+                    padding-top: 5px;
+                }
+
+                .actions button:active {
+                    background: #000000a2;
+                    border: none;
+                    cursor: pointer;
+                    padding: 10px;
+                    padding-top: 10px;
+                    margin: 5px;
+                    border-radius: 15px;
+                    padding-top: 5px;
+                }
+            }
+
+            @include screen950 {
+                width: 100%;
+                height: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .hotel-one-colum-one:hover .actions {
+            opacity: 1;
+        }
+
+        .hotel-one-colum-two {
+            width: 45%;
+            height: 100%;
+
+            @include screen950 {
+                width: 100%;
+                height: 100%;
+            }
+
+            &-container {
+                height: 100%;
+                width: 100%;
+
+                .colum-one {
+                    &-highlight{
+                        width: 70px;
+                        height: 4px;
+                        background-color: #c1b086;
+                        margin: 7px 0;
+                    }
+                    &-title {
+                        font-family: "Noto Serif", serif;
+                        color: #222;
+                        line-height: 1.4;
+                        font-weight: 400;
+                        letter-spacing: -0.5px;
+                        font-size: 25px;
+                        margin-bottom: 12px;
+                    }
+
+                    &-title:hover {
+                        cursor: pointer;
+                        color: #c1b086;
+                    }
+
+                    &-description {
+                        margin: 0;
+                        font-size: 16px;
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        line-height: 1.75;
+                        margin-bottom: 12px;
+                    }
+
+                    &-review {
+                        display: flex;
+                        &-colum-one {
+                            color: #c1b086;
+                            margin-right: 8px;
+                            padding-top: 4px;
+                            width: 20px;
+                        }
+
+                        &-colum-two {
+                            color: #5f6060;
+                            font-family: "Open Sans", sans-serif;
+                            font-size: 16px;
+                            line-height: 1.75;
+                            .hover-text:hover {
+                                cursor: pointer;
+                                color: #c1b086;
+                            }
+                        }
+                    }
+
+                    &-price {
+                        margin-top: 25px;
+                        &-one {
+                            font-size: 30px;
+                            font-size: 1.875rem;
+                            color: #222;
+                        }
+
+                        &-two {
+                            margin-left: 8px;
+                            color: #5f6060;
+                            font-family: "Open Sans", sans-serif;
+                            font-size: 16px;
+                            line-height: 1.75;
+                        }
+                    }
+
+                    &-responsive-btn{
+
+                        display: flex;
+                        margin-top: 25px;
+                        @include screen450 {
+                            display: block;
+                        }
+                        .btn-primary{
+                            margin-right: 20px;
+                            @include screen450 {
+                                margin-right: 0;
+                            }
+                        }
+
+                        .outlined-button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 19px 20px;
+                            cursor: pointer;
+                            text-transform: uppercase;
+                            background-color: transparent;
+                            border-radius: 25px;
+                            letter-spacing: 1px;
+                            border: 1px solid #3333;
+                            width: 40%;
+                            @include screen450 {
+                                width: 100%;
+                                margin-top: 18px;
+                            }
+                            &:hover {
+                                transition: 0.3s ease-in;
+                                background-color: $blue100;
+                                border: none;
+                                .outlined-button-title {
+                                    color: $white;
+                                }
+                            }
+                            &-title {
+                                font-size: 12px;
+                                text-align: center;
+                                font-weight: 500;
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
