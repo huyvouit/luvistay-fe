@@ -1,19 +1,17 @@
 @use "../../../scss/" as *;
 
-.motel {
-    padding: 20px 5%;
+.home-stay {
+    padding: 25px 5%;
     &-container {
         display: flex;
-        background-color: #ffffff;
-        box-shadow: 1px 1px 18px 1px #e0e0e0;
-        padding: 30px;
+        justify-content: space-between;
 
         @include screen950 {
             display: block;
         }
 
-        .motel-colum-one {
-            width: 30%;
+        .home-stay-colum-one {
+            width: 45%;
             height: 100%;
             cursor: pointer;
             .slideshow {
@@ -23,9 +21,15 @@
 
                 .mainImg {
                     width: 100%;
-                    height: 376px;
+                    height: 465px;
                     transition: all 500ms;
                     object-fit: cover;
+                    @include screen950 {
+                        height: 550px;
+                    }
+                    @include screen750 {
+                        height: auto;
+                    }
                 }
 
                 .actions {
@@ -67,12 +71,12 @@
             }
         }
 
-        .motel-colum-one:hover .actions {
+        .home-stay-colum-one:hover .actions {
             opacity: 1;
         }
 
-        .motel-colum-two {
-            width: 70%;
+        .home-stay-colum-two {
+            width: 45%;
             height: 100%;
 
             @include screen950 {
@@ -81,30 +85,16 @@
             }
 
             &-container {
-                display: flex;
                 height: 100%;
                 width: 100%;
-                justify-content: space-between;
-                @include screen650 {
-                    display: block;
-                }
+
                 .colum-one {
-                    width: 70%;
-                    margin: 0 25px;
-                    height: 376px;
-                    padding-right: 30px;
-                    border-right: 1px solid #302f2f3d;
-
-                    @include screen950 {
-                        height: 100%;
+                    &-highlight{
+                        width: 70px;
+                        height: 4px;
+                        background-color: #c1b086;
+                        margin: 7px 0;
                     }
-
-                    @include screen650 {
-                        width: 100%;
-                        height: 100%;
-                        border-right: none;
-                    }
-
                     &-title {
                         font-family: "Noto Serif", serif;
                         color: #222;
@@ -112,7 +102,7 @@
                         font-weight: 400;
                         letter-spacing: -0.5px;
                         font-size: 25px;
-                        margin-bottom: 14px;
+                        margin-bottom: 12px;
                     }
 
                     &-title:hover {
@@ -131,8 +121,7 @@
 
                     &-review {
                         display: flex;
-
-                        &-colum-one{
+                        &-colum-one {
                             color: #c1b086;
                             margin-right: 8px;
                             padding-top: 4px;
@@ -150,63 +139,13 @@
                             }
                         }
                     }
-                }
-
-                .colum-two {
-                    width: 30%;
-                    padding: 0 20px;
-                    @include screen650 {
-                        width: 100%;
-                        height: 100%;
-                        margin-top: 25px;
-
-                        &-responsive{
-                            display: flex;
-                            margin: auto 0;
-                        }
-                    }
-
-                    @include screen450 {
-                    .responsive-two{
-                        margin-top: 20px;
-                        display: block;
-                    }
-                    }
-
-                    &-title {
-                        color: #5f6060;
-                        font-weight: 400;
-                        margin-bottom: 20px;
-                        font-size: 14px;
-
-                        @include screen650 {
-                            padding: 0;
-                            margin-bottom: 0;
-                            margin-right: 6px;
-                        }
-
-                        @include screen450 {
-                            font-size: 12px;
-                        }
-                    }
 
                     &-price {
-                        margin-bottom: 30px;
-                        @include screen650 {
-                            margin-bottom: 0;
-                        }
+                        margin-top: 25px;
                         &-one {
                             font-size: 30px;
                             font-size: 1.875rem;
                             color: #222;
-
-                            @include screen1199 {
-                                font-size: 22px;
-                            }
-
-                            @include screen450 {
-                                font-size: 16px;
-                            }
                         }
 
                         &-two {
@@ -215,54 +154,53 @@
                             font-family: "Open Sans", sans-serif;
                             font-size: 16px;
                             line-height: 1.75;
-
-                            @include screen450 {
-                                font-size: 12px;
-                            }
                         }
                     }
 
-                    @include screen650 {
-                        .btn-primary{
-                            padding-top: 19px;
-                        }
-                    }
+                    &-responsive-btn{
 
-                    .outlined-button {
-                        margin-top: 20px;
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 19px 20px;
-                        cursor: pointer;
-                        text-transform: uppercase;
-                        background-color: transparent;
-                        border-radius: 25px;
-                        letter-spacing: 1px;
-                        border: 1px solid #3333;
-                        width: 100%;
-                        @include screen650 {
-                            margin-left: 15px;
-                            padding: 19px 20px;
-                        }
-
+                        margin-top: 25px;
                         @include screen450 {
-                            margin-left: 0;
+                            display: block;
                         }
-                        &:hover {
-                            transition: 0.3s ease-in;
-                            background-color: $blue100;
-                            border: none;
-                            .outlined-button-title {
-                                color: $white;
+                        .btn-primary{
+                            margin-right: 20px;
+                            @include screen450 {
+                                margin-right: 0;
                             }
                         }
 
-                        &-title {
-                            font-size: 12px;
-                            text-align: center;
-                            font-weight: 500;
-                            color: #000;
+                        .outlined-button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 19px 20px;
+                            cursor: pointer;
+                            text-transform: uppercase;
+                            background-color: transparent;
+                            border-radius: 25px;
+                            letter-spacing: 1px;
+                            border: 1px solid #3333;
+                            width: 40%;
+                            @include screen450 {
+                                width: 100%;
+                                margin-top: 18px;
+                            }
+                            &:hover {
+                                transition: 0.3s ease-in;
+                                background-color: $blue100;
+                                border: none;
+                                .outlined-button-title {
+                                    color: $white;
+                                }
+                            }
+                            &-title {
+                                font-size: 12px;
+                                text-align: center;
+                                font-weight: 500;
+                                color: #000;
+                            }
                         }
                     }
                 }
