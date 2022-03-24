@@ -1,9 +1,9 @@
 // .__welcome-image-box {
 //     @apply bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_welcome.png')] bg-no-repeat bg-contain bg-center;
-//     @apply relative flex justify-start items-center h-[40vh];
+//     @apply bg-no-repeat bg-contain bg-center relative flex justify-start items-center h-[40vh] sm:h-[50vh] sm:w-full;
 // }
 
 // .__welcome-content-box {
-//     @apply h-[60vh] flex flex-col justify-start pl-5;
+//     @apply h-[60vh] sm:w-[100%] flex flex-col justify-start pl-5;
 // }
 
