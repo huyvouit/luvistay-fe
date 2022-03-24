@@ -1,4 +1,5 @@
 export const APP_ROUTE = {
+  ERROR: "/*",
   HOME: "/home",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
