@@ -1,0 +1,39 @@
+@use "../../../scss/" as *;
+
+.special-offer{
+    margin-bottom: 15%;
+    &-container{
+        border-top: 1px solid #e7e4e4;
+        &-img{
+            margin: 10% 0;
+        }
+        &-title{
+            font-family: "Noto Serif",serif;
+            color: #222;
+            font-size: 20px;
+        }
+        &-title:hover{
+            color: #c1b086;
+            text-decoration: underline #c1b086;
+        }
+        &-description{
+            color: #5f6060;
+        font-family: "Open Sans",sans-serif;
+        font-size: 16px;
+        line-height: 1.45;
+        margin: 8% 0;
+        }
+        &-price{
+            &-one{
+                font-family: "Noto Serif",serif;
+                color: #222;
+                font-size: 20px;
+            }
+            &-two{
+                color: #5f6060;
+                font-family: "Open Sans",sans-serif;
+                font-size: 14px;
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+@use "../../scss/" as *;
+
+.search {
+    padding: 5% 8%;
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        @include screen950 {
+            display: block;
+          }
+        .search-colum-one{
+            width: 65%;
+            @include screen950 {
+                width: 100%;
+            }
+            .pageherder{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 6%;
+                    &-star {
+                      .img {
+                        width: 120px;
+                        height: 22px;
+                      }
+                      margin-bottom: 25px;
+                    }
+                  
+                    &-title {
+                      .title {
+                        font-size: 40px;
+                        font-family: "Noto Serif",serif;
+                        color: #222;
+                        margin: 1.5em 0 .5em;
+                        line-height: 1.4;
+                        font-weight: 400;
+                        letter-spacing: -.5px;
+                      }
+                    }
+            }
+             .box-suggest{
+                 margin-top: 3%;
+                 background-color: #ffffff;
+                box-shadow: 1px 1px 18px 1px #e0e0e0;
+                padding: 30px;
+                margin-bottom: 6%;
+                &-title{
+                    font-family: "Noto Serif",serif;
+                    color: #222;
+                    font-size: 18px;
+                    line-height: 1.4;
+                    font-weight: 400;
+                }
+                .row-one{
+                    margin-top: 25px;
+                    display: flex;
+                    justify-content: space-between;
+                    @include screen350 {
+                        display: block;
+                    }
+                    .room-name{
+                        color: #c1b086;
+                        font-family: "Open Sans",sans-serif;
+                        font-size: 16px;
+                        line-height: 1.75;
+                        margin-left: 5px;
+                    }
+                    .room-name:hover{
+                        text-decoration: underline #c1b086 ;
+                        -webkit-transition: all .3s ease;
+                        transition: all .3s ease;
+                    }
+                }
+
+                .row-two{
+                    display: flex;
+                    position: relative;
+                    margin-top: 25px;
+                    @include screen350 {
+                        display: block;
+                        position: static;
+                    }
+                    .btn{
+                        width: 150px;
+                    }
+
+                    .colum-one{
+                        position: absolute;
+                        top: 8px;
+                        right: 0;
+                        @include screen350 {
+                            display: block;
+                            position: static;
+                            top: auto;
+                            right: auto;
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+             }
+
+        }
+
+        .search-colum-two{
+            width: 30%;
+            @include screen950 {
+                width: 100%;
+            }
+            .special-offers{
+                margin-top: 10%;
+                background-color: #ffffff;
+                box-shadow: 1px 1px 18px 1px #e0e0e0;
+                padding: 10%;
+                padding-bottom: 5%;
+                &-title{
+                    font-family: "Noto Serif",serif;
+                    color: #222;
+                    margin: 1.5em 0 .5em;
+                    line-height: 1.4;
+                    font-weight: 400;
+                    letter-spacing: -.5px;
+                    font-size: 20px;
+                    margin-bottom: 1.875rem;
+                }
+            }
+
+            .box-about{
+                margin-top: 10%;
+                background-color: #ffffff;
+                box-shadow: 1px 1px 18px 1px #e0e0e0;
+                padding: 10%;
+                &-title{
+                    font-family: "Noto Serif",serif;
+                    color: #222;
+                    margin: 1.5em 0 .5em;
+                    line-height: 1.4;
+                    font-weight: 400;
+                    letter-spacing: -.5px;
+                    font-size: 20px;
+                    margin-bottom: 1.875rem;
+                }
+
+                .box-about-descript{
+                    margin: 0 0 1.5em;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .search-description{
+        color: #5f6060;
+        font-family: "Open Sans",sans-serif;
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+    .price {
+        color: #222;
+        font-family: "Open Sans",sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+    }
+}
+
