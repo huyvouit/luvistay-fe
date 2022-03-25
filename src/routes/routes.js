@@ -18,6 +18,7 @@ import MotelPage from "../pages/Apartment/Motel";
 import HomeStayPage from "../pages/Apartment/Homestay";
 import SearchPage from "../pages/Search";
 import ApartmentDetailPage from "../pages/Apartment/Detail";
+import ErrorPage from "../pages/Error";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -50,6 +51,7 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
             </Route>
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
+            <Route path={APP_ROUTE.ERROR} element={<ErrorPage />} />
           </Route>
         </Routes>
       </Router>
