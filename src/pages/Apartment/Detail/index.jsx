@@ -1,5 +1,6 @@
 import React from "react";
 import Booking from "../../../components/Booking";
+import Relation from "../../../components/DetailApartment/Relation";
 import { ImageGallery } from "../../../components/ImageGallery";
 import PageHeader from "../../../components/PageHeader";
 
@@ -17,6 +18,7 @@ const ApartmentDetailPage = () => {
           <Booking textButton="Search" detail={{ price: 250 }} />
         </section>
       </section>
+      <Relation />
     </main>
   );
 };
