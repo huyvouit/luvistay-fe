@@ -1,0 +1,29 @@
+@use "../../../scss/" as *;
+
+.reviews {
+  &-detail-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-left {
+      @include flex(center, flex-start);
+      & > * ~ * {
+        margin-left: 5px;
+      }
+    }
+    &-quantity {
+      font-size: 30px;
+      font-weight: 600;
+      font-family: $titleFont;
+      span {
+        input {
+          color: $brown25;
+        }
+      }
+    }
+  }
+}

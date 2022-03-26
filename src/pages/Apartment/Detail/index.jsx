@@ -1,6 +1,7 @@
 import React from "react";
 import Booking from "../../../components/Booking";
 import Relation from "../../../components/DetailApartment/Relation";
+import ReviewsDetail from "../../../components/DetailApartment/Reviews";
 import { ImageGallery } from "../../../components/ImageGallery";
 import PageHeader from "../../../components/PageHeader";
 
@@ -19,6 +20,7 @@ const ApartmentDetailPage = () => {
         </section>
       </section>
       <Relation />
+      <ReviewsDetail />
     </main>
   );
 };
