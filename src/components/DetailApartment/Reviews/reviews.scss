@@ -26,4 +26,55 @@
       }
     }
   }
+
+  &-comments {
+    margin-top: 40px;
+    & > * ~ * {
+      margin-top: 20px;
+    }
+    &-content {
+      @include flex(center, flex-start);
+    }
+
+    &-body {
+      border-left: 1px solid $gray25;
+      height: 100%;
+      padding-left: 40px;
+
+      .reviews {
+        &-name {
+          text-transform: uppercase;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        &-date {
+          margin-top: 5px;
+          font-size: 12px;
+          font-weight: 500;
+          color: $brown25;
+          text-decoration: underline;
+        }
+
+        &-rating {
+          margin-top: 10px;
+        }
+
+        &-desc {
+          max-height: 80px;
+          height: fit-content;
+          overflow-y: auto;
+          letter-spacing: 0.5px;
+          margin-top: 20px;
+          font: normal 300 16px/22px $titleFont;
+        }
+      }
+    }
+  }
+
+  &-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 40px;
+  }
 }
