@@ -8,3 +8,7 @@
   max-width: $max;
   margin: 0 auto;
 }
+
+@mixin boxShadow($value) {
+  box-shadow: 0 0 $value rgb(6 28 52 / 23%);
+}

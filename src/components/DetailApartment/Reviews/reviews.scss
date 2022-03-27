@@ -2,8 +2,8 @@
 
 .reviews {
   &-detail-wrapper {
+    margin: 70px auto 50px;
     max-width: 800px;
-    margin: 0 auto;
   }
   &-header {
     display: flex;
@@ -30,7 +30,7 @@
   &-comments {
     margin-top: 40px;
     & > * ~ * {
-      margin-top: 20px;
+      margin-top: 40px;
     }
     &-content {
       @include flex(center, flex-start);
@@ -45,7 +45,7 @@
         &-name {
           text-transform: uppercase;
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 400;
         }
         &-date {
           margin-top: 5px;
