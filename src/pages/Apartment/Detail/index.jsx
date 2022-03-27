@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import Booking from "../../../components/Booking";
 import Relation from "../../../components/DetailApartment/Relation";
 import ReviewsDetail from "../../../components/DetailApartment/Reviews";
@@ -7,6 +9,44 @@ import PageHeader from "../../../components/PageHeader";
 
 import "./detail.scss";
 
+const data = [
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+  {
+    id: 1,
+    icon: "fa-solid fa-bed",
+    type: "People",
+    value: "2",
+  },
+];
 const ApartmentDetailPage = () => {
   return (
     <main className="detail-page">
@@ -38,25 +78,20 @@ const ApartmentDetailPage = () => {
                   style={{ width: "150px", backgroundColor: "white" }}
                 ></colgroup>
                 <colgroup style={{ backgroundColor: "#fcfcfc" }}></colgroup>
-                <tr>
-                  <th>Peter</th>
-                  <td>
-                    air-conditioning, free wi-fi, hairdryer, in-room safety,
-                    laundry, minibar, telephone
-                  </td>
-                </tr>
-                <tr>
-                  <th>Peter</th>
-                  <td>Griffin</td>
-                </tr>
-                <tr>
-                  <th>Peter</th>
-                  <td>Swanson</td>
-                </tr>
-                <tr>
-                  <th>Peter</th>
-                  <td>Brown</td>
-                </tr>
+                {data.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <th>
+                        <FontAwesomeIcon
+                          className="detail-icon"
+                          icon={item.icon}
+                        />
+                        <span>{item.type}</span>
+                      </th>
+                      <td>{item.value}</td>
+                    </tr>
+                  );
+                })}
               </table>
             </section>
           </section>

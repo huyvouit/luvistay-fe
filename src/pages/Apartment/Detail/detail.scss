@@ -33,6 +33,10 @@
     }
   }
 
+  &-icon {
+    margin-right: 10px;
+    color: $brown25;
+  }
   &-table {
     margin: 70px 0 50px 0;
 
@@ -57,6 +61,9 @@
 
     th {
       text-align: left;
+      span {
+        color: #222;
+      }
     }
   }
 }
