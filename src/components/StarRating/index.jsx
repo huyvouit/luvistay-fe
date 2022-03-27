@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./StarRating.scss";
 
-const StarRating = ({ ratingVote }) => {
+const StarRating = ({ ratingVote, isEditable }) => {
   const [rating, setRating] = useState(ratingVote);
 
   return (
@@ -10,19 +10,20 @@ const StarRating = ({ ratingVote }) => {
       {[...Array(5)].map((star, index) => {
         const ratingValue = index + 1;
         return (
-          <label>
+          <label key={index}>
             <input
               type="radio"
               name="rating"
               value={ratingValue}
               className="rating-star-radio"
-              onClick={() => setRating(ratingValue)}
+              onClick={isEditable ? () => setRating(ratingValue) : () => {}}
             />
             <FontAwesomeIcon
               icon="fa-solid fa-star"
-              size={80}
+              size={"80px"}
               color={ratingValue <= rating ? "#c1b086" : "#ebebec"}
               className="rating-star-star"
+              style={{ cursor: isEditable && "pointer" }}
             />
           </label>
         );
