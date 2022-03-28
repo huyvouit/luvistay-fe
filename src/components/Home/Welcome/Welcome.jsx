@@ -17,10 +17,10 @@ const Welcome = () => {
       <div className="__welcome-content-box h-[40rem] sm:h-[32rem] sm:w-[100%] flex flex-col justify-start pl-2 sm:pl-5">
         <div className="flex flex-col justify-around sm:space-y-4 h-[45%] sm:h-[30%] pt-4 sm:pt-0 pb-2">
           <div className="w-16 sm:w-20 bg-primary h-[0.2rem]" />
-          <div className="text-[12px] font-normal sm:font-[500] tracking-wide">
+          <div className="text-[12px] font-normal sm:font-[500] tracking-wide welcome-description">
             RAISING COMFORT TO THE HIGHEST LEVEL
           </div>
-          <div className="text-2xl sm:text-4xl font-[500] tracking-wide">
+          <div className="text-2xl sm:text-4xl font-[500] tracking-wide welcom-title">
             Welcome to LuviStay Hotel Resort
           </div>
         </div>
@@ -36,7 +36,7 @@ const Welcome = () => {
             for the use of guests, from where you can enjoy the view.
           </p>
           <div className="flex justify-center items-center w-44 h-14 text-sm text-white font-mono rounded-full bg-primary cursor-pointer">
-            <a href="#" className="text-white">
+            <a href="#" className="text-white welcome-description">
               READ MORE
             </a>
           </div>
