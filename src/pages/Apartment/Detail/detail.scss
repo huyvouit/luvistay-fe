@@ -1,5 +1,69 @@
 @use "../../../scss/" as *;
 
-.detail-body {
-  display: flex;
+.detail {
+  &-image {
+    margin: 50px auto;
+
+    max-width: $max-width-content;
+    @include boxShadow(50px);
+    img {
+      width: 100%;
+      // max-height: 800px;
+      height: 700px;
+    }
+  }
+
+  &-body {
+    display: flex;
+    margin: 0 auto;
+    max-width: $max-width-content;
+    &-left {
+      margin-right: 50px;
+      flex: 1;
+    }
+
+    &-right {
+      width: 400px;
+      margin-bottom: 50px;
+      &-item {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 60px;
+      }
+    }
+  }
+
+  &-icon {
+    margin-right: 10px;
+    color: $brown25;
+  }
+  &-table {
+    margin: 70px 0 50px 0;
+
+    // display: flex;
+    &-title {
+      font-size: 28px;
+      font-weight: 500;
+      font-family: $titleFont;
+      margin-bottom: 30px;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid $gray25;
+      padding: 15px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th {
+      text-align: left;
+      span {
+        color: #222;
+      }
+    }
+  }
 }

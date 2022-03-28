@@ -1,20 +1,20 @@
+@use "../../scss/" as *;
 .image-gallery {
   display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: repeat(1, minmax(250px, 1fr));
+  gap: 25px;
 
-  &-column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
-    padding: 0 4px;
-    img {
-      margin-top: 8px;
-      vertical-align: middle;
-      width: 100%;
-    }
+  width: fit-content;
+
+  @include screen850 {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+  .image-item {
+    // padding: 0 4px;
+    cursor: pointer;
+    @include boxShadow(50px);
+    width: 100%;
   }
 }

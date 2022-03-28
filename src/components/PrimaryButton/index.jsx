@@ -4,10 +4,8 @@ import "./primaryButton.scss";
 const PrimaryButton = (props) => {
   const { title, action } = props;
   return (
-    <main className="primary-button">
-      <p className="primary-button-title" onClick={action}>
-        {title}
-      </p>
+    <main className="primary-button" onClick={action}>
+      <p className="primary-button-title">{title}</p>
     </main>
   );
 };

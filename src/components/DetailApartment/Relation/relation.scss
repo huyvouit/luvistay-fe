@@ -1,0 +1,59 @@
+@use "../../../scss/" as *;
+
+.relation {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    border-top: 1px solid $gray25;
+    border-bottom: 1px solid $gray25;
+    width: 100%;
+  }
+
+  &-left {
+    flex: 1;
+    @include screen850 {
+      display: none;
+    }
+  }
+
+  &-right {
+    border-left: 1px solid $gray25;
+    width: 100%;
+    padding-left: 40px;
+    flex: 1;
+    &-content {
+      width: 100%;
+      text-align: start;
+      cursor: pointer;
+      @include screen850 {
+        text-align: end;
+      }
+      &:hover {
+        color: $brown25;
+      }
+      .text-next {
+        color: #000;
+        font-size: 14px;
+        text-transform: uppercase;
+        @include screen850 {
+          font-size: 16px;
+        }
+        span {
+          margin-left: 15px;
+          color: $brown25;
+        }
+      }
+      .text-room {
+        margin-top: 30px;
+        font-size: 30px;
+        font-weight: 600;
+        font-family: $titleFont;
+        line-height: 1.2;
+        @include screen850 {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
