@@ -19,6 +19,7 @@ import HomeStayPage from "../pages/Apartment/Homestay";
 import SearchPage from "../pages/Search";
 import ApartmentDetailPage from "../pages/Apartment/Detail";
 import ErrorPage from "../pages/Error";
+import AboutUsPage from "../pages/AboutUs/AboutUs";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ export default function AppRoutes() {
           <Route>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
+              <Route path={APP_ROUTE.ABOUT} element={<AboutUsPage />} />
               <Route path={APP_ROUTE.APARTMENT} element={<ApartmentPage />} />
               <Route path={APP_ROUTE.HOTEL} element={<HotelPage />} />
               <Route
