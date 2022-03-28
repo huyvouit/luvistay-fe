@@ -12,7 +12,7 @@ import Canonical from "../../components/Canonical";
 const HomePage = () => {
   return (
     <>
-      <Canonical title="Home | LuviStay" href="http://localhost:3000/" />
+      <Canonical title="Trang chủ | LuviStay" />
       <HeroSlider />
       <BoxBooking />
       <Welcome />

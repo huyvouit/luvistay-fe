@@ -1,7 +1,8 @@
 @use "../../scss/" as *;
 
 .header {
-  box-shadow: 2px 2px 10px #000;
+  // box-shadow: 2px 2px 10px #000;
+
   z-index: 1000 !important;
   background-color: transparent;
   &-content {
@@ -38,13 +39,15 @@
 
     .icon {
       font-size: 24px;
-      color: red;
+      color: #fff;
       transition: 0.5s;
+      width: 40px;
+      height: 40px;
     }
 
     &:hover {
       .icon {
-        color: red;
+        color: #fff;
         transition: 0.5s;
         // transform: rotate(90deg);
       }
@@ -143,7 +146,7 @@
     display: none !important;
   }
   &-item {
-    margin-left: 60px;
+    margin-left: 50px;
     display: inline-block;
     vertical-align: top;
     color: #000;
