@@ -1,6 +1,6 @@
 export const APP_ROUTE = {
   ERROR: "/*",
-  HOME: "/home",
+  HOME: "/",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
   SEARCH: "/search",
@@ -16,4 +16,6 @@ export const APP_ROUTE = {
   PROFILE: "/profile",
   PROFILE_ORDER: "/profile/orders",
   FAVOURITES: "/profile/favourites",
+  BLOG: "/blog",
+  CONTACT: "/contact",
 };

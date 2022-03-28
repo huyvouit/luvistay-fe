@@ -1,36 +1,50 @@
 import React, { useState } from "react";
-
-import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/icons/logo-footer.svg";
 
 import "./header.scss";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const NAVLINK = [
   {
-    route: "Home",
-    path: "home",
+    route: "Trang chủ",
+    path: APP_ROUTE.HOME,
   },
   {
-    route: "Category",
-    path: "category",
+    route: "Căn hộ",
+    path: APP_ROUTE.APARTMENT,
   },
   {
-    route: "Blog",
-    path: "Blog",
+    route: "Bài viết",
+    path: APP_ROUTE.BLOG,
   },
   {
-    route: "Contact",
-    path: "contact",
+    route: "Liên hệ",
+    path: APP_ROUTE.CONTACT,
   },
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <main className="header">
+    <main
+      className="header"
+      style={{ borderBottom: location.pathname !== "/" && "1px solid $gray25" }}
+    >
       <section className="header-content flex">
-        <section className="logo">LuviStay</section>
+        <section className="logo">
+          <img
+            src={logo}
+            alt=""
+            width={140}
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          />
+        </section>
         <div
           className="header-mobile flex-center"
           onClick={(event) => {
@@ -40,7 +54,10 @@ const Header = () => {
             }, 500);
           }}
         >
-          <section className="icon">x</section>
+          <FontAwesomeIcon
+            icon="fa-solid fa-bars"
+            style={{ width: "30px", height: "30px !important" }}
+          />
         </div>
         <section
           className={
@@ -65,7 +82,7 @@ const Header = () => {
                 }, 600);
               }}
             >
-              <section className="icon">+</section>
+              <FontAwesomeIcon icon="fa-solid fa-xmark" className="icon" />
             </div>
             <div className="header-mobile-item-box ">
               <div className="header-mobile-item-list flex-center flex-col">
@@ -77,6 +94,7 @@ const Header = () => {
                           ? "header-mobile-item-item header-mobile-item-item-active"
                           : "header-mobile-item-item"
                       }
+                      onClick={() => navigate(item.path)}
                     >
                       <p>{item.route}</p>
                     </div>
@@ -84,7 +102,7 @@ const Header = () => {
                 })}
 
                 <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>Login</p>
+                  <p>Đăng nhập</p>
                 </section>
                 <section className="header-mobile-item-item header-mobile-item-item-active">
                   <p>VI</p>
@@ -102,6 +120,7 @@ const Header = () => {
                     ? "navbar-item navbar-item-active"
                     : "navbar-item"
                 }
+                onClick={() => navigate(item.path)}
               >
                 <p>{item.route}</p>
               </section>
@@ -109,7 +128,7 @@ const Header = () => {
           })}
           <section className="divider navbar-item"></section>
           <section className="navbar-item">VI</section>
-          <section className="navbar-item">Login</section>
+          <section className="navbar-item">Đăng nhập</section>
         </section>
       </section>
     </main>
