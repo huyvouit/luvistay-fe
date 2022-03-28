@@ -98,8 +98,8 @@ const SectionTwo = () => (
   <div className="grid grid-cols-2 content-center gap-4 py-8">
     <div className="h-20 flex flex-col justify-around">
       <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-      <h6 className="about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
-      <h3 className="about-title">Chào mừng đến với LuviStay</h3>
+      <h6 className="about-review">Trải nghiệm dịch vụ cao cấp</h6>
+      <h3 className="about-title">Nơi nghỉ dưỡng sang trọng</h3>
     </div>
     <div className="space-y-2">
       <p className="about-description">
@@ -147,8 +147,8 @@ const SectionThree = () => (
       <div className="h-20 flex flex-col justify-between space-y-6">
         <section className="flex flex-col justify-between space-y-3">
           <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-          <h6 className="about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
-          <h3 className="about-title">Chào mừng đến với LuviStay</h3>
+          {/* <h6 className="about-review"></h6> */}
+          <h3 className="about-title">Lịch sử hình thành</h3>
         </section>
         <section className="flex flex-col space-y-3">
           <p className="about-description about-italic">
