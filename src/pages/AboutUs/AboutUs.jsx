@@ -24,6 +24,11 @@ const founders = [
     position: "",
   },
   {
+    name: "Nguyễn Khuê",
+    avatar: "https://tinyurl.com/yc6xcr6m",
+    position: "Backend Leader",
+  },
+  {
     name: "Lê Khôi",
     avatar: "https://tinyurl.com/2p8cvefy",
     position: "Backend Developer",
@@ -32,11 +37,6 @@ const founders = [
     name: "Nguyễn Hữu Long",
     avatar: "https://tinyurl.com/2djcv7xz",
     position: "Backend Developer",
-  },
-  {
-    name: "Nguyễn Khuê",
-    avatar: "https://tinyurl.com/yc6xcr6m",
-    position: "Backend Leader",
   },
 ];
 
