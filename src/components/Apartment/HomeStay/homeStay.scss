@@ -119,26 +119,6 @@
                         margin-bottom: 12px;
                     }
 
-                    &-review {
-                        display: flex;
-                        &-colum-one {
-                            color: #c1b086;
-                            margin-right: 8px;
-                            padding-top: 4px;
-                            width: 20px;
-                        }
-
-                        &-colum-two {
-                            color: #5f6060;
-                            font-family: "Open Sans", sans-serif;
-                            font-size: 16px;
-                            line-height: 1.75;
-                            .hover-text:hover {
-                                cursor: pointer;
-                                color: #c1b086;
-                            }
-                        }
-                    }
 
                     &-price {
                         margin-top: 25px;

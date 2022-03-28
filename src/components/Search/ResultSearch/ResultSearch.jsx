@@ -4,6 +4,7 @@ import PrimaryButton from '../../PrimaryButton'
 import { MenuItem, Select } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./resultSearch.scss";
+import { InformationResultOne, InformationResultTwo } from '../../InformationResult/InformationResult';
 
 const ResultSearch = () => {
   return (
@@ -29,32 +30,14 @@ const ResultSearch = () => {
             </section>
             <section className='row-two'>
               <section className='review-colum-one'>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-person" />
-                  <p className="review-container-text">2</p>
-                </section>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-eye" />
-                  <p className="review-container-text">beach</p>
-                </section>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-expand" />
-                  <p className="review-container-text">20m²</p>
-                </section>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-bed" />
-                  <p className="review-container-text">queen bed</p>
-                </section>
+                <InformationResultOne title="2" icon="fa-solid fa-person"/>
+                <InformationResultOne title="beach" icon="fa-solid fa-eye"/>
+                <InformationResultOne title="20m²" icon="fa-solid fa-expand"/>
+                <InformationResultOne title="queen bed" icon="fa-solid fa-bed"/>
               </section>
               <section className='review-colum-two'>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-bookmark" />
-                  <p className="review-container-text"><span className="review-container-hover">single</span></p>
-                </section>
-                <section className="review-container">
-                  <FontAwesomeIcon className="review-container-icon" icon="fa-solid fa-star" />
-                  <p className="review-container-text"><span className="review-container-hover">air-conditioning</span>, <span className="review-container-hover">free wi-fi</span>, <span className="review-container-hover">hairdryer</span>, <span className="review-container-hover">in-room safety</span>, <span className="review-container-hover">laundry</span>, <span className="review-container-hover">minibar</span>, <span className="review-container-hover">telephone</span></p>
-                </section>
+                <InformationResultTwo icon="fa-solid fa-bookmark" description={["single"]}/>
+                <InformationResultTwo icon="fa-solid fa-star" description={["air-conditioning","free wi-fi","hairdryer","in-room safety","laundry","minibar","telephone"]}/>
               </section>
             </section>
           </section>
