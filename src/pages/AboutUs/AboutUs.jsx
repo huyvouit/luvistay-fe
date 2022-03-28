@@ -5,7 +5,7 @@ import "./aboutus.scss";
 const AboutUsPage = () => {
   return (
     <>
-      <div className="about-header-bg h-80 w-full" />
+      <div className="about-header-bg h-[35rem] w-full" />
       <section className="flex flex-col pt-14 justify-center px-20 mb-10 leading-6 tracking-wide">
         <SectionOne />
         <SectionImage
@@ -28,11 +28,11 @@ const SectionOne = () => (
     <section className="basis-1/2">
       <div className="h-20 flex flex-col justify-around">
         <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-        <h6>Luôn mang đến trải nghiệm tốt nhất</h6>
-        <h3>Chào mừng đến với LuviStay</h3>
+        <h6 className="text-lg">Luôn mang đến trải nghiệm tốt nhất</h6>
+        <h3 className="text-2xl">Chào mừng đến với LuviStay</h3>
       </div>
     </section>
-    <section className="basis-1/2 space-y-2">
+    <section className="basis-1/2 space-y-2 text-base">
       <p>
         Bạn đang gặp khó khăn trong việc tìm phòng với giá cả phải chăng? Bạn
         không thích các thủ tục phức tạp. Hãy đến với LuviStay.

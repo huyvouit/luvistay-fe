@@ -4,4 +4,15 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  & > * {
+    margin-top: 1rem;
+  }
+}
+
+.basic-text {
+  color: #5f6060;
+  font-family: Open Sans,sans-serif;
+  font-size: 18px;
+  line-height: 1.75;
 }

@@ -1,5 +1,6 @@
 import React from "react";
-
+import PrimaryButton from "../../components/PrimaryButton";
+import { Link } from "react-router-dom";
 import "./error.scss";
 
 import Icons from "../../assets/icons";
@@ -7,13 +8,15 @@ const ErrorPage = () => {
   return (
     <main className="error-page">
       <Icons.PageNotFound width={"600px"} height={"500px"} />
-      <p>
-        Trang web này không tồn tại
+      <p className="basic-text">
+        TRANG WEB NÀY KHÔNG TỒN TẠI
       </p>
-      <button style={{
-        backgroundColor: "rgb(255, 0, 0, 255)",
-        padding: "25px"
-      } }>Quay trở về trang chủ</button>
+      
+      <section>
+        <Link to="/">
+          <PrimaryButton title="Quay về trang chủ" action={() => {}} />
+        </Link>
+      </section>
     </main>
   );
 };

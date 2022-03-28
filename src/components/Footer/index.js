@@ -15,8 +15,8 @@ const Footer = () => {
                 <img src={logo} />
               </a>
               </p>
-              <p>All hotels and vacation rental properties listed on this website are independently owned and operated.</p>
-              <p>Accepted payment methods</p>
+              <p>Tất cả các khách sạn và bất động sản cho thuê kỳ nghỉ được liệt kê trên trang web này đều thuộc sở hữu và điều hành độc lập. </p>
+              <p>Các phương thức thanh toán</p>
               <p><img src={payments}/></p>
 
             </div>
@@ -24,43 +24,43 @@ const Footer = () => {
         </div>
         <div className="footer-on-area">
           <section>
-          <h4 className="area-title">For Customers</h4>
+          <h4 className="area-title">Dành cho khách hàng</h4>
           <div className="menu-one">
             <ul className="menu">
-              <li><a href="#">About Luviana</a></li>
-              <li><a href="#">Customer Care/Help</a></li>
-              <li><a href="#">Corporate Accounts</a></li>
-              <li><a href="#">Financial Information</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Về LuviStay</a></li>
+              <li><a href="#">Chăm sóc khách hàng</a></li>
+              <li><a href="#">Thông tin tài chính</a></li>
+              <li><a href="#">Điều khoản và quy định</a></li>
+              <li><a href="#"></a></li>
             </ul>
           </div>
           </section>
         </div>
         <div className="footer-on-area">
           <section>
-            <h4 className="area-title">Recent News</h4>
+            <h4 className="area-title">Tin tức liên quan</h4>
             <ul className="menu-two">
-              <li><a href="#">Our Secret Island Boat Tour Is Just for You</a></li>
-              <li><a href="#">Chill and Escape in Our Natural Shelters</a></li>
-              <li><a href="#">September in Luviana Hotel</a></li>
-              <li><a href="#">Live Music Concerts at Luviana</a></li>
+              <li><a href="#">Chuyến tham quan Đảo bí mật của chúng tôi chỉ dành cho bạn </a></li>
+              <li><a href="#">Thư giãn và trốn thoát trong những nơi trú ẩn tự nhiên của chúng ta </a></li>
+              <li><a href="#">Tháng 9 tại LuviStay</a></li>
+              <li><a href="#">Hoà nhạc tại LuviStay</a></li>
             </ul>
           </section>
         </div>
         <div className="footer-on-area">
           <section>
-            <h4 className="area-title">Contact Us</h4>
+            <h4 className="area-title">Liên hệ</h4>
             <div className="colum-four">
-            <p className="colum-four-addres">3015 Grand Ave, Coconut Grove,<br/>Merrick Way, FL 12345</p>
-            <p className="colum-four-link"><a href="#">hello@luviana.com</a></p>
-            <p className="colum-four-link"><a href="#">1.954.456.6789</a> <br/><a href="#">1.954.456.6788</a> </p>
-            <p className="colum-four-link"><a href="#">24/7 Customer Service</a></p>
+            <p className="colum-four-addres">Khu Phố 6, phường Linh Trung, thành phố Thủ Đức, thành phố Hồ Chí Minh </p>
+            <p className="colum-four-link"><a href="#">luvistay@gmail.com</a></p>
+            <p className="colum-four-link"><a href="tel:+84979412412">+84 979 412 412</a> <br/><a href="#">+84 979 412 412</a> </p>
+            <p className="colum-four-link"><a href="#">Dịch vụ chăm sóc khách hàng 24/7</a></p>
             </div>
           </section>
         </div>
     </div>
     <div className="footer-up">
-    <div className="footer-up-info"> Luvíana © 2022 All Rights Reserved</div>
+    <div className="footer-up-info"> LuviStay © 2022 </div>
     </div>
 
   </div>;
