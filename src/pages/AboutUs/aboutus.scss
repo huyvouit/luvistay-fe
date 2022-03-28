@@ -4,3 +4,34 @@
     background-size: cover;
     background-position: center;
 }
+.about-title{
+    font-family: "Noto Serif",serif;
+    color: #222;
+    line-height: 1.4;
+    font-size: 31px;
+    font-weight: 400;
+    letter-spacing: -.5px;
+    margin: 0;
+}
+
+.about-review {
+    color: #222;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.about-description{
+    color: #5f6060;
+    font-family: "Open Sans",sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+.about-italic{
+    font-style: italic;
+}
+
+.text-primary:hover{
+    text-decoration: underline;
+}

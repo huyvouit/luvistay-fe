@@ -28,16 +28,16 @@ const SectionOne = () => (
     <section className="basis-1/2">
       <div className="h-20 flex flex-col justify-around">
         <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-        <h6 className="text-lg">Luôn mang đến trải nghiệm tốt nhất</h6>
-        <h3 className="text-2xl">Chào mừng đến với LuviStay</h3>
+        <h6 className="text-lg about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
+        <h3 className="text-2xl about-title">Chào mừng đến với LuviStay</h3>
       </div>
     </section>
     <section className="basis-1/2 space-y-2 text-base">
-      <p>
+      <p className="about-description">
         Bạn đang gặp khó khăn trong việc tìm phòng với giá cả phải chăng? Bạn
         không thích các thủ tục phức tạp. Hãy đến với LuviStay.
       </p>
-      <p>
+      <p className="about-description">
         Chúng tôi là một công ty cung cấp dịch vụ du lịch trực tuyến. Dịch vụ
         của chúng tôi cung cấp các loại phòng như khách sạn, nhà nghỉ, homestay,
         resort,... với giá rẻ tại thị trường Việt Nam.
@@ -57,19 +57,19 @@ const SectionTwo = () => (
   <div className="grid grid-cols-2 content-center gap-4 py-8">
     <div className="h-20 flex flex-col justify-around">
       <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-      <h6>Luôn mang đến trải nghiệm tốt nhất</h6>
-      <h3>Chào mừng đến với LuviStay</h3>
+      <h6 className="about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
+      <h3 className="about-title">Chào mừng đến với LuviStay</h3>
     </div>
     <div className="space-y-2">
-      <p>
+      <p className="about-description">
         Dịch vụ của chúng tôi, trải qua các quy trình kiểm duyệt nghiêm ngặt.
         Mang đến cho khách hàng những trải nghiệm tốt nhất.
       </p>
-      <p>
+      <p className="about-description">
         Bên cạnh đó, chúng tôi luôn sẵn sàng tiếp nhận những phản hồi từ khách
         hàng.
       </p>
-      <p>
+      <p className="about-description">
         Không những thế, những căn phòng LuviStay cung cấp cho các bạn đa dạng
         từ các địa điểm nổi tiếng như Nha Trang, Vũng Tàu, Đà Lạt, Phú Quốc,...
         Đa dạng về quang cảnh xung quanh như đồi núi, biển, rừng,...
@@ -106,11 +106,11 @@ const SectionThree = () => (
       <div className="h-20 flex flex-col justify-between space-y-6">
         <section className="flex flex-col justify-between space-y-3">
           <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-          <h6>Luôn mang đến trải nghiệm tốt nhất</h6>
-          <h3>Chào mừng đến với LuviStay</h3>
+          <h6 className="about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
+          <h3 className="about-title">Chào mừng đến với LuviStay</h3>
         </section>
         <section className="flex flex-col space-y-3">
-          <p>
+          <p className="about-description about-italic" >
             Năm 2022, với khát vọng cung cấp một giải pháp du lịch tiện lợi, giá
             cả phải chăng, Huy Vô UIT đã lên ý tưởng và thành lập công ty
             Luvistay.
@@ -122,18 +122,18 @@ const SectionThree = () => (
       </div>
     </section>
     <section className="basis-1/2 flex flex-col space-y-6">
-      <p>Luvistay có một lịch sử phong phú với nhiều sự kiện bất ngờ.</p>
-      <p>
+      <p className="about-description">Luvistay có một lịch sử phong phú với nhiều sự kiện bất ngờ.</p>
+      <p className="about-description">
         Lịch sử Luvistay bắt đầu vào mùa covid thứ 3. Vào một buổi chiều mùa
         xuân, Huy Vô UIT - một sinh viên trường Đại Học Công nghệ thông tin - đã
         nảy ra ý tưởng xây dựng một trang web cho phép người dùng đặt phòng từ
         xa khi mà dịch bệnh đang căng thẳng, hạn chế tiếp xúc gần.
       </p>
-      <p>
+      <p className="about-description">
         Tên của khách sạn bắt nguồn từ ánh trăng - luna. "Lu" trong luna. Ban
         đầu là Luviana nhưng đã bị trùng nên đã được biến tấu thành Luvistay.
       </p>
-      <p>
+      <p className="about-description">
         Kể từ thời điểm được công bố, trang web đã nhận được nhiều lượt truy cập
         và lời khen có cánh từ các du khách. Hàng tháng đội ngũ webdev cập nhật
         phản hồi từ khách hàng và cải tiến trang web đến mức tốt nhất có thể.
