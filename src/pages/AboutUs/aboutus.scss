@@ -35,6 +35,7 @@
 
 .text-primary:hover{
     text-decoration: underline;
+}
 
 .__founders_gridview {
     height: max-content;
@@ -53,10 +54,12 @@
     height: 25rem;
     width: 16rem;
     border-radius: 0.75rem;
+    box-shadow: 5px 5px 30px #989898;
 }
 
 .founder-avatar {
     border-radius: 0.75rem;
     height: 75%;
     width: 100%;
+    object-fit: cover;
 }

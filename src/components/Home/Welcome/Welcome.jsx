@@ -3,7 +3,7 @@ import "./_welcome.scss";
 
 const Welcome = () => {
   return (
-    <div className="flex flex-col flex-nowrap space-y-14 sm:space-y-12 sm:flex-row h-[66rem] sm:h-[38rem] mx-5 mt-10 mb-10 sm:mb-20 pb-4">
+    <div className="__font flex flex-col flex-nowrap space-y-14 sm:space-y-12 sm:flex-row h-[66rem] sm:h-[38rem] mx-5 mt-10 mb-10 sm:mb-20 pb-4">
       <div className="__welcome-image-box bg-[url('https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/image_welcome.png')] bg-no-repeat bg-contain bg-center relative flex justify-start items-center h-[26%] sm:h-[50vh] sm:w-full">
         <img
           className="absolute left-0 bottom-0 z-10 w-[50%] h-[76%]"

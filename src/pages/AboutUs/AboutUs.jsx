@@ -2,6 +2,44 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./aboutus.scss";
 
+const founders = [
+  {
+    name: "Võ Sỹ Huy",
+    avatar: "https://tinyurl.com/ye9p9jb4",
+    position: "Product Manger",
+  },
+  {
+    name: "Nguyễn Trà Vi",
+    avatar: "https://tinyurl.com/3st9wnzk",
+    position: "Frontend Developer",
+  },
+  {
+    name: "Nguyễn Ngọc Khôi",
+    avatar: "https://tinyurl.com/49p9eea6",
+    position: "Frontend Developer",
+  },
+  {
+    name: "Nguyễn Trọng Phát",
+    avatar: "https://tinyurl.com/ywtmn4nh",
+    position: "",
+  },
+  {
+    name: "Lê Khôi",
+    avatar: "https://tinyurl.com/2p8cvefy",
+    position: "Backend Developer",
+  },
+  {
+    name: "Nguyễn Hữu Long",
+    avatar: "https://tinyurl.com/2djcv7xz",
+    position: "Backend Developer",
+  },
+  {
+    name: "Nguyễn Khuê",
+    avatar: "https://tinyurl.com/yc6xcr6m",
+    position: "Backend Leader",
+  },
+];
+
 const AboutUsPage = () => {
   return (
     <>
@@ -17,7 +55,7 @@ const AboutUsPage = () => {
       </section>
       <div className="px-4">
         <hr className="mt-12 mb-0.5" />
-        <hr className="mb-12" />
+        <hr className="mb-8" />
       </div>
       <Founders />
     </>
@@ -25,11 +63,13 @@ const AboutUsPage = () => {
 };
 
 const SectionOne = () => (
-  <div className="flex flex-row justify-between py-8">
+  <div className="flex flex-row justify-between pt-8 pb-10">
     <section className="basis-1/2">
       <div className="h-20 flex flex-col justify-around">
         <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
-        <h6 className="text-lg about-review">Luôn mang đến trải nghiệm tốt nhất</h6>
+        <h6 className="text-lg about-review">
+          Luôn mang đến trải nghiệm tốt nhất
+        </h6>
         <h3 className="text-2xl about-title">Chào mừng đến với LuviStay</h3>
       </div>
     </section>
@@ -111,7 +151,7 @@ const SectionThree = () => (
           <h3 className="about-title">Chào mừng đến với LuviStay</h3>
         </section>
         <section className="flex flex-col space-y-3">
-          <p className="about-description about-italic" >
+          <p className="about-description about-italic">
             Năm 2022, với khát vọng cung cấp một giải pháp du lịch tiện lợi, giá
             cả phải chăng, Huy Vô UIT đã lên ý tưởng và thành lập công ty
             Luvistay.
@@ -123,7 +163,9 @@ const SectionThree = () => (
       </div>
     </section>
     <section className="basis-1/2 flex flex-col space-y-6">
-      <p className="about-description">Luvistay có một lịch sử phong phú với nhiều sự kiện bất ngờ.</p>
+      <p className="about-description">
+        Luvistay có một lịch sử phong phú với nhiều sự kiện bất ngờ.
+      </p>
       <p className="about-description">
         Lịch sử Luvistay bắt đầu vào mùa covid thứ 3. Vào một buổi chiều mùa
         xuân, Huy Vô UIT - một sinh viên trường Đại Học Công nghệ thông tin - đã
@@ -145,59 +187,29 @@ const SectionThree = () => (
 );
 
 const Founders = () => (
-  <div className="flex justify-center items-center">
+  <div className="flex flex-col justify-center items-center py-10 px-20">
+    <div className="w-full flex justify-start items-center py-10">
+      <div className="h-20 flex flex-col justify-around">
+        <div className="w-12 sm:w-14 bg-primary h-[0.2rem]" />
+        <h3 className="text-2xl about-title">Đội ngũ phát triển</h3>
+      </div>
+    </div>
     <div className="__founders_gridview">
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
+      {founders.map((f) => (
+        <div className="founder-container">
+          <img
+            className="founder-avatar"
+            src={f.avatar}
+            alt="co-founder-avatar"
+          />
+          <div className="flex flex-col justify-center items-center text-center space-y-4  h-[20%] pb-2">
+            <h3>{f.name}</h3>
+            <div className="h-[0.2rem] w-20 bg-primary" />
+            <h4>{f.position}</h4>
+          </div>
+        </div>
+      ))}
     </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Võ Sỹ Huy</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    <div className="bg-primary founder-container">
-      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
-      <div className="flex flex-col justify-center text-center h-[20%]">
-        <h3>Nguyễn Wibu</h3>
-        <h4>Position</h4>
-      </div>
-    </div>
-    
-  </div>
   </div>
 );
 
