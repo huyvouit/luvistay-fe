@@ -59,7 +59,14 @@ const ApartmentDetailPage = () => {
       </section>
       <section className="detail-body">
         <section className="detail-body-left">
-          <p>
+          {/* Lo mà sửa */}
+
+          <p style={{
+            color: "#5f6060",
+            fontSize: "16px",
+            lineHeight: "1.75",
+            marginBottom: "30px"
+          }}> 
             Classic Double Rooms come with either double or single beds.
             Designed in open-concept living area, they have lots of in-room
             facilities. The room sizes vary from 20 to 25 sqm. They are also
@@ -69,6 +76,8 @@ const ApartmentDetailPage = () => {
             honeymooners and couples. Moreover, you may also order any type of
             meal any time as we work around-the-clock.
           </p>
+
+          {/* Lo mà sửa */}
           <ImageGallery />
           <section className="detail-table">
             <section>
