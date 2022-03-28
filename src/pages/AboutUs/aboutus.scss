@@ -4,3 +4,28 @@
     background-size: cover;
     background-position: center;
 }
+
+.__founders_gridview {
+    height: max-content;
+    width: 100%;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
+}
+
+.founder-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 25rem;
+    width: 16rem;
+    border-radius: 0.75rem;
+}
+
+.founder-avatar {
+    border-radius: 0.75rem;
+    height: 75%;
+    width: 100%;
+}

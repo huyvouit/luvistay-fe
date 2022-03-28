@@ -10,15 +10,16 @@ const AboutUsPage = () => {
         <SectionOne />
         <SectionImage
           fsrc="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/welcome-1-1-1024x1024.jpg"
-          ssrc="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/welcome-1-1-1024x1024.jpg"
+          ssrc="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/welcome-2-1-1024x1024.jpg"
         />
         <SectionTwo />
         <SectionThree />
       </section>
       <div className="px-4">
-      <hr className="mt-12 mb-0.5" />
-      <hr className="mb-12" />
+        <hr className="mt-12 mb-0.5" />
+        <hr className="mb-12" />
       </div>
+      <Founders />
     </>
   );
 };
@@ -143,8 +144,61 @@ const SectionThree = () => (
   </div>
 );
 
-const Founders = () => <div>
-
-</div>
+const Founders = () => (
+  <div className="flex justify-center items-center">
+    <div className="__founders_gridview">
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Võ Sỹ Huy</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    <div className="bg-primary founder-container">
+      <img className="founder-avatar" src="https://avatars.githubusercontent.com/u/69576826?v=4" height="80%" width="100%" alt="co-founder-avatar" />
+      <div className="flex flex-col justify-center text-center h-[20%]">
+        <h3>Nguyễn Wibu</h3>
+        <h4>Position</h4>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+);
 
 export default AboutUsPage;
