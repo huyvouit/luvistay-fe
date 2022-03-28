@@ -15,7 +15,10 @@ const AboutUsPage = () => {
         <SectionTwo />
         <SectionThree />
       </section>
-      <hr className="my-12" />
+      <div className="px-4">
+      <hr className="mt-12 mb-0.5" />
+      <hr className="mb-12" />
+      </div>
     </>
   );
 };
@@ -73,24 +76,24 @@ const SectionTwo = () => (
       </p>
     </div>
     <div className="grid grid-cols-2 grid-rows-4 gap-2">
-      <div className="row-start-1 row-span-2 row-end-3 bg-red-300">
-          <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
+      <div className="row-start-1 row-span-2 row-end-3">
+        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
       </div>
-      <div className="row-start-3 row-span-2 row-end-5 bg-red-300">
+      <div className="row-start-3 row-span-2 row-end-5">
         <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg" />
       </div>
-      <div className="row-start-2 row-span-2 row-end-4 bg-red-300">
+      <div className="row-start-2 row-span-2 row-end-4">
         <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg" />
       </div>
     </div>
     <div className="grid grid-cols-2 grid-rows-4 gap-2">
-      <div className="row-start-1 row-span-2 row-end-3 bg-red-300">
-          <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
+      <div className="row-start-1 row-span-2 row-end-3">
+        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
       </div>
-      <div className="row-start-3 row-span-2 row-end-5 bg-red-300">
+      <div className="row-start-3 row-span-2 row-end-5">
         <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg" />
       </div>
-      <div className="row-start-2 row-span-2 row-end-4 bg-red-300">
+      <div className="row-start-2 row-span-2 row-end-4">
         <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg" />
       </div>
     </div>
@@ -98,7 +101,7 @@ const SectionTwo = () => (
 );
 
 const SectionThree = () => (
-  <div className="flex flex-row justify-between py-8 mb-20">
+  <div className="flex flex-row justify-between py-8">
     <section className="basis-1/2">
       <div className="h-20 flex flex-col justify-between space-y-6">
         <section className="flex flex-col justify-between space-y-3">
@@ -108,14 +111,40 @@ const SectionThree = () => (
         </section>
         <section className="flex flex-col space-y-3">
           <p>
-            Năm 2022, với khát vọng cung cấp một giải pháp du lịch tiện lợi, giá cả phải chăng, Huy Vô UIT đã lên ý tưởng và thành lập công ty Luvistay.
+            Năm 2022, với khát vọng cung cấp một giải pháp du lịch tiện lợi, giá
+            cả phải chăng, Huy Vô UIT đã lên ý tưởng và thành lập công ty
+            Luvistay.
           </p>
-          <Link className="text-primary" to="/404">Xem thêm</Link>
+          <Link className="text-primary" to="/404">
+            Xem thêm
+          </Link>
         </section>
       </div>
     </section>
-    <section className="basis-1/2"></section>
+    <section className="basis-1/2 flex flex-col space-y-6">
+      <p>Luvistay có một lịch sử phong phú với nhiều sự kiện bất ngờ.</p>
+      <p>
+        Lịch sử Luvistay bắt đầu vào mùa covid thứ 3. Vào một buổi chiều mùa
+        xuân, Huy Vô UIT - một sinh viên trường Đại Học Công nghệ thông tin - đã
+        nảy ra ý tưởng xây dựng một trang web cho phép người dùng đặt phòng từ
+        xa khi mà dịch bệnh đang căng thẳng, hạn chế tiếp xúc gần.
+      </p>
+      <p>
+        Tên của khách sạn bắt nguồn từ ánh trăng - luna. "Lu" trong luna. Ban
+        đầu là Luviana nhưng đã bị trùng nên đã được biến tấu thành Luvistay.
+      </p>
+      <p>
+        Kể từ thời điểm được công bố, trang web đã nhận được nhiều lượt truy cập
+        và lời khen có cánh từ các du khách. Hàng tháng đội ngũ webdev cập nhật
+        phản hồi từ khách hàng và cải tiến trang web đến mức tốt nhất có thể.
+        Được phục vụ các bạn là vinh dự của chúng tôi.
+      </p>
+    </section>
   </div>
 );
+
+const Founders = () => <div>
+
+</div>
 
 export default AboutUsPage;
