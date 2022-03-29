@@ -32,3 +32,8 @@ p {
   display: flex !important;
   flex-direction: column;
 }
+
+@font-face {
+  font-family: Open;
+  src: url(./assets/fonts/NotoSerif-Regular.ttf);
+}
