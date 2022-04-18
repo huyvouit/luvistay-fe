@@ -1,0 +1,60 @@
+@use "../../scss/" as *;
+
+.checkout {
+  &-detail {
+    margin-top: 65px;
+    & > * ~ * {
+      margin-top: 20px !important;
+    }
+  }
+
+  &-content {
+    @include boxShadow(20px, rgb(6 28 52 / 10%));
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    &-date {
+      border-bottom: 1px solid $gray25;
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+      & > * ~ * {
+        margin-top: 25px;
+      }
+    }
+  }
+
+  &-title {
+    @include titleFont(24px, 400, "df");
+    padding-bottom: 10px;
+  }
+
+  &-key {
+    span {
+      strong {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &-accommodation {
+    & > * ~ * {
+      margin-top: 25px;
+    }
+
+    .inputField {
+      fieldset {
+        visibility: hidden;
+      }
+      &-title {
+        @include titleFont(14px, 400, "");
+        margin-bottom: 20px;
+      }
+      .selectField,
+      .textField {
+        width: 500px;
+        border: 1px solid $gray25 !important;
+        border-radius: 0 !important;
+      }
+    }
+  }
+}
