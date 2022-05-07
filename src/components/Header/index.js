@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import logo from "../../assets/icons/logo-footer.svg";
 
-import "./header.scss";
 import { APP_ROUTE } from "../../routes/app.routes";
+import "./header.scss";
 
 const NAVLINK = [
   {
@@ -127,8 +128,10 @@ const Header = () => {
             );
           })}
           <section className="divider navbar-item"></section>
-          <section className="navbar-item">VI</section>
-          <section className="navbar-item">Đăng nhập</section>
+          <section className="navbar-item">Vi</section>
+          <section className="navbar-item">
+            <button>Đăng nhập</button>
+          </section>
         </section>
       </section>
     </main>
