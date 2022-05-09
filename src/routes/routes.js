@@ -20,6 +20,7 @@ import SearchPage from "../pages/Search";
 import ApartmentDetailPage from "../pages/Apartment/Detail";
 import ErrorPage from "../pages/Error";
 import AboutUsPage from "../pages/AboutUs/AboutUs";
+import SignUpPage from "../pages/SignUp";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -53,6 +54,7 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
             </Route>
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
+            <Route path={APP_ROUTE.SIGNUP} element={<SignUpPage />} />
             <Route path={APP_ROUTE.ERROR} element={<ErrorPage />} />
           </Route>
         </Routes>
