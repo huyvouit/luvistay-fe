@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <main
       className="header"
-      style={{ borderBottom: location.pathname !== "/" && "1px solid $gray25" }}
+      style={{ borderBottom: location.pathname !== "/" && "1px solid #dadada" }}
     >
       <section className="header-content flex">
         <section className="logo">
