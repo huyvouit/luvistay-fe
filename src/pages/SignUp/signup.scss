@@ -1,6 +1,6 @@
 @use "../../scss/"as *;
 
-.login-page {
+.signup-page {
     &-container {
         background-color: white;
         box-shadow: 1px 1px 18px 1px #e0e0e0;
@@ -10,7 +10,7 @@
         &-colum-one {
             width: 50%;
             height: 100%;
-            .login-slide-show {
+            .signup-slide-show {
                 width: 100%;
                 cursor: pointer;
 
@@ -59,7 +59,7 @@
                 }
             }
 
-            .login-slide-show:hover .actions {
+            .signup-slide-show:hover .actions {
                 opacity: 1;
             }
         }
@@ -89,7 +89,7 @@
                 line-height: 1.75;
                 margin-top: 10px;
                 margin-left: 14px;
-                margin-bottom: 50px;
+                margin-bottom: 20px;
             }
 
             &-box-input {
@@ -111,8 +111,8 @@
                     border: 1px solid #c4c4c4;
                     border-radius: 4px;
                     padding: 5px 10px;
-                    margin-bottom: 25px;
-                    margin-top: 10px;
+                    margin-bottom: 15px;
+                    margin-top: 5px;
                     margin-left: 5px;
                 }
 
@@ -130,17 +130,17 @@
                 width: 50%;
                 font-weight: 600;
                 font-size: 18px;
-                margin-top: 25px;
+                margin-top: 15px;
                 border-radius: 8px;
             }
 
-            .sign-in-gg{
+            .sign-up-gg{
                 box-shadow: 1px 1px 18px 1px #e0e0e0;
                 border: 1px solid #c4c4c4;
                 border-radius: 8px;
                 width: 50%;
                 margin: 0 15%;
-                margin-top: 24px;
+                margin-top: 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -151,13 +151,13 @@
                 }
             }
 
-            .sign-in-fb{
+            .sign-up-fb{
                 box-shadow: 1px 1px 18px 1px #e0e0e0;
                 border: 1px solid #c4c4c4;
                 border-radius: 8px;
                 width: 50%;
                 margin: 0 15%;
-                margin-top: 24px;
+                margin-top: 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -173,7 +173,7 @@
                 }
             }
 
-            .to-sign-up{
+            .to-sign-in{
                 margin: 0 15%;
                 margin-top: 28px;
                 color: #222;
