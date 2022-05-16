@@ -14,7 +14,7 @@
   .image-item {
     // padding: 0 4px;
     cursor: pointer;
-    @include boxShadow(50px);
+    @include boxShadow(50px, rgb(6 28 52 / 23%));
     width: 100%;
   }
 }

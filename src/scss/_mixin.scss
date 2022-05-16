@@ -9,6 +9,12 @@
   margin: 0 auto;
 }
 
-@mixin boxShadow($value) {
-  box-shadow: 0 0 $value rgb(6 28 52 / 23%);
+@mixin boxShadow($value, $color) {
+  box-shadow: 0 0 $value $color;
+}
+
+@mixin titleFont($size, $weight, $family) {
+  font-size: $size;
+  font-weight: $weight;
+  font-family: $family;
 }
