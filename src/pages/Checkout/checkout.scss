@@ -1,6 +1,9 @@
 @use "../../scss/" as *;
 
 .checkout {
+  &-page {
+    margin-bottom: 30px;
+  }
   &-detail {
     margin-top: 65px;
     & > * ~ * {
@@ -19,6 +22,27 @@
       margin-bottom: 40px;
       & > * ~ * {
         margin-top: 25px;
+      }
+    }
+
+    &-price {
+      table,
+      td,
+      th {
+        border: 1px solid $gray25;
+        padding: 15px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th {
+        text-align: left;
+        span {
+          color: #222;
+        }
       }
     }
   }
@@ -55,6 +79,42 @@
         border: 1px solid $gray25 !important;
         border-radius: 0 !important;
       }
+    }
+  }
+
+  &-information {
+    & > * ~ * {
+      margin-top: 25px;
+    }
+    .inputField {
+      fieldset {
+        visibility: hidden;
+      }
+      &-title {
+        @include titleFont(14px, 400, "");
+        margin-bottom: 15px;
+      }
+      .selectField,
+      .textField {
+        width: 500px;
+        border: 1px solid $gray25 !important;
+        border-radius: 0 !important;
+      }
+    }
+  }
+
+  &-payment {
+    .payment-selection {
+      margin-top: 25px;
+    }
+    .payment-item {
+      display: flex;
+      align-items: center;
+      flex-direction: "row";
+      background-color: "redz ";
+    }
+    .payment-label {
+      @include titleFont(18px, 600, "");
     }
   }
 }
