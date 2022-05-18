@@ -4,9 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import rootReducer from "./reducers";
 
 export const store = configureStore({
-	reducer: {
-		rootReducer,
-	},
+  reducer: rootReducer,
 });
 
 export const useAppDispatch = () => useDispatch();
