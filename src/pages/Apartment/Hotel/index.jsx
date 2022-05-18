@@ -10,7 +10,7 @@ import "./hotel.scss";
 const HotelPage = () => {
   const dispatch = useDispatch();
   const apartment = useSelector((state) => state.apartment);
-  const [data, setData] = useState(apartment);
+  const [data, setData] = useState([]);
 
   console.log("data", data);
 
@@ -19,17 +19,19 @@ const HotelPage = () => {
   }, []);
 
   useEffect(() => {
-    setData(apartment);
+    setData(apartment.apartment);
   }, [apartment]);
 
   return (
     <main className="hotel-page">
-      <HotelOne item={data[0]} />
-      <HotelTwo />
-      <HotelOne />
-      <HotelTwo />
-      <HotelOne />
-      <HotelTwo />
+      {data &&
+        data.map((item, index) => {
+          return index % 2 === 0 ? (
+            <HotelOne item={item} key={index} />
+          ) : (
+            <HotelTwo item={item} key={index} />
+          );
+        })}
     </main>
   );
 };

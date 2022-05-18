@@ -7,7 +7,7 @@ const getAllApartmentApi = async (dispatch, params) => {
     const res = await apartmentApi.getAllApartment(params);
     if (res.success) {
       //   console.log(res.data);
-      dispatch(getAllApartment(res.data.apartment));
+      dispatch(getAllApartment(res.data));
     } else {
       dispatch(getAllApartment(null));
       //   console.log(res.data);
