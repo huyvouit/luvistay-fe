@@ -36,7 +36,7 @@ export default function AppRoutes() {
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path={APP_ROUTE.ABOUT} element={<AboutUsPage />} />
-              <Route path={APP_ROUTE.APARTMENT} element={<ApartmentPage />}>
+              <Route path={APP_ROUTE.APARTMENT} element={<HotelPage />}>
                 <Route path={APP_ROUTE.HOTEL} element={<HotelPage />} />
 
                 <Route path={APP_ROUTE.MOTEL} element={<MotelPage />} />

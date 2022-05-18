@@ -9,19 +9,19 @@ import "./header.scss";
 
 const NAVLINK = [
   {
-    route: "Trang chủ",
+    route: "Home",
     path: APP_ROUTE.HOME,
   },
   {
-    route: "Căn hộ",
+    route: "Apartment",
     path: APP_ROUTE.APARTMENT,
   },
   {
-    route: "Bài viết",
+    route: "Blog",
     path: APP_ROUTE.BLOG,
   },
   {
-    route: "Liên hệ",
+    route: "About Us",
     path: APP_ROUTE.CONTACT,
   },
 ];
@@ -87,9 +87,10 @@ const Header = () => {
             </div>
             <div className="header-mobile-item-box ">
               <div className="header-mobile-item-list flex-center flex-col">
-                {NAVLINK.map((item) => {
+                {NAVLINK.map((item, index) => {
                   return (
                     <div
+                      key={index}
                       className={
                         location === item.path
                           ? "header-mobile-item-item header-mobile-item-item-active"
@@ -103,19 +104,17 @@ const Header = () => {
                 })}
 
                 <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>Đăng nhập</p>
-                </section>
-                <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>VI</p>
+                  <p>Login</p>
                 </section>
               </div>
             </div>
           </div>
         </section>
         <section className="navbar">
-          {NAVLINK.map((item) => {
+          {NAVLINK.map((item, index) => {
             return (
               <section
+                key={index}
                 className={
                   location === item.path
                     ? "navbar-item navbar-item-active"
@@ -128,9 +127,12 @@ const Header = () => {
             );
           })}
           <section className="divider navbar-item"></section>
-          <section className="navbar-item">Vi</section>
-          <section className="navbar-item">
-            <button>Đăng nhập</button>
+
+          <section
+            className="navbar-item"
+            onClick={() => navigate(APP_ROUTE.SIGNIN)}
+          >
+            <button>Login</button>
           </section>
         </section>
       </section>
