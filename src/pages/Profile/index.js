@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import "./profile.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SidebarProfile from '../../components/Profile/Sidebar';
+import { TextField } from '@mui/material';
 
 const ProfilePage = () => {
-    const [openMenu, setOpenMenu] = useState(false);
     return (
         <div className='profile'>
             <div className='profile-container'>
@@ -13,29 +13,24 @@ const ProfilePage = () => {
                 <div className='profile-container-row-two'>
                     <div className='profile-container-row-two-container'>
                         <div className='colum-one'>
-                            <div>
-                                <h2>ACCOUNT DETAIL</h2>
-                                <h2>CHANGE PASSWORD</h2>
-                                <h2>ORDERS</h2>
-                                <h2>HOST</h2>
-                                <h2>LOGOUT</h2>
-                                {/* <div
-                                    onClick={(event) => {
-                                        setTimeout(() => {
-                                            setOpenMenu(true);
-                                            document.body.style.overflow = "hidden";
-                                        }, 500);
-                                    }}
-                                >
-                                    <FontAwesomeIcon
-                                        icon="fa-solid fa-bars"
-                                        style={{ width: "30px", height: "30px !important" }}
-                                    />
-                                </div> */}
+                            <div className='colum-one-container'>
+                                <SidebarProfile/>
+                                <h2 className='colum-one-container-logout'>LOGOUT</h2>
                             </div>
                         </div>
                         <div className='colum-two'>
-
+                            <form>
+                                <h1>My Account</h1>
+                                <TextField className='text-field' id="full-name" 
+                                type={'text'}  label="Full name"
+                                variant="outlined" required
+                                />
+                                <div className='group-pe'>
+                                <TextField className='text-field' id="phone-number" type={'number'}  label="Phone number" variant="outlined" required/>
+                                <TextField className='text-field' id="email" type={'email'}  label="Email" variant="outlined" required/>
+                                </div>
+                                <button type='submit'>Save information</button>
+                            </form>
                         </div>
                     </div>
                 </div>

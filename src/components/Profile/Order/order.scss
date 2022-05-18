@@ -1,10 +1,9 @@
-@use "../../scss/" as *;
-.profile{
+.order{
     &-container{
         &-row-one{
             height: 35vh;
             width: 100%;
-            background-image: url("../../assets/images/profile.png");
+            background-image: url("../../../assets/images/profile.png");
             background-size: cover;
             display: flex;
             align-items: center;
@@ -41,8 +40,8 @@
 
                 .colum-two{
                     width: 73%;
-                    form{
-                        width: 80%;
+                    &-container-one{
+                        width: 100%;
                         h1{
                             font-family: "Noto Serif", serif;
                             color: #222;
@@ -52,26 +51,16 @@
                             font-size: 30px;
                             margin-bottom: 12px;         
                         }
-
-                        .text-field{
-                            width: 100%;
-                            margin: 10px;
-                            outline: #222;
-                        }
-
-                        button{
-                            width: max-content;
-                            background-color: #222;
-                            color: #fff;
-                            font-family: "Noto Serif", serif;
-                            border-radius: 4px;
-                            padding: 15px 30px;
-                            font-weight: 500;
-                            font-style: italic;
+                        p{
                             font-size: 20px;
-                            margin: 20px 10px;
+                            width: 80%;
+                            color: #222;
+                            font-family: "Open Sans", sans-serif;
+                            line-height: 1.75;
+                            margin-bottom: 12px;
+                            font-style: italic;
+                            text-align: center;
                         }
-
                     }
                 }
             }

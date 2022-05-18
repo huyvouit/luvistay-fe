@@ -1,0 +1,39 @@
+// div{
+//     // 750 đổi thành menu khi click vào sẽ hiện các option
+//     width: 70%;
+//     h2{
+//         width: 100%;
+//         color: #333;
+//         padding: 20px 0;
+//         cursor: pointer;
+//         padding-right: 20%;
+//         border-right: 1px solid #333 ;
+//     }
+// }
+
+.sidebar-a {
+    h2{
+        width: 100%;
+        color: #333;
+        padding: 20px 0;
+        cursor: pointer;
+        padding-right: 20%;
+        border-right: 1px solid #333 ;
+    }
+}
+.sidebar-aSelect {
+    h2{
+        width: 100%;
+        color: #333;
+        padding: 20px 0;
+        font-weight: 600;
+        cursor: pointer;
+        padding-right: 20%;
+        border-right: 3px solid #333 ;
+    }
+
+}
+
+.sidebar-a:focus, .sidebar-aSelect:focus {
+    text-decoration: none;
+}

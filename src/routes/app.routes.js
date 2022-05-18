@@ -15,6 +15,8 @@ export const APP_ROUTE = {
   CHECKOUT: "/checkout",
   PROFILE: "/profile",
   PROFILE_ORDER: "/profile/orders",
+  PROFILE_HOST: "/profile/host",
+  PROFILE_CHANGE_PASSWORD: "/profile/change-password",
   FAVOURITES: "/profile/favourites",
   BLOG: "/blog",
   CONTACT: "/contact",
