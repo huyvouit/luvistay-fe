@@ -1,0 +1,49 @@
+.host{
+    &-container{
+        &-row-one{
+            height: 35vh;
+            width: 100%;
+            background-image: url("../../../assets/images/profile.png");
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h2{
+                font-size: 40px;
+                color: #fff;
+                font-weight: 500;
+            }
+        }
+        &-row-two{
+            padding: 2%;
+            &-container{
+                margin: 2% 0;
+                display: flex;
+                justify-content: space-between;
+                .colum-one{
+                    width: 25%;
+                    display: flex;
+                    justify-content: end;
+                    text-align: center;
+                    &-container{
+                        width: 70%;
+                        &-logout{
+                            width: 100%;
+                            color: #333;
+                            padding: 20px 0;
+                            cursor: pointer;
+                            padding-right: 20%;
+                            border-right: 1px solid #333 ;
+                        }
+                    }
+                }
+
+                .colum-two{
+                    width: 73%;
+                    background-color: aqua;
+                }
+            }
+        }
+        
+    }
+}
