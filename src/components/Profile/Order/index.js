@@ -29,14 +29,12 @@ const Order = () => {
                                         <p className='table-order-colum-two table-title'>Hotel</p>
                                         <p className='table-order-colum-two table-title'>Total</p>
                                     </div>
-                                    <Link to="/profile" className='table-container'>
                                         <div className='table-order-row'>
                                             <p className='table-order-colum-one'>#1306552651656513516845</p>
                                             <p className='table-order-colum-one'>30/05/2022 - 05/06/2022</p>
                                             <p className='table-order-colum-two'>LuviStay</p>
                                             <p className='table-order-colum-two'>5.000.000 VNĐ</p>
                                         </div>
-                                    </Link>
                                 </div>
                             </div>
                         </div>

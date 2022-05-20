@@ -72,16 +72,12 @@
                             text-align: center;
                         }
 
-                        .table-container:focus{
-                            text-decoration: none;
-                        }
-
                         .table-order {
                             &-row {
                                 display: flex;
                                 justify-content: space-between;
                                 width: 100%;
-
+                                cursor: pointer;
                                 .table-order-colum-one {
                                     width: 30%;
                                     text-align: center;
@@ -105,6 +101,7 @@
                                 .table-title {
                                     font-size: 20px;
                                     font-weight: 600;
+                                    cursor: auto;
                                 }
                             }
                         }
