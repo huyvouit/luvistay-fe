@@ -47,24 +47,21 @@ export default function AppRoutes() {
 
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
+
               <Route
-                path={APP_ROUTE.MOTEL_DETAIL}
+                path={APP_ROUTE.DETAIL}
                 element={<ApartmentDetailPage />}
               />
-              <Route
-                path={APP_ROUTE.HOTEL_DETAIL}
-                element={<ApartmentDetailPage />}
-              />
-              <Route
-                path={APP_ROUTE.HOME_STAY_DETAIL}
-                element={<ApartmentDetailPage />}
-              />
+
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
-              <Route path={APP_ROUTE.PROFILE} element={<ProfilePage/>}/>
-              <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order/>}/>
-              <Route path={APP_ROUTE.PROFILE_HOST} element={<Host/>}/>
-              <Route path={APP_ROUTE.PROFILE_CHANGE_PASSWORD} element={<ChangePassword/>}/>
+              <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
+              <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order />} />
+              <Route path={APP_ROUTE.PROFILE_HOST} element={<Host />} />
+              <Route
+                path={APP_ROUTE.PROFILE_CHANGE_PASSWORD}
+                element={<ChangePassword />}
+              />
             </Route>
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
             <Route path={APP_ROUTE.SIGNUP} element={<SignUpPage />} />

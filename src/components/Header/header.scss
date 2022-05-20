@@ -84,6 +84,7 @@
 
       &-active p {
         // color: $main !important;
+        // color: red;
       }
     }
 
@@ -153,12 +154,42 @@
     font-size: 1em;
     line-height: 40px;
     font-weight: 600;
-
+    // width: 100%;
     overflow: hidden;
     cursor: pointer;
 
+    // width: 100%;
+    &:hover {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10;
+        width: 50px;
+        height: 2px;
+        background-color: black;
+        transition: all;
+        animation: bottomAni linear infinite;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        &:hover {
+          width: 100%;
+        }
+      }
+    }
+
+    // hover:after:w-[100%] after:content-[''] after:absolute after:-bottom-1 after:w-0 after:h-1 after:bg-gray-300 after:left-0  after:transition-all;
     &-active {
-      color: #fff;
+      // color: red;
+
+      &::after {
+        content: "";
+        position: absolute;
+        // bottom: -1;
+        width: 50px !important;
+        height: 2px;
+        background-color: black;
+        // transition: ease 0.5s;
+      }
     }
   }
   .divider {
@@ -166,5 +197,28 @@
     width: 1px;
     background-color: #000;
     pointer-events: none;
+  }
+}
+
+@keyframes bottomAni {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 25px;
+  }
+  100% {
+    width: 50px;
+  }
+}
+@keyframes bottomAniLeave {
+  0% {
+    width: -50px;
+  }
+  50% {
+    width: -25px;
+  }
+  100% {
+    width: 0;
   }
 }

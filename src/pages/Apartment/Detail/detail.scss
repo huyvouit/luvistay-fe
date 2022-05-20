@@ -32,7 +32,13 @@
       }
     }
   }
-
+  &-description {
+    font-size: 16px;
+    color: #5f6060;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.5;
+    padding-bottom: 30px;
+  }
   &-icon {
     margin-right: 10px;
     color: $brown25;

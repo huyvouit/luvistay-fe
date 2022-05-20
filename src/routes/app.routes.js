@@ -7,7 +7,7 @@ export const APP_ROUTE = {
   ABOUT: "/about",
   APARTMENT: "/apartment",
   HOTEL: "hotel",
-  HOTEL_DETAIL: "/apartment/hotel/:id",
+  DETAIL: "/apartment/:id",
   MOTEL: "motel",
   MOTEL_DETAIL: "/apartment/motel/:id",
   HOME_STAY: "homestay",

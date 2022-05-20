@@ -7,8 +7,11 @@ import {
   InformationResultOne,
   InformationResultTwo,
 } from "../../InformationResult/InformationResult";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
 const HotelOne = ({ item }) => {
+  const navigate = useNavigate();
   return (
     <main className="hotel-one">
       <section className="hotel-one-container">
@@ -18,7 +21,12 @@ const HotelOne = ({ item }) => {
         <section className="hotel-one-colum-two">
           <section className="hotel-one-colum-two-container">
             <p className="colum-one-highlight"></p>
-            <h2 className="colum-one-title">{item?.name}</h2>
+            <h2
+              className="colum-one-title"
+              onClick={() => navigate(`/apartment/${item._id}`)}
+            >
+              {item?.name}
+            </h2>
             <div
               className="colum-one-description"
               dangerouslySetInnerHTML={{ __html: item?.description }}

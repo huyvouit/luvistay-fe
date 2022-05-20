@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Booking from "../../../components/Booking";
@@ -8,6 +8,10 @@ import { ImageGallery } from "../../../components/ImageGallery";
 import PageHeader from "../../../components/PageHeader";
 
 import "./detail.scss";
+import { useParams } from "react-router-dom";
+import apartmentApi from "../../../api/aparment_api";
+import PageTitle from "../../../components/PageTitle";
+import Motel from "../../../components/Apartment/Motel/Motel";
 
 const data = [
   {
@@ -48,73 +52,108 @@ const data = [
   },
 ];
 const ApartmentDetailPage = () => {
+  const { id } = useParams();
+  const [infoApartment, setInfoApartment] = useState(null);
+  const [room, setRoom] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchApartmentById = async () => {
+      try {
+        // const params = { id };
+        const response = await apartmentApi.getApartmentById(id);
+        if (response.data) {
+          setInfoApartment(response.data);
+
+          await fetchRoomByApartment(response.data.type);
+        }
+      } catch (error) {
+        console.log(error.response.data);
+        console.log("Failed to fetch Apartment list: ", error);
+        setIsLoading(false);
+      }
+    };
+    const fetchRoomByApartment = async (type) => {
+      try {
+        const response = await apartmentApi.getRoomByApartment(id);
+        if (response.data) {
+          setRoom(response.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        // console.log(error.response.data);
+        // console.log("Failed to fetch Apartment list: ", error);
+        setIsLoading(false);
+      }
+    };
+    fetchApartmentById();
+  }, [id]);
+  console.log(room);
   return (
-    <main className="detail-page">
-      <PageHeader title="Standard Single Room" />
-      <section className="detail-image">
-        <img
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/standart-single-room-1170x780.jpg"
-          alt=""
+    infoApartment && (
+      <main className="detail-page">
+        <PageHeader title={infoApartment?.name} />
+        <PageTitle
+          title={`  ${infoApartment?.address?.apartmentNumber} 
+        ${infoApartment?.address?.street}, ${infoApartment?.address?.district}, 
+        ${infoApartment?.address?.province}`}
         />
-      </section>
-      <section className="detail-body">
-        <section className="detail-body-left">
-          {/* Lo mà sửa */}
 
-          <p style={{
-            color: "#5f6060",
-            fontSize: "16px",
-            lineHeight: "1.75",
-            marginBottom: "30px"
-          }}> 
-            Classic Double Rooms come with either double or single beds.
-            Designed in open-concept living area, they have lots of in-room
-            facilities. The room sizes vary from 20 to 25 sqm. They are also
-            equipped with a fully-stocked minibar and snacks, air-conditioning
-            unit, two comfortable chairs, makeup mirror, huge wardrobe, a soft
-            hand-made carpet and ensuite bathroom. Perfect choice for
-            honeymooners and couples. Moreover, you may also order any type of
-            meal any time as we work around-the-clock.
-          </p>
-
-          {/* Lo mà sửa */}
-          <ImageGallery />
-          <section className="detail-table">
-            <section>
-              <h2 className="detail-table-title">Details</h2>
-              <table>
-                <colgroup
-                  style={{ width: "150px", backgroundColor: "white" }}
-                ></colgroup>
-                <colgroup style={{ backgroundColor: "#fcfcfc" }}></colgroup>
-                {data.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <th>
-                        <FontAwesomeIcon
-                          className="detail-icon"
-                          icon={item.icon}
-                        />
-                        <span>{item.type}</span>
-                      </th>
-                      <td>{item.value}</td>
-                    </tr>
-                  );
+        <section className="detail-image">
+          <img
+            src={infoApartment?.pictures[0]}
+            alt=""
+            style={{ objectFit: "cover" }}
+          />
+        </section>
+        <section className="detail-body">
+          <section className="detail-body-left">
+            <div
+              className="detail-description"
+              dangerouslySetInnerHTML={{ __html: infoApartment?.description }}
+            ></div>
+            <ImageGallery listImage={infoApartment.pictures.slice(1, 6)} />
+            <section className="detail-table">
+              <section>
+                <h2 className="detail-table-title">Danh sách phòng</h2>
+                {/* <table>
+                  <colgroup
+                    style={{ width: "150px", backgroundColor: "white" }}
+                  ></colgroup>
+                  <colgroup style={{ backgroundColor: "#fcfcfc" }}></colgroup>
+                  {data.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <th>
+                          <FontAwesomeIcon
+                            className="detail-icon"
+                            icon={item.icon}
+                          />
+                          <span>{item.type}</span>
+                        </th>
+                        <td>{item.value}</td>
+                      </tr>
+                    );
+                  })}
+                </table> */}
+                {room.map((item, index) => {
+                  return <Motel room={item} />;
                 })}
-              </table>
+              </section>
+            </section>
+          </section>
+          <section className="detail-body-right">
+            <section className="detail-body-right-item">
+              <Booking textButton="Search" detail={{ price: 250 }} />
             </section>
           </section>
         </section>
-        <section className="detail-body-right">
-          <section className="detail-body-right-item">
-            <Booking textButton="Search" detail={{ price: 250 }} />
-          </section>
-        </section>
-      </section>
 
-      <Relation />
-      <ReviewsDetail />
-    </main>
+        <Relation />
+        <ReviewsDetail />
+      </main>
+    )
   );
 };
 

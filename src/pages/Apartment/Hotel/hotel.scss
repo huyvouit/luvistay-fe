@@ -1,3 +1,40 @@
+@use "../../../scss/" as *;
+
 .hotel-page {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.list-type {
+  display: flex;
+  justify-content: center;
+  padding: 0 60px;
+  padding-bottom: 30px;
+  //   @include max-width($max-width);
+}
+.list-button-type {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  align-items: center;
+  grid-gap: 10px;
+  width: 100%;
+}
+.button-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  // background-color: $brown25;
+  //   word-break: break-all;
+  word-wrap: break-word;
+  border-radius: 25px;
+  //   letter-spacing: 1px;
+  border: 1px solid $brown25;
+}
+
+.button-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
 }
