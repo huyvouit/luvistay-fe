@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useDispatch, useSelector } from "react-redux";
 import Booking from "../../../components/Booking";
 import Relation from "../../../components/DetailApartment/Relation";
 import ReviewsDetail from "../../../components/DetailApartment/Reviews";
@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import apartmentApi from "../../../api/aparment_api";
 import PageTitle from "../../../components/PageTitle";
 import Motel from "../../../components/Apartment/Motel/Motel";
+import { getDetailApartmentApi } from "../../../redux/Api/detail";
 
 const data = [
   {
@@ -53,56 +54,61 @@ const data = [
 ];
 const ApartmentDetailPage = () => {
   const { id } = useParams();
-  const [infoApartment, setInfoApartment] = useState(null);
-  const [room, setRoom] = useState([]);
+  const dispatch = useDispatch();
+  const detail = useSelector((state) => state.detailApartment);
+
+  // const [detail.info, setdetail.info] = useState(null);
+  // const [room, setRoom] = useState(detail.rooms);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchApartmentById = async () => {
-      try {
-        // const params = { id };
-        const response = await apartmentApi.getApartmentById(id);
-        if (response.data) {
-          setInfoApartment(response.data);
+    // const fetchApartmentById = async () => {
+    //   try {
+    //     // const params = { id };
+    //     const response = await apartmentApi.getApartmentById(id);
+    //     if (response.data) {
+    //       setdetail.info(response.data);
 
-          await fetchRoomByApartment(response.data.type);
-        }
-      } catch (error) {
-        console.log(error.response.data);
-        console.log("Failed to fetch Apartment list: ", error);
-        setIsLoading(false);
-      }
-    };
-    const fetchRoomByApartment = async (type) => {
-      try {
-        const response = await apartmentApi.getRoomByApartment(id);
-        if (response.data) {
-          setRoom(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        // console.log(error.response.data);
-        // console.log("Failed to fetch Apartment list: ", error);
-        setIsLoading(false);
-      }
-    };
-    fetchApartmentById();
+    //       await fetchRoomByApartment(response.data.type);
+    //     }
+    //   } catch (error) {
+    //     console.log(error.response.data);
+    //     console.log("Failed to fetch Apartment list: ", error);
+    //     setIsLoading(false);
+    //   }
+    // };
+    // const fetchRoomByApartment = async (type) => {
+    //   try {
+    //     const response = await apartmentApi.getRoomByApartment(id);
+    //     if (response.data) {
+    //       setRoom(response.data);
+    //       setIsLoading(false);
+    //     }
+    //   } catch (error) {
+    //     // console.log(error.response.data);
+    //     // console.log("Failed to fetch Apartment list: ", error);
+    //     setIsLoading(false);
+    //   }
+    // };
+    // fetchApartmentById();
+    getDetailApartmentApi(dispatch, id);
   }, [id]);
-  console.log(room);
+  // console.log(room);
+
   return (
-    infoApartment && (
+    detail.info && (
       <main className="detail-page">
-        <PageHeader title={infoApartment?.name} />
+        <PageHeader title={detail.info?.name} />
         <PageTitle
-          title={`  ${infoApartment?.address?.apartmentNumber} 
-        ${infoApartment?.address?.street}, ${infoApartment?.address?.district}, 
-        ${infoApartment?.address?.province}`}
+          title={`  ${detail.info?.address?.apartmentNumber} 
+        ${detail.info?.address?.street}, ${detail.info?.address?.district}, 
+        ${detail.info?.address?.province}`}
         />
 
         <section className="detail-image">
           <img
-            src={infoApartment?.pictures[0]}
+            src={detail.info?.pictures[0]}
             alt=""
             style={{ objectFit: "cover" }}
           />
@@ -111,9 +117,9 @@ const ApartmentDetailPage = () => {
           <section className="detail-body-left">
             <div
               className="detail-description"
-              dangerouslySetInnerHTML={{ __html: infoApartment?.description }}
+              dangerouslySetInnerHTML={{ __html: detail.info?.description }}
             ></div>
-            <ImageGallery listImage={infoApartment.pictures.slice(1, 6)} />
+            <ImageGallery listImage={detail.info.pictures.slice(1, 6)} />
             <section className="detail-table">
               <section>
                 <h2 className="detail-table-title">Danh sách phòng</h2>
@@ -137,7 +143,7 @@ const ApartmentDetailPage = () => {
                     );
                   })}
                 </table> */}
-                {room.map((item, index) => {
+                {detail.rooms.map((item, index) => {
                   return <Motel room={item} />;
                 })}
               </section>

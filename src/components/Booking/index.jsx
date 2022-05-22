@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { MenuItem, Select, TextField } from "@mui/material";
 import PrimaryButton from "../PrimaryButton";
@@ -7,7 +7,9 @@ import "./booking.scss";
 
 const Booking = (props) => {
   const { detail, textButton, action } = props;
-
+  const [checkin, setCheckin] = useState(null);
+  const [checkout, setCheckout] = useState(null);
+  const [people, setPeople] = useState(null);
   return (
     <main className="booking-wrapper">
       {detail && (
@@ -24,7 +26,12 @@ const Booking = (props) => {
           <p className="inputField-title">
             Check-in:<span>*</span>{" "}
           </p>
-          <TextField variant="outlined" type="date" className="textField" />
+          <TextField
+            variant="outlined"
+            type="date"
+            className="textField"
+            onChange={() => {}}
+          />
         </section>
         <section className="inputField">
           <p className="inputField-title">
