@@ -9,11 +9,12 @@ const getAllApartmentApi = async (dispatch, params) => {
       //   console.log(res.data);
       dispatch(getAllApartment(res.data));
     } else {
-      dispatch(getAllApartment(null));
+      dispatch(getAllApartment([]));
       //   console.log(res.data);
     }
   } catch (error) {
-    window.alert(error);
+    dispatch(getAllApartment([]));
+    // window.alert(error);
   }
 };
 

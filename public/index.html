@@ -27,27 +27,59 @@
     -->
     <script type="application/ld+json">
       {
-        "@context" : "http://schema.org",
-        "@type" : "LocalBusiness",
-        "name" : "LuviStay",
-        "image" : "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/welcome-2-1024x705.jpg",
-        "telephone" : "1.954.456.6789",
-        "email" : "hello@luviana.com",
-        "priceRange" : "$$$",
-        "address" : {
-          "@type" : "PostalAddress",
-          "streetAddress" : "3015 Grand Ave",
-          "addressLocality" : "Coconut Grove",
-          "addressRegion" : "Merrick Way",
-          "addressCountry" : "FL",
-          "postalCode" : "12345"
+        "@context": "http://schema.org",
+        "@type": "LocalBusiness",
+        "name": "LuviStay",
+        "image": "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/welcome-2-1024x705.jpg",
+        "telephone": "1.954.456.6789",
+        "email": "hello@luviana.com",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3015 Grand Ave",
+          "addressLocality": "Coconut Grove",
+          "addressRegion": "Merrick Way",
+          "addressCountry": "FL",
+          "postalCode": "12345"
         },
-        "url" : "https://luvistay.com/"
+        "url": "https://luvistay.com/"
       }
-      </script>      
+    </script>
     <title>LuviStay</title>
   </head>
   <body>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat"></div>
+
+    <script>
+      var chatbox = document.getElementById("fb-customer-chat");
+      chatbox.setAttribute("page_id", "107088698631679");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          xfbml: true,
+          version: "v13.0",
+        });
+      };
+
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    </script>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

@@ -9,19 +9,19 @@ import "./header.scss";
 
 const NAVLINK = [
   {
-    route: "Home",
+    route: "Trang chủ",
     path: APP_ROUTE.HOME,
   },
   {
-    route: "Apartment",
+    route: "Căn hộ",
     path: APP_ROUTE.APARTMENT,
   },
   {
-    route: "Blog",
+    route: "Review",
     path: APP_ROUTE.BLOG,
   },
   {
-    route: "About Us",
+    route: "Về chúng tôi",
     path: APP_ROUTE.CONTACT,
   },
 ];
@@ -116,7 +116,7 @@ const Header = () => {
               <section
                 key={index}
                 className={
-                  location === item.path
+                  location.pathname === item.path
                     ? "navbar-item navbar-item-active"
                     : "navbar-item"
                 }
@@ -132,7 +132,7 @@ const Header = () => {
             className="navbar-item"
             onClick={() => navigate(APP_ROUTE.SIGNIN)}
           >
-            <button>Login</button>
+            <p>Đăng nhập</p>
           </section>
         </section>
       </section>

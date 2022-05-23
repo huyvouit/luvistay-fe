@@ -2,37 +2,13 @@ import React from "react";
 import { SRLWrapper } from "simple-react-lightbox";
 
 import "./ImageGallery.scss";
-export const ImageGallery = () => {
+export const ImageGallery = ({ listImage }) => {
   return (
     <SRLWrapper>
       <main className="image-gallery">
-        <img
-          className="image-item"
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/superior-double-room.jpg"
-          alt=""
-        />
-        <img
-          className="image-item"
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/single-room-4-2.jpg"
-          alt=""
-        />
-        <img
-          className="image-item"
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/single-room-2-2.jpg"
-          alt=""
-        />
-
-        <img
-          className="image-item"
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/single-room-3-2.jpg"
-          alt=""
-        />
-
-        <img
-          className="image-item"
-          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/single-room-1-2.jpg"
-          alt=""
-        />
+        {listImage.map((item, index) => {
+          return <img key={index} className="image-item" src={item} alt="" />;
+        })}
       </main>
     </SRLWrapper>
   );

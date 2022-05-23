@@ -6,9 +6,13 @@ const initialState = {};
 const hotelSlice = createSlice({
   name: "hotelSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    getAllHotel: (state, action) => {
+      return { ...state, ...action.payload };
+    },
+  },
 });
 
-export const {} = hotelSlice.actions;
+export const { getAllHotel } = hotelSlice.actions;
 
 export default hotelSlice.reducer;

@@ -48,18 +48,12 @@ export default function AppRoutes() {
 
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
+
               <Route
-                path={APP_ROUTE.MOTEL_DETAIL}
+                path={APP_ROUTE.DETAIL}
                 element={<ApartmentDetailPage />}
               />
-              <Route
-                path={APP_ROUTE.HOTEL_DETAIL}
-                element={<ApartmentDetailPage />}
-              />
-              <Route
-                path={APP_ROUTE.HOME_STAY_DETAIL}
-                element={<ApartmentDetailPage />}
-              />
+
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage/>}/>
