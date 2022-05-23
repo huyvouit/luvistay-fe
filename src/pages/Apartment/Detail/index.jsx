@@ -10,7 +10,10 @@ import PageHeader from "../../../components/PageHeader";
 import PageTitle from "../../../components/PageTitle";
 import Motel from "../../../components/Apartment/Motel/Motel";
 
-import { getDetailApartmentApi } from "../../../redux/Api/detail";
+import {
+  getDetailApartmentApi,
+  searchRoomByApartmentApi,
+} from "../../../redux/Api/detail";
 import moment from "moment";
 import "./detail.scss";
 
@@ -59,7 +62,7 @@ const ApartmentDetailPage = () => {
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [people, setPeople] = useState(null);
+  const [people, setPeople] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
@@ -67,8 +70,25 @@ const ApartmentDetailPage = () => {
   }, [id]);
   // console.log(room);
   console.log(
-    moment(checkin, "YYYY-MM-DD").format("MM-DD-YYYY").replaceAll("-", "/")
+    checkin,
+    moment(checkout, "YYYY-MM-DD").format("MM-DD-YYYY").replaceAll("-", "/"),
+    people
   );
+
+  const handleSearchRoom = () => {
+    const body = {
+      checkinDate: moment(checkin, "YYYY-MM-DD")
+        .format("MM-DD-YYYY")
+        .replaceAll("-", "/"),
+      checkoutDate: moment(checkout, "YYYY-MM-DD")
+        .format("MM-DD-YYYY")
+        .replaceAll("-", "/"),
+      people: [`${people} người`],
+      apartmentId: id,
+    };
+    console.log(body);
+    searchRoomByApartmentApi(dispatch, body);
+  };
   return (
     detail.info && (
       <main className="detail-page">
@@ -132,6 +152,7 @@ const ApartmentDetailPage = () => {
                 setCheckout={setCheckout}
                 people={people}
                 setPeople={setPeople}
+                action={handleSearchRoom}
               />
             </section>
           </section>

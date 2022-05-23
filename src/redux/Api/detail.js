@@ -38,15 +38,15 @@ const searchRoomByApartmentApi = async (dispatch, body) => {
   try {
     const res = await apartmentApi.searchRoomByApartment(body);
     if (res.success) {
-      //   console.log(res.data);
-      dispatch(searchRoomByApartment(res.data));
+      console.log(res.data);
+      // dispatch(searchRoomByApartment(res.data));
     } else {
-      dispatch(searchRoomByApartment([]));
-      //   console.log(res.data);
+      // dispatch(searchRoomByApartment([]));
+      console.log(res.data);
     }
   } catch (error) {
-    dispatch(searchRoomByApartment([]));
-    // window.alert(error);
+    // dispatch(searchRoomByApartment([]));
+    window.alert(error);
   }
 };
 
