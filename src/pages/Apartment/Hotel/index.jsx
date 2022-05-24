@@ -43,14 +43,15 @@ const LIST_TYPE = [
 const HotelPage = () => {
   const dispatch = useDispatch();
   const apartment = useSelector((state) => state.apartment);
+  const isLoading = useSelector((state) => state.loading.loading);
   const [data, setData] = useState([]);
   const [type, setType] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
-  console.log("data", apartment);
+  console.log("data", isLoading);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     getAllApartmentApi(dispatch, {
       currentPage: 0,
       apartmentPerPage: 10,
@@ -64,7 +65,7 @@ const HotelPage = () => {
   };
   useEffect(() => {
     if (apartment) {
-      setIsLoading(false);
+      // setIsLoading(false);
       setData(apartment.apartment);
     } else {
       setData([]);

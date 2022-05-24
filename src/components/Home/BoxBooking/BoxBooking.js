@@ -11,22 +11,22 @@ const BoxBooking = () => {
         <section className="boxbooking-section-input">
           <section className="inputField">
             <p className="inputField-title">
-              Check-in:<span>*</span>{" "}
+              Nhận phòng:<span>*</span>{" "}
             </p>
             <TextField variant="outlined" type="date" className="textField" />
           </section>
           <section className="inputField">
             <p className="inputField-title">
-              Check-out:<span>*</span>{" "}
+              Trả phòng:<span>*</span>{" "}
             </p>
             <TextField variant="outlined" type="date" className="textField" />
           </section>
           <section className="inputField">
             <p className="inputField-title">
-              Adults:<span>*</span>{" "}
+              Thành phố:<span>*</span>{" "}
             </p>
             <Select defaultValue="1" className="selectField">
-              {[...Array(10)].map((x, i) => (
+              {[...Array(20)].map((x, i) => (
                 <MenuItem value={i + 1} key={i}>
                   {i + 1}
                 </MenuItem>
@@ -35,15 +35,19 @@ const BoxBooking = () => {
           </section>
           <section className="inputField">
             <p className="inputField-title">
-              Children:<span>*</span>{" "}
+              Số người:<span>*</span>{" "}
             </p>
-            <Select defaultValue="0" className="selectField">
-              {[...Array(10)].map((x, i) => (
-                <MenuItem value={i} key={i}>
-                  {i}
-                </MenuItem>
-              ))}
-            </Select>
+            <TextField
+              variant="outlined"
+              type="number"
+              defaultValue={1}
+              className="textField"
+              InputProps={{
+                inputProps: {
+                  min: 1,
+                },
+              }}
+            />
           </section>
         </section>
         <section className="boxbooking-section-search">Search</section>

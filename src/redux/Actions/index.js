@@ -5,6 +5,7 @@ export {
   getRoom,
   searchRoomByApartment,
 } from "../Slice/detailSlice";
-export {} from "../Slice/authSlice";
+export { showLoading, hideLoading } from "../Slice/loadingSlice";
 export {} from "../Slice/homestaySlice";
+export {} from "../Slice/authSlice";
 export {} from "../Slice/motelSlice";
