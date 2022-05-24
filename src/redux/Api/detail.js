@@ -1,17 +1,26 @@
 import apartmentApi from "../../api/aparment_api";
 
-import { getApartment, getRoom, searchRoomByApartment } from "../Actions";
+import {
+  getApartment,
+  getRoom,
+  hideLoading,
+  searchRoomByApartment,
+  showLoading,
+} from "../Actions";
 
 const getDetailApartmentApi = async (dispatch, params) => {
   try {
+    dispatch(showLoading());
     const res = await apartmentApi.getApartmentById(params);
     if (res.success) {
       //   console.log(res.data);
       dispatch(getApartment(res.data));
       await getRoomByApartmentApi(dispatch, res.data._id);
+      dispatch(hideLoading());
     } else {
       dispatch(getApartment({}));
-      //   console.log(res.data);
+
+      dispatch(hideLoading());
     }
   } catch (error) {
     dispatch(getApartment({}));

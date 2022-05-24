@@ -5,7 +5,8 @@ import { Alert, Backdrop, CircularProgress } from "@mui/material";
 import { HotelOne, HotelTwo } from "../../../components/Apartment/Hotel/Hotel";
 import PageHeader from "../../../components/PageHeader";
 import PageTitle from "../../../components/PageTitle";
-import getAllApartmentApi from "../../../redux/Api/apartment";
+import { getAllApartmentApi } from "../../../redux/Api/apartment";
+
 import "./hotel.scss";
 
 const LIST_TYPE = [
@@ -42,7 +43,7 @@ const LIST_TYPE = [
 ];
 const HotelPage = () => {
   const dispatch = useDispatch();
-  const apartment = useSelector((state) => state.apartment);
+  const apartment = useSelector((state) => state.apartment.apartment);
   const isLoading = useSelector((state) => state.loading.loading);
   const [data, setData] = useState([]);
   const [type, setType] = useState("");

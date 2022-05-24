@@ -61,16 +61,17 @@ const ApartmentDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detailApartment);
+  const isLoading = useSelector((state) => state.loading.loading);
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [people, setPeople] = useState(1);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     getDetailApartmentApi(dispatch, id);
-    setIsLoading(false);
-  }, [id, isLoading]);
+    // setIsLoading(false);
+  }, [id]);
   // console.log(room);
   console.log(
     checkin,
@@ -92,7 +93,7 @@ const ApartmentDetailPage = () => {
     console.log(body);
     searchRoomByApartmentApi(dispatch, body);
   };
-  return detail.info ? (
+  return !isLoading ? (
     <main className="detail-page">
       <PageHeader title={detail.info?.name} />
       <PageTitle

@@ -23,3 +23,5 @@ const handleCheckout = (checkin) => {
     return disablePastDate();
   }
 };
+
+export { disablePastDate, handleCheckout };

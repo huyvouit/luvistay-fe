@@ -1,5 +1,5 @@
 export { getAllHotel } from "../Slice/hotelSlice";
-export { getAllApartment } from "../Slice/apartmentSlice";
+export { getAllApartment, getApartmentBySearch } from "../Slice/apartmentSlice";
 export {
   getApartment,
   getRoom,

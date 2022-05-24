@@ -6,8 +6,11 @@ import LogoPayment from "../../assets/images/payments.png";
 import "./search.scss";
 import SpecialOffer from "./SpecialOffer/SpecialOffer";
 import ResultSearch from "./ResultSearch/ResultSearch";
+import { useSelector } from "react-redux";
 
 const Search = () => {
+  const searchApartment = useSelector((state) => state.apartment.searchRoom);
+  console.log(searchApartment);
   return (
     <main className="search">
       <section className="search-container">
