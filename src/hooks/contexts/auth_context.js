@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducers/auth_reducer";
-import { TOKEN_NAME, REFTOKEN } from "../constants/constant";
+import { TOKEN_NAME, REFTOKEN } from "../../constants";
 
 import { toast } from "react-toastify";
 import authApi from "../../api/auth_api";
@@ -17,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       const response = await authApi.getUser();
-      if (localStorage.getItem(TOKEN_NAME)) {
+      if (response.success) {
         // console.log("Verify token");
         dispatch({
           type: "SET_AUTH",
@@ -39,21 +39,23 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //   useEffect(() => loadUser(), []);
+  useEffect(() => loadUser(), []);
 
   // Login
   const loginUser = async (userForm) => {
     try {
       const response = await authApi.postSignIn(userForm);
 
-      if (response.data.success) {
+      if (response.success) {
+        console.log(response.data.accessToken);
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
         localStorage.setItem(REFTOKEN, response.data.refreshToken);
+        // localStorage.setItem(REFTOKEN, response.data.refreshToken);
       }
 
       await loadUser();
 
-      return response.data;
+      return response;
     } catch (error) {
       if (error.response.data) {
         return error.response.data;

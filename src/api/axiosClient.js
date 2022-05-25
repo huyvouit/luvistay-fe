@@ -1,4 +1,4 @@
-import { DB_URI } from "../constants";
+import { DB_URI, TOKEN_NAME } from "../constants";
 import axios from "axios";
 import queryString from "query-string";
 
@@ -15,13 +15,10 @@ axiosClient.interceptors.request.use(
   async (config) => {
     // Do something before request is sent
     // const user = JSON.parse(getCookie(COOKIE_USER));
-    const token = await localStorage.getItem("TOKEN_USER");
-    // const token = user?.token;
+    const token = localStorage.getItem(TOKEN_NAME);
     if (token) {
-      // Add token to header request
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.common["authorizationtoken"] = `Bearer ${token}`;
     }
-
     return config;
   },
   function (error) {

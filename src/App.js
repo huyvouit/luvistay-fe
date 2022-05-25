@@ -7,6 +7,7 @@ import AppRoutes from "./routes/routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import AuthContextProvider from "./hooks/contexts/auth_context";
 
 library.add(fas);
 
@@ -15,9 +16,11 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <AppRoutes />
-      </Provider>
+      <AuthContextProvider>
+        <Provider store={store}>
+          <AppRoutes />
+        </Provider>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }

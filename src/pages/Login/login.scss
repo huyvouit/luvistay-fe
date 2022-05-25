@@ -1,192 +1,211 @@
-@use "../../scss/"as *;
+@use "../../scss/" as *;
 
 .login-page {
-    &-container {
-        background-color: white;
-        box-shadow: 1px 1px 18px 1px #e0e0e0;
-        display: flex;
-        justify-content: space-between;
+  &-container {
+    background-color: white;
+    box-shadow: 1px 1px 18px 1px #e0e0e0;
+    display: flex;
+    justify-content: space-between;
 
-        &-colum-one {
-            width: 50%;
-            height: 100%;
-            .login-slide-show {
-                width: 100%;
-                cursor: pointer;
+    &-colum-one {
+      width: 50%;
+      height: 100%;
+      .login-slide-show {
+        width: 100%;
+        cursor: pointer;
 
-                .slideshow {
-                    position: relative;
-                    display: flex;
-                    justify-content: space-between;
+        .slideshow {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
 
-                    .mainImg {
-                        width: 100%;
-                        height: 100vh;
-                        transition: all 500ms;
-                        object-fit: fill;
-                    }
+          .mainImg {
+            width: 100%;
+            height: 100vh;
+            transition: all 500ms;
+            object-fit: fill;
+          }
 
-                    .actions {
-                        position: absolute;
-                        top: 50%;
-                        width: 100%;
-                        display: flex;
-                        opacity: 0;
-                        justify-content: space-between;
-                    }
+          .actions {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            opacity: 0;
+            justify-content: space-between;
+          }
 
-                    .actions button {
-                        background: #ffffffa2;
-                        border: none;
-                        cursor: pointer;
-                        padding: 10px;
-                        padding-top: 10px;
-                        margin: 5px;
-                        border-radius: 15px;
-                        padding-top: 5px;
-                    }
+          .actions button {
+            background: #ffffffa2;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            padding-top: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            padding-top: 5px;
+          }
 
-                    .actions button:active {
-                        background: #000000a2;
-                        border: none;
-                        cursor: pointer;
-                        padding: 10px;
-                        padding-top: 10px;
-                        margin: 5px;
-                        border-radius: 15px;
-                        padding-top: 5px;
-                    }
-                }
-            }
-
-            .login-slide-show:hover .actions {
-                opacity: 1;
-            }
+          .actions button:active {
+            background: #000000a2;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            padding-top: 10px;
+            margin: 5px;
+            border-radius: 15px;
+            padding-top: 5px;
+          }
         }
+      }
 
-        &-colum-two {
-            width: 45%;
-
-            &-logo {
-                margin-top: 25px;
-            }
-
-            &-title {
-                font-family: "Noto Serif", serif;
-                color: #222;
-                line-height: 1.4;
-                font-size: 31px;
-                font-weight: 400;
-                margin-top: 10px;
-                margin-left: 12px;
-                letter-spacing: -0.5px;
-            }
-
-            &-description {
-                color: #222;
-                font-family: "Open Sans", sans-serif;
-                font-size: 16px;
-                line-height: 1.75;
-                margin-top: 10px;
-                margin-left: 14px;
-                margin-bottom: 50px;
-            }
-
-            &-box-input {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 50%;
-                margin: 0 15%;
-                label{
-                    font-family: "Open Sans", serif;
-                    color: #222;
-                    line-height: 1.4;
-                    font-size: 16px;
-                    font-weight: 600;
-                    letter-spacing: -0.5px;
-                }
-
-                input{
-                    border: 1px solid #c4c4c4;
-                    border-radius: 4px;
-                    padding: 5px 10px;
-                    margin-bottom: 25px;
-                    margin-top: 10px;
-                    margin-left: 5px;
-                }
-
-                input:focus{
-                    outline: #c1b086;
-                    border: 2px solid #c1b086;
-                }
-            }
-
-            button{
-                padding: 10px 20px;
-                background-color: #222;
-                color: #e0e0e0;
-                margin: 0 15%;
-                width: 50%;
-                font-weight: 600;
-                font-size: 18px;
-                margin-top: 25px;
-                border-radius: 8px;
-            }
-
-            .sign-in-gg{
-                box-shadow: 1px 1px 18px 1px #e0e0e0;
-                border: 1px solid #c4c4c4;
-                border-radius: 8px;
-                width: 50%;
-                margin: 0 15%;
-                margin-top: 24px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-
-                p{
-                    margin-left: 10px;
-                }
-            }
-
-            .sign-in-fb{
-                box-shadow: 1px 1px 18px 1px #e0e0e0;
-                border: 1px solid #c4c4c4;
-                border-radius: 8px;
-                width: 50%;
-                margin: 0 15%;
-                margin-top: 24px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-
-                p{
-                    margin-left: 10px;
-                }
-
-                img{
-                    width: 28px;
-                    margin: 4px;
-                }
-            }
-
-            .to-sign-up{
-                margin: 0 15%;
-                margin-top: 28px;
-                color: #222;
-                font-family: "Open Sans", sans-serif;
-                font-size: 16px;
-                line-height: 1.75;
-                font-style: italic;
-                cursor: pointer;
-                .span-two{
-                    font-weight: 600;
-                    
-                }
-            }
-        }
+      .login-slide-show:hover .actions {
+        opacity: 1;
+      }
     }
+
+    &-colum-two {
+      width: 45%;
+
+      &-logo {
+        margin-top: 25px;
+      }
+
+      &-title {
+        font-family: "Noto Serif", serif;
+        color: #222;
+        line-height: 1.4;
+        font-size: 31px;
+        font-weight: 400;
+        margin-top: 10px;
+        margin-left: 12px;
+        letter-spacing: -0.5px;
+      }
+
+      &-description {
+        color: #222;
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        margin-top: 10px;
+        margin-left: 14px;
+        margin-bottom: 50px;
+      }
+
+      &-box-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        margin: 0 15%;
+        label {
+          font-family: "Open Sans", serif;
+          color: #222;
+          line-height: 1.4;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: -0.5px;
+        }
+        fieldset {
+          visibility: hidden;
+        }
+        .textField {
+          min-width: 200px;
+          width: 100%;
+          //   height: 52px !important;
+          //   border-radius: 0 !important;
+          //   background-color: #252e59;
+          border: 1px solid black;
+          color: #a4a4a4;
+
+          input {
+            padding: 10px;
+          }
+          //   outline: none;
+          //   input:focus {
+          //     outline: #c1b086;
+          //     border: 1px solid black;
+          //   }
+          //   &:focus {
+          //     border: 1px solid #c1b086;
+          //   }
+        }
+        // input {
+        //   border: 1px solid #c4c4c4;
+        //   border-radius: 4px;
+        //   padding: 5px 10px;
+        //   margin-bottom: 25px;
+        //   margin-top: 10px;
+        //   margin-left: 5px;
+        // }
+
+        //
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #222;
+        color: #e0e0e0;
+        margin: 0 15%;
+        width: 50%;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 25px;
+        border-radius: 8px;
+      }
+
+      .sign-in-gg {
+        box-shadow: 1px 1px 18px 1px #e0e0e0;
+        border: 1px solid #c4c4c4;
+        border-radius: 8px;
+        width: 50%;
+        margin: 0 15%;
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        p {
+          margin-left: 10px;
+        }
+      }
+
+      .sign-in-fb {
+        box-shadow: 1px 1px 18px 1px #e0e0e0;
+        border: 1px solid #c4c4c4;
+        border-radius: 8px;
+        width: 50%;
+        margin: 0 15%;
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        p {
+          margin-left: 10px;
+        }
+
+        img {
+          width: 28px;
+          margin: 4px;
+        }
+      }
+
+      .to-sign-up {
+        margin: 0 15%;
+        margin-top: 28px;
+        color: #222;
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        font-style: italic;
+        cursor: pointer;
+        .span-two {
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
