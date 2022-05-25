@@ -27,11 +27,8 @@ import Order from "../components/Profile/Order";
 import Host from "../components/Profile/Host";
 import ChangePassword from "../components/Profile/ChangePassword";
 import BlogPage from "../pages/Blog";
-<<<<<<< HEAD
 import MyBlog from "../components/Blog/MyBlog/";
-=======
 import ScrollToTop from "../helper/scrollToTop";
->>>>>>> 8fae7ddcf034830025bd21f5f73c101f81e9c87c
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
