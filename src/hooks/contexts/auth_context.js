@@ -1,8 +1,9 @@
 import { createContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducers/auth_reducer";
 import { TOKEN_NAME, REFTOKEN } from "../constants/constant";
-import authApi from "../api/auth_api";
+
 import { toast } from "react-toastify";
+import authApi from "../../api/auth_api";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -15,7 +16,7 @@ const AuthContextProvider = ({ children }) => {
   //Authenticate user
   const loadUser = async () => {
     try {
-      const response = await authApi.verifyUser();
+      const response = await authApi.getUser();
       if (localStorage.getItem(TOKEN_NAME)) {
         // console.log("Verify token");
         dispatch({
@@ -23,7 +24,7 @@ const AuthContextProvider = ({ children }) => {
           payload: {
             authLoading: false,
             isAuthenticated: true,
-            // user: response.data.user,
+            user: response.data,
           },
         });
       }

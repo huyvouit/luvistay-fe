@@ -11,9 +11,9 @@ const authApi = {
     return axiosClient.post(url, body);
   },
 
-  getUser: (params) => {
+  getUser: () => {
     const url = "/user";
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url);
   },
 };
 
