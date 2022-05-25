@@ -75,7 +75,7 @@ const Posts = () => {
                     <img className="posts-container-img-three" src={item} />
                   );
                 }
-                if (index === 2) {
+                else if (index === 2) {
                   return (
                     <div className="posts-container-img-three">
                       <img
@@ -87,6 +87,10 @@ const Posts = () => {
                       </p>
                     </div>
                   );
+                } else {
+                    return (
+                        <img className="posts-container-img-hide" src={item} />
+                      );
                 }
               }
             })}
