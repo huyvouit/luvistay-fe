@@ -55,10 +55,10 @@ const Search = () => {
             Select from available accommodations.
           </p>
           <section>
+            <ResultSearch info={searchApartment[0]} />
+            {/* <ResultSearch />
             <ResultSearch />
-            <ResultSearch />
-            <ResultSearch />
-            <ResultSearch />
+            <ResultSearch /> */}
           </section>
         </section>
         <section className="search-colum-two">

@@ -92,7 +92,7 @@ const BoxBooking = () => {
               Tỉnh/Thành phố:<span>*</span>{" "}
             </p>
             <Select
-              defaultValue="1"
+              defaultValue=""
               className="selectField"
               onChange={(event) => {
                 setFormSearch({

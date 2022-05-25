@@ -1,20 +1,27 @@
-import React from 'react'
-import Slideshow from '../../Apartment/SlideShow'
-import PrimaryButton from '../../PrimaryButton'
+import React from "react";
+import Slideshow from "../../Apartment/SlideShow";
+import PrimaryButton from "../../PrimaryButton";
 import { MenuItem, Select } from "@mui/material";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./resultSearch.scss";
-import { InformationResultOne, InformationResultTwo } from '../../InformationResult/InformationResult';
+import {
+  InformationResultOne,
+  InformationResultTwo,
+} from "../../InformationResult/InformationResult";
 
-const ResultSearch = () => {
+const ResultSearch = ({ info }) => {
+  // const []
   return (
-    <main className='result-search'>
-      <section className='result-search-container'>
-        <h3 className='result-search-container-title'>Standard Single Room</h3>
-        <p className='result-search-description'>Standard Single Rooms are designed in open-concept living area and have many facilities.</p>
-        <section className='result-search-container-one'>
-          <section className='colum-one'>
-            <section className='result-search-img'>
+    <main className="result-search">
+      <section className="result-search-container">
+        <h3 className="result-search-container-title">{info.name}</h3>
+        {/* <p className="result-search-description">
+          Standard Single Rooms are designed in open-concept living area and
+          have many facilities.
+        </p> */}
+        <section className="result-search-container-one">
+          <section className="colum-one">
+            <section className="result-search-img">
               <Slideshow
                 imgs={[
                   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -28,8 +35,8 @@ const ResultSearch = () => {
                 ]}
               />
             </section>
-            <section className='row-two'>
-              <section className='review-colum-one'>
+            <section className="row-two">
+              {/* <section className='review-colum-one'>
                 <InformationResultOne title="2" icon="fa-solid fa-person"/>
                 <InformationResultOne title="beach" icon="fa-solid fa-eye"/>
                 <InformationResultOne title="20m²" icon="fa-solid fa-expand"/>
@@ -38,28 +45,49 @@ const ResultSearch = () => {
               <section className='review-colum-two'>
                 <InformationResultTwo icon="fa-solid fa-bookmark" description={["single"]}/>
                 <InformationResultTwo icon="fa-solid fa-star" description={["air-conditioning","free wi-fi","hairdryer","in-room safety","laundry","minibar","telephone"]}/>
-              </section>
+              </section> */}
             </section>
           </section>
-          <section className='colum-two'>
-            <section className='responsive'>
-              <h6 className='colum-two-title'>Prices start at:</h6>
-              <p className='colum-two-price'><span className='colum-two-price-one'>$119 </span><span className='colum-two-price-two'>/ per night</span></p>
+          <section className="colum-two">
+            <section className="responsive">
+              {/* <h6 className="colum-two-title">{info.description}</h6> */}
+              {/* <p className="colum-two-price">
+                <span className="colum-two-price-one">$119 </span>
+                <span className="colum-two-price-two">/ per night</span>
+              </p> */}
             </section>
-            <Select defaultValue="1" className="selectField">
+            {/* <Select defaultValue="1" className="selectField">
               {[...Array(5)].map((x, i) => (
                 <MenuItem value={i + 1} key={i}>
                   {i + 1}
                 </MenuItem>
               ))}
-            </Select>
-            <p className='colum-two-description'>of 5 accommodations available.</p>
-            <PrimaryButton title="Book" />
+            </Select> */}
+            {/* <p className="colum-two-description">
+              of 5 accommodations available.
+            </p> */}
+            {/* <PrimaryButton title="Book" /> */}
           </section>
         </section>
       </section>
+      <section className="list-room">
+        <section className="list-room-header">
+          <p className="list-room-title">Danh sách phòng hiện có</p>
+          <FontAwesomeIcon icon="fa-solid fa-angle-up" />
+          <section>
+            <section className="row-one">
+              <p>
+                {/* <span className="search-description">1 ×</span> */}
+                <span className="room-name">Standard Single Room</span>
+              </p>
+              <p className="price">$119</p>
+            </section>
+          </section>
+          <p className="search-description">Sức chứa: 2 adults</p>
+        </section>
+      </section>
     </main>
-  )
-}
+  );
+};
 
-export default ResultSearch
+export default ResultSearch;
