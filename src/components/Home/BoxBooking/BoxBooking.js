@@ -50,7 +50,7 @@ const BoxBooking = () => {
   useEffect(() => {
     fetchCity();
   }, []);
-  console.log(listCity);
+
   return (
     <main className="boxbooking">
       <section className="boxbooking-section">

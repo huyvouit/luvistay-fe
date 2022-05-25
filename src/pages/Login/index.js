@@ -1,20 +1,56 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Alert, Backdrop, CircularProgress } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Backdrop, CircularProgress, TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
-import Slideshow from "../../components/Apartment/SlideShow";
 import logo from "../../assets/icons/logoluviStay.svg";
+import { AuthContext } from "../../hooks/contexts/auth_context";
+import Slideshow from "../../components/Apartment/SlideShow";
 
 import "./login.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../../redux/Actions";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const SignInPage = () => {
-  const [loading, setLoading] = useState(false);
+  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading.loading);
 
-  const handleSubmitLogin = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmitLogin = async () => {
+    try {
+      dispatch(showLoading());
+      const loginData = await loginUser(loginForm);
+
+      if (loginData.success) {
+        toast.success(loginData.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        dispatch(hideLoading());
+        navigate(APP_ROUTE.HOME);
+      } else {
+        toast.error(loginData.error, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="login-page">
@@ -41,8 +77,12 @@ const SignInPage = () => {
             />
           </section>
         </section>
-        <form className="login-page-container-colum-two">
-          <img className="login-page-container-colum-two-logo" src={logo} />
+        <section className="login-page-container-colum-two">
+          <img
+            className="login-page-container-colum-two-logo"
+            src={logo}
+            alt=""
+          />
           <h1 className="login-page-container-colum-two-title">
             Chào mừng bạn đến với LuviStay
           </h1>
@@ -51,16 +91,30 @@ const SignInPage = () => {
           </p>
           <div className="login-page-container-colum-two-box-input">
             <label>Email</label>
-            <input name="email" type="email" required />
+            <TextField
+              variant="outlined"
+              type="email"
+              className="textField"
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, email: e.target.value })
+              }
+              required
+            />
           </div>
           <div className="login-page-container-colum-two-box-input">
             <label>Mật khẩu</label>
-            <input name="password" type="password" required />
+            <TextField
+              variant="outlined"
+              type="password"
+              className="textField"
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, password: e.target.value })
+              }
+              required
+            />
           </div>
 
-          <button type="submit" onClick={handleSubmitLogin}>
-            Đăng nhập
-          </button>
+          <button onClick={handleSubmitLogin}>Đăng nhập</button>
 
           {/* <div className="sign-in-gg">
             <img src={gg} />
@@ -78,7 +132,7 @@ const SignInPage = () => {
               <span className="span-two">Đăng ký tại đây</span>
             </p>
           </Link>
-        </form>
+        </section>
       </section>
     </div>
   );
