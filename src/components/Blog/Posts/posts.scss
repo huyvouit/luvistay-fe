@@ -1,0 +1,132 @@
+.posts{
+    width: 100%;
+    padding: 0 12%;
+    margin-bottom: 3%;
+    &-container{
+        border-radius: 8px;
+        padding: 3% 2%;
+        box-shadow: 1px 1px 3px 1px rgba(128, 128, 128, 0.377);
+        &-user{
+            display: flex;
+            align-items: center;
+            &-img{
+                width: 48px;
+                height: 48px;
+                border-radius: 90px;
+                object-fit: cover;
+            }
+            &-information{
+                margin-left: 1.5%;
+                &-name{
+                    font-family: "Noto Serif", serif;
+                    color: #222;
+                    line-height: 1.4;
+                    font-weight: 600;
+                    letter-spacing: -0.5px;
+                    font-size: 19px;
+                }
+                &-time{
+                    font-size: 16px;
+                    color: #5f6060;
+                    font-family: "Open Sans", sans-serif;
+                    font-style: italic;
+                }
+            }
+        }
+
+        &-title{
+            font-size: 16px;
+            color: #5f6060;
+            font-family: "Open Sans", sans-serif;
+            line-height: 1.75;
+            margin-top: 2%;
+
+            &-content-show{
+                text-transform: capitalize;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-word;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+
+            &-content-hide{
+                text-transform: capitalize;
+            }
+            &-btn{
+                font-weight: 600;
+                margin-left: 1%;
+                cursor: pointer;
+            }
+        }
+
+        &-img{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            &-one{
+                margin-top: 24px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            &-two{
+                margin-top: 24px;
+                width: 49%;
+                object-fit: cover;
+            }
+
+            &-three{
+                margin-top: 24px;
+                width: 33%;
+                object-fit: cover;
+                position: relative;
+                &-img {
+                    opacity: 0.7;
+                }
+
+                &-number{
+                    position: absolute;
+                    top: 45%;
+                    left: 45%;
+                    font-size: 45px;
+                    color: #f0efef;
+                    font-family: "Open Sans", sans-serif;
+                }
+            }
+        }
+
+        &-report{
+            margin-top: 24px;
+            display: flex;
+            &-box{
+                margin-right: 24px;
+                display: flex;
+                align-items: flex-end;
+
+                &-btn{
+                    cursor: pointer;
+                    color: #5f6060;
+                    font-family: "Open Sans", sans-serif;
+                    font-weight: 500;
+                }
+
+                &-btn-like{
+                    cursor: pointer;
+                    color: #5f6060;
+                    font-family: "Open Sans", sans-serif;
+                    font-weight: 600;
+                }
+
+                &-number{
+                    margin-left: 8px;
+                    font-size: 15px;
+                    color: #5f6060;
+                    font-family: "Open Sans", sans-serif;
+                }
+            }
+        }
+    }
+}

@@ -27,6 +27,7 @@ import Order from "../components/Profile/Order";
 import Host from "../components/Profile/Host";
 import ChangePassword from "../components/Profile/ChangePassword";
 import BlogPage from "../pages/Blog";
+import MyBlog from "../components/Blog/MyBlog/";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -59,6 +60,7 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage/>}/>
               <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order/>}/>
               <Route path={APP_ROUTE.BLOG} element={<BlogPage/>}/>
+              <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog/>}/>
               <Route path={APP_ROUTE.PROFILE_HOST} element={<Host/>}/>
               <Route path={APP_ROUTE.PROFILE_CHANGE_PASSWORD} element={<ChangePassword/>}/>
             </Route>

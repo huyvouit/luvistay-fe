@@ -19,5 +19,6 @@ export const APP_ROUTE = {
   PROFILE_CHANGE_PASSWORD: "/profile/change-password",
   FAVOURITES: "/profile/favourites",
   BLOG: "/blog",
+  MY_BLOG: "/my-blog",
   CONTACT: "/contact",
 };
