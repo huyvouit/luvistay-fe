@@ -14,7 +14,7 @@ const SidebarProfile = () => {
     let wlh = window.location.href;
     for (let i = 0; i < 4; i++) {
       if (wlh.includes(management[i].managementId))
-        setLocationHref( management[i].managementId);
+        setLocationHref(management[i].managementId);
     }
   }, [window.location.href]);
   return (
@@ -22,16 +22,12 @@ const SidebarProfile = () => {
       {management.map((item, index) => {
         let path = item.managementId;
         return (
-              <Link
-                to={path}
-                className={
-                  locationHref === path
-                    ? "sidebar-aSelect"
-                    : "sidebar-a"
-                }
-              >
-                <h2>{item.name}</h2>
-              </Link>
+          <Link
+            to={path}
+            className={locationHref === path ? "sidebar-aSelect" : "sidebar-a"}
+          >
+            <h2>{item.name}</h2>
+          </Link>
         );
       })}
     </>

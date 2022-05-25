@@ -23,6 +23,15 @@ const apartmentApi = {
     const url = `/room/search-room-available-of-apartment`;
     return axiosClient.get(url, body);
   },
+  searchRoom: (body) => {
+    const url = `/room/searchV2`;
+    return axiosClient.post(url, body);
+  },
+
+  getCityOfApartment: () => {
+    const url = `/apartment/apartment-cites`;
+    return axiosClient.get(url);
+  },
 };
 
 export default apartmentApi;
