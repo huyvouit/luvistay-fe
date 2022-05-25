@@ -4,8 +4,8 @@ import "./boxLeft.scss";
 
 const BoxLeft = () => {
   const management = [
-    { managementId: "/blog", name: "ACCOUNT DETAIL" },
-    { managementId: "/my-blog", name: "CHANGE PASSWORD" },
+    { managementId: "/blog", name: "BLOG" },
+    { managementId: "/my-blog", name: "BLOG CỦA TÔI" },
   ];
 
   const [locationHref, setLocationHref] = useState("");
