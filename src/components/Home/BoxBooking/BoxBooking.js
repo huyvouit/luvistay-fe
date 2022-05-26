@@ -36,7 +36,7 @@ const BoxBooking = () => {
     }
   };
   const handleNavigate = () => {
-    navigate(APP_ROUTE.SEARCH);
+    navigate({pathname: APP_ROUTE.SEARCH });
   };
   const handleSubmitSearch = async () => {
     const body = {

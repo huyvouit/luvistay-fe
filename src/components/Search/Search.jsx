@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Booking from "../Booking";
 import headerStar from "../../assets/images/header_star.png";
 import PrimaryButton from "../PrimaryButton";
@@ -6,11 +6,32 @@ import LogoPayment from "../../assets/images/payments.png";
 import "./search.scss";
 import SpecialOffer from "./SpecialOffer/SpecialOffer";
 import ResultSearch from "./ResultSearch/ResultSearch";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getApartmentBySearchApi } from "../../redux/Api/apartment";
+import { formatDate } from "../../helper/format";
 
 const Search = () => {
+  const dispatch = useDispatch();
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   console.log(searchApartment);
+
+  const [checkin, setCheckin] = useState("");
+  const [checkout, setCheckout] = useState("");
+  // const [isLoading, setIsLoading] = useState(true);
+  const [people, setPeople] = useState(1);
+
+  const handleSearchRoom = () => {
+    const body = {
+      checkinDate: formatDate(checkin),
+      checkoutDate: formatDate(checkout),
+      people: people,
+      city: "",
+    };
+    console.log(body);
+    getApartmentBySearchApi(dispatch, body);
+  };
+
   return (
     <main className="search">
       <section className="search-container">
@@ -28,42 +49,36 @@ const Search = () => {
               <h1 className="title">Search Results</h1>
             </section>
           </section>
-          <p className="search-description">
-            4 accommodations found from April 4, 2022 – till April 5, 2022
-          </p>
-          <section className="box-suggest">
-            <h4 className="box-suggest-title">Recommended for 1 adult</h4>
-            <section className="row-one">
-              <p>
-                <span className="search-description">1 ×</span>
-                <span className="room-name">Standard Single Room</span>
+          {searchApartment ? (
+            <>
+              <p className="search-description">
+                Lựa chon các phòng có sẵn theo từng căn hộ.
               </p>
-              <p className="price">$119</p>
-            </section>
-            <p className="search-description">Max occupancy: 2 adults</p>
-            <section className="row-two">
-              <p className="colum-one">
-                <span className="search-description">Total: </span>
-                <span className="price">$119</span>
-              </p>
-              <section className="btn">
-                <PrimaryButton title="RESERVE" />
-              </section>
-            </section>
-          </section>
-          <p className="search-description">
-            Select from available accommodations.
-          </p>
-          <section>
-            <ResultSearch info={searchApartment[0]} />
-            {/* <ResultSearch />
+              <section>
+                {searchApartment.map((item, index) => {
+                  return <ResultSearch key={index} info={item} />;
+                })}
+                {/* <ResultSearch />
             <ResultSearch />
             <ResultSearch /> */}
-          </section>
+              </section>
+            </>
+          ) : (
+            <div>Chưa có thông tin tim kiếm</div>
+          )}
         </section>
         <section className="search-colum-two">
           <section className="box-search">
-            {/* <Booking textButton="Search" /> */}
+            <Booking
+              textButton="Search"
+              checkin={checkin}
+              setCheckin={setCheckin}
+              checkout={checkout}
+              setCheckout={setCheckout}
+              people={people}
+              setPeople={setPeople}
+              action={handleSearchRoom}
+            />
           </section>
           <section className="special-offers">
             <h4 className="special-offers-title">Special Offers</h4>

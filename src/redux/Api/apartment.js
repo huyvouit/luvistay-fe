@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import apartmentApi from "../../api/aparment_api";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 import {
   getAllApartment,
@@ -26,16 +28,22 @@ const getAllApartmentApi = async (dispatch, params) => {
   }
 };
 
-const getApartmentBySearchApi = async (dispatch, body, action) => {
+const getApartmentBySearchApi = async (dispatch, body,action) => {
+ 
   try {
+    // const navigate = useNavigate();
+    
     dispatch(showLoading());
     const res = await apartmentApi.searchRoom(body);
     if (res.success) {
       //   console.log(res.data);
       dispatch(getApartmentBySearch(res.data));
       dispatch(hideLoading());
+      if(action){
 
-      action();
+        action();
+      }
+      // navigate({pathname: APP_ROUTE.SEARCH,state: res.data});
     } else {
       dispatch(getApartmentBySearch([]));
       dispatch(hideLoading());

@@ -85,6 +85,17 @@ const Booking = (props) => {
         </section>
         <section className="inputField">
           <p className="inputField-title">
+            Tỉnh/Thành phố:<span>*</span>{" "}
+          </p>
+          <input
+            type="date"
+            className="textField"
+            // value={city}
+            onChange={(event) => setCheckout(event.target.value)}
+          />
+        </section>
+        <section className="inputField">
+          <p className="inputField-title">
             People:<span>*</span>{" "}
           </p>
           <Select

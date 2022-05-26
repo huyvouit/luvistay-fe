@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   apartment: [],
-  searchRoom: [],
+  searchRoom: null,
 };
 
 const apartmentSlice = createSlice({
