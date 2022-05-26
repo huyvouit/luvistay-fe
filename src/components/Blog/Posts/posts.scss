@@ -132,5 +132,74 @@
                 }
             }
         }
+
+        &-cmt-hide{
+            display: none;
+        }
+
+        &-cmt{
+            display: block;
+            &-container{
+                display: flex;
+                margin-top: 4%;
+                &-img{
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 90px;
+                    object-fit: cover;
+                }
+
+                &-input{
+                    border: 1px solid #5f6060;
+                    padding: 0 2%;
+                    width: 75%;
+                    margin-left: 3%;
+                    border-radius: 10px;
+                }
+
+                &-btn{
+                    margin-left: 3%;
+                    background-color: #c1b086;
+                    color: #fff;
+                    border-radius: 12px;
+                    font-weight: 500;
+                    padding: 0 4%;
+                }
+
+                &-box{
+                    margin-left: 3%;
+
+                    &-information{
+                        display: flex;
+                        align-items: flex-end;
+                        &-name{
+                            font-family: "Noto Serif", serif;
+                            color: #222;
+                            font-weight: 600;
+                            letter-spacing: -0.5px;
+                            font-size: 19px;
+                        }
+    
+                        &-time{
+                            font-size: 15px;
+                            margin-left: 5px;
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        font-style: italic;
+                        }
+                    }
+                    
+
+                    &-description{
+                        font-size: 18px;
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        line-height: 1.75;
+                        margin-top: 4px;
+                    }
+                }
+
+            }
+        }
     }
 }
