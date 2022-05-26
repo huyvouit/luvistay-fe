@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -6,6 +6,7 @@ import logo from "../../assets/icons/logo-footer.svg";
 
 import { APP_ROUTE } from "../../routes/app.routes";
 import "./header.scss";
+import { AuthContext } from "../../hooks/contexts/auth_context";
 
 const NAVLINK = [
   {
@@ -30,6 +31,9 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
+  const {
+    authState: { authLoading, isAuthenticated, user },
+  } = useContext(AuthContext);
 
   return (
     <main
@@ -104,7 +108,7 @@ const Header = () => {
                 })}
 
                 <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>Login</p>
+                  <p>Đăng nhập</p>
                 </section>
               </div>
             </div>
@@ -127,13 +131,21 @@ const Header = () => {
             );
           })}
           <section className="divider navbar-item"></section>
-
-          <section
-            className="navbar-item"
-            onClick={() => navigate(APP_ROUTE.SIGNIN)}
-          >
-            <p>Đăng nhập</p>
-          </section>
+          {user ? (
+            <section
+              className="navbar-item"
+              onClick={() => navigate(APP_ROUTE.PROFILE)}
+            >
+              <p>User</p>
+            </section>
+          ) : (
+            <section
+              className="navbar-item"
+              onClick={() => navigate(APP_ROUTE.SIGNIN)}
+            >
+              <p>Đăng nhập</p>
+            </section>
+          )}
         </section>
       </section>
     </main>

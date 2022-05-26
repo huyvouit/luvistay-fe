@@ -17,6 +17,7 @@ const AuthContextProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       const response = await authApi.getUser();
+      const checkUser = localStorage.getItem(TOKEN_NAME);
       if (response.success) {
         // console.log("Verify token");
         dispatch({

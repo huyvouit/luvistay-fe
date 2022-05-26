@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { Backdrop, CircularProgress, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 
@@ -13,8 +13,11 @@ import { hideLoading, showLoading } from "../../redux/Actions";
 import { APP_ROUTE } from "../../routes/app.routes";
 
 const SignInPage = () => {
-  const { loginUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const {
+    loginUser,
+    authState: { authLoading },
+  } = useContext(AuthContext);
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
 
@@ -52,10 +55,18 @@ const SignInPage = () => {
       console.log(error);
     }
   };
-  return (
+
+  return authLoading ? (
+    <Backdrop
+      sx={{ color: "#c1b086", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={authLoading}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
+  ) : (
     <div className="login-page">
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ color: "#c1b086", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
       >
         <CircularProgress color="inherit" />
