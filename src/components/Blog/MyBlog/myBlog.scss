@@ -1,0 +1,17 @@
+.my-blog{
+    padding: 1%;
+    &-container{
+        margin: 1% 0;
+        display: flex;
+        justify-content: space-between;
+        &-colum-one{
+            width: 15%;
+            justify-content: end;
+            text-align: center;
+        }
+        &-colum-two{
+            width: 82%;
+        }
+
+    }
+}

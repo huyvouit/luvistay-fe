@@ -1,8 +1,9 @@
 import { createContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducers/auth_reducer";
-import { TOKEN_NAME, REFTOKEN } from "../constants/constant";
-import authApi from "../api/auth_api";
+import { TOKEN_NAME, REFTOKEN } from "../../constants";
+
 import { toast } from "react-toastify";
+import authApi from "../../api/auth_api";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -15,15 +16,16 @@ const AuthContextProvider = ({ children }) => {
   //Authenticate user
   const loadUser = async () => {
     try {
-      const response = await authApi.verifyUser();
-      if (localStorage.getItem(TOKEN_NAME)) {
+      const response = await authApi.getUser();
+      const checkUser = localStorage.getItem(TOKEN_NAME);
+      if (response.success) {
         // console.log("Verify token");
         dispatch({
           type: "SET_AUTH",
           payload: {
             authLoading: false,
             isAuthenticated: true,
-            // user: response.data.user,
+            user: response.data,
           },
         });
       }
@@ -38,21 +40,23 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //   useEffect(() => loadUser(), []);
+  useEffect(() => loadUser(), []);
 
   // Login
   const loginUser = async (userForm) => {
     try {
       const response = await authApi.postSignIn(userForm);
 
-      if (response.data.success) {
+      if (response.success) {
+        console.log(response.data.accessToken);
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
         localStorage.setItem(REFTOKEN, response.data.refreshToken);
+        // localStorage.setItem(REFTOKEN, response.data.refreshToken);
       }
 
       await loadUser();
 
-      return response.data;
+      return response;
     } catch (error) {
       if (error.response.data) {
         return error.response.data;

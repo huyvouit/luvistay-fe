@@ -1,17 +1,27 @@
 import apartmentApi from "../../api/aparment_api";
 
-import { getApartment, getRoom, searchRoomByApartment } from "../Actions";
+import {
+  getApartment,
+  getApartmentBySearch,
+  getRoom,
+  hideLoading,
+  searchRoomByApartment,
+  showLoading,
+} from "../Actions";
 
 const getDetailApartmentApi = async (dispatch, params) => {
   try {
+    dispatch(showLoading());
     const res = await apartmentApi.getApartmentById(params);
     if (res.success) {
       //   console.log(res.data);
       dispatch(getApartment(res.data));
       await getRoomByApartmentApi(dispatch, res.data._id);
+      dispatch(hideLoading());
     } else {
       dispatch(getApartment({}));
-      //   console.log(res.data);
+
+      dispatch(hideLoading());
     }
   } catch (error) {
     dispatch(getApartment({}));
@@ -34,12 +44,16 @@ const getRoomByApartmentApi = async (dispatch, id) => {
     // window.alert(error);
   }
 };
-const searchRoomByApartmentApi = async (dispatch, body) => {
+const searchRoomByApartmentApi = async (dispatch, body,action) => {
   try {
     const res = await apartmentApi.searchRoomByApartment(body);
     if (res.success) {
       console.log(res.data);
-      // dispatch(searchRoomByApartment(res.data));
+      dispatch(getApartmentBySearch(res.data));
+      if(action){
+
+        action();
+      }
     } else {
       // dispatch(searchRoomByApartment([]));
       console.log(res.data);

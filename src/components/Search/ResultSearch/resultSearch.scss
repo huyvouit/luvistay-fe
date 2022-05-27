@@ -1,186 +1,142 @@
 @use "../../../scss/" as *;
 
 .result-search {
-    margin: 4% 0;
-    &-container {
-        background-color: #ffffff;
-        box-shadow: 1px 1px 18px 1px #e0e0e0;
-        padding: 5%;
+  margin: 4% 0;
+  box-shadow: 1px 1px 18px 1px #e0e0e0;
+  &-container {
+    background-color: #ffffff;
+    padding: 20px ;
+    border-bottom: 1px solid #a4a4a4;
 
-        &-title {
-            font-family: "Noto Serif", serif;
-            color: #222;
-            margin: 0.2em 0 0.5em;
-            line-height: 1.4;
-            font-weight: 400;
-            font-size: 24px;
-            letter-spacing: -0.5px;
-        }
-        &-title:hover {
-            color: #c1b086;
-        }
-        &-description {
-            color: #5f6060;
-            font-family: "Open Sans", sans-serif;
-            font-size: 16px;
-            font-size: 1rem;
-            line-height: 1.75;
-        }
-        &-one {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            @include screen950 {
-                display: block;
-            }
-            .colum-one {
-                width: 60%;
-                padding-right: 30px;
-                border-right: 1px solid #e7e4e4;
-                @include screen950 {
-                    width: 100%;
-                    border-right: none;
-                    padding-right: 0;
-                }
-                .result-search-img {
-                    width: 100%;
-                    cursor: pointer;
-                    .slideshow {
-                        position: relative;
-                        display: flex;
-                        justify-content: space-between;
-
-                        .mainImg {
-                            width: 100%;
-                            transition: all 500ms;
-                            object-fit: cover;
-                        }
-
-                        .actions {
-                            position: absolute;
-                            top: 50%;
-                            width: 100%;
-                            display: flex;
-                            opacity: 0;
-                            justify-content: space-between;
-                        }
-
-                        .actions button {
-                            background: #ffffffa2;
-                            border: none;
-                            cursor: pointer;
-                            padding: 10px;
-                            padding-top: 10px;
-                            margin: 5px;
-                            border-radius: 15px;
-                            padding-top: 5px;
-                        }
-
-                        .actions button:active {
-                            background: #000000a2;
-                            border: none;
-                            cursor: pointer;
-                            padding: 10px;
-                            padding-top: 10px;
-                            margin: 5px;
-                            border-radius: 15px;
-                            padding-top: 5px;
-                        }
-                    }
-                }
-                .result-search-img:hover .actions {
-                    opacity: 1;
-                }
-                .row-two {
-                    margin-top: 20px;
-                    display: flex;
-                    justify-content: space-between;
-                    @include screen750 {
-                        display: block;
-                    }
-
-                    .review-colum-one {
-                        width: 50%;
-                        @include screen750 {
-                            width: 100%;
-                        }
-                    }
-
-                    .review-colum-two {
-                        width: 50%;
-                        @include screen750 {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-
-            .colum-two {
-                width: 35%;
-                @include screen950 {
-                    width: 100%;
-                }
-
-                @include screen750 {
-                    width: 100%;
-
-                    .responsive {
-                        display: flex;
-                    }
-                }
-                &-title {
-                    color: #5f6060;
-                    font-family: "Open Sans", sans-serif;
-                    font-size: 16px;
-                    line-height: 1.75;
-                    @include screen750 {
-                        margin-top: 6px;
-                    }
-                }
-
-                &-price {
-                    margin-top: 20px;
-                    @include screen750 {
-                        margin-left: 8px;
-                        margin-top: 0;
-                    }
-                    &-one {
-                        color: #222;
-                        font-family: "Open Sans", sans-serif;
-                        font-size: 30px;
-                        line-height: 1.75;
-                        @include screen750 {
-                            font-size: 22px;
-                        }
-                    }
-
-                    &-two {
-                        color: #5f6060;
-                        font-size: 15px;
-                        @include screen750 {
-                            font-size: 12px;
-                        }
-                    }
-                }
-                &-description {
-                    margin: 20px 0;
-                    color: #5f6060;
-                    font-family: "Open Sans", sans-serif;
-                    font-size: 16px;
-                    line-height: 1.75;
-                }
-
-                .selectField {
-                    margin-top: 12px;
-                    min-width: 100px;
-                    width: 100%;
-                    height: 52px;
-                    border-radius: 0 !important;
-                    background-color: #fff;
-                    border: 1px solid #e4e4e4;
-                    color: #8b9fb9;
-                }
-            }
-        }
+    &-title {
+      font-family: "Noto Serif", serif;
+      color: #222;
+      margin: 0.2em 0 0.5em;
+      line-height: 1.4;
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: -0.5px;
     }
+    &-title:hover {
+      color: #c1b086;
+    }
+    &-description {
+      color: #5f6060;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    &-one {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      @include screen950 {
+        display: block;
+      }
+      .colum-one {
+       flex: 1;
+        padding-right: 20px;
+        // border-right: 1px solid #e7e4e4;
+        @include screen950 {
+          width: 100%;
+          border-right: none;
+          padding-right: 0;
+        }
+        .result-search-img {
+          width: 100%;
+          cursor: pointer;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .result-search-img:hover .actions {
+          opacity: 1;
+        }
+        .row-two {
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
+          @include screen750 {
+            display: block;
+          }
+
+          .review-colum-one {
+            width: 50%;
+            @include screen750 {
+              width: 100%;
+            }
+          }
+
+          .review-colum-two {
+            width: 50%;
+            @include screen750 {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .colum-two {
+        flex:1;
+        &-description {
+          // margin: 20px 0;
+          color: #5f6060;
+          font-family: "Open Sans", sans-serif;
+          font-size: 16px;
+          // line-height: 1.75;
+        
+          margin-bottom: 12px;
+          display: -webkit-box;
+          -webkit-line-clamp: 10;
+          line-height: 1.5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-word;
+        }
+
+       
+      }
+    }
+  }
+}
+
+.list-room{
+  padding: 20px;
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // padding-bottom: 20px;
+  }
+  &-title{
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+  }
+
+  &-show{
+    padding-top: 20px;
+  }
+  &-name{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  &-description{
+    
+    font-family: "Open Sans",sans-serif;
+    font-size: 18px;
+  }
+  &-price{
+    color: $brown25;
+    font-family: "Open Sans",sans-serif;
+    font-size: 18px;
+  }
+  .row-one{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

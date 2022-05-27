@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   info: null,
   rooms: [],
-  searchRoom: [],
+  searchRoom: null,
 };
 
 const DetailSlice = createSlice({

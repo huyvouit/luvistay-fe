@@ -5,7 +5,8 @@ import { Alert, Backdrop, CircularProgress } from "@mui/material";
 import { HotelOne, HotelTwo } from "../../../components/Apartment/Hotel/Hotel";
 import PageHeader from "../../../components/PageHeader";
 import PageTitle from "../../../components/PageTitle";
-import getAllApartmentApi from "../../../redux/Api/apartment";
+import { getAllApartmentApi } from "../../../redux/Api/apartment";
+
 import "./hotel.scss";
 
 const LIST_TYPE = [
@@ -42,15 +43,17 @@ const LIST_TYPE = [
 ];
 const HotelPage = () => {
   const dispatch = useDispatch();
-  const apartment = useSelector((state) => state.apartment);
+  const apartment = useSelector((state) => state.apartment.apartment);
+  const isLoading = useSelector((state) => state.loading.loading);
   const [data, setData] = useState([]);
   const [type, setType] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
   console.log("data", apartment);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
+
     getAllApartmentApi(dispatch, {
       currentPage: 0,
       apartmentPerPage: 10,
@@ -64,7 +67,7 @@ const HotelPage = () => {
   };
   useEffect(() => {
     if (apartment) {
-      setIsLoading(false);
+      // setIsLoading(false);
       setData(apartment.apartment);
     } else {
       setData([]);

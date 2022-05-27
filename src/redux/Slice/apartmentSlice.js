@@ -1,18 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import {} from "../store";
 
-const initialState = [];
+const initialState = {
+  apartment: [],
+  searchRoom: null,
+};
 
 const apartmentSlice = createSlice({
   name: "apartmentSlice",
   initialState,
   reducers: {
     getAllApartment: (state, action) => {
-      return { ...state, ...action.payload };
+      return { ...state, apartment: action.payload };
+    },
+
+    getApartmentBySearch: (state, action) => {
+      return { ...state, searchRoom: action.payload };
     },
   },
 });
 
-export const { getAllApartment } = apartmentSlice.actions;
+export const { getAllApartment, getApartmentBySearch } = apartmentSlice.actions;
 
 export default apartmentSlice.reducer;

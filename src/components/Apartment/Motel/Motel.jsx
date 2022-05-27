@@ -7,13 +7,14 @@ import {
   InformationResultOne,
   InformationResultTwo,
 } from "../../InformationResult/InformationResult";
+import { flexbox } from "@mui/system";
 
-const Motel = ({ room }) => {
+const Motel = ({ room, thumbnail }) => {
   return (
     <main className="motel">
       <section className="motel-container">
         <section className="motel-colum-one">
-          <img src={room?.thumbnail} alt="" />
+          <img src={thumbnail} alt="" />
         </section>
         <section className="motel-colum-two">
           <section className="motel-colum-two-container">
@@ -23,23 +24,28 @@ const Motel = ({ room }) => {
                 Standard Single Rooms are designed in open-concept living area
                 and have many facilities.
               </p> */}
-              <InformationResultOne
-                title={room?.capacity}
-                icon="fa-solid fa-person"
-              />
-              <InformationResultOne title="beach" icon="fa-solid fa-eye" />
-              <InformationResultOne
-                title={`${room?.square} m²`}
-                icon="fa-solid fa-expand"
-              />
-              <InformationResultOne
-                title={room?.bedName}
-                icon="fa-solid fa-bed"
-              />
-              <InformationResultOne
-                icon="fa-solid fa-bookmark"
-                title={room?.price}
-              />
+              <section className="info-room-detail">
+                <InformationResultOne
+                  title={`${room?.capacity} người`}
+                  icon="fa-solid fa-person"
+                />
+                <InformationResultOne
+                  title={room?.rating}
+                  icon="fa-solid fa-eye"
+                />
+                <InformationResultOne
+                  title={`${room?.square} m²`}
+                  icon="fa-solid fa-expand"
+                />
+                <InformationResultOne
+                  title={room?.bedName}
+                  icon="fa-solid fa-bed"
+                />
+                <InformationResultOne
+                  icon="fa-solid fa-bookmark"
+                  title={room?.price}
+                />
+              </section>
               {/* <InformationResultTwo
                 icon="fa-solid fa-star"
                 description={[

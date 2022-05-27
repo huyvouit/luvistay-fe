@@ -1,51 +1,40 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { MenuItem, Select, TextField } from "@mui/material";
+import moment from "moment";
+
 import PrimaryButton from "../PrimaryButton";
+import { disablePastDate, handleCheckout } from "../../helper/minInput";
 
 import "./booking.scss";
+import getAllCityApi from "../../redux/Api/city";
 
 const Booking = (props) => {
+  const dispatch = useDispatch();
+
   const {
     detail,
     textButton,
     action,
     checkin,
     checkout,
+    city,
+    setCity,
     people,
     setCheckin,
     setCheckout,
     setPeople,
+    notCity,
   } = props;
-  // const [checkin, setCheckin] = useState("");
-  // const [checkout, setCheckout] = useState("");
-  // const [people, setPeople] = useState(null);
 
-  const disablePastDate = () => {
-    const today = new Date();
-    const dd = String(today.getDate() + 1).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
-    return yyyy + "-" + mm + "-" + dd;
-  };
+  const listCity = useSelector((state) => state.city);
 
-  const handleCheckout = (checkin) => {
-    if (checkin !== "") {
-      const newArr = checkin.split("-"); // ["29", "1", "2016"]
-      const today = new Date(
-        parseInt(newArr[0]),
-        parseInt(newArr[1]) - 1,
-        parseInt(newArr[2])
-      );
-      const dd = String(today.getDate() + 1).padStart(2, "0");
-      const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      const yyyy = today.getFullYear();
-      return yyyy + "-" + mm + "-" + dd;
-    } else {
-      console.log("run");
-      return disablePastDate();
+  useEffect(() => {
+    if (notCity) {
+      return;
     }
-  };
+    getAllCityApi(dispatch);
+  }, []);
   return (
     <main className="booking-wrapper">
       {detail && (
@@ -83,6 +72,27 @@ const Booking = (props) => {
             min={handleCheckout(checkin)}
           />
         </section>
+        {!notCity && (
+          <section className="inputField">
+            <p className="inputField-title">
+              Tỉnh/Thành phố:<span>*</span>{" "}
+            </p>
+            <Select
+              defaultValue=""
+              className="selectField"
+              onChange={(event) => {
+                setCity(event.target.value);
+              }}
+            >
+              {listCity &&
+                listCity.map((item, i) => (
+                  <MenuItem value={item} key={i}>
+                    {item}
+                  </MenuItem>
+                ))}
+            </Select>
+          </section>
+        )}
         <section className="inputField">
           <p className="inputField-title">
             People:<span>*</span>{" "}

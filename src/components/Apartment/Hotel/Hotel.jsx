@@ -51,17 +51,20 @@ const HotelOne = ({ item }) => {
                 "telephone",
               ]}
             /> */}
-            <p className="colum-one-price">
+            {/* <p className="colum-one-price">
               <span className="colum-one-price-one">$119</span>
               <span className="colum-one-price-two">/ per night</span>
-            </p>
+            </p> */}
             <section className="colum-one-responsive-btn">
-              <section className="btn-primary">
+              {/* <section className="btn-primary">
                 <PrimaryButton title="BOOK" />
-              </section>
-              <section className="outlined-button">
-                <p className="outlined-button-title">VIEW DETAILS</p>
-              </section>
+              </section> */}
+              {/* <section className="outlined-button"> */}
+              <PrimaryButton
+                title="View Detail"
+                action={() => navigate(`/apartment/${item._id}`)}
+              />
+              {/* </section> */}
             </section>
           </section>
         </section>
@@ -71,6 +74,7 @@ const HotelOne = ({ item }) => {
 };
 
 const HotelTwo = ({ item }) => {
+  const navigate = useNavigate();
   return (
     <main className="hotel-two">
       <section className="hotel-two-container">
@@ -80,23 +84,31 @@ const HotelTwo = ({ item }) => {
         <section className="hotel-two-colum-two">
           <section className="hotel-two-colum-two-container">
             <p className="colum-one-highlight"></p>
-            <h2 className="colum-one-title">{item?.name}</h2>
+            <h2
+              className="colum-one-title"
+              onClick={() => navigate(`/apartment/${item._id}`)}
+            >
+              {item?.name}
+            </h2>
             <div
               className="colum-one-description"
               dangerouslySetInnerHTML={{ __html: item?.description }}
             ></div>
 
-            <p className="colum-one-price">
+            {/* <p className="colum-one-price">
               <span className="colum-one-price-one">$119</span>
               <span className="colum-one-price-two">/ per night</span>
-            </p>
+            </p> */}
             <section className="colum-one-responsive-btn">
-              <section className="btn-primary">
-                <PrimaryButton title="BOOK" />
-              </section>
-              <section className="outlined-button">
-                <p className="outlined-button-title">VIEW DETAILS</p>
-              </section>
+              {/* <section className="btn-primary"> */}
+
+              {/* </section> */}
+              {/* <section className="outlined-button"> */}
+              <PrimaryButton
+                title="View Detail"
+                action={() => navigate(`/apartment/${item._id}`)}
+              />
+              {/* </section> */}
             </section>
           </section>
         </section>

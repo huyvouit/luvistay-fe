@@ -1,0 +1,26 @@
+.blog-a {
+    h2{
+        width: 100%;
+        color: #333;
+        padding: 20px 0;
+        cursor: pointer;
+        padding-right: 20%;
+        border-right: 1px solid #333 ;
+    }
+}
+.blog-aSelect {
+    h2{
+        width: 100%;
+        color: #333;
+        padding: 20px 0;
+        font-weight: 600;
+        cursor: pointer;
+        padding-right: 20%;
+        border-right: 3px solid #333 ;
+    }
+
+}
+
+.blog-a:focus, .blog-aSelect:focus {
+    text-decoration: none;
+}
