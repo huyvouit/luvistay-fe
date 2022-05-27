@@ -20,8 +20,8 @@ const apartmentApi = {
     return axiosClient.get(url);
   },
   searchRoomByApartment: (body) => {
-    const url = `/room/search-room-available-of-apartment`;
-    return axiosClient.get(url, body);
+    const url = `room/available-apartment`;
+    return axiosClient.post(url, body);
   },
   searchRoom: (body) => {
     const url = `/room/searchV2`;

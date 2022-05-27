@@ -24,11 +24,15 @@ const Booking = (props) => {
     setCheckin,
     setCheckout,
     setPeople,
+    notCity,
   } = props;
 
   const listCity = useSelector((state) => state.city);
 
   useEffect(() => {
+    if (notCity) {
+      return;
+    }
     getAllCityApi(dispatch);
   }, []);
   return (
@@ -68,25 +72,27 @@ const Booking = (props) => {
             min={handleCheckout(checkin)}
           />
         </section>
-        <section className="inputField">
-          <p className="inputField-title">
-            Tỉnh/Thành phố:<span>*</span>{" "}
-          </p>
-          <Select
-            defaultValue=""
-            className="selectField"
-            onChange={(event) => {
-              setCity(event.target.value);
-            }}
-          >
-            {listCity &&
-              listCity.map((item, i) => (
-                <MenuItem value={item} key={i}>
-                  {item}
-                </MenuItem>
-              ))}
-          </Select>
-        </section>
+        {!notCity && (
+          <section className="inputField">
+            <p className="inputField-title">
+              Tỉnh/Thành phố:<span>*</span>{" "}
+            </p>
+            <Select
+              defaultValue=""
+              className="selectField"
+              onChange={(event) => {
+                setCity(event.target.value);
+              }}
+            >
+              {listCity &&
+                listCity.map((item, i) => (
+                  <MenuItem value={item} key={i}>
+                    {item}
+                  </MenuItem>
+                ))}
+            </Select>
+          </section>
+        )}
         <section className="inputField">
           <p className="inputField-title">
             People:<span>*</span>{" "}

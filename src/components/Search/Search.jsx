@@ -58,12 +58,13 @@ const Search = () => {
                 Lựa chon các phòng có sẵn theo từng căn hộ.
               </p>
               <section>
-                {searchApartment.map((item, index) => {
-                  return <ResultSearch key={index} info={item} />;
-                })}
-                {/* <ResultSearch />
-            <ResultSearch />
-            <ResultSearch /> */}
+                {searchApartment.length >= 2 ? (
+                  searchApartment.map((item, index) => {
+                    return <ResultSearch key={index} info={item} />;
+                  })
+                ) : (
+                  <ResultSearch info={searchApartment} />
+                )}
               </section>
             </>
           ) : (

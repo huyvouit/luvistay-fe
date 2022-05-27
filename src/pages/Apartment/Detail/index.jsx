@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Alert, Backdrop, CircularProgress } from "@mui/material";
@@ -18,45 +18,9 @@ import {
 } from "../../../redux/Api/detail";
 import moment from "moment";
 import "./detail.scss";
+import { formatDate } from "../../../helper/format";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
-const data = [
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-  {
-    id: 1,
-    icon: "fa-solid fa-bed",
-    type: "People",
-    value: "2",
-  },
-];
 const ApartmentDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -66,7 +30,7 @@ const ApartmentDetailPage = () => {
   const [checkout, setCheckout] = useState("");
   // const [isLoading, setIsLoading] = useState(true);
   const [people, setPeople] = useState(1);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // setIsLoading(true);
     getDetailApartmentApi(dispatch, id);
@@ -78,20 +42,18 @@ const ApartmentDetailPage = () => {
     moment(checkout, "YYYY-MM-DD").format("MM-DD-YYYY").replaceAll("-", "/"),
     people
   );
-
+  const handleNavigate = () => {
+    navigate({ pathname: APP_ROUTE.SEARCH });
+  };
   const handleSearchRoom = () => {
     const body = {
-      checkinDate: moment(checkin, "YYYY-MM-DD")
-        .format("MM-DD-YYYY")
-        .replaceAll("-", "/"),
-      checkoutDate: moment(checkout, "YYYY-MM-DD")
-        .format("MM-DD-YYYY")
-        .replaceAll("-", "/"),
-      people: [`${people} người`],
+      checkinDate: formatDate(checkin),
+      checkoutDate: formatDate(checkout),
+      people: people,
       apartmentId: id,
     };
     console.log(body);
-    searchRoomByApartmentApi(dispatch, body);
+    searchRoomByApartmentApi(dispatch, body, handleNavigate);
   };
   return !isLoading ? (
     <main className="detail-page">
@@ -115,7 +77,9 @@ const ApartmentDetailPage = () => {
             className="detail-description"
             dangerouslySetInnerHTML={{ __html: detail.info?.description }}
           ></div>
-          <ImageGallery listImage={detail.info.pictures.slice(1, 6)} />
+          {detail.info?.pictures && (
+            <ImageGallery listImage={detail.info.pictures.slice(1, 6)} />
+          )}
           <section className="detail-table">
             <section>
               <h2 className="detail-table-title">Danh sách phòng</h2>
@@ -143,6 +107,7 @@ const ApartmentDetailPage = () => {
               people={people}
               setPeople={setPeople}
               action={handleSearchRoom}
+              notCity="true"
             />
           </section>
         </section>

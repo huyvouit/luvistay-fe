@@ -2,6 +2,7 @@ import apartmentApi from "../../api/aparment_api";
 
 import {
   getApartment,
+  getApartmentBySearch,
   getRoom,
   hideLoading,
   searchRoomByApartment,
@@ -43,12 +44,16 @@ const getRoomByApartmentApi = async (dispatch, id) => {
     // window.alert(error);
   }
 };
-const searchRoomByApartmentApi = async (dispatch, body) => {
+const searchRoomByApartmentApi = async (dispatch, body,action) => {
   try {
     const res = await apartmentApi.searchRoomByApartment(body);
     if (res.success) {
       console.log(res.data);
-      // dispatch(searchRoomByApartment(res.data));
+      dispatch(getApartmentBySearch(res.data));
+      if(action){
+
+        action();
+      }
     } else {
       // dispatch(searchRoomByApartment([]));
       console.log(res.data);
