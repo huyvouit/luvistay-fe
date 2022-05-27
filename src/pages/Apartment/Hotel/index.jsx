@@ -49,10 +49,11 @@ const HotelPage = () => {
   const [type, setType] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
-  console.log("data", isLoading);
+  console.log("data", apartment);
 
   useEffect(() => {
     // setIsLoading(true);
+
     getAllApartmentApi(dispatch, {
       currentPage: 0,
       apartmentPerPage: 10,
