@@ -26,6 +26,7 @@ import ProfilePage from "../pages/Profile";
 import Order from "../components/Profile/Order";
 import Host from "../components/Profile/Host";
 import ChangePassword from "../components/Profile/ChangePassword";
+import NewsPage from "../pages/News";
 
 export default function AppRoutes() {
   //   const dispatch = useAppDispatch();
@@ -48,21 +49,18 @@ export default function AppRoutes() {
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
 
-              <Route
-                path={APP_ROUTE.DETAIL}
-                element={<ApartmentDetailPage />}
-              />
+              <Route path={APP_ROUTE.DETAIL} element={<ApartmentDetailPage />} />
 
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
               <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order />} />
               <Route path={APP_ROUTE.PROFILE_HOST} element={<Host />} />
-              <Route
-                path={APP_ROUTE.PROFILE_CHANGE_PASSWORD}
-                element={<ChangePassword />}
-              />
+              <Route path={APP_ROUTE.PROFILE_CHANGE_PASSWORD} element={<ChangePassword />} />
+              
+              <Route path={APP_ROUTE.NEWS} element={<NewsPage />} />
             </Route>
+
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
             <Route path={APP_ROUTE.SIGNUP} element={<SignUpPage />} />
             <Route path={APP_ROUTE.ERROR} element={<ErrorPage />} />

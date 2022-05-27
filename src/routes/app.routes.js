@@ -20,4 +20,5 @@ export const APP_ROUTE = {
   FAVOURITES: "/profile/favourites",
   BLOG: "/blog",
   CONTACT: "/contact",
+  NEWS: "/news",
 };

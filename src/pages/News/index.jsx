@@ -1,7 +1,11 @@
 import React from "react";
+import News from "../../components/News/News"
+import "./news.scss"
 
 const NewsPage = () => {
-  return <div>NewsPage</div>;
+  return(
+    <News />
+  );
 };
 
 export default NewsPage;
