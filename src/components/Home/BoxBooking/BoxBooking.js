@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { MenuItem, Select, TextField } from "@mui/material";
+import { MenuItem, Select,  } from "@mui/material";
 
-import apartmentApi from "../../../api/aparment_api";
+// import apartmentApi from "../../../api/aparment_api";
 import { disablePastDate, handleCheckout } from "../../../helper/minInput";
 import { formatDate } from "../../../helper/format";
-import { useAppDispatch } from "../../../redux/store";
+// import { useAppDispatch } from "../../../redux/store";
 import "./boxBooking.scss";
 import { getApartmentBySearchApi } from "../../../redux/Api/apartment";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTE } from "../../../routes/app.routes";
+import getAllCityApi from "../../../redux/Api/city";
 
 const BoxBooking = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.loading.loading);
+  // const isLoading = useSelector((state) => state.loading.loading);
+  const listCity = useSelector((state) => state.city);
+  // console.log(listCity)
   const navigate = useNavigate();
-  const [listCity, setListCity] = useState([]);
+  // const [listCity, setListCity] = useState([]);
   const [formSearch, setFormSearch] = useState({
     checkinDate: "",
     checkoutDate: "",
@@ -23,18 +26,7 @@ const BoxBooking = () => {
     city: "",
   });
 
-  const fetchCity = async () => {
-    try {
-      const res = await apartmentApi.getCityOfApartment();
-      if (res.success) {
-        setListCity(res.data);
-      } else {
-        setListCity([]);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  console.log(formSearch);
   const handleNavigate = () => {
     navigate({pathname: APP_ROUTE.SEARCH });
   };
@@ -48,7 +40,7 @@ const BoxBooking = () => {
     getApartmentBySearchApi(dispatch, body, handleNavigate);
   };
   useEffect(() => {
-    fetchCity();
+    getAllCityApi(dispatch);
   }, []);
 
   return (
@@ -77,7 +69,7 @@ const BoxBooking = () => {
             </p>
             <input
               type="date"
-              className="textField"
+              className="textField" required
               min={handleCheckout(formSearch.checkinDate)}
               onChange={(event) => {
                 setFormSearch({

@@ -6,6 +6,6 @@ export {
   searchRoomByApartment,
 } from "../Slice/detailSlice";
 export { showLoading, hideLoading } from "../Slice/loadingSlice";
-export {} from "../Slice/homestaySlice";
+export {getAllCity} from "../Slice/cityApartmentSlice";
 export {} from "../Slice/authSlice";
 export {} from "../Slice/motelSlice";

@@ -14,11 +14,12 @@ import { formatDate } from "../../helper/format";
 const Search = () => {
   const dispatch = useDispatch();
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
+  const isLoading = useSelector((state) => state.loading.loading);
   console.log(searchApartment);
 
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
-  // const [isLoading, setIsLoading] = useState(true);
+  const [city, setCity] = useState("");
   const [people, setPeople] = useState(1);
 
   const handleSearchRoom = () => {
@@ -26,7 +27,7 @@ const Search = () => {
       checkinDate: formatDate(checkin),
       checkoutDate: formatDate(checkout),
       people: people,
-      city: "",
+      city: city,
     };
     console.log(body);
     getApartmentBySearchApi(dispatch, body);
@@ -49,7 +50,9 @@ const Search = () => {
               <h1 className="title">Search Results</h1>
             </section>
           </section>
-          {searchApartment ? (
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : searchApartment ? (
             <>
               <p className="search-description">
                 Lựa chon các phòng có sẵn theo từng căn hộ.
@@ -77,6 +80,8 @@ const Search = () => {
               setCheckout={setCheckout}
               people={people}
               setPeople={setPeople}
+              city={city}
+              setCity={setCity}
               action={handleSearchRoom}
             />
           </section>
