@@ -12,6 +12,7 @@ import BoxLeft from "../../components/Blog/BoxLeft";
 import { getAllBlogApi } from "../../redux/Api/blog";
 import { AuthContext } from "../../hooks/contexts/auth_context";
 import "./blog.scss";
+import { hideLoading, showLoading } from "../../redux/Actions";
 // import { CircularProgress } from "@mui/material";
 
 const BlogPage = () => {
@@ -82,10 +83,12 @@ const BlogPage = () => {
     if (listBlog.length > 0) {
       return;
     } else {
+      // dispatch(showLoading());
+      // dispatch(hideLoading());
       getAllBlogApi(dispatch, { page: 1, limit: 3 });
     }
   }, []);
-
+  console.log(loading);
   return (
     <div className="blog">
       <div className="blog-container">

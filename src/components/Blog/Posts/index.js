@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SRLWrapper } from "simple-react-lightbox";
+import blogApi from "../../../api/blog_api";
 import "./posts.scss";
 
 const imgs = [
@@ -14,6 +15,7 @@ const imgs = [
 ];
 
 const Posts = ({ blog }) => {
+  const [comments, setComments] = React.useState([]);
   const [seen, setSeen] = useState(true);
   const checkSeen = () => setSeen(!seen);
 
@@ -22,6 +24,25 @@ const Posts = ({ blog }) => {
 
   const [comment, setComment] = useState(false);
   const checkComment = () => setComment(!comment);
+
+  const fetchCommentsByBlog = async () => {
+    try {
+      const params = {
+        blogId: blog._id,
+        page: 1,
+        limit: 5,
+      };
+      const res = await blogApi.getCommentByBlog(params);
+      if (res.success) {
+        setComments(res.data.comments);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchCommentsByBlog();
+  }, []);
 
   return (
     <div className="posts">
@@ -117,7 +138,9 @@ const Posts = ({ blog }) => {
             >
               Bình luận
             </h3>
-            <p className="posts-container-report-box-number">7</p>
+            <p className="posts-container-report-box-number">
+              {comments.length}
+            </p>
           </div>
         </div>
 
@@ -136,43 +159,31 @@ const Posts = ({ blog }) => {
           </div>
 
           {/* show comment ở đây lặp cái này */}
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <div className="posts-container-cmt-container-box">
-              <div className="posts-container-cmt-container-box-information">
-                <h4 className="posts-container-cmt-container-box-information-name">
-                  Huy
-                </h4>
-                <p className="posts-container-cmt-container-box-information-time">
-                  7 phút trước
-                </p>
-              </div>
-              <p className="posts-container-cmt-container-box-description">
-                Như vầy được chưa
-              </p>
-            </div>
-          </div>
-
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <div className="posts-container-cmt-container-box">
-              <div className="posts-container-cmt-container-box-information">
-                <h4 className="posts-container-cmt-container-box-information-name">
-                  Huy
-                </h4>
-                <p className="posts-container-cmt-container-box-information-time">
-                  7 phút trước
-                </p>
-              </div>
-              <p className="posts-container-cmt-container-box-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl
-                tincidunt eget nullam non. Quis hendrerit dolor magna eget est
-                lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet
-                massa.
-              </p>
-            </div>
-          </div>
+          {comments.length > 0 &&
+            comments.map((item, index) => {
+              return (
+                <div className="posts-container-cmt-container">
+                  <img
+                    className="posts-container-cmt-container-img"
+                    src={imgs[1]}
+                    alt=""
+                  />
+                  <div className="posts-container-cmt-container-box">
+                    <div className="posts-container-cmt-container-box-information">
+                      <h4 className="posts-container-cmt-container-box-information-name">
+                        {item.author?.username}
+                      </h4>
+                      <p className="posts-container-cmt-container-box-information-time">
+                        7 phút trước
+                      </p>
+                    </div>
+                    <p className="posts-container-cmt-container-box-description">
+                      {item?.content}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

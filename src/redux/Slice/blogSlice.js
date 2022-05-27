@@ -12,6 +12,7 @@ const blogSlice = createSlice({
     getAllBlog: (state, action) => {
       return { ...state, listBlog: action.payload };
     },
+
     // addOneBlog:(state, action) => {
     //     return { ...state, ...action.payload };
     //   },

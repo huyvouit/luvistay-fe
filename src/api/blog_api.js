@@ -9,6 +9,11 @@ const blogApi = {
     const url = "/blog/upload";
     return axiosClient.post(url, body);
   },
+
+  getCommentByBlog: (params) => {
+    const url = "/blog/comment";
+    return axiosClient.get(url, { params });
+  },
 };
 
 export default blogApi;
