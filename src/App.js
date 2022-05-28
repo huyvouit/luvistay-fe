@@ -16,11 +16,11 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <Provider store={store}>
+      <Provider store={store}>
+        <AuthContextProvider>
           <AppRoutes />
-        </Provider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </Provider>
     </QueryClientProvider>
   );
 }

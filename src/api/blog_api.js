@@ -14,6 +14,25 @@ const blogApi = {
     const url = "/blog/comment";
     return axiosClient.get(url, { params });
   },
+
+  getLikeByBlog: (id) => {
+    const url = `/blog/like/${id}`;
+    return axiosClient.get(url);
+  },
+  getLikeBlogByUser: (params) => {
+    const url = `/blog/like`;
+    return axiosClient.get(url, { params });
+  },
+  postLikeBlogByUser: (body) => {
+    const url = `/blog/like`;
+    return axiosClient.post(url, body);
+  },
+  deleteUnLikeBlogByUser: (body) => {
+    const url = `/blog/like`;
+    return axiosClient.delete(url, {
+      data: body,
+    });
+  },
 };
 
 export default blogApi;

@@ -4,6 +4,7 @@ import detailApartment from "./Slice/detailSlice";
 import loading from "./Slice/loadingSlice";
 import city from "./Slice/cityApartmentSlice";
 import blog from "./Slice/blogSlice";
+import user from "./Slice/userSlice";
 
 const rootReducer = combineReducers({
   apartment,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   loading,
   city,
   blog,
+  user,
 });
 
 export default rootReducer;
