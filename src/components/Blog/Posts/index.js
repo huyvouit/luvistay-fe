@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SRLWrapper } from "simple-react-lightbox";
@@ -23,11 +24,15 @@ const Posts = ({ blog }) => {
     authState: { user },
   } = useContext(AuthContext);
   const listLikeUser = useSelector((state) => state.user.likeBlog);
-  const [comments, setComments] = React.useState([]);
+  const [listComments, setListComments] = React.useState([]);
   const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState(false);
+  const [formComment, setFormComment] = useState({
+    blogId: blog?.id,
+    content: "",
+  });
 
   const checkSeen = () => setSeen(!seen);
   const checkLike = () => setLike(!like);
@@ -43,7 +48,7 @@ const Posts = ({ blog }) => {
           fetchLikesByBlog();
         }
       } catch (error) {
-        console.log(error);
+        setLike(false);
       }
     } else {
       try {
@@ -58,22 +63,7 @@ const Posts = ({ blog }) => {
       }
     }
   };
-  const fetchCommentsByBlog = async () => {
-    try {
-      const params = {
-        blogId: blog._id,
-        page: 1,
-        limit: 5,
-      };
-      const res = await blogApi.getCommentByBlog(params);
-      if (res.success) {
-        setComments(res.data.comments);
-        // await ;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const fetchLikesByBlog = async () => {
     try {
       const res = await blogApi.getLikeByBlog(blog._id);
@@ -85,16 +75,45 @@ const Posts = ({ blog }) => {
       console.log(error);
     }
   };
+  const fetchCommentByBlog = async () => {
+    try {
+      const res = await blogApi.getCommentByBlog({
+        blogId: blog?._id,
+        page: 1,
+        limit: 5,
+      });
+      if (res.success) {
+        // console.log(res);
+        setListComments(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handlePostCommentToBlog = async () => {
+    try {
+      const res = await blogApi.postLikeBlogByUser(formComment);
+      if (res.success) {
+        // console.log(res);
+        setLikes(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setLike();
     fetchLikesByBlog();
+    fetchCommentByBlog();
   }, []);
+
   useEffect(() => {
     if (listLikeUser) {
       setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
     }
   }, [listLikeUser]);
-  console.log("like", like);
+  console.log("like", listComments);
   return (
     <div className="posts">
       <div className="posts-container">
@@ -200,12 +219,15 @@ const Posts = ({ blog }) => {
             <h3
               onClick={() => handleReactBlog(blog?._id)}
               className={
-                listLikeUser?.some((item) => item.blogId?._id === blog?._id)
+                like
                   ? "posts-container-report-box-btn-like"
                   : "posts-container-report-box-btn"
               }
             >
-              {like ? "Đã thích" : "Thích"}
+              <FontAwesomeIcon
+                icon="fa-solid fa-thumbs-up"
+                color={like ? "blue" : "gray"}
+              />
             </h3>
             <p className="posts-container-report-box-number">{likes}</p>
           </div>
@@ -217,7 +239,7 @@ const Posts = ({ blog }) => {
               Bình luận
             </h3>
             <p className="posts-container-report-box-number">
-              {comments.length}
+              {listComments.comments?.length}
             </p>
           </div>
         </div>
@@ -228,17 +250,26 @@ const Posts = ({ blog }) => {
           }
         >
           <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
+            <img
+              className="posts-container-cmt-container-img"
+              src={imgs[1]}
+              alt=""
+            />
             <input
               className="posts-container-cmt-container-input"
               placeholder="Viết bình luận..."
+              type={"text"}
+              value={formComment.content}
+              onChange={(e) =>
+                setFormComment({ ...formComment, content: e.target.value })
+              }
             />
             <button className="posts-container-cmt-container-btn">Gửi</button>
           </div>
 
           {/* show comment ở đây lặp cái này */}
-          {comments.length > 0 &&
-            comments.map((item, index) => {
+          {listComments.comments.length > 0 &&
+            listComments?.comments?.map((item, index) => {
               return (
                 <div className="posts-container-cmt-container" key={index}>
                   <img
@@ -249,7 +280,7 @@ const Posts = ({ blog }) => {
                   <div className="posts-container-cmt-container-box">
                     <div className="posts-container-cmt-container-box-information">
                       <h4 className="posts-container-cmt-container-box-information-name">
-                        {item.author?.username}
+                        {item?.author}
                       </h4>
                       <p className="posts-container-cmt-container-box-information-time">
                         7 phút trước

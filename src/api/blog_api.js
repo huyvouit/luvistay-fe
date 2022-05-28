@@ -10,18 +10,14 @@ const blogApi = {
     return axiosClient.post(url, body);
   },
 
-  getCommentByBlog: (params) => {
-    const url = "/blog/comment";
+  getLikeBlogByUser: (params) => {
+    const url = `/blog/comment`;
     return axiosClient.get(url, { params });
   },
 
   getLikeByBlog: (id) => {
     const url = `/blog/like/${id}`;
     return axiosClient.get(url);
-  },
-  getLikeBlogByUser: (params) => {
-    const url = `/blog/like`;
-    return axiosClient.get(url, { params });
   },
   postLikeBlogByUser: (body) => {
     const url = `/blog/like`;
@@ -32,6 +28,15 @@ const blogApi = {
     return axiosClient.delete(url, {
       data: body,
     });
+  },
+
+  getCommentByBlog: (params) => {
+    const url = "/blog/comment";
+    return axiosClient.get(url, { params });
+  },
+  postCommentToBlog: (body) => {
+    const url = `/blog/comment`;
+    return axiosClient.post(url, body);
   },
 };
 
