@@ -16,6 +16,7 @@ import { AuthContext } from "../../hooks/contexts/auth_context";
 import { toast } from "react-toastify";
 
 import "./blog.scss";
+import scrollToBottom from "../../helper/scrollToBottom";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,12 @@ const BlogPage = () => {
   } = useContext(AuthContext);
 
   const listBlog = useSelector((state) => state.blog.listBlog);
+  const maxPage = useSelector((state) => state.blog.maxPageBlog);
   const loading = useSelector((state) => state.loading.loading);
   const [isLoading, setIsLoading] = useState(false);
   const [isProgress, setIsProgress] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [page, setPage] = React.useState(1);
   const [formPost, setFormPost] = useState({
     content: "",
     pictures: "",
@@ -105,11 +108,15 @@ const BlogPage = () => {
     }
   };
 
+  const handleLoadMoreBlog = () => {
+    getAllBlogApi(dispatch, { page: page + 1, limit: 1 }, scrollToBottom);
+    setPage(page + 1);
+  };
   useEffect(() => {
     if (listBlog.length > 0) {
       return;
     } else {
-      getAllBlogApi(dispatch, { page: 1, limit: 5 });
+      getAllBlogApi(dispatch, { page: page, limit: 1 });
     }
   }, []);
 
@@ -223,6 +230,9 @@ const BlogPage = () => {
             {listBlog.map((item, index) => {
               return <Posts blog={item} key={index} userLiked="true" />;
             })}
+            {page < maxPage && (
+              <button onClick={handleLoadMoreBlog}>Xem thêm</button>
+            )}
           </div>
         )}
       </div>

@@ -95,10 +95,6 @@ const HotelTwo = ({ item }) => {
               dangerouslySetInnerHTML={{ __html: item?.description }}
             ></div>
 
-            {/* <p className="colum-one-price">
-              <span className="colum-one-price-one">$119</span>
-              <span className="colum-one-price-two">/ per night</span>
-            </p> */}
             <section className="colum-one-responsive-btn">
               {/* <section className="btn-primary"> */}
 

@@ -8,6 +8,7 @@ import PageTitle from "../../../components/PageTitle";
 import { getAllApartmentApi } from "../../../redux/Api/apartment";
 
 import "./hotel.scss";
+import PrimaryButton from "../../../components/PrimaryButton";
 
 const LIST_TYPE = [
   {
@@ -47,7 +48,10 @@ const HotelPage = () => {
   const isLoading = useSelector((state) => state.loading.loading);
   const [data, setData] = useState([]);
   const [type, setType] = useState("");
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(apartment.totalPage);
   // const [isLoading, setIsLoading] = useState(false);
+  console.log(maxPage);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
   console.log("data", apartment);
 
@@ -55,7 +59,7 @@ const HotelPage = () => {
     // setIsLoading(true);
 
     getAllApartmentApi(dispatch, {
-      currentPage: 0,
+      currentPage: page,
       apartmentPerPage: 10,
       type,
     });
@@ -111,6 +115,9 @@ const HotelPage = () => {
             <HotelTwo item={item} key={index} />
           );
         })}
+      <section className="button-load-more">
+        <PrimaryButton title="Xem thêm" action={() => {}} />
+      </section>
     </main>
   );
 };
