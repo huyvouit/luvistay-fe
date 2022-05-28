@@ -61,7 +61,6 @@
     max-width: 1170px;
     margin: auto;
 }
-
 .post-thumbnail-wrapper .featured{
     position: absolute;
     top: 1.25rem;
@@ -69,6 +68,7 @@
     display: block;
     background: #c1b086;
     color: #fff;
+    text-transform: uppercase;
     font-size: 10px;
     font-size: .625rem;
     padding: 0.25em 0.625em;
@@ -100,11 +100,6 @@
 }
 .entry-content{
     margin-top: 1.875rem;
-}
-.entry-content::before{
-    content: "";
-    display: table;
-    table-layout: fixed;
 }
 .entry-content::after{
     clear: both;
@@ -141,6 +136,7 @@
     transition: all .3s ease;
     text-align: center;
     letter-spacing: 1px;
+    margin-bottom: 90px;
 }
 .more-link:active, .more-link:focus{
     border-color: #252e59;
@@ -155,6 +151,12 @@
     background: #252e59;
     color: #fff;
 }
+.more-link::after{
+    clear: both;
+    content: "";
+    display: table;
+    table-layout: fixed;
+}
 .far{
     font-family: "Font Awesome 5 Free";
     font-weight: 400;
@@ -168,6 +170,12 @@
 .updated:not(.published){
     display: none;
 }
+.cat-link a::after{
+    content: ", ";
+}
+.cat-link a:last-child::after{
+    content: "";
+}
 
 body{ 
     color: #5f6060;
@@ -176,7 +184,12 @@ body{
     font-size: 1rem;
     line-height: 1.75;
 }
-
+main{
+    display: block;
+}
+article{
+    display: block;
+}
 a{
     color: #c1b086;
     text-decoration: none;
@@ -196,8 +209,6 @@ a:hover, a:focus, a:active{
 a:focus{
     outline: thin dotted;
 }
-
-
 h1{
     font-size: 39px;
     font-size: 2.4375rem;
@@ -221,10 +232,7 @@ h1, h2{
     letter-spacing: -.5px;
 }
 h2{
-    //font-size: 31px;
     font-size: 1.9375rem;
-    //font-size: 1.5em;
-    //font-weight: bold;
 }
 div{
     display: block;
@@ -252,6 +260,9 @@ i{
     width: 1170px;
     aspect-ratio: auto 1170/821 ;
 }
-*{
+*, *::before, *::after{
     box-sizing: inherit;
+}
+html{
+    -webkit-text-size-adjust: 100%;
 }
