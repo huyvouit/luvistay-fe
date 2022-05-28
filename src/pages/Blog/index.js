@@ -13,17 +13,21 @@ import { getAllBlogApi } from "../../redux/Api/blog";
 import { AuthContext } from "../../hooks/contexts/auth_context";
 import "./blog.scss";
 import { hideLoading, showLoading } from "../../redux/Actions";
+import { toast } from "react-toastify";
 // import { CircularProgress } from "@mui/material";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
   const {
-    authState: { isAuthenticated },
+    authState: { isAuthenticated, user },
   } = useContext(AuthContext);
 
   const listBlog = useSelector((state) => state.blog.listBlog);
   const loading = useSelector((state) => state.loading.loading);
-  const listLikeUser = useSelector((state) => state.user.likeBlog);
+  const [formPost, setFormPost] = useState({
+    content: "",
+    pictures: "",
+  });
 
   const [open, setOpen] = React.useState(false);
 
@@ -49,6 +53,11 @@ const BlogPage = () => {
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
           setSelectedFiles([...selectedFiles, res.data]);
+
+          setFormPost({
+            ...formPost,
+            pictures: [...formPost.pictures, res.data],
+          });
         }
       }
     } catch (error) {
@@ -79,14 +88,36 @@ const BlogPage = () => {
       );
     });
   };
-
+  console.log(formPost.pictures);
+  const handleAddBlog = async () => {
+    try {
+      const res = await blogApi.postBlog(formPost);
+      if (res.success) {
+        getAllBlogApi(dispatch, { page: 1, limit: 5 });
+        toast.success(
+          "Tạo mới bài viết thành công, vui lòng chờ được phê duyệt",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        );
+        setOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     if (listBlog.length > 0) {
       return;
     } else {
       // dispatch(showLoading());
       // dispatch(hideLoading());
-      getAllBlogApi(dispatch, { page: 1, limit: 3 });
+      getAllBlogApi(dispatch, { page: 1, limit: 5 });
     }
   }, []);
 
@@ -112,14 +143,15 @@ const BlogPage = () => {
                     onClick={handleClickOpen}
                     className="blog-container-colum-two-posts-box-title"
                   >
-                    Huy ơi, Bạn đang nghĩ gì thế?
+                    {user?.username} ơi, Cảm nhận của bạn về trải nghiệm ở căn
+                    hộ như nào?
                   </p>
                 </div>
                 <p
                   onClick={handleClickOpen}
                   className="blog-container-colum-two-posts-text"
                 >
-                  Tạo blog
+                  Tạo bài viết
                 </p>
               </div>
             )}
@@ -138,12 +170,16 @@ const BlogPage = () => {
                       alt=""
                     />
                     <h3 className="create-posts-box-information-name">
-                      Võ Sỹ Huy
+                      {user && user?.username}
                     </h3>
                   </div>
                   <textarea
                     className="create-posts-input-content"
-                    placeholder="Huy ơi, bạn đang nghĩ gì đó?"
+                    placeholder={`${user?.username} ơi, bạn đang nghĩ gì đó?`}
+                    value={formPost.content}
+                    onChange={(e) =>
+                      setFormPost({ ...formPost, content: e.target.value })
+                    }
                   />
                   <div className="create-posts-input-img">
                     <input
@@ -174,7 +210,7 @@ const BlogPage = () => {
                 <Button onClick={handleClose} color="primary">
                   Hủy
                 </Button>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleAddBlog} color="primary">
                   Đăng bài
                 </Button>
               </DialogActions>

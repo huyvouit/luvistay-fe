@@ -5,6 +5,7 @@ import { SRLWrapper } from "simple-react-lightbox";
 import blogApi from "../../../api/blog_api";
 import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { getLikeBlogByUserApi } from "../../../redux/Api/user";
+import Moment from "react-moment";
 import "./posts.scss";
 
 const imgs = [
@@ -128,10 +129,10 @@ const Posts = ({ blog }) => {
           <img className="posts-container-user-img" src={imgs[0]} alt="" />
           <div className="posts-container-user-information">
             <h2 className="posts-container-user-information-name">
-              {blog?.author?.username}
+              {blog?.author?.username || "Admin"}
             </h2>
             <p className="posts-container-user-information-time">
-              12 phút trước
+              <Moment format="hh:mm DD/MM/YYYY ">{blog?.date}</Moment>
             </p>
           </div>
         </div>
@@ -289,10 +290,10 @@ const Posts = ({ blog }) => {
                   <div className="posts-container-cmt-container-box">
                     <div className="posts-container-cmt-container-box-information">
                       <h4 className="posts-container-cmt-container-box-information-name">
-                        {item?.author}
+                        {item?.author || "Admin"}
                       </h4>
                       <p className="posts-container-cmt-container-box-information-time">
-                        7 phút trước
+                        <Moment format="hh:mm DD/MM/YYYY ">{item?.date}</Moment>
                       </p>
                     </div>
                     <p className="posts-container-cmt-container-box-description">

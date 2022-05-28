@@ -5,13 +5,17 @@ const blogApi = {
     const url = "/blog/confirm";
     return axiosClient.get(url, { params });
   },
+  postBlog: (body) => {
+    const url = "/blog/";
+    return axiosClient.post(url, body);
+  },
   uploadImageBlog: (body) => {
     const url = "/blog/upload";
     return axiosClient.post(url, body);
   },
 
   getLikeBlogByUser: (params) => {
-    const url = `/blog/comment`;
+    const url = `/blog/like`;
     return axiosClient.get(url, { params });
   },
 
