@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SRLWrapper } from "simple-react-lightbox";
 import blogApi from "../../../api/blog_api";
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { getLikeBlogByUserApi } from "../../../redux/Api/user";
 import "./posts.scss";
 
 const imgs = [
@@ -15,16 +18,46 @@ const imgs = [
 ];
 
 const Posts = ({ blog }) => {
+  const dispatch = useDispatch();
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const listLikeUser = useSelector((state) => state.user.likeBlog);
   const [comments, setComments] = React.useState([]);
+  const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
-  const checkSeen = () => setSeen(!seen);
-
   const [like, setLike] = useState(false);
-  const checkLike = () => setLike(!like);
-
   const [comment, setComment] = useState(false);
+
+  const checkSeen = () => setSeen(!seen);
+  const checkLike = () => setLike(!like);
   const checkComment = () => setComment(!comment);
 
+  const handleReactBlog = async (blogId) => {
+    if (listLikeUser?.some((item) => item.blogId?._id === blogId)) {
+      try {
+        const res = await blogApi.deleteUnLikeBlogByUser({ blogId: blog?._id });
+        if (res.success) {
+          setLike(true);
+          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          fetchLikesByBlog();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const res = await blogApi.postLikeBlogByUser({ blogId: blog?._id });
+        if (res.success) {
+          setLike(false);
+          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          fetchLikesByBlog();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const fetchCommentsByBlog = async () => {
     try {
       const params = {
@@ -35,15 +68,33 @@ const Posts = ({ blog }) => {
       const res = await blogApi.getCommentByBlog(params);
       if (res.success) {
         setComments(res.data.comments);
+        // await ;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchLikesByBlog = async () => {
+    try {
+      const res = await blogApi.getLikeByBlog(blog._id);
+      if (res.success) {
+        // console.log(res);
+        setLikes(res.data);
       }
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    fetchCommentsByBlog();
+    setLike();
+    fetchLikesByBlog();
   }, []);
-
+  useEffect(() => {
+    if (listLikeUser) {
+      setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
+    }
+  }, [listLikeUser]);
+  console.log("like", like);
   return (
     <div className="posts">
       <div className="posts-container">
@@ -81,19 +132,45 @@ const Posts = ({ blog }) => {
           <div className="posts-container-img">
             {blog?.pictures.map((item, index) => {
               if (imgs.length === 1) {
-                return <img className="posts-container-img-one" src={item} />;
+                return (
+                  <img
+                    className="posts-container-img-one"
+                    src={item}
+                    key={index}
+                    alt=""
+                  />
+                );
               } else if (imgs.length === 2) {
-                return <img className="posts-container-img-two" src={item} />;
+                return (
+                  <img
+                    className="posts-container-img-two"
+                    src={item}
+                    key={index}
+                    alt=""
+                  />
+                );
               } else if (imgs.length === 3) {
-                return <img className="posts-container-img-three" src={item} />;
+                return (
+                  <img
+                    className="posts-container-img-three"
+                    src={item}
+                    key={index}
+                    alt=""
+                  />
+                );
               } else {
                 if (index < 2) {
                   return (
-                    <img className="posts-container-img-three" src={item} />
+                    <img
+                      className="posts-container-img-three"
+                      src={item}
+                      key={index}
+                      alt=""
+                    />
                   );
                 } else if (index === 2) {
                   return (
-                    <div className="posts-container-img-three">
+                    <div className="posts-container-img-three" key={index}>
                       <img
                         className="posts-container-img-three-img"
                         src={item}
@@ -109,6 +186,7 @@ const Posts = ({ blog }) => {
                     <img
                       className="posts-container-img-hide"
                       src={item}
+                      key={index}
                       alt=""
                     />
                   );
@@ -120,16 +198,16 @@ const Posts = ({ blog }) => {
         <div className="posts-container-report">
           <div className="posts-container-report-box">
             <h3
-              onClick={() => checkLike(!like)}
+              onClick={() => handleReactBlog(blog?._id)}
               className={
-                like
+                listLikeUser?.some((item) => item.blogId?._id === blog?._id)
                   ? "posts-container-report-box-btn-like"
                   : "posts-container-report-box-btn"
               }
             >
-              Thích
+              {like ? "Đã thích" : "Thích"}
             </h3>
-            <p className="posts-container-report-box-number">13</p>
+            <p className="posts-container-report-box-number">{likes}</p>
           </div>
           <div className="posts-container-report-box">
             <h3
@@ -162,7 +240,7 @@ const Posts = ({ blog }) => {
           {comments.length > 0 &&
             comments.map((item, index) => {
               return (
-                <div className="posts-container-cmt-container">
+                <div className="posts-container-cmt-container" key={index}>
                   <img
                     className="posts-container-cmt-container-img"
                     src={imgs[1]}

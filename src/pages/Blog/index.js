@@ -23,6 +23,7 @@ const BlogPage = () => {
 
   const listBlog = useSelector((state) => state.blog.listBlog);
   const loading = useSelector((state) => state.loading.loading);
+  const listLikeUser = useSelector((state) => state.user.likeBlog);
 
   const [open, setOpen] = React.useState(false);
 
@@ -88,7 +89,7 @@ const BlogPage = () => {
       getAllBlogApi(dispatch, { page: 1, limit: 3 });
     }
   }, []);
-  console.log(loading);
+
   return (
     <div className="blog">
       <div className="blog-container">
@@ -179,7 +180,7 @@ const BlogPage = () => {
               </DialogActions>
             </Dialog>
             {listBlog.map((item, index) => {
-              return <Posts blog={item} key={index} />;
+              return <Posts blog={item} key={index} userLiked="true" />;
             })}
           </div>
         )}

@@ -19,7 +19,7 @@ const NAVLINK = [
   },
   {
     route: "Review",
-    path: APP_ROUTE.NEWS,
+    path: APP_ROUTE.BLOG,
   },
   {
     route: "Về chúng tôi",

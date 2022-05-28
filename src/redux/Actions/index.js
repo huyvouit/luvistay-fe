@@ -8,4 +8,5 @@ export {
 export { showLoading, hideLoading } from "../Slice/loadingSlice";
 export { getAllCity } from "../Slice/cityApartmentSlice";
 export { getAllBlog } from "../Slice/blogSlice";
+export { getLikeBlogByUser } from "../Slice/userSlice";
 export {} from "../Slice/motelSlice";

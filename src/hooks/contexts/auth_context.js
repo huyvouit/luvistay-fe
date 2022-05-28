@@ -4,9 +4,12 @@ import { TOKEN_NAME, REFTOKEN } from "../../constants";
 
 import { toast } from "react-toastify";
 import authApi from "../../api/auth_api";
+import { useDispatch } from "react-redux";
+import { getLikeBlogByUserApi } from "../../redux/Api/user";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const dispatchRedux = useDispatch();
   const [authState, dispatch] = useReducer(authReducer, {
     authLoading: true,
     isAuthenticated: false,
@@ -28,6 +31,7 @@ const AuthContextProvider = ({ children }) => {
             user: response.data,
           },
         });
+        getLikeBlogByUserApi(dispatchRedux, { userId: response.data._id });
       }
     } catch (error) {
       localStorage.removeItem(TOKEN_NAME);
