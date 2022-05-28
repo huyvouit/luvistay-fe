@@ -1,0 +1,140 @@
+.host-apartment{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2% 3%;
+    box-shadow: 1px 1px 18px 1px #e0e0e0;
+    border-radius: 12px;
+    margin-bottom: 3%;
+
+    &-img{
+        width: 30%;
+        object-fit: cover;
+    }
+
+    &-box{
+        width: 50%;
+        span{
+            font-weight: 550;
+        }
+    
+        &-title{
+            font-family: "Noto Serif", serif;
+            color: #222;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        p{
+            width: max-content;
+            font-size: 18px;
+            color: #222;
+            font-family: "Open Sans", sans-serif;
+            line-height: 1.75;
+            margin-right: 24px;
+            margin-bottom: 12px;
+        }
+    }
+
+    &-show-detail{
+        width: max-content;
+        display: flex;
+        justify-content: end;
+        &-btn{
+            padding: 15px 20px;
+            background-color: #c1b086;
+            height: max-content;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+}
+
+.popup-detail-apartment{
+    &-row-one{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        &-img{
+            width: 45%;
+            object-fit: cover;
+        }
+
+        &-description{
+            width: 53%;
+            font-size: 18px;
+            color: #222;
+            font-family: "Open Sans", sans-serif;
+            line-height: 1.75;
+            text-transform: capitalize;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-word;
+                display: -webkit-box;
+                -webkit-line-clamp: 10;
+                -webkit-box-orient: vertical;
+        }
+    }
+
+    &-row-two{
+        padding-top: 15px;
+        border-top: 1px solid #e0e0e0;
+        margin-top: 10px;
+        &-title{
+            font-family: "Noto Serif", serif;
+            color: #222;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        &-content{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            &-colum-one{
+                &-name-room{
+                    font-family: "Noto Serif", serif;
+                    color: #222;
+                    line-height: 1.4;
+                    letter-spacing: -0.5px;
+                    font-size: 20px;
+                    margin-bottom: 12px;
+                    font-weight: 550;
+                }
+                &-number-people{
+                    font-size: 18px;
+                    color: #222;
+                    font-family: "Open Sans", sans-serif;
+                    line-height: 1.75;
+                }
+            }
+
+            &-colum-two{
+                &-price{
+                    font-family: "Noto Serif", serif;
+                    color: #c1b086;
+                    line-height: 1.4;
+                    letter-spacing: -0.5px;
+                    font-size: 20px;
+                    margin-bottom: 12px;
+                }
+
+                &-status{
+                    font-size: 18px;
+                    color: #222;
+                    font-family: "Open Sans", sans-serif;
+                    line-height: 1.75;
+                    font-style: italic;
+                    text-align: end;
+                }
+            }
+        }
+    }
+
+}

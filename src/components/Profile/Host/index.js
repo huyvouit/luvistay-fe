@@ -1,6 +1,7 @@
 import React from 'react'
 import SidebarProfile from '../Sidebar'
 import "./host.scss"
+import HostApartment from './HostApartment'
 
 
 const Host = () => {
@@ -19,7 +20,12 @@ const Host = () => {
                             </div>
                         </div>
                         <div className='colum-two'>
+                            <div>
 
+                            </div>
+                            <HostApartment/>
+                            <HostApartment/>
+                            <HostApartment/>
                         </div>
                     </div>
                 </div>
