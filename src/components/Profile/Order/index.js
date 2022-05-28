@@ -2,6 +2,7 @@ import React from 'react'
 import SidebarProfile from '../Sidebar'
 import { Link } from "react-router-dom";
 import "./order.scss"
+import Detail from '../DetailOrder';
 
 const Order = () => {
     return (
@@ -29,12 +30,10 @@ const Order = () => {
                                         <p className='table-order-colum-two table-title'>Hotel</p>
                                         <p className='table-order-colum-two table-title'>Total</p>
                                     </div>
-                                        <div className='table-order-row'>
-                                            <p className='table-order-colum-one'>#1306552651656513516845</p>
-                                            <p className='table-order-colum-one'>30/05/2022 - 05/06/2022</p>
-                                            <p className='table-order-colum-two'>LuviStay</p>
-                                            <p className='table-order-colum-two'>5.000.000 VNĐ</p>
-                                        </div>
+                                        <Detail/>
+                                        <Detail/>
+                                        <Detail/>
+                                        <Detail/>
                                 </div>
                             </div>
                         </div>
