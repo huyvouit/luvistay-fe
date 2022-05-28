@@ -7,6 +7,7 @@ import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { getLikeBlogByUserApi } from "../../../redux/Api/user";
 import Moment from "react-moment";
 import "./posts.scss";
+import { CircularProgress } from "@material-ui/core";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -25,13 +26,14 @@ const Posts = ({ blog }) => {
     authState: { user },
   } = useContext(AuthContext);
   const listLikeUser = useSelector((state) => state.user.likeBlog);
-  const [listComments, setListComments] = React.useState([]);
+  const [listComments, setListComments] = React.useState(null);
   const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formComment, setFormComment] = useState({
-    blogId: blog?.id,
+    blogId: blog?._id,
     content: "",
   });
 
@@ -83,6 +85,7 @@ const Posts = ({ blog }) => {
       console.log(error);
     }
   };
+
   const fetchCommentByBlog = async () => {
     try {
       const res = await blogApi.getCommentByBlog({
@@ -95,17 +98,19 @@ const Posts = ({ blog }) => {
         setListComments(res.data);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error, "...error");
     }
   };
   const handlePostCommentToBlog = async () => {
     try {
-      const res = await blogApi.postLikeBlogByUser(formComment);
+      setIsLoading(true);
+      const res = await blogApi.postCommentToBlog(formComment);
       if (res.success) {
-        // console.log(res);
-        setLikes(res.data);
+        fetchCommentByBlog();
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -273,13 +278,22 @@ const Posts = ({ blog }) => {
                   setFormComment({ ...formComment, content: e.target.value })
                 }
               />
-              <button className="posts-container-cmt-container-btn">Gửi</button>
+              <button
+                className="posts-container-cmt-container-btn"
+                onClick={handlePostCommentToBlog}
+              >
+                {isLoading ? (
+                  <CircularProgress color="inherit" size={25} />
+                ) : (
+                  "Gửi"
+                )}
+              </button>
             </div>
           )}
           {/* show comment ở đây lặp cái này */}
           {listComments &&
-            listComments?.comments?.length > 0 &&
-            listComments?.comments?.map((item, index) => {
+            listComments.comments?.length > 0 &&
+            listComments.comments?.map((item, index) => {
               return (
                 <div className="posts-container-cmt-container" key={index}>
                   <img
@@ -290,7 +304,7 @@ const Posts = ({ blog }) => {
                   <div className="posts-container-cmt-container-box">
                     <div className="posts-container-cmt-container-box-information">
                       <h4 className="posts-container-cmt-container-box-information-name">
-                        {item?.author || "Admin"}
+                        {item?.author?.username || "Admin"}
                       </h4>
                       <p className="posts-container-cmt-container-box-information-time">
                         <Moment format="hh:mm DD/MM/YYYY ">{item?.date}</Moment>

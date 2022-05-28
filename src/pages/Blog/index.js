@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress, LinearProgress } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
@@ -11,10 +12,10 @@ import Posts from "../../components/Blog/Posts";
 import BoxLeft from "../../components/Blog/BoxLeft";
 import { getAllBlogApi } from "../../redux/Api/blog";
 import { AuthContext } from "../../hooks/contexts/auth_context";
-import "./blog.scss";
-import { hideLoading, showLoading } from "../../redux/Actions";
+
 import { toast } from "react-toastify";
-// import { CircularProgress } from "@mui/material";
+
+import "./blog.scss";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
@@ -24,12 +25,13 @@ const BlogPage = () => {
 
   const listBlog = useSelector((state) => state.blog.listBlog);
   const loading = useSelector((state) => state.loading.loading);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isProgress, setIsProgress] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const [formPost, setFormPost] = useState({
     content: "",
     pictures: "",
   });
-
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,8 +41,6 @@ const BlogPage = () => {
     setOpen(false);
   };
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
   const handleImageChange = async (e) => {
     e.preventDefault();
 
@@ -49,48 +49,39 @@ const BlogPage = () => {
 
     try {
       if (e.target.files) {
-        console.log(formData);
+        setIsProgress(true);
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
-          setSelectedFiles([...selectedFiles, res.data]);
-
           setFormPost({
             ...formPost,
             pictures: [...formPost.pictures, res.data],
           });
+          setIsProgress(false);
         }
       }
     } catch (error) {
       console.log(error);
     }
-
-    // const filesArray = Array.from(e.target.files).map((file) =>
-    //   URL.createObjectURL(file)
-    // );
-
-    // // console.log("filesArray: ", filesArray);
-
-    // setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-    // Array.from(e.target.files).map(
-    //   (file) => URL.revokeObjectURL(file) // avoid memory leak
-    // );
   };
 
   const renderPhotos = (source) => {
-    return source.map((photo, index) => {
-      return (
-        <img
-          className="create-posts-input-img-result-img"
-          src={photo}
-          alt=""
-          key={index}
-        />
-      );
-    });
+    return source
+      ? source.map((photo, index) => {
+          return (
+            <img
+              className="create-posts-input-img-result-img"
+              src={photo}
+              alt=""
+              key={index}
+            />
+          );
+        })
+      : null;
   };
-  console.log(formPost.pictures);
+
   const handleAddBlog = async () => {
     try {
+      setIsLoading(true);
       const res = await blogApi.postBlog(formPost);
       if (res.success) {
         getAllBlogApi(dispatch, { page: 1, limit: 5 });
@@ -105,18 +96,19 @@ const BlogPage = () => {
             draggable: true,
           }
         );
+        setIsLoading(false);
+        setFormPost({ content: "", pictures: "" });
         setOpen(false);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (listBlog.length > 0) {
       return;
     } else {
-      // dispatch(showLoading());
-      // dispatch(hideLoading());
       getAllBlogApi(dispatch, { page: 1, limit: 5 });
     }
   }, []);
@@ -200,9 +192,13 @@ const BlogPage = () => {
                         </i>
                       </label>
                     </div>
-                    <div className="create-posts-input-img-result">
-                      {renderPhotos(selectedFiles)}
-                    </div>
+                    {isProgress ? (
+                      <LinearProgress className="create-posts-input-img-result" />
+                    ) : (
+                      <div className="create-posts-input-img-result">
+                        {renderPhotos(formPost.pictures)}
+                      </div>
+                    )}
                   </div>
                 </div>
               </DialogContent>
@@ -210,9 +206,13 @@ const BlogPage = () => {
                 <Button onClick={handleClose} color="primary">
                   Hủy
                 </Button>
-                <Button onClick={handleAddBlog} color="primary">
-                  Đăng bài
-                </Button>
+                <button className="button-posts" onClick={handleAddBlog}>
+                  {isLoading ? (
+                    <CircularProgress color="inherit" size={15} />
+                  ) : (
+                    "Đăng bài"
+                  )}
+                </button>
               </DialogActions>
             </Dialog>
             {listBlog.map((item, index) => {
