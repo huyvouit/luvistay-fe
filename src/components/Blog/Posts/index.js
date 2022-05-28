@@ -131,7 +131,7 @@ const Posts = ({ blog }) => {
         <SRLWrapper>
           <div className="posts-container-img">
             {blog?.pictures.map((item, index) => {
-              if (imgs.length === 1) {
+              if (blog?.pictures.length === 1) {
                 return (
                   <img
                     className="posts-container-img-one"
@@ -140,7 +140,7 @@ const Posts = ({ blog }) => {
                     alt=""
                   />
                 );
-              } else if (imgs.length === 2) {
+              } else if (blog?.pictures.length === 2) {
                 return (
                   <img
                     className="posts-container-img-two"
@@ -149,7 +149,7 @@ const Posts = ({ blog }) => {
                     alt=""
                   />
                 );
-              } else if (imgs.length === 3) {
+              } else if (blog?.pictures.length === 3) {
                 return (
                   <img
                     className="posts-container-img-three"
