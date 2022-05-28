@@ -213,7 +213,7 @@ const Posts = ({ blog }) => {
                         alt=""
                       />
                       <p className="posts-container-img-three-number">
-                        +{imgs.length - 3}
+                        +{blog?.pictures.length - 3}
                       </p>
                     </div>
                   );
