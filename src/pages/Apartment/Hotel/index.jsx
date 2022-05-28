@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 import { HotelOne, HotelTwo } from "../../../components/Apartment/Hotel/Hotel";
 import PageHeader from "../../../components/PageHeader";
-import PageTitle from "../../../components/PageTitle";
+import PrimaryButton from "../../../components/PrimaryButton";
+
 import { getAllApartmentApi } from "../../../redux/Api/apartment";
 
 import "./hotel.scss";
@@ -41,34 +42,41 @@ const LIST_TYPE = [
     name: "Nhà ở",
   },
 ];
+
 const HotelPage = () => {
   const dispatch = useDispatch();
   const apartment = useSelector((state) => state.apartment.apartment);
+  const maxPage = useSelector((state) => state.apartment.maxPage);
   const isLoading = useSelector((state) => state.loading.loading);
   const [data, setData] = useState([]);
   const [type, setType] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(0);
+
+  console.log(apartment);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
-  console.log("data", apartment);
 
   useEffect(() => {
-    // setIsLoading(true);
-
     getAllApartmentApi(dispatch, {
-      currentPage: 0,
-      apartmentPerPage: 10,
+      currentPage: page,
+
       type,
     });
   }, [type]);
 
   const handleSelectType = (item) => {
+    setPage(0);
     setType(item.type);
     setTitlePage(item.name);
+    setData([]);
   };
+  const handleLoadMoreApartment = () => {
+    getAllApartmentApi(dispatch, { currentPage: page + 1 });
+    setPage(page + 1);
+  };
+
   useEffect(() => {
-    if (apartment) {
-      // setIsLoading(false);
-      setData(apartment.apartment);
+    if (apartment?.length > 0) {
+      setData([...data, ...apartment]);
     } else {
       setData([]);
     }
@@ -101,16 +109,20 @@ const HotelPage = () => {
             );
           })}
         </section>
-        {/* <section>View:</section> */}
       </section>
       {data &&
-        data.map((item, index) => {
+        data?.map((item, index) => {
           return index % 2 === 0 ? (
             <HotelOne item={item} key={index} />
           ) : (
             <HotelTwo item={item} key={index} />
           );
         })}
+      {page < maxPage && (
+        <section className="button-load-more">
+          <PrimaryButton title="Xem thêm" action={handleLoadMoreApartment} />
+        </section>
+      )}
     </main>
   );
 };

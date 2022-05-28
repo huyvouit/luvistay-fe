@@ -91,13 +91,14 @@ const AuthContextProvider = ({ children }) => {
   };
 
   // Logout;
-  const logoutUser = () => {
+  const logoutUser = (action) => {
     localStorage.removeItem(TOKEN_NAME);
     localStorage.removeItem(REFTOKEN);
     dispatch({
       type: "SET_AUTH",
       payload: { authLoading: false, isAuthenticated: false, user: null },
     });
+    action();
   };
 
   // Context data

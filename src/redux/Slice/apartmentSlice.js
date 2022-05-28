@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   apartment: [],
+  maxPage: null,
   searchRoom: null,
 };
 
@@ -11,7 +12,11 @@ const apartmentSlice = createSlice({
   initialState,
   reducers: {
     getAllApartment: (state, action) => {
-      return { ...state, apartment: action.payload };
+      return {
+        ...state,
+        apartment: action.payload.apartment,
+        maxPage: action.payload.totalPage,
+      };
     },
 
     getApartmentBySearch: (state, action) => {

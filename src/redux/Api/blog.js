@@ -8,14 +8,17 @@ import {
   showLoading,
 } from "../Actions";
 
-const getAllBlogApi = async (dispatch, params) => {
+const getAllBlogApi = async (dispatch, params, action) => {
   try {
     dispatch(showLoading());
     const res = await blogApi.getAllBlogs(params);
     if (res.success) {
       //   console.log(res.data);
-      dispatch(getAllBlog(res.data));
+      dispatch(getAllBlog(res));
       dispatch(hideLoading());
+      if (action) {
+        action();
+      }
     } else {
       dispatch(getAllBlog([]));
       //   console.log(res.data);

@@ -9,7 +9,7 @@ import {
   showLoading,
 } from "../Actions";
 
-const getAllApartmentApi = async (dispatch, params) => {
+const getAllApartmentApi = async (dispatch, params, action) => {
   try {
     dispatch(showLoading());
     const res = await apartmentApi.getAllApartment(params);
@@ -17,30 +17,31 @@ const getAllApartmentApi = async (dispatch, params) => {
       //   console.log(res.data);
       dispatch(getAllApartment(res.data));
       dispatch(hideLoading());
+      if (action) {
+        action();
+      }
     } else {
-      dispatch(getAllApartment([]));
+      dispatch(getAllApartment({}));
       dispatch(hideLoading());
       //   console.log(res.data);
     }
   } catch (error) {
-    dispatch(getAllApartment([]));
+    dispatch(getAllApartment(null));
     // window.alert(error);
   }
 };
 
-const getApartmentBySearchApi = async (dispatch, body,action) => {
- 
+const getApartmentBySearchApi = async (dispatch, body, action) => {
   try {
     // const navigate = useNavigate();
-    
+
     dispatch(showLoading());
     const res = await apartmentApi.searchRoom(body);
     if (res.success) {
       //   console.log(res.data);
       dispatch(getApartmentBySearch(res.data));
       dispatch(hideLoading());
-      if(action){
-
+      if (action) {
         action();
       }
       // navigate({pathname: APP_ROUTE.SEARCH,state: res.data});

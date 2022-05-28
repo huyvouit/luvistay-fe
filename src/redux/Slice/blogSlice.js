@@ -3,6 +3,7 @@ import {} from "../store";
 
 const initialState = {
   listBlog: [],
+  maxPageBlog: null,
   listBlogUser: [],
 };
 
@@ -11,7 +12,11 @@ const blogSlice = createSlice({
   initialState,
   reducers: {
     getAllBlog: (state, action) => {
-      return { ...state, listBlog: action.payload };
+      return {
+        ...state,
+        listBlog: [...state.listBlog, ...action.payload.data],
+        maxPageBlog: action.payload.maxPage,
+      };
     },
     getAllBlogByUser: (state, action) => {
       return { ...state, listBlogUser: action.payload };

@@ -3,10 +3,14 @@ import "./profile.scss";
 import SidebarProfile from "../../components/Profile/Sidebar";
 import { TextField } from "@mui/material";
 import { AuthContext } from "../../hooks/contexts/auth_context";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const {
-    authState: { isAuthenticated, user, logoutUser },
+    authState: { isAuthenticated, user },
+    logoutUser,
   } = useContext(AuthContext);
   return (
     <div className="profile">
@@ -21,7 +25,7 @@ const ProfilePage = () => {
                 <SidebarProfile />
                 <div
                   className="colum-one-container-logout"
-                  onClick={logoutUser}
+                  onClick={() => logoutUser(() => navigate(APP_ROUTE.HOME))}
                 >
                   LOGOUT
                 </div>
@@ -44,7 +48,6 @@ const ProfilePage = () => {
                   <TextField
                     className="text-field"
                     id="phone-number"
-                    // type={"number"}
                     type={"text"}
                     value={user?.phone}
                     label="Phone number"
