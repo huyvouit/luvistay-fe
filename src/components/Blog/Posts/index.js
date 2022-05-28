@@ -121,7 +121,6 @@ const Posts = ({ blog }) => {
     }
   }, [listLikeUser]);
 
-  console.log("like", listComments);
   return (
     <div className="posts">
       <div className="posts-container">
@@ -145,7 +144,7 @@ const Posts = ({ blog }) => {
             }
           >
             {blog?.content}
-          </span>{" "}
+          </span>
           {blog?.content?.length > 300 && (
             <span
               className="posts-container-title-btn"
@@ -157,8 +156,8 @@ const Posts = ({ blog }) => {
         </p>
         <SRLWrapper>
           <div className="posts-container-img">
-            {blog?.pictures?.map((item, index) => {
-              if (imgs.length === 1) {
+            {blog?.pictures.map((item, index) => {
+              if (blog?.pictures.length === 1) {
                 return (
                   <img
                     className="posts-container-img-one"
@@ -167,7 +166,7 @@ const Posts = ({ blog }) => {
                     alt=""
                   />
                 );
-              } else if (imgs.length === 2) {
+              } else if (blog?.pictures.length === 2) {
                 return (
                   <img
                     className="posts-container-img-two"
@@ -176,7 +175,7 @@ const Posts = ({ blog }) => {
                     alt=""
                   />
                 );
-              } else if (imgs.length === 3) {
+              } else if (blog?.pictures.length === 3) {
                 return (
                   <img
                     className="posts-container-img-three"
