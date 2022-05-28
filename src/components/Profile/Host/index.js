@@ -1,5 +1,6 @@
 import React from 'react'
 import SidebarProfile from '../Sidebar'
+import AddApartment from './AddApartment'
 import "./host.scss"
 import HostApartment from './HostApartment'
 
@@ -20,9 +21,10 @@ const Host = () => {
                             </div>
                         </div>
                         <div className='colum-two'>
-                            <div>
+                            
+                                <AddApartment/>
 
-                            </div>
+                                
                             <HostApartment/>
                             <HostApartment/>
                             <HostApartment/>
