@@ -210,6 +210,7 @@ const Posts = ({ blog }) => {
                       <img
                         className="posts-container-img-three-img"
                         src={item}
+                        key={index}
                         alt=""
                       />
                       <p className="posts-container-img-three-number">
