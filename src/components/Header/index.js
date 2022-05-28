@@ -117,7 +117,7 @@ const Header = () => {
         <section className="navbar">
           {NAVLINK.map((item, index) => {
             return (
-              <section
+              <div
                 key={index}
                 className={
                   location.pathname === item.path
@@ -127,7 +127,7 @@ const Header = () => {
                 onClick={() => navigate(item.path)}
               >
                 <p>{item.route}</p>
-              </section>
+              </div>
             );
           })}
           <section className="divider navbar-item"></section>

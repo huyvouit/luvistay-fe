@@ -26,7 +26,7 @@ const SidebarProfile = () => {
             to={path}
             className={locationHref === path ? "sidebar-aSelect" : "sidebar-a"}
           >
-            <h2>{item.name}</h2>
+            <h2 className="sidebar-label">{item.name}</h2>
           </Link>
         );
       })}

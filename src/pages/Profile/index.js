@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./profile.scss";
 import SidebarProfile from "../../components/Profile/Sidebar";
 import { TextField } from "@mui/material";
+import { AuthContext } from "../../hooks/contexts/auth_context";
 
 const ProfilePage = () => {
+  const {
+    authState: { isAuthenticated, user, logoutUser },
+  } = useContext(AuthContext);
   return (
     <div className="profile">
       <div className="profile-container">
@@ -15,7 +19,12 @@ const ProfilePage = () => {
             <div className="colum-one">
               <div className="colum-one-container">
                 <SidebarProfile />
-                <h2 className="colum-one-container-logout">LOGOUT</h2>
+                <div
+                  className="colum-one-container-logout"
+                  onClick={logoutUser}
+                >
+                  LOGOUT
+                </div>
               </div>
             </div>
             <div className="colum-two">
@@ -25,6 +34,8 @@ const ProfilePage = () => {
                   className="text-field"
                   id="full-name"
                   type={"text"}
+                  value={user?.username}
+                  autoFocus
                   label="Full name"
                   variant="outlined"
                   required
@@ -33,8 +44,11 @@ const ProfilePage = () => {
                   <TextField
                     className="text-field"
                     id="phone-number"
-                    type={"number"}
+                    // type={"number"}
+                    type={"text"}
+                    value={user?.phone}
                     label="Phone number"
+                    autoFocus
                     variant="outlined"
                     required
                   />
@@ -43,6 +57,8 @@ const ProfilePage = () => {
                     id="email"
                     type={"email"}
                     label="Email"
+                    value={user?.email}
+                    autoFocus
                     variant="outlined"
                     required
                   />

@@ -151,13 +151,17 @@
     display: inline-block;
     vertical-align: top;
     color: #000;
-    font-size: 1em;
-    line-height: 40px;
-    font-weight: 600;
+   
     // width: 100%;
     overflow: hidden;
     cursor: pointer;
-
+    p{
+      // color:red;
+      font-size: 1em;
+      line-height: 40px;
+      font-weight: 600;
+      font-family: "Noto Serif", serif !important;
+    }
     // width: 100%;
     &:hover {
       &::after {
