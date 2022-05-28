@@ -12,11 +12,11 @@ import Posts from "../../components/Blog/Posts";
 import BoxLeft from "../../components/Blog/BoxLeft";
 import { getAllBlogApi } from "../../redux/Api/blog";
 import { AuthContext } from "../../hooks/contexts/auth_context";
+import scrollToBottom from "../../helper/scrollToBottom";
 
 import { toast } from "react-toastify";
 
 import "./blog.scss";
-import scrollToBottom from "../../helper/scrollToBottom";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
@@ -109,7 +109,7 @@ const BlogPage = () => {
   };
 
   const handleLoadMoreBlog = () => {
-    getAllBlogApi(dispatch, { page: page + 1, limit: 1 }, scrollToBottom);
+    getAllBlogApi(dispatch, { page: page + 1, limit: 1 }, scrollToBottom(1200));
     setPage(page + 1);
   };
   useEffect(() => {
