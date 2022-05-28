@@ -40,22 +40,29 @@ const Posts = ({ blog }) => {
 
   const handleReactBlog = async (blogId) => {
     if (listLikeUser?.some((item) => item.blogId?._id === blogId)) {
+      // setLike(true);
       try {
         const res = await blogApi.deleteUnLikeBlogByUser({ blogId: blog?._id });
         if (res.success) {
           setLike(true);
-          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
           fetchLikesByBlog();
         }
       } catch (error) {
         setLike(false);
+        console.log("error:", error);
       }
     } else {
       try {
+        // setLike(false);
         const res = await blogApi.postLikeBlogByUser({ blogId: blog?._id });
         if (res.success) {
           setLike(false);
-          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
           fetchLikesByBlog();
         }
       } catch (error) {
@@ -113,6 +120,7 @@ const Posts = ({ blog }) => {
       setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
     }
   }, [listLikeUser]);
+
   console.log("like", listComments);
   return (
     <div className="posts">
@@ -138,7 +146,7 @@ const Posts = ({ blog }) => {
           >
             {blog?.content}
           </span>{" "}
-          {blog?.content.length > 300 && (
+          {blog?.content?.length > 300 && (
             <span
               className="posts-container-title-btn"
               onClick={() => checkSeen(!seen)}
@@ -149,7 +157,7 @@ const Posts = ({ blog }) => {
         </p>
         <SRLWrapper>
           <div className="posts-container-img">
-            {blog?.pictures.map((item, index) => {
+            {blog?.pictures?.map((item, index) => {
               if (imgs.length === 1) {
                 return (
                   <img
@@ -217,7 +225,7 @@ const Posts = ({ blog }) => {
         <div className="posts-container-report">
           <div className="posts-container-report-box">
             <h3
-              onClick={() => handleReactBlog(blog?._id)}
+              onClick={user ? () => handleReactBlog(blog?._id) : () => {}}
               className={
                 like
                   ? "posts-container-report-box-btn-like"
@@ -239,7 +247,7 @@ const Posts = ({ blog }) => {
               Bình luận
             </h3>
             <p className="posts-container-report-box-number">
-              {listComments.comments?.length}
+              {listComments?.comments?.length}
             </p>
           </div>
         </div>
@@ -249,26 +257,28 @@ const Posts = ({ blog }) => {
             comment ? "posts-container-cmt" : "posts-container-cmt-hide"
           }
         >
-          <div className="posts-container-cmt-container">
-            <img
-              className="posts-container-cmt-container-img"
-              src={imgs[1]}
-              alt=""
-            />
-            <input
-              className="posts-container-cmt-container-input"
-              placeholder="Viết bình luận..."
-              type={"text"}
-              value={formComment.content}
-              onChange={(e) =>
-                setFormComment({ ...formComment, content: e.target.value })
-              }
-            />
-            <button className="posts-container-cmt-container-btn">Gửi</button>
-          </div>
-
+          {user && (
+            <div className="posts-container-cmt-container">
+              <img
+                className="posts-container-cmt-container-img"
+                src={imgs[1]}
+                alt=""
+              />
+              <input
+                className="posts-container-cmt-container-input"
+                placeholder="Viết bình luận..."
+                type={"text"}
+                value={formComment.content}
+                onChange={(e) =>
+                  setFormComment({ ...formComment, content: e.target.value })
+                }
+              />
+              <button className="posts-container-cmt-container-btn">Gửi</button>
+            </div>
+          )}
           {/* show comment ở đây lặp cái này */}
-          {listComments.comments.length > 0 &&
+          {listComments &&
+            listComments?.comments?.length > 0 &&
             listComments?.comments?.map((item, index) => {
               return (
                 <div className="posts-container-cmt-container" key={index}>
