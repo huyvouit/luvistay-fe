@@ -27,6 +27,9 @@ import ProfilePage from "../pages/Profile";
 import Order from "../components/Profile/Order";
 import Host from "../components/Profile/Host";
 import ChangePassword from "../components/Profile/ChangePassword";
+// <<<<<<< HEAD
+// import NewsPage from "../pages/News";
+// =======
 import BlogPage from "../pages/Blog";
 import MyBlog from "../components/Blog/MyBlog/";
 
@@ -60,13 +63,18 @@ export default function AppRoutes() {
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
 
-              <Route
-                path={APP_ROUTE.DETAIL}
-                element={<ApartmentDetailPage />}
-              />
+              <Route path={APP_ROUTE.DETAIL} element={<ApartmentDetailPage />} />
 
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
+{/* <<<<<<< HEAD
+              <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
+              <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order />} />
+              <Route path={APP_ROUTE.PROFILE_HOST} element={<Host />} />
+              <Route path={APP_ROUTE.PROFILE_CHANGE_PASSWORD} element={<ChangePassword />} />
+              
+              <Route path={APP_ROUTE.NEWS} element={<NewsPage />} />
+======= */}
               <Route
                 path={`${APP_ROUTE.PROFILE}/*`}
                 element={
@@ -90,6 +98,7 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
             </Route>
+
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
             <Route path={APP_ROUTE.SIGNUP} element={<SignUpPage />} />
             <Route path={APP_ROUTE.ERROR} element={<ErrorPage />} />
