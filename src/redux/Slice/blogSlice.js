@@ -3,6 +3,7 @@ import {} from "../store";
 
 const initialState = {
   listBlog: [],
+  listBlogUser: [],
 };
 
 const blogSlice = createSlice({
@@ -12,6 +13,9 @@ const blogSlice = createSlice({
     getAllBlog: (state, action) => {
       return { ...state, listBlog: action.payload };
     },
+    getAllBlogByUser: (state, action) => {
+      return { ...state, listBlogUser: action.payload };
+    },
 
     // addOneBlog:(state, action) => {
     //     return { ...state, ...action.payload };
@@ -19,6 +23,6 @@ const blogSlice = createSlice({
   },
 });
 
-export const { getAllBlog } = blogSlice.actions;
+export const { getAllBlog, getAllBlogByUser } = blogSlice.actions;
 
 export default blogSlice.reducer;

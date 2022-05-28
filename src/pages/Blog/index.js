@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress, LinearProgress } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
@@ -11,21 +12,26 @@ import Posts from "../../components/Blog/Posts";
 import BoxLeft from "../../components/Blog/BoxLeft";
 import { getAllBlogApi } from "../../redux/Api/blog";
 import { AuthContext } from "../../hooks/contexts/auth_context";
+
+import { toast } from "react-toastify";
+
 import "./blog.scss";
-import { hideLoading, showLoading } from "../../redux/Actions";
-// import { CircularProgress } from "@mui/material";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
   const {
-    authState: { isAuthenticated },
+    authState: { isAuthenticated, user },
   } = useContext(AuthContext);
 
   const listBlog = useSelector((state) => state.blog.listBlog);
   const loading = useSelector((state) => state.loading.loading);
-  const listLikeUser = useSelector((state) => state.user.likeBlog);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [isProgress, setIsProgress] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [formPost, setFormPost] = useState({
+    content: "",
+    pictures: "",
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,8 +41,6 @@ const BlogPage = () => {
     setOpen(false);
   };
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
   const handleImageChange = async (e) => {
     e.preventDefault();
 
@@ -45,48 +49,67 @@ const BlogPage = () => {
 
     try {
       if (e.target.files) {
-        console.log(formData);
+        setIsProgress(true);
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
-          setSelectedFiles([...selectedFiles, res.data]);
+          setFormPost({
+            ...formPost,
+            pictures: [...formPost.pictures, res.data],
+          });
+          setIsProgress(false);
         }
       }
     } catch (error) {
       console.log(error);
     }
-
-    // const filesArray = Array.from(e.target.files).map((file) =>
-    //   URL.createObjectURL(file)
-    // );
-
-    // // console.log("filesArray: ", filesArray);
-
-    // setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-    // Array.from(e.target.files).map(
-    //   (file) => URL.revokeObjectURL(file) // avoid memory leak
-    // );
   };
 
   const renderPhotos = (source) => {
-    return source.map((photo, index) => {
-      return (
-        <img
-          className="create-posts-input-img-result-img"
-          src={photo}
-          alt=""
-          key={index}
-        />
-      );
-    });
+    return source
+      ? source.map((photo, index) => {
+          return (
+            <img
+              className="create-posts-input-img-result-img"
+              src={photo}
+              alt=""
+              key={index}
+            />
+          );
+        })
+      : null;
+  };
+
+  const handleAddBlog = async () => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.postBlog(formPost);
+      if (res.success) {
+        getAllBlogApi(dispatch, { page: 1, limit: 5 });
+        toast.success(
+          "Tạo mới bài viết thành công, vui lòng chờ được phê duyệt",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        );
+        setIsLoading(false);
+        setFormPost({ content: "", pictures: "" });
+        setOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     if (listBlog.length > 0) {
       return;
     } else {
-      // dispatch(showLoading());
-      // dispatch(hideLoading());
-      getAllBlogApi(dispatch, { page: 1, limit: 3 });
+      getAllBlogApi(dispatch, { page: 1, limit: 5 });
     }
   }, []);
 
@@ -97,7 +120,12 @@ const BlogPage = () => {
           <BoxLeft />
         </div>
         {loading ? (
-          <div>Loading...</div>
+          <div
+            className="blog-container-colum-two"
+            style={{ textAlign: "center" }}
+          >
+            <CircularProgress color="inherit" size={25} />
+          </div>
         ) : (
           <div className="blog-container-colum-two">
             {isAuthenticated && (
@@ -112,14 +140,15 @@ const BlogPage = () => {
                     onClick={handleClickOpen}
                     className="blog-container-colum-two-posts-box-title"
                   >
-                    Huy ơi, Bạn đang nghĩ gì thế?
+                    {user?.username} ơi, Cảm nhận của bạn về trải nghiệm ở căn
+                    hộ như nào?
                   </p>
                 </div>
                 <p
                   onClick={handleClickOpen}
                   className="blog-container-colum-two-posts-text"
                 >
-                  Tạo blog
+                  Tạo bài viết
                 </p>
               </div>
             )}
@@ -138,12 +167,16 @@ const BlogPage = () => {
                       alt=""
                     />
                     <h3 className="create-posts-box-information-name">
-                      Võ Sỹ Huy
+                      {user && user?.username}
                     </h3>
                   </div>
                   <textarea
                     className="create-posts-input-content"
-                    placeholder="Huy ơi, bạn đang nghĩ gì đó?"
+                    placeholder={`${user?.username} ơi, bạn đang nghĩ gì đó?`}
+                    value={formPost.content}
+                    onChange={(e) =>
+                      setFormPost({ ...formPost, content: e.target.value })
+                    }
                   />
                   <div className="create-posts-input-img">
                     <input
@@ -164,9 +197,13 @@ const BlogPage = () => {
                         </i>
                       </label>
                     </div>
-                    <div className="create-posts-input-img-result">
-                      {renderPhotos(selectedFiles)}
-                    </div>
+                    {isProgress ? (
+                      <LinearProgress className="create-posts-input-img-result" />
+                    ) : (
+                      <div className="create-posts-input-img-result">
+                        {renderPhotos(formPost.pictures)}
+                      </div>
+                    )}
                   </div>
                 </div>
               </DialogContent>
@@ -174,9 +211,13 @@ const BlogPage = () => {
                 <Button onClick={handleClose} color="primary">
                   Hủy
                 </Button>
-                <Button onClick={handleClose} color="primary">
-                  Đăng bài
-                </Button>
+                <button className="button-posts" onClick={handleAddBlog}>
+                  {isLoading ? (
+                    <CircularProgress color="inherit" size={15} />
+                  ) : (
+                    "Đăng bài"
+                  )}
+                </button>
               </DialogActions>
             </Dialog>
             {listBlog.map((item, index) => {

@@ -1,10 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SRLWrapper } from "simple-react-lightbox";
 import blogApi from "../../../api/blog_api";
 import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { getLikeBlogByUserApi } from "../../../redux/Api/user";
+import Moment from "react-moment";
 import "./posts.scss";
+import { CircularProgress } from "@material-ui/core";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -23,11 +26,16 @@ const Posts = ({ blog }) => {
     authState: { user },
   } = useContext(AuthContext);
   const listLikeUser = useSelector((state) => state.user.likeBlog);
-  const [comments, setComments] = React.useState([]);
+  const [listComments, setListComments] = React.useState(null);
   const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formComment, setFormComment] = useState({
+    blogId: blog?._id,
+    content: "",
+  });
 
   const checkSeen = () => setSeen(!seen);
   const checkLike = () => setLike(!like);
@@ -35,22 +43,29 @@ const Posts = ({ blog }) => {
 
   const handleReactBlog = async (blogId) => {
     if (listLikeUser?.some((item) => item.blogId?._id === blogId)) {
+      // setLike(true);
       try {
         const res = await blogApi.deleteUnLikeBlogByUser({ blogId: blog?._id });
         if (res.success) {
           setLike(true);
-          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
           fetchLikesByBlog();
         }
       } catch (error) {
-        console.log(error);
+        setLike(false);
+        console.log("error:", error);
       }
     } else {
       try {
+        // setLike(false);
         const res = await blogApi.postLikeBlogByUser({ blogId: blog?._id });
         if (res.success) {
           setLike(false);
-          getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
           fetchLikesByBlog();
         }
       } catch (error) {
@@ -58,22 +73,7 @@ const Posts = ({ blog }) => {
       }
     }
   };
-  const fetchCommentsByBlog = async () => {
-    try {
-      const params = {
-        blogId: blog._id,
-        page: 1,
-        limit: 5,
-      };
-      const res = await blogApi.getCommentByBlog(params);
-      if (res.success) {
-        setComments(res.data.comments);
-        // await ;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const fetchLikesByBlog = async () => {
     try {
       const res = await blogApi.getLikeByBlog(blog._id);
@@ -85,16 +85,52 @@ const Posts = ({ blog }) => {
       console.log(error);
     }
   };
+
+  const fetchCommentByBlog = async () => {
+    try {
+      const res = await blogApi.getCommentByBlog({
+        blogId: blog?._id,
+        page: 1,
+        limit: 5,
+      });
+      if (res.success) {
+        // console.log(res);
+        setListComments(res.data);
+      }
+    } catch (error) {
+      console.log(error, "...error");
+    }
+  };
+  const handlePostCommentToBlog = async () => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.postCommentToBlog(formComment);
+      if (res.success) {
+        fetchCommentByBlog();
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setLike();
     fetchLikesByBlog();
+    fetchCommentByBlog();
+    return {};
   }, []);
+
   useEffect(() => {
     if (listLikeUser) {
       setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
     }
+    return () => {
+      setLike(false);
+    };
   }, [listLikeUser]);
-  console.log("like", like);
+
   return (
     <div className="posts">
       <div className="posts-container">
@@ -102,10 +138,10 @@ const Posts = ({ blog }) => {
           <img className="posts-container-user-img" src={imgs[0]} alt="" />
           <div className="posts-container-user-information">
             <h2 className="posts-container-user-information-name">
-              {blog?.author?.username}
+              {blog?.author?.username || "Admin"}
             </h2>
             <p className="posts-container-user-information-time">
-              12 phút trước
+              <Moment format="hh:mm DD/MM/YYYY ">{blog?.date}</Moment>
             </p>
           </div>
         </div>
@@ -118,8 +154,8 @@ const Posts = ({ blog }) => {
             }
           >
             {blog?.content}
-          </span>{" "}
-          {blog?.content.length > 300 && (
+          </span>
+          {blog?.content?.length > 300 && (
             <span
               className="posts-container-title-btn"
               onClick={() => checkSeen(!seen)}
@@ -198,14 +234,17 @@ const Posts = ({ blog }) => {
         <div className="posts-container-report">
           <div className="posts-container-report-box">
             <h3
-              onClick={() => handleReactBlog(blog?._id)}
+              onClick={user ? () => handleReactBlog(blog?._id) : () => {}}
               className={
-                listLikeUser?.some((item) => item.blogId?._id === blog?._id)
+                like
                   ? "posts-container-report-box-btn-like"
                   : "posts-container-report-box-btn"
               }
             >
-              {like ? "Đã thích" : "Thích"}
+              <FontAwesomeIcon
+                icon="fa-solid fa-thumbs-up"
+                color={like ? "blue" : "gray"}
+              />
             </h3>
             <p className="posts-container-report-box-number">{likes}</p>
           </div>
@@ -217,7 +256,7 @@ const Posts = ({ blog }) => {
               Bình luận
             </h3>
             <p className="posts-container-report-box-number">
-              {comments.length}
+              {listComments?.comments?.length}
             </p>
           </div>
         </div>
@@ -227,18 +266,38 @@ const Posts = ({ blog }) => {
             comment ? "posts-container-cmt" : "posts-container-cmt-hide"
           }
         >
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <input
-              className="posts-container-cmt-container-input"
-              placeholder="Viết bình luận..."
-            />
-            <button className="posts-container-cmt-container-btn">Gửi</button>
-          </div>
-
+          {user && (
+            <div className="posts-container-cmt-container">
+              <img
+                className="posts-container-cmt-container-img"
+                src={imgs[1]}
+                alt=""
+              />
+              <input
+                className="posts-container-cmt-container-input"
+                placeholder="Viết bình luận..."
+                type={"text"}
+                value={formComment.content}
+                onChange={(e) =>
+                  setFormComment({ ...formComment, content: e.target.value })
+                }
+              />
+              <button
+                className="posts-container-cmt-container-btn"
+                onClick={handlePostCommentToBlog}
+              >
+                {isLoading ? (
+                  <CircularProgress color="inherit" size={25} />
+                ) : (
+                  "Gửi"
+                )}
+              </button>
+            </div>
+          )}
           {/* show comment ở đây lặp cái này */}
-          {comments.length > 0 &&
-            comments.map((item, index) => {
+          {listComments &&
+            listComments.comments?.length > 0 &&
+            listComments.comments?.map((item, index) => {
               return (
                 <div className="posts-container-cmt-container" key={index}>
                   <img
@@ -249,10 +308,10 @@ const Posts = ({ blog }) => {
                   <div className="posts-container-cmt-container-box">
                     <div className="posts-container-cmt-container-box-information">
                       <h4 className="posts-container-cmt-container-box-information-name">
-                        {item.author?.username}
+                        {item?.author?.username || "Admin"}
                       </h4>
                       <p className="posts-container-cmt-container-box-information-time">
-                        7 phút trước
+                        <Moment format="hh:mm DD/MM/YYYY ">{item?.date}</Moment>
                       </p>
                     </div>
                     <p className="posts-container-cmt-container-box-description">
