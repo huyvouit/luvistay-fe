@@ -119,12 +119,16 @@ const Posts = ({ blog }) => {
     setLike();
     fetchLikesByBlog();
     fetchCommentByBlog();
+    return {};
   }, []);
 
   useEffect(() => {
     if (listLikeUser) {
       setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
     }
+    return () => {
+      setLike(false);
+    };
   }, [listLikeUser]);
 
   return (

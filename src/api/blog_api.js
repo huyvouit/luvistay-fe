@@ -5,6 +5,10 @@ const blogApi = {
     const url = "/blog/confirm";
     return axiosClient.get(url, { params });
   },
+  getAllBlogsByUser: () => {
+    const url = "/blog/my-blog";
+    return axiosClient.get(url);
+  },
   postBlog: (body) => {
     const url = "/blog/";
     return axiosClient.post(url, body);

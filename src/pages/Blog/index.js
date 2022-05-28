@@ -120,7 +120,12 @@ const BlogPage = () => {
           <BoxLeft />
         </div>
         {loading ? (
-          <div>Loading...</div>
+          <div
+            className="blog-container-colum-two"
+            style={{ textAlign: "center" }}
+          >
+            <CircularProgress color="inherit" size={25} />
+          </div>
         ) : (
           <div className="blog-container-colum-two">
             {isAuthenticated && (
