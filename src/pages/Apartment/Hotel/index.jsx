@@ -67,6 +67,7 @@ const HotelPage = () => {
     setPage(0);
     setType(item.type);
     setTitlePage(item.name);
+    setData([]);
   };
   const handleLoadMoreApartment = () => {
     getAllApartmentApi(dispatch, { currentPage: page + 1 });
