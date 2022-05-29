@@ -82,7 +82,7 @@ const News = () => {
                             https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/blog-1.jpg 1600w"
                 />
               </a>
-              <span className="featured">Featured</span>
+              {/* <span className="featured">Featured</span> */}
             </div>
 
             <header className="entry-header">
@@ -140,7 +140,7 @@ const News = () => {
                             https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/blog-1.jpg 1600w"
                 />
               </a>
-              <span className="featured">Featured</span>
+              {/* <span className="featured">Featured</span> */}
             </div>
 
             <header className="entry-header">
@@ -198,7 +198,7 @@ const News = () => {
                             https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/blog-1.jpg 1600w"
                 />
               </a>
-              <span className="featured">Featured</span>
+              {/* <span className="featured">Featured</span> */}
             </div>
 
             <header className="entry-header">
@@ -256,7 +256,7 @@ const News = () => {
                             https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/blog-1.jpg 1600w"
                 />
               </a>
-              <span className="featured">Featured</span>
+              {/* <span className="featured">Featured</span> */}
             </div>
 
             <header className="entry-header">

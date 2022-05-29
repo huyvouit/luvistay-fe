@@ -95,6 +95,7 @@
 .entry-meta{
     font-size: 14px;
     font-size: .875rem;
+    color: #5f6060;
 }
 .posted-on::after{
     content: '•';
@@ -179,39 +180,33 @@
     content: "";
 }
 
-body{ 
-    color: #5f6060;
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.75;
-}
 main{
     display: block;
 }
 article{
     display: block;
 }
-a{
-    color: #c1b086;
+.cat-link i a{
+    color: #222;
     text-decoration: none;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
     background-color: transparent;
+    font-family: "Noto Serif", serif;
 }
-a:active{
+.cat-link i a:active{
     text-decoration: none;
 }
-a:hover, a:active{
+.cat-link i a:hover, .cat-link i a:active{
     outline: 0;
 }
-a:hover, a:focus, a:active{
+.cat-link i a:hover, .cat-link i a:focus, .cat-link i a:active{
     text-decoration: underline;
 }
-a:focus{
+.cat-link i a:focus{
     outline: thin dotted;
 }
-h1{
+main header h1{
     font-size: 39px;
     font-size: 2.4375rem;
     font-size: 2em;
@@ -224,7 +219,7 @@ h1{
     margin-inline-end: 0px;
     font-weight: bold;
 }
-h1, h2{
+main header h1, .entry-title{
     clear: both;
     font-family: "Noto Serif", serif;
     color: #222;
@@ -233,25 +228,14 @@ h1, h2{
     font-weight: 400;
     letter-spacing: -.5px;
 }
-h2{
+.entry-title{
     font-size: 1.9375rem;
 }
-div{
-    display: block;
-}
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-p:last-child{
+
+.entry-content p:last-child{
     margin-bottom: 0;
 }
-i{
-    font-style: italic;
-}
+
 .post-thumbnail img{
     box-shadow: none;
     display: block;
@@ -264,7 +248,4 @@ i{
 }
 *, *::before, *::after{
     box-sizing: inherit;
-}
-html{
-    -webkit-text-size-adjust: 100%;
 }
