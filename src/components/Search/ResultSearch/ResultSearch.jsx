@@ -1,35 +1,62 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Slideshow from "../../Apartment/SlideShow";
 import PrimaryButton from "../../PrimaryButton";
-import { Button, MenuItem, Select } from "@mui/material";
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./resultSearch.scss";
-import {
-  InformationResultOne,
-  InformationResultTwo,
-} from "../../InformationResult/InformationResult";
+
+import { Box, Modal } from "@mui/material";
 import { formatter } from "../../../helper/format";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../../assets/icons/logoluviStay.svg";
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
-const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
+const ResultSearch = ({
+  info,
+  listSelectedRoom,
+  setListSelectedRoom,
+  infoDate,
+}) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
   const [openApartment, setOpenApartment] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleSelectedRoom = (apartmentId, item) => {
-    if (apartmentId === listSelectedRoom.apartmentId) {
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    // border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const handleSelectedRoom = (apartment, item) => {
+    if (apartment._id === listSelectedRoom.apartment.apartmentId) {
       console.log("đã chọn apartment này");
-      if (listSelectedRoom.listRoom.includes(item)) {
+      if (listSelectedRoom.listRoom?.includes(item._id)) {
         console.log(
           "đã chọn room cua apartment này",
           listSelectedRoom.listRoom?.length
         );
         if (listSelectedRoom.listRoom?.length > 1) {
           const temp = listSelectedRoom?.listRoom?.filter(
-            (selected) => selected !== item
+            (selected) => selected !== item._id
           );
           console.log("temp:", temp);
           if (temp.length === 0) {
             setListSelectedRoom({
               ...listSelectedRoom,
-              apartmentId: "",
+              apartment: { apartmentId: "", owner: "" },
               listRoom: [],
             });
           } else {
@@ -42,7 +69,7 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
         } else {
           setListSelectedRoom({
             ...listSelectedRoom,
-            apartmentId: "",
+            apartment: { apartmentId: "", owner: "" },
             listRoom: [],
           });
         }
@@ -50,18 +77,19 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
         console.log("chon thêm room khác của ap nay");
         setListSelectedRoom({
           ...listSelectedRoom,
-          listRoom: [...listSelectedRoom.listRoom, item],
+          listRoom: [...listSelectedRoom.listRoom, item._id],
         });
       }
     } else {
       console.log("chưa chọn apartment nào");
       setListSelectedRoom({
         ...listSelectedRoom,
-        apartmentId,
-        listRoom: [item],
+        apartment: { apartmentId: apartment._id, owner: apartment.owner },
+        listRoom: [item._id],
       });
     }
   };
+
   const handleOpenApartment = (item) => {
     if (openApartment.includes(item)) {
       // const temp = [...openApartment].filter((selected) => selected != item);
@@ -71,7 +99,7 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
       setOpenApartment([...openApartment, item]);
     }
   };
-  // console.log(listSelectedRoom);
+
   return (
     <main className="result-search">
       <section className="result-search-container">
@@ -82,9 +110,6 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
             <section className="result-search-img">
               <img src={info?.thumbnail} alt="" />
             </section>
-            {/* <section style={{ display: "flex", justifyContent: "center" }}>
-              <PrimaryButton title="Đặt phòng" />
-            </section> */}
           </section>
           <section className="colum-two">
             <div
@@ -125,7 +150,12 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
                       Sức chứa: {item.capacity} người
                     </p>
                     <Button
-                      onClick={() => handleSelectedRoom(info._id, item._id)}
+                      onClick={() => handleSelectedRoom(info, item)}
+                      style={{
+                        color: listSelectedRoom.listRoom?.includes(item._id)
+                          ? "red"
+                          : "blue",
+                      }}
                     >
                       {listSelectedRoom.listRoom?.includes(item._id)
                         ? "Bỏ chọn"
@@ -135,9 +165,74 @@ const ResultSearch = ({ info, listSelectedRoom, setListSelectedRoom }) => {
                 </section>
               );
             })}
-            {listSelectedRoom.apartmentId === info._id && (
+            {listSelectedRoom.apartment?.apartmentId === info._id && (
               <section style={{ display: "flex", justifyContent: "center" }}>
-                <PrimaryButton title="Đặt phòng" />
+                <PrimaryButton
+                  title="Đặt phòng"
+                  action={
+                    !user
+                      ? () =>
+                          navigate(APP_ROUTE.CHECKOUT, {
+                            state: { listSelectedRoom, body: infoDate },
+                          })
+                      : handleOpen
+                  }
+                />
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <section className="login-page-contain">
+                      <img
+                        className="login-page-container-colum-two-logo"
+                        src={logo}
+                        alt=""
+                      />
+                      <h1 className="login-page-containe">
+                        Chào mừng bạn đến với LuviStay
+                      </h1>
+                      <p className="login-page-cont">
+                        Nơi cung cấp một dịch vụ đặt phòng rẻ và dễ dàng nhất.
+                      </p>
+                      <div className="login-page-conta">
+                        <label>Email</label>
+                        <TextField
+                          variant="outlined"
+                          type="email"
+                          className="textField"
+                          // onChange={(e) =>
+                          //   setLoginForm({ ...loginForm, email: e.target.value })
+                          // }
+                          required
+                        />
+                      </div>
+                      <div className="login-page-contai">
+                        <label>Mật khẩu</label>
+                        <TextField
+                          variant="outlined"
+                          type="password"
+                          className="textField"
+                          // onChange={(e) =>
+                          //   setLoginForm({ ...loginForm, password: e.target.value })
+                          // }
+                          required
+                        />
+                      </div>
+
+                      <button>Đăng nhập</button>
+
+                      <Link to="/signup">
+                        <p className="to-sign-up">
+                          Nếu bạn không có một tài khoản?{" "}
+                          <span className="span-two">Đăng ký tại đây</span>
+                        </p>
+                      </Link>
+                    </section>
+                  </Box>
+                </Modal>
               </section>
             )}
           </>

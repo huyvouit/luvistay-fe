@@ -78,7 +78,7 @@ const Booking = (props) => {
               Tỉnh/Thành phố:<span>*</span>{" "}
             </p>
             <Select
-              defaultValue=""
+              defaultValue={city}
               className="selectField"
               onChange={(event) => {
                 setCity(event.target.value);
@@ -98,7 +98,7 @@ const Booking = (props) => {
             People:<span>*</span>{" "}
           </p>
           <Select
-            defaultValue="1"
+            defaultValue={people}
             className="selectField"
             onChange={(e) => setPeople(e.target.value)}
           >
