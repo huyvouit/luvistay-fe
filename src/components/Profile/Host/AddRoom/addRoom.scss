@@ -1,52 +1,28 @@
-.add-apartment{
-    display: flex;
-    justify-content: end;
+.add-room{
+
+    width: 100%;
+    padding: 15px;
+    border-radius: 9px;
+    border: 1px solid #e8e8e8;
     margin-bottom: 24px;
-    p{
-        width: max-content;
-        padding: 15px 25px;
-            background-color: #524d4b;
-            color: white;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 16px ;
-            cursor: pointer;
-    }
-}
-
-.popup-add-apartment{
-
     &-box{
         display: flex;
         justify-content: space-between;
         width: 100%;
         margin-bottom: 24px;
-        &-name{
-            width: 65% ;
-        }
-
-        &-type{
-            width: 33%;
-        }
-
-        &-rate{
-            width: 65%;
-        }
-
-        &-number-room{
-            width: 23%;
-        }
-        &-street{
-            width: 75%;
-        }
-
         &-one{
             width: 32%;
         }
+        &-two{
+            width: 65%;
+        }
+
+        &-three{
+            width: 33%;
+        }
     }
 
-    &-description{
+    &-facilities{
         width: 100%;
     }
 
@@ -85,20 +61,5 @@
                 margin-top: 20px;
             }
         }
-    }
-}
-
-.popup-add-room{
-    width: 100%;
-
-    &-title{
-        font-family: "Noto Serif", serif;
-        color: #222;
-        line-height: 1.4;
-        letter-spacing: -0.5px;
-        font-size: 20px;
-        margin-bottom: 12px;
-        margin-left: 12px;
-        font-weight: 550;
     }
 }
