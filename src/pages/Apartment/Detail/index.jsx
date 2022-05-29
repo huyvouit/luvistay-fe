@@ -32,16 +32,9 @@ const ApartmentDetailPage = () => {
   const [people, setPeople] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
-    // setIsLoading(true);
     getDetailApartmentApi(dispatch, id);
-    // setIsLoading(false);
   }, [id]);
-  // console.log(room);
-  console.log(
-    checkin,
-    moment(checkout, "YYYY-MM-DD").format("MM-DD-YYYY").replaceAll("-", "/"),
-    people
-  );
+
   const handleNavigate = () => {
     navigate({ pathname: APP_ROUTE.SEARCH });
   };

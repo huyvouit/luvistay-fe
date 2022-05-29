@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MenuItem,
   Select,
@@ -15,14 +15,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import PageHeader from "../../components/PageHeader";
 import PrimaryButton from "../../components/PrimaryButton";
 import "./checkout.scss";
+import { Navigate, useLocation } from "react-router-dom";
+import { APP_ROUTE } from "../../routes/app.routes";
 const CheckoutPage = () => {
+  const location = useLocation();
+  // const { body, listSelectedRoom } = location?.state;
   const [openPrice, setOpenPrice] = useState(false);
   const [selectedValue, setSelectedValue] = React.useState("a");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  return (
+
+  return location.state ? (
     <main className="checkout-page">
       <PageHeader title="Booking Confirmation" />
 
@@ -33,13 +38,13 @@ const CheckoutPage = () => {
             <p className="checkout-key">
               Check in :{" "}
               <span>
-                <strong>April 15, 2022 </strong>, from 11:00 am
+                <strong> </strong>, from 11:00 am
               </span>
             </p>
             <p className="checkout-key">
               Check out :{" "}
               <span>
-                <strong>April 16, 2022 </strong>, from 10:00 am
+                <strong></strong>, from 10:00 am
               </span>
             </p>
           </section>
@@ -183,6 +188,8 @@ const CheckoutPage = () => {
         </section>
       </section>
     </main>
+  ) : (
+    <Navigate to={APP_ROUTE.HOME} />
   );
 };
 

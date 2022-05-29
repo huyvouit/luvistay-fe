@@ -19,7 +19,6 @@ const handleCheckout = (checkin) => {
     const yyyy = today.getFullYear();
     return yyyy + "-" + mm + "-" + dd;
   } else {
-    console.log("run");
     return disablePastDate();
   }
 };

@@ -166,36 +166,27 @@ const Posts = ({ blog }) => {
         </p>
         <SRLWrapper>
           <div className="posts-container-img">
-            {blog?.pictures.map((item, index) => {
-              if (blog?.pictures.length === 1) {
-                return (
-                  <img
-                    className="posts-container-img-one"
-                    src={item}
-                    key={index}
-                    alt=""
-                  />
-                );
-              } else if (blog?.pictures.length === 2) {
-                return (
-                  <img
-                    className="posts-container-img-two"
-                    src={item}
-                    key={index}
-                    alt=""
-                  />
-                );
-              } else if (blog?.pictures.length === 3) {
-                return (
-                  <img
-                    className="posts-container-img-three"
-                    src={item}
-                    key={index}
-                    alt=""
-                  />
-                );
-              } else {
-                if (index < 2) {
+            {blog?.pictures &&
+              blog?.pictures?.map((item, index) => {
+                if (blog?.pictures?.length === 1) {
+                  return (
+                    <img
+                      className="posts-container-img-one"
+                      src={item}
+                      key={index}
+                      alt=""
+                    />
+                  );
+                } else if (blog?.pictures?.length === 2) {
+                  return (
+                    <img
+                      className="posts-container-img-two"
+                      src={item}
+                      key={index}
+                      alt=""
+                    />
+                  );
+                } else if (blog?.pictures?.length === 3) {
                   return (
                     <img
                       className="posts-container-img-three"
@@ -204,31 +195,41 @@ const Posts = ({ blog }) => {
                       alt=""
                     />
                   );
-                } else if (index === 2) {
-                  return (
-                    <div className="posts-container-img-three" key={index}>
+                } else {
+                  if (index < 2) {
+                    return (
                       <img
-                        className="posts-container-img-three-img"
+                        className="posts-container-img-three"
                         src={item}
+                        key={index}
                         alt=""
                       />
-                      <p className="posts-container-img-three-number">
-                        +{blog?.pictures.length - 3}
-                      </p>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <img
-                      className="posts-container-img-hide"
-                      src={item}
-                      key={index}
-                      alt=""
-                    />
-                  );
+                    );
+                  } else if (index === 2) {
+                    return (
+                      <div className="posts-container-img-three" key={index}>
+                        <img
+                          className="posts-container-img-three-img"
+                          src={item}
+                          alt=""
+                        />
+                        <p className="posts-container-img-three-number">
+                          +{blog?.pictures?.length - 3}
+                        </p>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <img
+                        className="posts-container-img-hide"
+                        src={item}
+                        key={index}
+                        alt=""
+                      />
+                    );
+                  }
                 }
-              }
-            })}
+              })}
           </div>
         </SRLWrapper>
         <div className="posts-container-report">

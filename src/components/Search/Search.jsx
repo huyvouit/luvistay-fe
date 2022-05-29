@@ -7,20 +7,30 @@ import "./search.scss";
 import SpecialOffer from "./SpecialOffer/SpecialOffer";
 import ResultSearch from "./ResultSearch/ResultSearch";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getApartmentBySearchApi } from "../../redux/Api/apartment";
 import { formatDate } from "../../helper/format";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location.state.people);
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
-  console.log(searchApartment);
 
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [city, setCity] = useState("");
   const [people, setPeople] = useState(1);
+  const [listSelectedRoom, setListSelectedRoom] = useState({
+    apartment: {
+      apartmentId: "",
+      owner: "",
+    },
+    listRoom: [],
+  });
 
   const handleSearchRoom = () => {
     const body = {
@@ -29,8 +39,10 @@ const Search = () => {
       people: people,
       city: city,
     };
-    console.log(body);
-    getApartmentBySearchApi(dispatch, body);
+
+    getApartmentBySearchApi(dispatch, body, () =>
+      navigate(APP_ROUTE.SEARCH, { state: body })
+    );
   };
 
   return (
@@ -60,7 +72,15 @@ const Search = () => {
               <section>
                 {searchApartment.length >= 2 ? (
                   searchApartment.map((item, index) => {
-                    return <ResultSearch key={index} info={item} />;
+                    return (
+                      <ResultSearch
+                        key={index}
+                        info={item}
+                        listSelectedRoom={listSelectedRoom}
+                        setListSelectedRoom={setListSelectedRoom}
+                        infoDate={location?.state}
+                      />
+                    );
                   })
                 ) : (
                   <ResultSearch info={searchApartment} />
