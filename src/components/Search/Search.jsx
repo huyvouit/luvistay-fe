@@ -15,13 +15,15 @@ const Search = () => {
   const dispatch = useDispatch();
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
-  console.log(searchApartment);
 
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [city, setCity] = useState("");
   const [people, setPeople] = useState(1);
-
+  const [listSelectedRoom, setListSelectedRoom] = useState({
+    apartmentId: "",
+    listRoom: [],
+  });
   const handleSearchRoom = () => {
     const body = {
       checkinDate: formatDate(checkin),
@@ -32,7 +34,7 @@ const Search = () => {
     console.log(body);
     getApartmentBySearchApi(dispatch, body);
   };
-
+  console.log(listSelectedRoom);
   return (
     <main className="search">
       <section className="search-container">
@@ -60,7 +62,14 @@ const Search = () => {
               <section>
                 {searchApartment.length >= 2 ? (
                   searchApartment.map((item, index) => {
-                    return <ResultSearch key={index} info={item} />;
+                    return (
+                      <ResultSearch
+                        key={index}
+                        info={item}
+                        listSelectedRoom={listSelectedRoom}
+                        setListSelectedRoom={setListSelectedRoom}
+                      />
+                    );
                   })
                 ) : (
                   <ResultSearch info={searchApartment} />

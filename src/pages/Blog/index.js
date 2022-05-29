@@ -109,14 +109,14 @@ const BlogPage = () => {
   };
 
   const handleLoadMoreBlog = () => {
-    getAllBlogApi(dispatch, { page: page + 1, limit: 1 }, scrollToBottom(1200));
+    getAllBlogApi(dispatch, { page: page + 1, limit: 2 }, scrollToBottom);
     setPage(page + 1);
   };
   useEffect(() => {
     if (listBlog.length > 0) {
       return;
     } else {
-      getAllBlogApi(dispatch, { page: page, limit: 1 });
+      getAllBlogApi(dispatch, { page: page, limit: 2 });
     }
   }, []);
 

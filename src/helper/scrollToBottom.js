@@ -1,6 +1,6 @@
-const scrollToBottom = (number) => {
+const scrollToBottom = () => {
   window.scrollTo({
-    top: document.documentElement.scrollHeight - number,
+    top: document.documentElement.scrollHeight - 1200,
     behavior: "smooth",
   });
 };
