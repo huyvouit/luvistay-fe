@@ -6,31 +6,41 @@
         border-radius: 8px;
         padding: 3% 2%;
         box-shadow: 1px 1px 3px 1px rgba(128, 128, 128, 0.377);
-        &-user{
+        &-row-one{
             display: flex;
-            align-items: center;
-            &-img{
-                width: 48px;
-                height: 48px;
-                border-radius: 90px;
-                object-fit: cover;
+            justify-content: space-between;
+            &-user{
+                width: max-content;
+                display: flex;
+                align-items: center;
+                &-img{
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 90px;
+                    object-fit: cover;
+                }
+                &-information{
+                    margin-left: 1.5%;
+                    &-name{
+                        font-family: "Noto Serif", serif;
+                        color: #222;
+                        line-height: 1.4;
+                        font-weight: 600;
+                        letter-spacing: -0.5px;
+                        font-size: 19px;
+                    }
+                    &-time{
+                        font-size: 16px;
+                        color: #5f6060;
+                        font-family: "Open Sans", sans-serif;
+                        font-style: italic;
+                    }
+                }
             }
-            &-information{
-                margin-left: 1.5%;
-                &-name{
-                    font-family: "Noto Serif", serif;
-                    color: #222;
-                    line-height: 1.4;
-                    font-weight: 600;
-                    letter-spacing: -0.5px;
-                    font-size: 19px;
-                }
-                &-time{
-                    font-size: 16px;
-                    color: #5f6060;
-                    font-family: "Open Sans", sans-serif;
-                    font-style: italic;
-                }
+
+            &-icon{
+                width: max-content;
+                cursor: pointer;
             }
         }
 
