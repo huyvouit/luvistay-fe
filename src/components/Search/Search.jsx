@@ -16,7 +16,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("SEARCH:", location.state);
+
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
 

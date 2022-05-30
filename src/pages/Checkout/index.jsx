@@ -70,7 +70,7 @@ const CheckoutPage = () => {
     email: user?.email || "",
     phone: user?.phone || "",
   });
-  console.log(formUser);
+
   const [note, setNote] = useState("");
   const [selectedValue, setSelectedValue] = React.useState("a");
   const [infoApartment, setInfoApartment] = useState(null);
@@ -150,7 +150,6 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
       setFormUser({
         userName: user?.username,
         email: user?.email,

@@ -42,13 +42,12 @@ const ResultSearch = ({
 
   const handleSelectedRoom = (apartment, item) => {
     if (apartment._id === listSelectedRoom.apartment.apartmentId) {
-      console.log("đã chọn apartment này");
       if (listSelectedRoom.listRoom?.some((room) => item._id === room._id)) {
         if (listSelectedRoom.listRoom?.length > 1) {
           const temp = listSelectedRoom?.listRoom?.filter(
             (selected) => selected._id !== item._id
           );
-          console.log("temp:", temp);
+
           if (temp.length === 0) {
             setListSelectedRoom({
               ...listSelectedRoom,
@@ -70,14 +69,12 @@ const ResultSearch = ({
           });
         }
       } else {
-        console.log("chon thêm room khác của ap nay");
         setListSelectedRoom({
           ...listSelectedRoom,
           listRoom: [...listSelectedRoom.listRoom, item],
         });
       }
     } else {
-      console.log("chưa chọn apartment nào");
       setListSelectedRoom({
         ...listSelectedRoom,
         apartment: { apartmentId: apartment._id, owner: apartment.owner },
@@ -91,11 +88,10 @@ const ResultSearch = ({
       // const temp = [...openApartment].filter((selected) => selected != item);
       setOpenApartment([]);
     } else {
-      // console.log("in:", [...openApartment]);
       setOpenApartment([...openApartment, item]);
     }
   };
-  console.log(listSelectedRoom, info);
+
   return (
     <main className="result-search">
       <section className="result-search-container">

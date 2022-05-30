@@ -62,7 +62,7 @@ const Introduce = () => {
 
     setFakeData(Copy);
   };
-  console.log(fakeData);
+
   return (
     <section className="introduce">
       <section className="introduce-image">

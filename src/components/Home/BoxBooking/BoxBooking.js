@@ -16,7 +16,7 @@ const BoxBooking = () => {
   const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.loading.loading);
   const listCity = useSelector((state) => state.city);
-  // console.log(listCity)
+
   const navigate = useNavigate();
   // const [listCity, setListCity] = useState([]);
   const [formSearch, setFormSearch] = useState({
@@ -26,7 +26,6 @@ const BoxBooking = () => {
     city: "",
   });
 
-  // console.log(formSearch);
   const handleNavigate = () => {
     navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: formSearch } });
   };
