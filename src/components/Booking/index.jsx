@@ -78,7 +78,7 @@ const Booking = (props) => {
               Tỉnh/Thành phố:<span>*</span>{" "}
             </p>
             <Select
-              defaultValue={city}
+              defaultValue=""
               className="selectField"
               onChange={(event) => {
                 setCity(event.target.value);

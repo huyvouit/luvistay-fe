@@ -48,16 +48,17 @@
   }
 
   &-title {
-    @include titleFont(24px, 400, "df");
+    @include titleFont(24px, 400, "");
     padding-bottom: 10px;
+    font-family: "Noto Serif", serif !important;
   }
 
   &-key {
-    span {
-      strong {
-        font-weight: 500;
-      }
-    }
+    // span {
+    //   // strong {
+    //   //   font-weight: 500;
+    //   // }
+    // }
   }
 
   &-accommodation {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MenuItem, Select,  } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 
 // import apartmentApi from "../../../api/aparment_api";
 import { disablePastDate, handleCheckout } from "../../../helper/minInput";
@@ -26,9 +26,9 @@ const BoxBooking = () => {
     city: "",
   });
 
-  console.log(formSearch);
+  // console.log(formSearch);
   const handleNavigate = () => {
-    navigate({pathname: APP_ROUTE.SEARCH });
+    navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: formSearch } });
   };
   const handleSubmitSearch = async () => {
     const body = {
@@ -37,7 +37,9 @@ const BoxBooking = () => {
       city: formSearch.city,
       people: formSearch.people,
     };
-    getApartmentBySearchApi(dispatch, body, handleNavigate);
+    getApartmentBySearchApi(dispatch, body, () =>
+      navigate(APP_ROUTE.SEARCH, { state: { infoDate: body } })
+    );
   };
   useEffect(() => {
     getAllCityApi(dispatch);
@@ -69,7 +71,8 @@ const BoxBooking = () => {
             </p>
             <input
               type="date"
-              className="textField" required
+              className="textField"
+              required
               min={handleCheckout(formSearch.checkinDate)}
               onChange={(event) => {
                 setFormSearch({

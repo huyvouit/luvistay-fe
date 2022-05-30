@@ -35,9 +35,7 @@ const ApartmentDetailPage = () => {
     getDetailApartmentApi(dispatch, id);
   }, [id]);
 
-  const handleNavigate = () => {
-    navigate({ pathname: APP_ROUTE.SEARCH });
-  };
+  const handleNavigate = () => {};
   const handleSearchRoom = () => {
     const body = {
       checkinDate: formatDate(checkin),
@@ -46,7 +44,9 @@ const ApartmentDetailPage = () => {
       apartmentId: id,
     };
     console.log(body);
-    searchRoomByApartmentApi(dispatch, body, handleNavigate);
+    searchRoomByApartmentApi(dispatch, body, () =>
+      navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: body } })
+    );
   };
   return !isLoading ? (
     <main className="detail-page">
