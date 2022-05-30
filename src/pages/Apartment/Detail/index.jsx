@@ -106,8 +106,8 @@ const ApartmentDetailPage = () => {
         </section>
       </section>
 
-      <Relation />
-      <ReviewsDetail />
+      {/* <Relation /> */}
+      <ReviewsDetail apartment={detail?.info} />
     </main>
   ) : (
     <Backdrop

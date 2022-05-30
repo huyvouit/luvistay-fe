@@ -5,6 +5,9 @@ const initialState = {
   info: null,
   rooms: [],
   searchRoom: null,
+  reviews: null,
+  maxPageReview: null,
+  avgRating: 0,
 };
 
 const DetailSlice = createSlice({
@@ -20,10 +23,25 @@ const DetailSlice = createSlice({
     searchRoomByApartment: (state, action) => {
       return { ...state, searchRoom: action.payload };
     },
+    getReviewByApartment: (state, action) => {
+      return {
+        ...state,
+        reviews: action.payload.reviews,
+        maxPageReview: action.payload.maxPage,
+      };
+    },
+    getAvgRatingByApartment: (state, action) => {
+      return { ...state, avgRating: action.payload };
+    },
   },
 });
 
-export const { getApartment, getRoom, searchRoomByApartment } =
-  DetailSlice.actions;
+export const {
+  getApartment,
+  getRoom,
+  searchRoomByApartment,
+  getReviewByApartment,
+  getAvgRatingByApartment,
+} = DetailSlice.actions;
 
 export default DetailSlice.reducer;

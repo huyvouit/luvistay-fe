@@ -4,6 +4,8 @@ export {
   getApartment,
   getRoom,
   searchRoomByApartment,
+  getReviewByApartment,
+  getAvgRatingByApartment,
 } from "../Slice/detailSlice";
 export { showLoading, hideLoading } from "../Slice/loadingSlice";
 export { getAllCity } from "../Slice/cityApartmentSlice";

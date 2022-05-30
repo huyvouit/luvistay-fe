@@ -32,6 +32,19 @@ const apartmentApi = {
     const url = `/apartment/apartment-cites`;
     return axiosClient.get(url);
   },
+
+  getReviewByApartment: (params) => {
+    const url = "/apartment/review";
+    return axiosClient.get(url, { params });
+  },
+  postReview: (body) => {
+    const url = "/apartment/review";
+    return axiosClient.get(url, body);
+  },
+  getAvgRatingByApartment: (id) => {
+    const url = `/apartment/avg-rating/${id}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default apartmentApi;
