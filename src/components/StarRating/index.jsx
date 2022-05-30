@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./StarRating.scss";
 
-const StarRating = ({ ratingVote, isEditable }) => {
-  const [rating, setRating] = useState(ratingVote);
-
+const StarRating = ({ ratingVote, isEditable, rating, setRating }) => {
   return (
     <main className="star-rating">
       {[...Array(5)].map((star, index) => {
@@ -20,7 +18,7 @@ const StarRating = ({ ratingVote, isEditable }) => {
             />
             <FontAwesomeIcon
               icon="fa-solid fa-star"
-              size={"80px"}
+              // size={80}
               color={ratingValue <= rating ? "#c1b086" : "#ebebec"}
               className="rating-star-star"
               style={{ cursor: isEditable && "pointer" }}
