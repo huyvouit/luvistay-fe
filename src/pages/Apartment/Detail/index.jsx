@@ -43,7 +43,7 @@ const ApartmentDetailPage = () => {
       people: people,
       apartmentId: id,
     };
-    console.log(body);
+
     searchRoomByApartmentApi(dispatch, body, () =>
       navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: body } })
     );
