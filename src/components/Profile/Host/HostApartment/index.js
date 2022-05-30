@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import img_test from "../../../../assets/images/profile.png"
 import "./hostApartment.scss"
 import { withStyles } from '@material-ui/core/styles';
@@ -10,6 +10,11 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RowRoom from './RowRoom';
+import TextField from '@mui/material/TextField';
 
 
 
@@ -54,16 +59,100 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
+const currencies = [
+    {
+        value: 'hotel',
+        label: 'Khách sạn',
+    },
+    {
+        value: 'motel',
+        label: 'Nhà nghỉ',
+    },
+    {
+        value: 'resort',
+        label: 'Resort',
+    },
+];
+
+
+
 const HostApartment = () => {
 
     const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open1 = Boolean(anchorEl);
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const [open2, setOpen2] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
+
+    const handleClose1 = () => {
+        setOpen2(false);
+    };
+
+
+    const handleCloseAndSave = () => {
+        setOpen2(false);
+    };
+
+    const handleClose2 = () => {
+        setOpen3(false);
+      };
+    
+      const handleCloseAndDelete = () => {
+        setOpen3(false);
+      };
+
+
+    const handleClickMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleCloseMenu = () => {
+        setAnchorEl(null);
+        setOpen(true);
+    };
+    const handleCloseMenu1 = () => {
+        setAnchorEl(null);
+        setOpen2(true);
+    };
+
+    const handleCloseMenu2 = () => {
+        setAnchorEl(null);
+        setOpen3(true);
+    };
+    const handleCloseMenu3 = () => {
+        setAnchorEl(null);
+    };
+
+    const [currency, setCurrency] = React.useState('hotel');
+    const handleChange = (event) => {
+        setCurrency(event.target.value);
+    };
+
+    //ảnh
+    const [selectedFiles, setSelectedFiles] = useState([]);
+
+    const handleImageChange = (e) => {
+        if (e.target.files) {
+            const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+
+
+            setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
+        }
+    };
+
+    const renderPhotos = (source) => {
+        return source.map((photo) => {
+            return <img className='popup-add-apartment-input-img-result-img' src={photo} alt="" key={photo} />;
+        });
     };
 
     return (
@@ -78,11 +167,28 @@ const HostApartment = () => {
                     <p><span>Số phòng đang thuê: </span>5</p>
                 </div>
                 <div className='host-apartment-show-detail'>
-                    <h5 className='host-apartment-show-detail-btn' onClick={handleClickOpen} >Xem chi tiết</h5>
-                    <div className='host-apartment-show-detail-group'>
-                    <h5 className='host-apartment-show-detail-group-delete'>Xóa</h5>
-                    <h5 className='host-apartment-show-detail-group-edit'>Sửa</h5>
-                    </div>
+                    <FontAwesomeIcon
+                        className="posts-container-row-one-icon"
+                        onClick={handleClickMenu}
+                        aria-controls={open1 ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open1 ? 'true' : undefined}
+                        icon="fa-solid fa-ellipsis-vertical"
+                        style={{ width: "30px", height: "30px !important" }}
+                    />
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open1}
+                        onClose={handleCloseMenu3}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        <MenuItem onClick={handleCloseMenu} >Chi tiết</MenuItem>
+                        <MenuItem onClick={handleCloseMenu1} >Chỉnh sửa</MenuItem>
+                        <MenuItem onClick={handleCloseMenu2}>Xóa</MenuItem>
+                    </Menu>
                 </div>
             </div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth maxWidth='md' >
@@ -92,48 +198,29 @@ const HostApartment = () => {
                 <DialogContent dividers>
                     <div className='popup-detail-apartment'>
                         <div className='popup-detail-apartment-row-one'>
-                            <img className='popup-detail-apartment-row-one-img' src={img_test}/>
+                            <img className='popup-detail-apartment-row-one-img' src={img_test} />
                             <p className='popup-detail-apartment-row-one-description'>
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut 
-                            labore et dolore magna aliqua. Nisl tincidunt eget nullam non. 
-                            Quis hendrerit dolor magna eget est lorem ipsum dolor sit. 
-                            Volutpat odio facilisis mauris sit amet massa. 
-                            Commodo odio aenean sed adipiscing diam donec adipiscing tristique. 
-                            Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. 
-                            Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. 
-                            In hac habitasse platea dictumst quisque sagittis purus. 
-                            Pulvinar elementum integer enim neque volutpat ac.
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Nisl tincidunt eget nullam non.
+                                Quis hendrerit dolor magna eget est lorem ipsum dolor sit.
+                                Volutpat odio facilisis mauris sit amet massa.
+                                Commodo odio aenean sed adipiscing diam donec adipiscing tristique.
+                                Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit.
+                                Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent.
+                                In hac habitasse platea dictumst quisque sagittis purus.
+                                Pulvinar elementum integer enim neque volutpat ac.
                             </p>
                         </div>
                         <div className='popup-detail-apartment-row-two'>
                             <h4 className='popup-detail-apartment-row-two-title'>Danh sách phòng hiện có</h4>
 
                             {/* lặp chỗ này nhé */}
-                            <div className='popup-detail-apartment-row-two-content'>
-                                <div className='popup-detail-apartment-row-two-content-colum-one'>
-                                    <h3 className='popup-detail-apartment-row-two-content-colum-one-name-room'>Phòng Deluxe</h3>
-                                    <p className='popup-detail-apartment-row-two-content-colum-one-number-people'>Sức chứa: 2 người</p>
-                                </div>
-
-                                <div className='popup-detail-apartment-row-two-content-colum-two'>
-                                    <p className='popup-detail-apartment-row-two-content-colum-two-price'>3.142.152VNĐ</p>
-                                    <p className='popup-detail-apartment-row-two-content-colum-two-status'>Trống</p>
-                                </div>
-                            </div>
-
-                            <div className='popup-detail-apartment-row-two-content'>
-                                <div className='popup-detail-apartment-row-two-content-colum-one'>
-                                    <h3 className='popup-detail-apartment-row-two-content-colum-one-name-room'>Phòng Deluxe</h3>
-                                    <p className='popup-detail-apartment-row-two-content-colum-one-number-people'>Sức chứa: 2 người</p>
-                                </div>
-
-                                <div className='popup-detail-apartment-row-two-content-colum-two'>
-                                    <p className='popup-detail-apartment-row-two-content-colum-two-price'>3.142.152VNĐ</p>
-                                    <p className='popup-detail-apartment-row-two-content-colum-two-status'>Đang thuê</p>
-                                </div>
-                            </div>
+                            <RowRoom/>
+                            <RowRoom/>
+                            <RowRoom/>
+                            <RowRoom/>
                         </div>
                     </div>
                 </DialogContent>
@@ -143,6 +230,95 @@ const HostApartment = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            {/* chỉnh sửa */}
+            <Dialog onClose={handleClose1} aria-labelledby="customized-dialog-title" open={open2} fullWidth maxWidth='md' >
+                <DialogTitle id="customized-dialog-title" onClose={handleClose1}>
+                    Thêm Apartment
+                </DialogTitle>
+                <DialogContent dividers>
+                    <div className='popup-add-apartment'>
+                        <div className='popup-add-apartment-box'>
+                            <TextField className='popup-add-apartment-box-name' id="name-apartment" label="Tên apartment" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
+                            <TextField
+                                className='popup-add-apartment-box-type'
+                                id="outlined-select-currency"
+                                select
+                                label="Loại apartment"
+                                value={currency}
+                                onChange={handleChange}
+                            >
+                                {currencies.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+
+                        </div>
+                        <div className='popup-add-apartment-box'>
+                            <TextField className='popup-add-apartment-box-rate' id="rating" label="Đánh giá của căn hộ" variant="outlined" />
+                        </div>
+                        <div className='popup-add-apartment-box'>
+                            <TextField className='popup-add-apartment-box-number-room' id="apartment-number" label="Số nhà" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
+                            <TextField className='popup-add-apartment-box-street' id="street" label="đường" variant="outlined" />
+                        </div>
+                        <div className='popup-add-apartment-box'>
+                            <TextField className='popup-add-apartment-box-one' id="district" label="quận\huyện" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
+                            <TextField className='popup-add-apartment-box-one' id="province" label="tỉnh\thành phố" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
+                            <TextField className='popup-add-apartment-box-one' id="country" label="Quốc gia" variant="outlined" />
+                        </div>
+                        <TextField className='popup-add-apartment-description' multiline rows={5} id="description" label="Mô tả căn hộ" variant="outlined" />
+
+                        <div className='popup-add-apartment-input-img'>
+                            <input className='popup-add-apartment-input-img-input' type="file" id="file" multiple onChange={handleImageChange} />
+                            <div className="popup-add-apartment-input-img-label-holder">
+                                <label htmlFor="file" className="popup-add-apartment-input-img-label-holder-label">
+                                    <i className="material-icons">Thêm hình</i>
+                                </label>
+                            </div>
+                            <div className="popup-add-apartment-input-img-result">{renderPhotos(selectedFiles)}</div>
+                        </div>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+
+                    <Button autoFocus onClick={handleClose1} >
+                        Hủy
+                    </Button>
+
+                    <Button autoFocus onClick={handleCloseAndSave} color="primary" >
+                        Lưu
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* xóa */}
+
+            <Dialog
+        open={open3}
+        onClose={handleClose2}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogContent>
+          <div className="create-posts">
+            <h3>Bạn có thật sự muốn xóa khách sạn này ?</h3>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose2} color="primary">
+            Hủy
+          </Button>
+          <button className="button-posts" onClick={handleCloseAndDelete}>
+              Xóa
+          </button>
+        </DialogActions>
+      </Dialog>
+
         </>
     )
 }
