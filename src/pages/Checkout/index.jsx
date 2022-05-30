@@ -63,7 +63,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const {
-    authState: { isAuthenticated, user },
+    authState: { isAuthenticated, authLoading, user },
   } = useContext(AuthContext);
   const [formUser, setFormUser] = useState({
     userName: user?.username || "",
@@ -158,7 +158,7 @@ const CheckoutPage = () => {
     }
   }, [user]);
 
-  if (location.state && !user) {
+  if (location.state && authLoading) {
     return (
       <section style={{ textAlign: "center", padding: "20px 0" }}>
         <CircularProgress color="inherit" size={30} />

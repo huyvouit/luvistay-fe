@@ -52,10 +52,8 @@ const AuthContextProvider = ({ children }) => {
       const response = await authApi.postSignIn(userForm);
 
       if (response.success) {
-        console.log(response.data.accessToken);
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
         localStorage.setItem(REFTOKEN, response.data.refreshToken);
-        // localStorage.setItem(REFTOKEN, response.data.refreshToken);
       }
 
       await loadUser();

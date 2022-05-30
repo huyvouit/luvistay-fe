@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
-import Slideshow from "../../Apartment/SlideShow";
-import PrimaryButton from "../../PrimaryButton";
-import { Button, MenuItem, Select, TextField } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./resultSearch.scss";
-
-import { Box, Modal } from "@mui/material";
-import { formatter } from "../../../helper/format";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../../assets/icons/logoluviStay.svg";
-import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, CircularProgress, TextField, Box, Modal } from "@mui/material";
+
 import { APP_ROUTE } from "../../../routes/app.routes";
+import { formatter } from "../../../helper/format";
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import PrimaryButton from "../../PrimaryButton";
+
+import logo from "../../../assets/icons/logoluviStay.svg";
+import "./resultSearch.scss";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../../../redux/Actions";
 
 const ResultSearch = ({
   info,
@@ -18,13 +20,21 @@ const ResultSearch = ({
   setListSelectedRoom,
   infoDate,
 }) => {
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const navigate = useNavigate();
   const {
-    authState: { user },
+    authState: { user, authLoading },
+    loginUser,
   } = useContext(AuthContext);
   const [openApartment, setOpenApartment] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -33,11 +43,11 @@ const ResultSearch = ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 500,
     bgcolor: "background.paper",
-    // border: "2px solid #000",
+
     boxShadow: 24,
-    p: 4,
+    p: "20px",
   };
 
   const handleSelectedRoom = (apartment, item) => {
@@ -89,6 +99,38 @@ const ResultSearch = ({
       setOpenApartment([]);
     } else {
       setOpenApartment([...openApartment, item]);
+    }
+  };
+
+  const handleSubmitLogin = async () => {
+    try {
+      setLoading(true);
+      const loginData = await loginUser(loginForm);
+
+      if (loginData.success) {
+        toast.success(loginData.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setLoading(false);
+        // navigate(APP_ROUTE.HOME);
+        handleClose();
+      } else {
+        toast.error(loginData.error, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -181,51 +223,66 @@ const ResultSearch = ({
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={style}>
-                    <section className="login-page-contain">
-                      <img
-                        className="login-page-container-colum-two-logo"
-                        src={logo}
-                        alt=""
-                      />
-                      <h1 className="login-page-containe">
+                    <section className="popup-login">
+                      <img className="" src={logo} alt="" />
+                      <h1 className="popup-login-title">
                         Chào mừng bạn đến với LuviStay
                       </h1>
-                      <p className="login-page-cont">
+                      <p className="popup-login-title">
                         Nơi cung cấp một dịch vụ đặt phòng rẻ và dễ dàng nhất.
                       </p>
-                      <div className="login-page-conta">
-                        <label>Email</label>
+                      <div className="inputField">
+                        <p>Email</p>
                         <TextField
                           variant="outlined"
                           type="email"
                           className="textField"
-                          // onChange={(e) =>
-                          //   setLoginForm({ ...loginForm, email: e.target.value })
-                          // }
+                          value={loginForm.email}
+                          onChange={(e) =>
+                            setLoginForm({
+                              ...loginForm,
+                              email: e.target.value,
+                            })
+                          }
                           required
                         />
                       </div>
-                      <div className="login-page-contai">
-                        <label>Mật khẩu</label>
+                      <div className="inputField">
+                        <p>Mật khẩu</p>
                         <TextField
                           variant="outlined"
                           type="password"
                           className="textField"
-                          // onChange={(e) =>
-                          //   setLoginForm({ ...loginForm, password: e.target.value })
-                          // }
+                          value={loginForm.password}
+                          onChange={(e) =>
+                            setLoginForm({
+                              ...loginForm,
+                              password: e.target.value,
+                            })
+                          }
                           required
                         />
                       </div>
+                      <section style={{ textAlign: "center" }}>
+                        <Button
+                          className="button-submit"
+                          onClick={handleSubmitLogin}
+                        >
+                          {loading ? (
+                            <CircularProgress
+                              tyle={{ color: "white" }}
+                              size={25}
+                            />
+                          ) : (
+                            "Đăng nhập"
+                          )}
+                        </Button>
+                      </section>
 
-                      <button>Đăng nhập</button>
-
-                      <Link to="/signup">
-                        <p className="to-sign-up">
-                          Nếu bạn không có một tài khoản?{" "}
-                          <span className="span-two">Đăng ký tại đây</span>
-                        </p>
-                      </Link>
+                      <p className="btn-signup">
+                        Nếu bạn không có một tài khoản?{" "}
+                        <Link to="/signup">Đăng ký tại đây</Link>
+                      </p>
                     </section>
                   </Box>
                 </Modal>
