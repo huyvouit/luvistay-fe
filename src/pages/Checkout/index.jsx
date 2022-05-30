@@ -10,12 +10,14 @@ import Radio from "@mui/material/Radio";
 import PageHeader from "../../components/PageHeader";
 import PrimaryButton from "../../components/PrimaryButton";
 import "./checkout.scss";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { APP_ROUTE } from "../../routes/app.routes";
 import apartmentApi from "../../api/aparment_api";
 import { calculateDate } from "../../helper/calculateDate";
 import { formatter } from "../../helper/format";
 import { AuthContext } from "../../hooks/contexts/auth_context";
+import userApi from "../../api/user_api";
+import { toast } from "react-toastify";
 
 const TablePrice = ({ room, body, index }) => {
   const [openPrice, setOpenPrice] = useState(false);
@@ -58,17 +60,18 @@ const TablePrice = ({ room, body, index }) => {
   );
 };
 const CheckoutPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.state);
   const {
-    authState: { authLoading, isAuthenticated, user },
+    authState: { isAuthenticated, user },
   } = useContext(AuthContext);
   const [formUser, setFormUser] = useState({
-    username: user?.username || "",
+    userName: user?.username || "",
     email: user?.email || "",
     phone: user?.phone || "",
-    note: "",
   });
+  console.log(formUser);
+  const [note, setNote] = useState("");
   const [selectedValue, setSelectedValue] = React.useState("a");
   const [infoApartment, setInfoApartment] = useState(null);
   const [totalCost, setTotalCost] = useState(null);
@@ -87,14 +90,49 @@ const CheckoutPage = () => {
       console.log(error);
     }
   };
+
+  const handleSubmitBooking = async () => {
+    let roomIds = [];
+    location.state.listSelectedRoom.listRoom.forEach((item) => {
+      roomIds.push(item._id);
+    });
+    try {
+      const body = {
+        customer: user?._id,
+        apartmentId: location.state.listSelectedRoom.apartment.apartmentId,
+        owner: location.state.listSelectedRoom.apartment.owner,
+        beginDate: location.state.body.checkinDate,
+        endDate: location.state.body.checkinDate,
+        roomIds,
+        totalBookingPeople: location.state.body.people,
+        userBookingInfos: formUser,
+        note,
+        totalCost,
+      };
+      const res = await userApi.postBooking(body);
+      if (res.success) {
+        toast.success("Bạn đã đặt phòng thành công", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        navigate(APP_ROUTE.HOME, { state: { from: location } });
+      }
+      // console.log(body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (location.state) {
       fetchInfoApartment();
     } else {
       return;
     }
-  }, []);
-  useEffect(() => {
     if (location.state) {
       let sum = 0;
       location.state.listSelectedRoom.listRoom.forEach((item, index) => {
@@ -110,14 +148,25 @@ const CheckoutPage = () => {
     }
   }, []);
 
-  if (location.state && user) {
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      setFormUser({
+        userName: user?.username,
+        email: user?.email,
+        phone: user?.phone,
+      });
+    }
+  }, [user]);
+
+  if (location.state && !user) {
     return (
       <section style={{ textAlign: "center", padding: "20px 0" }}>
-        <CircularProgress color="inherit" size={30} />;
+        <CircularProgress color="inherit" size={30} />
       </section>
     );
   }
-  console.log(location.state);
+
   return location.state && isAuthenticated ? (
     infoApartment ? (
       <main className="checkout-page">
@@ -185,9 +234,9 @@ const CheckoutPage = () => {
                 <TextField
                   variant="outlined"
                   className="textField"
-                  value={formUser.username}
+                  value={formUser.userName}
                   onChange={(e) =>
-                    setFormUser({ ...formUser, username: e.target.value })
+                    setFormUser({ ...formUser, userName: e.target.value })
                   }
                 />
               </section>
@@ -223,10 +272,8 @@ const CheckoutPage = () => {
                 <TextareaAutosize
                   className="textField"
                   minRows={3}
-                  value={formUser.note}
-                  onChange={(e) =>
-                    setFormUser({ ...formUser, note: e.target.value })
-                  }
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
                 />
               </section>
             </section>
@@ -270,7 +317,7 @@ const CheckoutPage = () => {
               </section>
             </section>
             <section style={{ width: "200px", marginTop: 30 }}>
-              <PrimaryButton title="Book Now" />
+              <PrimaryButton title="Book Now" action={handleSubmitBooking} />
             </section>
           </section>
         </section>
