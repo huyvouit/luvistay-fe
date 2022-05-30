@@ -39,17 +39,51 @@
     }
 
     &-show-detail{
-        width: max-content;
+        width: 14%;
         display: flex;
-        justify-content: end;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-end;
         &-btn{
-            padding: 15px 20px;
+            width: 100%;
+            padding: 15px 0;
             background-color: #c1b086;
             height: max-content;
             border-radius: 12px;
+            text-align: center;
             color: #fff;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        &-group{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 14px;
+            &-delete{
+                width: 48%;
+                padding: 15px 0;
+                background-color: rgb(227, 78, 78);
+                height: max-content;
+                border-radius: 12px;
+                text-align: center;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            &-edit{
+                width: 48%;
+                padding: 15px 0;
+                background-color: rgb(78, 165, 227);
+                height: max-content;
+                border-radius: 12px;
+                text-align: center;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -79,6 +79,10 @@ const HostApartment = () => {
                 </div>
                 <div className='host-apartment-show-detail'>
                     <h5 className='host-apartment-show-detail-btn' onClick={handleClickOpen} >Xem chi tiết</h5>
+                    <div className='host-apartment-show-detail-group'>
+                    <h5 className='host-apartment-show-detail-group-delete'>Xóa</h5>
+                    <h5 className='host-apartment-show-detail-group-edit'>Sửa</h5>
+                    </div>
                 </div>
             </div>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth maxWidth='md' >
