@@ -79,6 +79,7 @@ const ReviewsDetail = ({ apartment }) => {
 
   return (
     <main className="reviews-detail-wrapper">
+      <h1 className="reviews-post-title">Đánh giá "{apartment?.name}"</h1>
       <section className="reviews-header">
         <section className="reviews-header-left">
           <h1 className="reviews-header-quantity">
@@ -102,8 +103,6 @@ const ReviewsDetail = ({ apartment }) => {
       </section>
       {user && (
         <section className="reviews-post">
-          <h1 className="reviews-post-title">Đánh giá "{apartment?.name}"</h1>
-
           <section className="reviews-post-vote">
             <p className="reviews-post-text">Đánh giá của bạn: </p>
             <StarRating
