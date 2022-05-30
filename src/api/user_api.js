@@ -10,6 +10,10 @@ const userApi = {
     const url = "/bill/create-bill";
     return axiosClient.post(url, body);
   },
+  putUpdateUser: (body) => {
+    const url = "/user/";
+    return axiosClient.put(url, body);
+  },
 };
 
 export default userApi;
