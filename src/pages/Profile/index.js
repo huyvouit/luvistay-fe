@@ -72,14 +72,14 @@ const ProfilePage = () => {
             </div>
             <div className="colum-two">
               <section className="form">
-                <h1>My Account</h1>
+                <h1>Thông tin tài khoản</h1>
                 <TextField
                   className="text-field"
                   id="full-name"
                   type={"text"}
                   value={infoUserForm.username}
                   autoFocus
-                  label="Full name"
+                  label="Họ và tên"
                   variant="outlined"
                   required
                   onChange={(e) =>
@@ -95,7 +95,7 @@ const ProfilePage = () => {
                     id="phone-number"
                     type={"text"}
                     value={infoUserForm.phone}
-                    label="Phone number"
+                    label="Số điện thoại"
                     autoFocus
                     variant="outlined"
                     required
