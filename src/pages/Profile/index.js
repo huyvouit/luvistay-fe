@@ -5,13 +5,52 @@ import { TextField } from "@mui/material";
 import { AuthContext } from "../../hooks/contexts/auth_context";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTE } from "../../routes/app.routes";
+import { toast } from "react-toastify";
+import userApi from "../../api/user_api";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const {
     authState: { isAuthenticated, user },
     logoutUser,
+    loadUser,
   } = useContext(AuthContext);
+
+  const [infoUserForm, setInfoUserForm] = useState({
+    username: user?.username || "",
+    phone: user?.phone || "",
+  });
+
+  const handleSubmitChangeInfoUser = async () => {
+    try {
+      const infoUser = {
+        username: infoUserForm.username,
+        phone: infoUserForm.phone,
+      };
+      const res = await userApi.putUpdateUser(infoUser);
+      if (res.success) {
+        await loadUser();
+
+        toast.success("Cập nhật thông tin thành công", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    } catch (error) {
+      toast.error("Cập nhật thông tin thất bại", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
   return (
     <div className="profile">
       <div className="profile-container">
@@ -32,28 +71,40 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="colum-two">
-              <form>
-                <h1>My Account</h1>
+              <section className="form">
+                <h1>Thông tin tài khoản</h1>
                 <TextField
                   className="text-field"
                   id="full-name"
                   type={"text"}
-                  value={user?.username}
+                  value={infoUserForm.username}
                   autoFocus
-                  label="Full name"
+                  label="Họ và tên"
                   variant="outlined"
                   required
+                  onChange={(e) =>
+                    setInfoUserForm({
+                      ...infoUserForm,
+                      username: e.target.value,
+                    })
+                  }
                 />
                 <div className="group-pe">
                   <TextField
                     className="text-field"
                     id="phone-number"
                     type={"text"}
-                    value={user?.phone}
-                    label="Phone number"
+                    value={infoUserForm.phone}
+                    label="Số điện thoại"
                     autoFocus
                     variant="outlined"
                     required
+                    onChange={(e) =>
+                      setInfoUserForm({
+                        ...infoUserForm,
+                        username: e.target.value,
+                      })
+                    }
                   />
                   <TextField
                     className="text-field"
@@ -62,12 +113,15 @@ const ProfilePage = () => {
                     label="Email"
                     value={user?.email}
                     autoFocus
+                    disabled
                     variant="outlined"
                     required
                   />
                 </div>
-                <button type="submit">Save information</button>
-              </form>
+                <button onClick={handleSubmitChangeInfoUser}>
+                  Save information
+                </button>
+              </section>
             </div>
           </div>
         </div>

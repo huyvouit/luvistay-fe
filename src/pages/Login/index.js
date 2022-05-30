@@ -107,7 +107,6 @@ const SignInPage = () => {
               variant="outlined"
               type="email"
               className="textField"
-              value={loginForm.email}
               onChange={(e) =>
                 setLoginForm({ ...loginForm, email: e.target.value })
               }

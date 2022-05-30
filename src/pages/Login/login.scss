@@ -169,6 +169,8 @@
       }
 
       button {
+        font-family: "Noto Serif", serif;
+        // font-style: italic;
         @include screen1199 {
           width: 30%;
           margin-top: 25px;
