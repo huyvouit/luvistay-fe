@@ -17,6 +17,7 @@ import scrollToBottom from "../../helper/scrollToBottom";
 import { toast } from "react-toastify";
 
 import "./blog.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const BlogPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isProgress, setIsProgress] = useState(false);
   const [open, setOpen] = React.useState(false);
+
   const [page, setPage] = React.useState(1);
   const [formPost, setFormPost] = useState({
     content: "",
@@ -69,17 +71,30 @@ const BlogPage = () => {
       console.log(error);
     }
   };
+  const handleDeleteImage = (photo) => {
+    const temp = [...formPost.pictures].filter((item) => item !== photo);
+
+    setFormPost({
+      ...formPost,
+      pictures: temp,
+    });
+  };
 
   const renderPhotos = (source) => {
     return source
       ? source.map((photo, index) => {
           return (
-            <img
+            <section
               className="create-posts-input-img-result-img"
-              src={photo}
-              alt=""
-              key={index}
-            />
+              style={{ backgroundImage: `url(${photo})` }}
+            >
+              <FontAwesomeIcon
+                icon="fa-solid fa-trash-can"
+                className="icon-trash"
+                color="red"
+                onClick={() => handleDeleteImage(photo)}
+              />
+            </section>
           );
         })
       : null;
@@ -211,7 +226,7 @@ const BlogPage = () => {
                       <LinearProgress className="create-posts-input-img-result" />
                     ) : (
                       <div className="create-posts-input-img-result">
-                        {renderPhotos(formPost.pictures)}
+                        {formPost.pictures && renderPhotos(formPost.pictures)}
                       </div>
                     )}
                   </div>

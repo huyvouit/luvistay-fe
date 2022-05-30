@@ -119,11 +119,56 @@
             margin-top: 8px;
             justify-content: start;
             flex-wrap: wrap;
+            &-view{
+                // width: 33%;
+                position: relative;
+                
+            }
             &-img{
-                width: 33%;
-                object-fit: cover;
+                width:33%;
+                height: 100px;
+                position: relative;
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
                 margin-left: 1px;
                 margin-top: 20px;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    background-color: rgb(0,0,0,0.4);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    // border-radius: $border-radius;
+                  }
+                .icon-trash{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    transition: transform 0.3s ease;
+                    z-index: 1;
+                    cursor: pointer;
+                    width: 25px;
+                    height: 25px;
+                  }
+                // &:hover{
+                //     opacity: 0.5;
+                // }
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover::before {
+                      opacity: 0.8;
+                    }
+                
+                    &:hover .icon-trash {
+                      transform: translate(-50%, -50%) scale(1);
+                    }
+                  }
+              
             }
         }
 
