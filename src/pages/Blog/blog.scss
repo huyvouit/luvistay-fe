@@ -1,4 +1,6 @@
+@use "../../scss/"as *;
 .blog{
+
     padding: 1%;
     &-container{
         margin: 1% 0;
@@ -8,9 +10,15 @@
             width: 15%;
             justify-content: end;
             text-align: center;
+            @include screen750 {
+                width: max-content;
+            }
         }
         &-colum-two{
             width: 82%;
+            @include screen750 {
+                width: 100%;
+            }
             text-align: center;
             &-posts{
                 margin: 0 12%;

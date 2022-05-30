@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect,useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import SidebarProfile from '../Sidebar'
 import { TextField } from '@mui/material';
 import "./changePassword.scss"
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
 const ChangePassword = () => {
+    let navigate = useNavigate(); 
+    const {
+        authState: { isAuthenticated, user },
+        logoutUser,
+      } = useContext(AuthContext);
+
     return (
         <div className='change-password'>
             <div className='change-password-container'>
@@ -15,7 +24,7 @@ const ChangePassword = () => {
                         <div className='colum-one'>
                             <div className='colum-one-container'>
                                 <SidebarProfile/>
-                                <h2 className='colum-one-container-logout'>LOGOUT</h2>
+                                <h2 className='colum-one-container-logout' onClick={() => logoutUser(() => navigate(APP_ROUTE.HOME))}>ĐĂNG XUẤT</h2>
                             </div>
                         </div>
                         <div className='colum-two'>

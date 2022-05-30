@@ -1,3 +1,4 @@
+@use "../../../scss/"as *;
 .my-blog{
     padding: 1%;
     &-container{
@@ -8,9 +9,15 @@
             width: 15%;
             justify-content: end;
             text-align: center;
+            @include screen750 {
+                width: max-content;
+            }
         }
         &-colum-two{
             width: 82%;
+            @include screen750 {
+                width: 100%;
+            }
         }
 
     }

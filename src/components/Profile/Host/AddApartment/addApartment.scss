@@ -1,3 +1,4 @@
+@use "../../../../scss/"as *;
 .add-apartment{
     display: flex;
     justify-content: end;
@@ -22,27 +23,60 @@
         justify-content: space-between;
         width: 100%;
         margin-bottom: 24px;
+        @include screen550 {
+            display: flex;
+            flex-direction: column;
+        }
         &-name{
             width: 65% ;
+            @include screen550 {
+                width: 100%;
+            }
         }
 
         &-type{
             width: 33%;
+            display: flex;
+            flex-direction: column;
+            @include screen550 {
+                width: 100%;
+            }
         }
 
         &-rate{
             width: 65%;
+            @include screen550 {
+                width: 100%;
+            }
+        }
+
+        &-p{
+            display: none;
+            @include screen550 {
+               display: block;
+                height: 24px;
+            }
+
         }
 
         &-number-room{
             width: 23%;
+            @include screen550 {
+                width: 100%;
+            }
         }
         &-street{
             width: 75%;
+            @include screen550 {
+                width: 100%;
+            }
         }
 
         &-one{
             width: 32%;
+            @include screen550 {
+                width: 100%;
+            }
         }
     }
 

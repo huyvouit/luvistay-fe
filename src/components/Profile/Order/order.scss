@@ -1,3 +1,4 @@
+@use "../../../scss/"as *;
 .order {
     &-container {
         &-row-one {
@@ -29,11 +30,18 @@
                     display: flex;
                     justify-content: end;
                     text-align: center;
-
-                    &-container {
+                    @include screen750 {
+                        width: 40px;
+                    }
+                    &-container{
+                        @include screen750 {
+                            width: 100%;
+                        }
                         width: 70%;
-
-                        &-logout {
+                        &-logout{
+                            @include screen750 {
+                                display: none;
+                            }
                             width: 100%;
                             color: #333;
                             padding: 20px 0;
@@ -46,7 +54,11 @@
 
                 .colum-two {
                     width: 73%;
-
+                    @include screen750 {
+                        width: 95%;
+                        display: flex;
+                        justify-content: center;
+                    }
                     &-container {
                         width: 100%;
 

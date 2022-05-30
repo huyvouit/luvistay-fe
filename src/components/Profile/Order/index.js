@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect,useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import SidebarProfile from '../Sidebar'
-import { Link } from "react-router-dom";
 import "./order.scss"
 import Detail from '../DetailOrder';
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
 const Order = () => {
+    let navigate = useNavigate(); 
+    const {
+        authState: { isAuthenticated, user },
+        logoutUser,
+      } = useContext(AuthContext);
     return (
         <div className='order'>
             <div className='order-container'>
@@ -16,7 +23,7 @@ const Order = () => {
                         <div className='colum-one'>
                             <div className='colum-one-container'>
                                 <SidebarProfile />
-                                <h2 className='colum-one-container-logout'>LOGOUT</h2>
+                                <h2 className='colum-one-container-logout' onClick={() => logoutUser(() => navigate(APP_ROUTE.HOME))}>ĐĂNG XUẤT</h2>
                             </div>
                         </div>
                         <div className='colum-two'>

@@ -141,6 +141,7 @@ const AddApartment = () => {
                     <div className='popup-add-apartment'>
                         <div className='popup-add-apartment-box'>
                             <TextField className='popup-add-apartment-box-name' id="name-apartment" label="Tên apartment" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
                             <TextField
                                 className='popup-add-apartment-box-type'
                                 id="outlined-select-currency"
@@ -166,15 +167,19 @@ const AddApartment = () => {
                             setFormApartment({ ...formApartment, numberRoom: e.target.value })
                             }
                             />
+                            <p className='popup-add-apartment-box-p'></p>
                             <TextField className='popup-add-apartment-box-rate' id="rating" label="Đánh giá của căn hộ" variant="outlined" />
                         </div>
                         <div className='popup-add-apartment-box'>
                             <TextField className='popup-add-apartment-box-number-room' id="apartment-number" label="Số nhà" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
                             <TextField className='popup-add-apartment-box-street' id="street" label="đường" variant="outlined" />
                         </div>
                         <div className='popup-add-apartment-box'>
                             <TextField className='popup-add-apartment-box-one' id="district" label="quận\huyện" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
                             <TextField className='popup-add-apartment-box-one' id="province" label="tỉnh\thành phố" variant="outlined" />
+                            <p className='popup-add-apartment-box-p'></p>
                             <TextField className='popup-add-apartment-box-one' id="country" label="Quốc gia" variant="outlined" />
                         </div>
                         <TextField className='popup-add-apartment-description' multiline rows={5} id="description" label="Mô tả căn hộ" variant="outlined" />
