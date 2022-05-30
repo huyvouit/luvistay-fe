@@ -42,17 +42,12 @@ const ResultSearch = ({
 
   const handleSelectedRoom = (apartment, item) => {
     if (apartment._id === listSelectedRoom.apartment.apartmentId) {
-      console.log("đã chọn apartment này");
-      if (listSelectedRoom.listRoom?.includes(item._id)) {
-        console.log(
-          "đã chọn room cua apartment này",
-          listSelectedRoom.listRoom?.length
-        );
+      if (listSelectedRoom.listRoom?.some((room) => item._id === room._id)) {
         if (listSelectedRoom.listRoom?.length > 1) {
           const temp = listSelectedRoom?.listRoom?.filter(
-            (selected) => selected !== item._id
+            (selected) => selected._id !== item._id
           );
-          console.log("temp:", temp);
+
           if (temp.length === 0) {
             setListSelectedRoom({
               ...listSelectedRoom,
@@ -74,18 +69,16 @@ const ResultSearch = ({
           });
         }
       } else {
-        console.log("chon thêm room khác của ap nay");
         setListSelectedRoom({
           ...listSelectedRoom,
-          listRoom: [...listSelectedRoom.listRoom, item._id],
+          listRoom: [...listSelectedRoom.listRoom, item],
         });
       }
     } else {
-      console.log("chưa chọn apartment nào");
       setListSelectedRoom({
         ...listSelectedRoom,
         apartment: { apartmentId: apartment._id, owner: apartment.owner },
-        listRoom: [item._id],
+        listRoom: [item],
       });
     }
   };
@@ -95,7 +88,6 @@ const ResultSearch = ({
       // const temp = [...openApartment].filter((selected) => selected != item);
       setOpenApartment([]);
     } else {
-      // console.log("in:", [...openApartment]);
       setOpenApartment([...openApartment, item]);
     }
   };
@@ -133,7 +125,7 @@ const ResultSearch = ({
         </section>
         {!openApartment.includes(info._id) ? (
           <>
-            {info.rooms.map((item, index) => {
+            {info?.rooms?.map((item, index) => {
               return (
                 <section key={index} className="list-room-show">
                   <section className="row-one">
@@ -152,12 +144,16 @@ const ResultSearch = ({
                     <Button
                       onClick={() => handleSelectedRoom(info, item)}
                       style={{
-                        color: listSelectedRoom.listRoom?.includes(item._id)
+                        color: listSelectedRoom.listRoom?.some(
+                          (room) => room._id === item._id
+                        )
                           ? "red"
                           : "blue",
                       }}
                     >
-                      {listSelectedRoom.listRoom?.includes(item._id)
+                      {listSelectedRoom.listRoom?.some(
+                        (room) => room._id === item._id
+                      )
                         ? "Bỏ chọn"
                         : "Chọn"}
                     </Button>
@@ -165,12 +161,12 @@ const ResultSearch = ({
                 </section>
               );
             })}
-            {listSelectedRoom.apartment?.apartmentId === info._id && (
+            {listSelectedRoom?.apartment?.apartmentId === info._id && (
               <section style={{ display: "flex", justifyContent: "center" }}>
                 <PrimaryButton
                   title="Đặt phòng"
                   action={
-                    !user
+                    user
                       ? () =>
                           navigate(APP_ROUTE.CHECKOUT, {
                             state: { listSelectedRoom, body: infoDate },

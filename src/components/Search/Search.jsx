@@ -16,7 +16,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location.state.people);
+
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
 
@@ -34,14 +34,15 @@ const Search = () => {
 
   const handleSearchRoom = () => {
     const body = {
-      checkinDate: formatDate(checkin),
-      checkoutDate: formatDate(checkout),
-      people: people,
+      checkinDate: location.state?.infoDate?.checkinDate || formatDate(checkin),
+      checkoutDate:
+        location.state?.infoDate?.checkoutDate || formatDate(checkout),
+      people: location.state?.infoDate?.people || people,
       city: city,
     };
 
     getApartmentBySearchApi(dispatch, body, () =>
-      navigate(APP_ROUTE.SEARCH, { state: body })
+      navigate(APP_ROUTE.SEARCH, { state: { infoDate: body } })
     );
   };
 
@@ -70,7 +71,8 @@ const Search = () => {
                 Lựa chon các phòng có sẵn theo từng căn hộ.
               </p>
               <section>
-                {searchApartment.length >= 2 ? (
+                {searchApartment.length >= 1 &&
+                Array.isArray(searchApartment) ? (
                   searchApartment.map((item, index) => {
                     return (
                       <ResultSearch
@@ -78,12 +80,17 @@ const Search = () => {
                         info={item}
                         listSelectedRoom={listSelectedRoom}
                         setListSelectedRoom={setListSelectedRoom}
-                        infoDate={location?.state}
+                        infoDate={location?.state?.infoDate}
                       />
                     );
                   })
                 ) : (
-                  <ResultSearch info={searchApartment} />
+                  <ResultSearch
+                    info={searchApartment}
+                    listSelectedRoom={listSelectedRoom}
+                    setListSelectedRoom={setListSelectedRoom}
+                    infoDate={location?.state?.infoDate}
+                  />
                 )}
               </section>
             </>

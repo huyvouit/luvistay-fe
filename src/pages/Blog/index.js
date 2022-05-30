@@ -48,16 +48,19 @@ const BlogPage = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("thumbnail", e.target.files[0]);
+    for (var i = 0; i < e.target.files.length; i++) {
+      formData.append("thumbnail", e.target.files[i]);
+    }
 
     try {
       if (e.target.files) {
         setIsProgress(true);
+        console.log(formData);
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
           setFormPost({
             ...formPost,
-            pictures: [...formPost.pictures, res.data],
+            pictures: [...formPost.pictures, ...res.data],
           });
           setIsProgress(false);
         }

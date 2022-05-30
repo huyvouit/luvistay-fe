@@ -63,11 +63,14 @@ export default function AppRoutes() {
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
 
-              <Route path={APP_ROUTE.DETAIL} element={<ApartmentDetailPage />} />
+              <Route
+                path={APP_ROUTE.DETAIL}
+                element={<ApartmentDetailPage />}
+              />
 
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
-{/* <<<<<<< HEAD
+              {/* <<<<<<< HEAD
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
               <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order />} />
               <Route path={APP_ROUTE.PROFILE_HOST} element={<Host />} />
@@ -116,7 +119,7 @@ function RequireAuth({ children }) {
   const {
     authState: { isAuthenticated, authLoading },
   } = useContext(AuthContext);
-  console.log("require", isAuthenticated);
+
   if (authLoading) return <div>Loading...</div>;
   if (!isAuthenticated) {
     return <Navigate to={APP_ROUTE.SIGNIN} state={{ from: location }} />;

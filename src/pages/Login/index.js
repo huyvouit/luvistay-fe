@@ -56,7 +56,7 @@ const SignInPage = () => {
       console.log(error);
     }
   };
-  console.log(authLoading);
+
   return authLoading ? (
     <Backdrop
       sx={{ color: "#c1b086", zIndex: (theme) => theme.zIndex.drawer + 1 }}
