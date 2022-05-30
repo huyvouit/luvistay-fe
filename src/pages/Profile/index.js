@@ -27,7 +27,7 @@ const ProfilePage = () => {
                   className="colum-one-container-logout"
                   onClick={() => logoutUser(() => navigate(APP_ROUTE.HOME))}
                 >
-                  LOGOUT
+                  ĐĂNG XUẤT
                 </div>
               </div>
             </div>

@@ -1,7 +1,8 @@
 @use "../../scss/" as *;
-.profile{
-    &-container{
-        &-row-one{
+
+.profile {
+    &-container {
+        &-row-one {
             height: 35vh;
             width: 100%;
             background-image: url("../../assets/images/profile.png");
@@ -9,57 +10,83 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            h2{
+
+            h2 {
                 font-size: 40px;
                 color: #fff;
                 font-weight: 500;
             }
         }
-        &-row-two{
+
+        &-row-two {
             padding: 2%;
-            &-container{
+
+            &-container {
                 margin: 2% 0;
                 display: flex;
                 justify-content: space-between;
-                .colum-one{
+
+                .colum-one {
                     width: 25%;
                     display: flex;
                     justify-content: end;
                     text-align: center;
-                    &-container{
+
+                    @include screen750 {
+                        width: 40px;
+                    }
+
+                    &-container {
+                        @include screen750 {
+                            width: 100%;
+                        }
+
                         width: 70%;
-                        &-logout{
+
+                        &-logout {
+                            @include screen750 {
+                                display: none;
+                            }
+
                             width: 100%;
                             color: #333;
                             padding: 20px 0;
                             cursor: pointer;
                             padding-right: 20%;
-                            border-right: 1px solid #333 ;
+                            border-right: 1px solid #333;
                         }
                     }
                 }
 
-                .colum-two{
+                .colum-two {
                     width: 73%;
-                    form{
+
+                    @include screen750 {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    form {
                         width: 80%;
-                        h1{
+
+                        h1 {
                             font-family: "Noto Serif", serif;
                             color: #222;
                             line-height: 1.4;
                             font-weight: 500;
                             letter-spacing: -0.5px;
                             font-size: 30px;
-                            margin-bottom: 12px;         
+                            margin-bottom: 12px;
                         }
 
-                        .text-field{
+                        .text-field {
                             width: 100%;
                             margin: 10px;
                             outline: #222;
                         }
 
-                        button{
+                        button {
                             width: max-content;
                             background-color: #222;
                             color: #fff;
@@ -76,6 +103,6 @@
                 }
             }
         }
-        
+
     }
 }

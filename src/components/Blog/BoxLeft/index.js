@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { AuthContext } from "../../../hooks/contexts/auth_context";
 import "./boxLeft.scss";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BoxLeft = () => {
+  let navigate = useNavigate(); 
   const {
     authState: { user },
   } = useContext(AuthContext);
@@ -20,6 +24,21 @@ const BoxLeft = () => {
         setLocationHref(management[i].managementId);
     }
   }, [window.location.href]);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    navigate("/blog");
+  };
+  const handleClose1 = () => {
+    setAnchorEl(null);
+    navigate("/my-blog");
+  };
+
   return (
     <>
       {management.map((item, index) => {
@@ -46,6 +65,33 @@ const BoxLeft = () => {
           );
         }
       })}
+      {
+        user ? <FontAwesomeIcon
+        className="menu-icon"
+          onClick={handleClick}
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          icon="fa-solid fa-bars"
+          style={{ width: "30px", height: "30px !important" }}
+        /> : <Link
+        to="/blog" className="menu-icon"
+      >
+        <h2>BÀI VIẾT</h2>
+      </Link>
+      }
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose} >BÀI VIẾT</MenuItem>
+        <MenuItem onClick={handleClose1}>BÀI VIẾT CỦA TÔI</MenuItem>
+      </Menu>
     </>
   );
 };

@@ -43,16 +43,20 @@ const AddRoom = () => {
         <div className='add-room'>
             <div className='add-room-box'>
                 <TextField className='add-room-box-two' id="name-room" label="Tên phòng" variant="outlined" />
+                <p className='add-room-box-p'></p>
                 <TextField className='add-room-box-three' type={'number'} id="number-bed" label="Số giường" variant="outlined" />
             </div>
             <div className='add-room-box'>
                 <TextField className='add-room-box-one' id="square" label="Diện tích phòng" variant="outlined" />
+                <p className='add-room-box-p'></p>
                 <TextField className='add-room-box-one' id="capacity" label="Sức chứa của phòng" variant="outlined" />
+                <p className='add-room-box-p'></p>
                 <TextField className='add-room-box-one' type={'number'} id="rate" label="Đánh giá" variant="outlined" />
             </div>
             <div className='add-room-box'>
                 <TextField className='add-room-box-two' id="price" label="Giá tiền" variant="outlined" />
-                <TextField className='add-room-box-three'
+                <p className='add-room-box-p'></p>
+                <TextField className='add-room-box-type'
                     id="isAvailable" select
                     label="Trạng thái"
                     value={currency}

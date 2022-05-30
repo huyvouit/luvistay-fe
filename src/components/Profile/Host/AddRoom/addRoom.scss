@@ -1,3 +1,4 @@
+@use "../../../../scss/"as *;
 .add-room{
 
     width: 100%;
@@ -10,15 +11,45 @@
         justify-content: space-between;
         width: 100%;
         margin-bottom: 24px;
+        @include screen550 {
+            display: flex;
+            flex-direction: column;
+        }
         &-one{
             width: 32%;
+            @include screen550 {
+                width: 100%;
+            }
         }
         &-two{
             width: 65%;
+            @include screen550 {
+                width: 100%;
+            }
+        }
+        &-p{
+            display: none;
+            @include screen550 {
+               display: block;
+                height: 24px;
+            }
+
         }
 
         &-three{
             width: 33%;
+            @include screen550 {
+                width: 100%;
+            }
+        }
+
+        &-type{
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            @include screen550 {
+                width: 100%;
+            }
         }
     }
 
