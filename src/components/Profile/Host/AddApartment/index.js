@@ -127,6 +127,7 @@ const AddApartment = () => {
         pictures: "",
     });
 
+
     return (
         <>
             <div className='add-apartment'>
@@ -206,7 +207,7 @@ const AddApartment = () => {
                     Thêm phòng
                 </DialogTitle>
                 <DialogContent dividers>
-                    {[...Array(5)].map((item, index) =>
+                    {[...Array(formApartment.numberRoom)].map((item, index) =>
                         <div className='popup-add-room'>
                             <h2 className='popup-add-room-title'>Phòng {index+1}</h2>
                             <AddRoom key={index} />

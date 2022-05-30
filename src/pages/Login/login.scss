@@ -3,17 +3,19 @@
 .login-page {
   &-container {
     background-color: white;
-    box-shadow: 1px 1px 18px 1px #e0e0e0;
     display: flex;
     justify-content: space-between;
 
     &-colum-one {
       width: 50%;
       height: 100%;
+      @include screen1199 {
+        display: none;
+    }
       .login-slide-show {
         width: 100%;
         cursor: pointer;
-
+        
         .slideshow {
           position: relative;
           display: flex;
@@ -22,6 +24,9 @@
           .mainImg {
             width: 100%;
             height: 100vh;
+            @include screen1199 {
+              height: auto;
+          }
             transition: all 500ms;
             object-fit: fill;
           }
@@ -40,10 +45,8 @@
             border: none;
             cursor: pointer;
             padding: 10px;
-            padding-top: 10px;
             margin: 5px;
             border-radius: 15px;
-            padding-top: 5px;
           }
 
           .actions button:active {
@@ -51,10 +54,8 @@
             border: none;
             cursor: pointer;
             padding: 10px;
-            padding-top: 10px;
             margin: 5px;
             border-radius: 15px;
-            padding-top: 5px;
           }
         }
       }
@@ -66,9 +67,15 @@
 
     &-colum-two {
       width: 45%;
-
+      @include screen1199 {
+        width: 100%;
+    }
       &-logo {
         margin-top: 25px;
+        @include screen1199 {
+          margin: 0 auto;
+          margin-top: 25px;
+      }
       }
 
       &-title {
@@ -80,9 +87,15 @@
         margin-top: 10px;
         margin-left: 12px;
         letter-spacing: -0.5px;
+        @include screen1199 {
+          text-align: center;
+      }
       }
 
       &-description {
+        @include screen1199 {
+          text-align: center;
+      }
         color: #222;
         font-family: "Open Sans", sans-serif;
         font-size: 16px;
@@ -96,6 +109,19 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        @include screen1199 {
+          width: 30%;
+          margin-left: 35%;
+          margin-right: 35%;
+          margin-bottom: 24px;
+      }
+
+      @include screen650 {
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-bottom: 24px;
+    }
         width: 50%;
         margin: 0 15%;
         label {
@@ -143,6 +169,17 @@
       }
 
       button {
+        @include screen1199 {
+          width: 30%;
+          margin-top: 25px;
+          margin: 0 35%;
+        }
+
+        @include screen650 {
+          width: 50%;
+          margin-left: 25%;
+      }
+
         padding: 10px 20px;
         background-color: #222;
         color: #e0e0e0;
@@ -194,6 +231,9 @@
       }
 
       .to-sign-up {
+        @include screen1199 {
+          text-align: center;
+      }
         margin: 0 15%;
         margin-top: 28px;
         color: #222;

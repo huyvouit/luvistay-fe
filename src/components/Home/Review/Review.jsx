@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PrimaryButton from "../../PrimaryButton";
 import { BANNER_IMAGE } from "../constants";
 import "./review.scss";
+import icon_left from "../../../assets/icons/arrow-left.svg"
+import icon_right from "../../../assets/icons/arrow-right.svg"
 
 const ReviewOne = ({}) => {
   return (
@@ -95,8 +97,12 @@ const Slideshow = ({ imgs }) => {
       <img className="mainImg main-img-three" src={imgs[index + 2]} />
       <img className="mainImg main-img-four" src={imgs[index + 3]} />
       <div className="actions">
-        <button onClick={prev}>👈</button>
-        <button onClick={next}>👉</button>
+      <button onClick={prev}>
+          <img src={icon_left}/>
+        </button>
+        <button onClick={next}>
+        <img src={icon_right}/>
+        </button>
       </div>
     </div>
   );

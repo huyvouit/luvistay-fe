@@ -108,6 +108,7 @@ const Posts = ({ blog }) => {
       if (res.success) {
         fetchCommentByBlog();
         setIsLoading(false);
+        setFormComment({ ...formComment, content: "" })
       }
     } catch (error) {
       setIsLoading(false);
