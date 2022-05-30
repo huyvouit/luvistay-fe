@@ -245,6 +245,7 @@ const BlogPage = () => {
                 </button>
               </DialogActions>
             </Dialog>
+            
             {listBlog.map((item, index) => {
               return <Posts blog={item} key={index} userLiked="true" />;
             })}
