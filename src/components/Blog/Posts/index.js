@@ -68,6 +68,10 @@ const Posts = ({ blog }) => {
     setAnchorEl(null);
   };
 
+  const handleCloseMenu2 = () => {
+    setAnchorEl(null);
+  };
+
 
   const handleClickOpen = () => {
     setOpen1(true);
@@ -256,7 +260,7 @@ const Posts = ({ blog }) => {
               id="basic-menu"
               anchorEl={anchorEl}
               open={open}
-              onClose={handleCloseMenu}
+              onClose={handleCloseMenu2}
               MenuListProps={{
                 'aria-labelledby': 'basic-button',
               }}
