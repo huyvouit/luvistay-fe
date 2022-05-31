@@ -1,20 +1,24 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SRLWrapper } from "simple-react-lightbox";
-import blogApi from "../../../api/blog_api";
-import { AuthContext } from "../../../hooks/contexts/auth_context";
-import { getLikeBlogByUserApi } from "../../../redux/Api/user";
+import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
-import "./posts.scss";
-import { CircularProgress,LinearProgress } from "@material-ui/core";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+
+import { CircularProgress, LinearProgress } from "@material-ui/core";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { getLikeBlogByUserApi } from "../../../redux/Api/user";
+import { APP_ROUTE } from "../../../routes/app.routes";
+import blogApi from "../../../api/blog_api";
 import avatar from "../../../assets/images/profile.png";
+
+import "./posts.scss";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -28,11 +32,13 @@ const imgs = [
 ];
 
 const Posts = ({ blog }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     authState: { user },
   } = useContext(AuthContext);
   const listLikeUser = useSelector((state) => state.user.likeBlog);
+
   const [listComments, setListComments] = React.useState(null);
   const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
@@ -43,7 +49,6 @@ const Posts = ({ blog }) => {
     blogId: blog?._id,
     content: "",
   });
-
   const checkSeen = () => setSeen(!seen);
   const checkLike = () => setLike(!like);
   const checkComment = () => setComment(!comment);
@@ -56,7 +61,6 @@ const Posts = ({ blog }) => {
     content: blog?.content,
     pictures: blog?.pictures,
   });
-
 
   const handleClickMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,7 +77,6 @@ const Posts = ({ blog }) => {
   const handleCloseMenu2 = () => {
     setAnchorEl(null);
   };
-
 
   const handleClickOpen = () => {
     setOpen1(true);
@@ -121,6 +124,8 @@ const Posts = ({ blog }) => {
       console.log(error);
     }
   };
+
+  // xoá ảnh đã thêm
   const handleDeleteImage = (photo) => {
     const temp = [...formPost.pictures].filter((item) => item !== photo);
 
@@ -130,6 +135,7 @@ const Posts = ({ blog }) => {
     });
   };
 
+  //render ảnh
   const renderPhotos = (source) => {
     return source
       ? source.map((photo, index) => {
@@ -150,8 +156,7 @@ const Posts = ({ blog }) => {
       : null;
   };
 
-
-
+  // Tương tác với bài viết
   const handleReactBlog = async (blogId) => {
     if (listLikeUser?.some((item) => item.blogId?._id === blogId)) {
       // setLike(true);
@@ -219,7 +224,7 @@ const Posts = ({ blog }) => {
       if (res.success) {
         fetchCommentByBlog();
         setIsLoading(false);
-        setFormComment({ ...formComment, content: "" })
+        setFormComment({ ...formComment, content: "" });
       }
     } catch (error) {
       setIsLoading(false);
@@ -247,9 +252,13 @@ const Posts = ({ blog }) => {
     <>
       <div className="posts">
         <div className="posts-container">
-          <div className="posts-container-row-one" >
+          <div className="posts-container-row-one">
             <div className="posts-container-row-one-user">
-              <img className="posts-container-row-one-user-img" src={imgs[0]} alt="" />
+              <img
+                className="posts-container-row-one-user-img"
+                src={imgs[0]}
+                alt=""
+              />
               <div className="posts-container-row-one-user-information">
                 <h2 className="posts-container-row-one-user-information-name">
                   {blog?.author?.username || "Admin"}
@@ -259,27 +268,29 @@ const Posts = ({ blog }) => {
                 </p>
               </div>
             </div>
-            {
-              blog?.author ? <FontAwesomeIcon
+            {blog?.author ? (
+              <FontAwesomeIcon
                 className="posts-container-row-one-icon"
                 onClick={handleClickMenu}
-                aria-controls={open ? 'basic-menu' : undefined}
+                aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 icon="fa-solid fa-ellipsis-vertical"
                 style={{ width: "30px", height: "30px !important" }}
-              /> : <div></div>
-            }
+              />
+            ) : (
+              <div></div>
+            )}
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
               open={open}
               onClose={handleCloseMenu2}
               MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                "aria-labelledby": "basic-button",
               }}
             >
-              <MenuItem onClick={handleCloseMenu} >Chỉnh sửa</MenuItem>
+              <MenuItem onClick={handleCloseMenu}>Chỉnh sửa</MenuItem>
               <MenuItem onClick={handleCloseMenu1}>Xóa</MenuItem>
             </Menu>
           </div>
@@ -302,7 +313,10 @@ const Posts = ({ blog }) => {
               </span>
             )}
           </p>
-          <div className="posts-container-img">
+          <div
+            className="posts-container-img"
+            onClick={() => navigate(`/blog/${blog?._id}`, { state: { blog } })}
+          >
             {blog?.pictures &&
               blog?.pictures?.map((item, index) => {
                 if (blog?.pictures?.length === 1) {
@@ -371,7 +385,7 @@ const Posts = ({ blog }) => {
           <div className="posts-container-report">
             <div className="posts-container-report-box">
               <h3
-                onClick={user ? () => handleReactBlog(blog?._id) : () => { }}
+                onClick={user ? () => handleReactBlog(blog?._id) : () => {}}
                 className={
                   like
                     ? "posts-container-report-box-btn-like"
@@ -448,7 +462,9 @@ const Posts = ({ blog }) => {
                           {item?.author?.username || "Admin"}
                         </h4>
                         <p className="posts-container-cmt-container-box-information-time">
-                          <Moment format="hh:mm DD/MM/YYYY ">{item?.date}</Moment>
+                          <Moment format="hh:mm DD/MM/YYYY ">
+                            {item?.date}
+                          </Moment>
                         </p>
                       </div>
                       <p className="posts-container-cmt-container-box-description">
@@ -523,7 +539,7 @@ const Posts = ({ blog }) => {
             Hủy
           </Button>
           <button className="button-posts" onClick={handleCloseAndSave}>
-              Lưu
+            Lưu
           </button>
         </DialogActions>
       </Dialog>
@@ -544,7 +560,7 @@ const Posts = ({ blog }) => {
             Hủy
           </Button>
           <button className="button-posts" onClick={handleCloseAndDelete}>
-              Xóa
+            Xóa
           </button>
         </DialogActions>
       </Dialog>

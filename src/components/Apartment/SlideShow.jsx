@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import icon_left from "../../assets/icons/arrow-left.svg"
-import icon_right from "../../assets/icons/arrow-right.svg"
+import icon_left from "../../assets/icons/arrow-left.svg";
+import icon_right from "../../assets/icons/arrow-right.svg";
 
 const Slideshow = ({ imgs }) => {
   const [index, setIndex] = useState(0);
@@ -29,10 +29,10 @@ const Slideshow = ({ imgs }) => {
       <img className="mainImg" src={imgs[index]} alt="" />
       <section className="actions">
         <button onClick={prev}>
-          <img src={icon_left}/>
+          <img src={icon_left} alt="" />
         </button>
         <button onClick={next}>
-        <img src={icon_right}/>
+          <img src={icon_right} alt="" />
         </button>
       </section>
     </section>

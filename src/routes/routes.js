@@ -35,6 +35,7 @@ import MyBlog from "../components/Blog/MyBlog/";
 
 import ScrollToTop from "../helper/scrollToTop";
 import { AuthContext } from "../hooks/contexts/auth_context";
+import DetailBlog from "../pages/Blog/Detail";
 
 const HomePage = lazy(() => import("../pages/Home"));
 export default function AppRoutes() {
@@ -100,6 +101,7 @@ export default function AppRoutes() {
 
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
+              <Route path={APP_ROUTE.BLOG_DETAIL} element={<DetailBlog />} />
             </Route>
 
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />

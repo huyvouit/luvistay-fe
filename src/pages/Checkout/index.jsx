@@ -102,7 +102,7 @@ const CheckoutPage = () => {
         apartmentId: location.state.listSelectedRoom.apartment.apartmentId,
         owner: location.state.listSelectedRoom.apartment.owner,
         beginDate: location.state.body.checkinDate,
-        endDate: location.state.body.checkinDate,
+        endDate: location.state.body.checkoutDate,
         roomIds,
         totalBookingPeople: location.state.body.people,
         userBookingInfos: formUser,
