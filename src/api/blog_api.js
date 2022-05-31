@@ -21,7 +21,10 @@ const blogApi = {
     const url = "/blog/upload";
     return axiosClient.post(url, body);
   },
-
+  deleteBlog: (id) => {
+    const url = `/blog/user-delete/${id}`;
+    return axiosClient.delete(url);
+  },
   getLikeBlogByUser: (params) => {
     const url = `/blog/like`;
     return axiosClient.get(url, { params });

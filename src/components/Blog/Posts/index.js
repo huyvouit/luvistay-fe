@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
@@ -52,7 +52,6 @@ const Posts = ({ blog }) => {
     content: "",
   });
   const checkSeen = () => setSeen(!seen);
-
   const checkComment = () => setComment(!comment);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
@@ -96,7 +95,7 @@ const Posts = ({ blog }) => {
         getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
         toast.success("Bài viết đã được cập nhật", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -115,8 +114,27 @@ const Posts = ({ blog }) => {
     setOpen2(false);
   };
 
-  const handleCloseAndDelete = () => {
-    setOpen2(false);
+  const handleCloseAndDelete = async (blogId) => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.deleteBlog(blogId);
+      if (res.success) {
+        getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
+        toast.success("Bài viết đã được xóa", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setIsLoading(false);
+
+        setOpen2(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Chỉnh sử ở đây thêm hàm cập nhật nữa
@@ -563,7 +581,11 @@ const Posts = ({ blog }) => {
             className="button-posts"
             onClick={() => handleCloseAndSave(blog._id)}
           >
-            Lưu
+            {isLoading ? (
+              <CircularProgress color="inherit" size={25} />
+            ) : (
+              "Cập nhật"
+            )}
           </button>
         </DialogActions>
       </Dialog>
@@ -583,8 +605,11 @@ const Posts = ({ blog }) => {
           <Button onClick={handleClose1} color="primary">
             Hủy
           </Button>
-          <button className="button-posts" onClick={handleCloseAndDelete}>
-            Xóa
+          <button
+            className="button-posts"
+            onClick={() => handleCloseAndDelete(blog._id)}
+          >
+            {isLoading ? <CircularProgress color="inherit" size={10} /> : "Xóa"}
           </button>
         </DialogActions>
       </Dialog>
