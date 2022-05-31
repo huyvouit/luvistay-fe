@@ -19,6 +19,8 @@ import blogApi from "../../../api/blog_api";
 import avatar from "../../../assets/images/profile.png";
 
 import "./posts.scss";
+import { getAllBlogByUserApi } from "../../../redux/Api/blog";
+import { toast } from "react-toastify";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -86,8 +88,27 @@ const Posts = ({ blog }) => {
     setOpen1(false);
   };
 
-  const handleCloseAndSave = () => {
-    setOpen1(false);
+  const handleCloseAndSave = async (blogId) => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.updateBlog({ blogId, data: formPost });
+      if (res.success) {
+        getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
+        toast.success("Bài viết đã được cập nhật", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setIsLoading(false);
+
+        setOpen1(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleClose1 = () => {
@@ -110,7 +131,7 @@ const Posts = ({ blog }) => {
     try {
       if (e.target.files) {
         setIsProgress(true);
-        console.log(formData);
+
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
           setFormPost({
@@ -538,7 +559,10 @@ const Posts = ({ blog }) => {
           <Button onClick={handleClose} color="primary">
             Hủy
           </Button>
-          <button className="button-posts" onClick={handleCloseAndSave}>
+          <button
+            className="button-posts"
+            onClick={() => handleCloseAndSave(blog._id)}
+          >
             Lưu
           </button>
         </DialogActions>

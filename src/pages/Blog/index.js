@@ -154,28 +154,30 @@ const BlogPage = () => {
         ) : (
           <div className="blog-container-colum-two">
             {isAuthenticated && (
-              <div className="blog-container-colum-two-posts">
-                <div className="blog-container-colum-two-posts-box">
-                  <img
-                    src={avatar}
-                    className="blog-container-colum-two-posts-box-img"
-                    alt=""
-                  />
+              <section style={{ width: "100%", padding: "0 12%" }}>
+                <div className="blog-container-colum-two-posts">
+                  <div className="blog-container-colum-two-posts-box">
+                    <img
+                      src={avatar}
+                      className="blog-container-colum-two-posts-box-img"
+                      alt=""
+                    />
+                    <p
+                      onClick={handleClickOpen}
+                      className="blog-container-colum-two-posts-box-title"
+                    >
+                      {user?.username} ơi, Cảm nhận của bạn về trải nghiệm ở căn
+                      hộ như nào?
+                    </p>
+                  </div>
                   <p
                     onClick={handleClickOpen}
-                    className="blog-container-colum-two-posts-box-title"
+                    className="blog-container-colum-two-posts-text"
                   >
-                    {user?.username} ơi, Cảm nhận của bạn về trải nghiệm ở căn
-                    hộ như nào?
+                    Tạo bài viết
                   </p>
                 </div>
-                <p
-                  onClick={handleClickOpen}
-                  className="blog-container-colum-two-posts-text"
-                >
-                  Tạo bài viết
-                </p>
-              </div>
+              </section>
             )}
 
             <Dialog
@@ -245,7 +247,7 @@ const BlogPage = () => {
                 </button>
               </DialogActions>
             </Dialog>
-            
+
             {listBlog.map((item, index) => {
               return <Posts blog={item} key={index} userLiked="true" />;
             })}

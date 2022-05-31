@@ -134,15 +134,16 @@ const DetailBlog = () => {
     }
   };
   useEffect(() => {
-    if (
-      listLikeUser?.some(
-        (item) => item.blogId?._id === location?.state.blog._id
-      )
-    ) {
-      setLike(true);
-    } else {
-      setLike(false);
+    if (listLikeUser) {
+      setLike(
+        listLikeUser?.some(
+          (item) => item.blogId?._id === location.state.blog._id
+        )
+      );
     }
+    return () => {
+      setLike(false);
+    };
   }, [listLikeUser]);
 
   useEffect(() => {
@@ -150,7 +151,7 @@ const DetailBlog = () => {
     fetchCommentByBlog();
     return {};
   }, []);
-  console.log(like);
+
   if (!location.state.blog) {
     return <Navigate to={APP_ROUTE.HOME} />;
   }

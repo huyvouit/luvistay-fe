@@ -13,6 +13,10 @@ const blogApi = {
     const url = "/blog/";
     return axiosClient.post(url, body);
   },
+  updateBlog: (body) => {
+    const url = "/blog/update";
+    return axiosClient.put(url, body);
+  },
   uploadImageBlog: (body) => {
     const url = "/blog/upload";
     return axiosClient.post(url, body);
