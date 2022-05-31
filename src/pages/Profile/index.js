@@ -119,7 +119,7 @@ const ProfilePage = () => {
                   />
                 </div>
                 <button onClick={handleSubmitChangeInfoUser}>
-                  Save information
+                  Lưu thông tin
                 </button>
               </section>
             </div>

@@ -61,7 +61,7 @@ const HotelOne = ({ item }) => {
               </section> */}
               {/* <section className="outlined-button"> */}
               <PrimaryButton
-                title="View Detail"
+                title="Xem chi tiết"
                 action={() => navigate(`/apartment/${item._id}`)}
               />
               {/* </section> */}
@@ -101,7 +101,7 @@ const HotelTwo = ({ item }) => {
               {/* </section> */}
               {/* <section className="outlined-button"> */}
               <PrimaryButton
-                title="View Detail"
+                title="Xem chi tiết"
                 action={() => navigate(`/apartment/${item._id}`)}
               />
               {/* </section> */}

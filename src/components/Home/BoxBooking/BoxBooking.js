@@ -125,7 +125,7 @@ const BoxBooking = () => {
           className="boxbooking-section-search"
           onClick={() => handleSubmitSearch(formSearch)}
         >
-          Search
+          Tìm kiếm
         </section>
       </section>
     </main>
