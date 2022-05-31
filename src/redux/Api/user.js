@@ -1,7 +1,8 @@
 import apartmentApi from "../../api/aparment_api";
 import blogApi from "../../api/blog_api";
+import userApi from "../../api/user_api";
 
-import { getLikeBlogByUser } from "../Actions";
+import { getLikeBlogByUser, getOrderByUser } from "../Actions";
 
 const getLikeBlogByUserApi = async (dispatch, params) => {
   try {
@@ -17,4 +18,18 @@ const getLikeBlogByUserApi = async (dispatch, params) => {
   }
 };
 
-export { getLikeBlogByUserApi };
+const getOrderByUserApi = async (dispatch) => {
+  try {
+    const res = await userApi.getOrderByUser();
+    if (res.success) {
+      //   console.log(res.data);
+      dispatch(getOrderByUser(res.data));
+    } else {
+      dispatch(getOrderByUser(null));
+    }
+  } catch (error) {
+    window.alert(error);
+  }
+};
+
+export { getLikeBlogByUserApi, getOrderByUserApi };

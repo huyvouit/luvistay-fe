@@ -1,8 +1,8 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./sidebar.scss";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { APP_ROUTE } from "../../../routes/app.routes";
@@ -10,7 +10,7 @@ const SidebarProfile = () => {
   const management = [
     { managementId: "/profile", name: "TÀI KHOẢN" },
     { managementId: "/profile/change-password", name: "ĐỔI MẬT KHẨU" },
-    { managementId: "/profile/orders", name: "HÓA ĐƠN" },
+    { managementId: "/profile/orders", name: "LỊCH SỬ ĐẶT PHÒNG" },
     { managementId: "/profile/host", name: "CHỦ NHÀ" },
   ];
 
@@ -23,11 +23,11 @@ const SidebarProfile = () => {
     }
   }, [window.location.href]);
 
-  let navigate = useNavigate(); 
-    const {
-        authState: { isAuthenticated, user },
-        logoutUser,
-      } = useContext(AuthContext);
+  let navigate = useNavigate();
+  const {
+    authState: { isAuthenticated, user },
+    logoutUser,
+  } = useContext(AuthContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -56,10 +56,8 @@ const SidebarProfile = () => {
   };
   const handleCloseMenu4 = () => {
     setAnchorEl(null);
-    logoutUser(() => navigate(APP_ROUTE.HOME))
+    logoutUser(() => navigate(APP_ROUTE.HOME));
   };
-
-
 
   return (
     <>
@@ -69,6 +67,7 @@ const SidebarProfile = () => {
           <Link
             to={path}
             className={locationHref === path ? "sidebar-aSelect" : "sidebar-a"}
+            key={index}
           >
             <h2 className="sidebar-label">{item.name}</h2>
           </Link>
@@ -77,9 +76,9 @@ const SidebarProfile = () => {
       <FontAwesomeIcon
         className="menu-icon"
         onClick={handleClick}
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         icon="fa-solid fa-bars"
         style={{ width: "30px", height: "30px !important" }}
       />
@@ -89,16 +88,15 @@ const SidebarProfile = () => {
         open={open}
         onClose={handleCloseMenu5}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleCloseMenu} >TÀI KHOẢN</MenuItem>
+        <MenuItem onClick={handleCloseMenu}>TÀI KHOẢN</MenuItem>
         <MenuItem onClick={handleCloseMenu1}>ĐỔI MẬT KHẨU</MenuItem>
-        <MenuItem onClick={handleCloseMenu2}>HÓA ĐƠN</MenuItem>
+        <MenuItem onClick={handleCloseMenu2}>LỊCH SỬ ĐẶT PHÒNG</MenuItem>
         <MenuItem onClick={handleCloseMenu3}>CHỦ NHÀ</MenuItem>
         <MenuItem onClick={handleCloseMenu4}>ĐĂNG XUẤT</MenuItem>
       </Menu>
-
     </>
   );
 };

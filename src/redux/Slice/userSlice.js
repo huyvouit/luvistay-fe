@@ -3,6 +3,7 @@ import {} from "../store";
 
 const initialState = {
   likeBlog: null,
+  orders: null,
 };
 
 const userSlice = createSlice({
@@ -12,9 +13,12 @@ const userSlice = createSlice({
     getLikeBlogByUser: (state, action) => {
       return { ...state, likeBlog: action.payload };
     },
+    getOrderByUser: (state, action) => {
+      return { ...state, orders: action.payload };
+    },
   },
 });
 
-export const { getLikeBlogByUser } = userSlice.actions;
+export const { getLikeBlogByUser, getOrderByUser } = userSlice.actions;
 
 export default userSlice.reducer;
