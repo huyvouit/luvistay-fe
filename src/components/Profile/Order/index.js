@@ -7,18 +7,24 @@ import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { APP_ROUTE } from "../../../routes/app.routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderByUserApi } from "../../../redux/Api/user";
+import { CircularProgress } from "@mui/material";
 
 const Order = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const listOrders = useSelector((state) => state.user.orders);
+  const loading = useSelector((state) => state.loading.loading);
   const {
     authState: { isAuthenticated, user },
     logoutUser,
   } = useContext(AuthContext);
 
   useEffect(() => {
-    getOrderByUserApi(dispatch);
+    if (listOrders) {
+      return;
+    } else {
+      getOrderByUserApi(dispatch);
+    }
   }, []);
 
   return (
@@ -43,27 +49,31 @@ const Order = () => {
             <div className="colum-two">
               <div className="colum-two-container">
                 <h1 className="colum-two-container-title">Lịch sử đặt phòng</h1>
-                <p className="colum-two-container-description">
-                  Chưa có đơn đặt phòng nào.!
-                </p>
-                <div className="table-order">
-                  <div className="table-order-row">
-                    {/* <p className="table-order-colum-one table-title">ID</p> */}
-                    <p className="table-order-colum-one table-title">
-                      Thời gian
-                    </p>
-                    <p className="table-order-colum-two table-title">
-                      Khách sạn
-                    </p>
-                    <p className="table-order-colum-three table-title">
-                      Tổng tiền
-                    </p>
+                {loading ? (
+                  <CircularProgress color="inherit" size={30} />
+                ) : listOrders ? (
+                  <div className="table-order">
+                    <div className="table-order-row">
+                      <p className="table-order-colum-one table-title">
+                        Thời gian
+                      </p>
+                      <p className="table-order-colum-two table-title">
+                        Khách sạn
+                      </p>
+                      <p className="table-order-colum-three table-title">
+                        Tổng tiền
+                      </p>
+                    </div>
+                    {listOrders &&
+                      listOrders.map((item, index) => {
+                        return <Detail key={index} order={item} />;
+                      })}
                   </div>
-                  {listOrders &&
-                    listOrders.map((item, index) => {
-                      return <Detail key={index} order={item} />;
-                    })}
-                </div>
+                ) : (
+                  <p className="colum-two-container-description">
+                    Chưa có đơn đặt phòng nào.!
+                  </p>
+                )}
               </div>
             </div>
           </div>
