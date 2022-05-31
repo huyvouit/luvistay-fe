@@ -15,7 +15,7 @@ const userApi = {
     return axiosClient.post(url, body);
   },
   getRentsOfApartment: () => {
-    const url = "/apartment/apartment-of-user";
+    const url = "/booking-calendar/get-calandar-user";
     return axiosClient.get(url);
   },
   postBooking: (body) => {

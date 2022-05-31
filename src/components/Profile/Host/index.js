@@ -8,8 +8,19 @@ import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { APP_ROUTE } from "../../../routes/app.routes";
 import AddRoomForApartment from "./AddRoomForApartment";
 import { useDispatch, useSelector } from "react-redux";
-import { getApartmentByUserApi } from "../../../redux/Api/user";
-import { CircularProgress } from "@mui/material";
+import {
+  getApartmentByUserApi,
+  getRentsOfApartmentApi,
+} from "../../../redux/Api/user";
+import {
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import RowRoom from "./HostApartment/RowRoom";
+import Moment from "react-moment";
 
 const Host = () => {
   let navigate = useNavigate();
@@ -26,8 +37,13 @@ const Host = () => {
   const [tab, setTab] = useState(true);
 
   useEffect(() => {
-    getApartmentByUserApi(dispatch);
-  }, []);
+    if (!apartments && tab) {
+      getApartmentByUserApi(dispatch);
+    }
+    if (!rents && !tab) {
+      getRentsOfApartmentApi(dispatch);
+    }
+  }, [tab]);
 
   return (
     <div className="host">
@@ -86,8 +102,67 @@ const Host = () => {
                       return <HostApartment key={index} apartment={item} />;
                     })
                   )
+                ) : loading ? (
+                  <CircularProgress color="inherit" size={25} />
                 ) : (
-                  <div>ABC</div>
+                  rents?.map((item, index) => {
+                    return (
+                      <div className="rents" key={index}>
+                        <div className="rents-info">
+                          <img
+                            className="rents-img"
+                            src={item?.apartment?.thumbnail}
+                            alt=""
+                          />
+                          <div className="rents-apartment">
+                            <p className="apartment-title">
+                              {item?.apartment?.name}
+                            </p>
+                            <div className="rents-room">
+                              <h4 className="rooms-title">
+                                Danh sách lịch thuê phòng
+                              </h4>
+                              {item?.roomsCalendar?.map((item, index) => (
+                                <div className="list-rents">
+                                  <div className="list-rents-apartment">
+                                    {/* <h3 className="apartment-name">
+                                      {item?.room?.name}
+                                    </h3> */}
+                                  </div>
+                                  <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">
+                                      {item?.room?.name}
+                                    </InputLabel>
+                                    <Select
+                                      className="rooms-select"
+                                      label={item?.room?.name}
+                                      labelId="demo-simple-select-label"
+                                      id="demo-simple-select"
+                                      // disabled
+                                    >
+                                      {item?.calendar?.map((date, index) => {
+                                        return (
+                                          <MenuItem>
+                                            <Moment format="DD/MM/YYYY ">
+                                              {date.beginDate}
+                                            </Moment>
+                                            {" - "}
+                                            <Moment format="DD/MM/YYYY ">
+                                              {date.endDate}
+                                            </Moment>
+                                          </MenuItem>
+                                        );
+                                      })}
+                                    </Select>
+                                  </FormControl>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
                 )}
               </div>
             ) : (
