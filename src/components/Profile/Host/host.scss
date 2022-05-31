@@ -1,7 +1,8 @@
-@use "../../../scss/"as *;
-.host{
-    &-container{
-        &-row-one{
+@use "../../../scss/" as *;
+
+.host {
+    &-container {
+        &-row-one {
             height: 35vh;
             width: 100%;
             background-image: url("../../../assets/images/profile.png");
@@ -9,53 +10,92 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            h2{
+
+            h2 {
                 font-size: 40px;
                 color: #fff;
                 font-weight: 500;
             }
         }
-        &-row-two{
+
+        &-row-two {
             padding: 2%;
-            &-container{
+
+            &-container {
                 margin: 2% 0;
                 display: flex;
                 justify-content: space-between;
-                .colum-one{
+
+                .colum-one {
                     width: 25%;
                     display: flex;
                     justify-content: end;
                     text-align: center;
+
                     @include screen750 {
                         width: 40px;
                     }
-                    &-container{
+
+                    &-container {
                         @include screen750 {
                             width: 100%;
                         }
+
                         width: 70%;
-                        &-logout{
+
+                        &-logout {
                             @include screen750 {
                                 display: none;
                             }
+
                             width: 100%;
                             color: #333;
                             padding: 20px 0;
                             cursor: pointer;
                             padding-right: 20%;
-                            border-right: 1px solid #333 ;
+                            border-right: 1px solid #333;
                         }
                     }
                 }
 
-                .colum-two{
+                .colum-two {
                     width: 73%;
+
                     @include screen750 {
                         width: 95%;
+                    }
+
+                    &-group {
+                        display: flex;
+                        justify-content: end;
+                    }
+                }
+
+                .colum-three {
+                    width: 73%;
+
+                    @include screen750 {
+                        width: 95%;
+                    }
+
+                    h2 {
+                        font-family: "Noto Serif", serif;
+                        color: #222;
+                        margin: 0.2em 0 0.5em;
+                        line-height: 1.4;
+                        font-weight: 400;
+                        font-size: 24px;
+                        letter-spacing: -0.5px;
+                        text-align: center;
+                    }
+                    &-btn{
+                        margin-top: 24px;
+                        display: flex;
+                        justify-content: center;
                     }
                 }
             }
         }
-        
+
     }
 }

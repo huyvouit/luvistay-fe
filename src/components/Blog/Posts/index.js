@@ -48,6 +48,7 @@ const Posts = ({ blog }) => {
   const checkLike = () => setLike(!like);
   const checkComment = () => setComment(!comment);
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [isProgress, setIsProgress] = useState(false);
@@ -66,6 +67,7 @@ const Posts = ({ blog }) => {
   };
   const handleCloseMenu1 = () => {
     setAnchorEl(null);
+    setOpen2(true);
   };
 
   const handleCloseMenu2 = () => {
@@ -79,6 +81,18 @@ const Posts = ({ blog }) => {
 
   const handleClose = () => {
     setOpen1(false);
+  };
+
+  const handleCloseAndSave = () => {
+    setOpen1(false);
+  };
+
+  const handleClose1 = () => {
+    setOpen2(false);
+  };
+
+  const handleCloseAndDelete = () => {
+    setOpen2(false);
   };
 
   // Chỉnh sử ở đây thêm hàm cập nhật nữa
@@ -448,6 +462,8 @@ const Posts = ({ blog }) => {
         </div>
       </div>
 
+      {/* chỉnh sửa */}
+
       <Dialog
         open={open1}
         onClose={handleClose}
@@ -506,8 +522,29 @@ const Posts = ({ blog }) => {
           <Button onClick={handleClose} color="primary">
             Hủy
           </Button>
-          <button className="button-posts" onClick={handleClose}>
+          <button className="button-posts" onClick={handleCloseAndSave}>
               Lưu
+          </button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Xóa */}
+      <Dialog
+        open={open2}
+        onClose={handleClose1}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogContent>
+          <div className="create-posts">
+            <h3>Bạn có thật sự muốn xóa bài viết này ?</h3>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose1} color="primary">
+            Hủy
+          </Button>
+          <button className="button-posts" onClick={handleCloseAndDelete}>
+              Xóa
           </button>
         </DialogActions>
       </Dialog>
