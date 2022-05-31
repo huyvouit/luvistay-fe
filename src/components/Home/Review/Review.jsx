@@ -11,11 +11,11 @@ const ReviewOne = ({}) => {
       <div className="review-one-row-one">
         <div className="colum-one">
           <p className="highlinght"></p>
-          <p className="content">RAISING COMFORT TO THE HIGHEST LEVEL</p>
-          <h1 className="title">Rooms & Suites</h1>
+          <p className="content">Nâng cao sự thoải mái lên mức cao nhất</p>
+          <h1 className="title">Phòng & Suites</h1>
         </div>
         <div className="colum-two">
-          <PrimaryButton title="view all" />
+          <PrimaryButton title="xem tất cả" />
         </div>
       </div>
       <div className="review-one-row-two">
@@ -25,10 +25,10 @@ const ReviewOne = ({}) => {
             <img className="image" src={BANNER_IMAGE.IMG_1} />
           </div>
           <div className="row-two">
-            <h4 className="name">Superior Double Room</h4>
+            <h4 className="name">Phòng Superior Đôi</h4>
             <p>
               <span className="span-one">$129</span>{" "}
-              <span className="spane-two">/ per night</span>
+              <span className="spane-two">/ mỗi đêm</span>
             </p>
           </div>
         </div>
@@ -38,10 +38,10 @@ const ReviewOne = ({}) => {
             <img className="image" src={BANNER_IMAGE.IMG_2} />
           </div>
           <div className="row-two">
-            <h4 className="name">Superior Double Room</h4>
+            <h4 className="name">Phòng Superior Đôi</h4>
             <p>
               <span className="span-one">$129</span>{" "}
-              <span className="spane-two">/ per night</span>
+              <span className="spane-two">/ mỗi đêm</span>
             </p>
           </div>
         </div>
@@ -51,10 +51,10 @@ const ReviewOne = ({}) => {
             <img className="image" src={BANNER_IMAGE.IMG_3} />
           </div>
           <div className="row-two">
-            <h4 className="name">Superior Double Room</h4>
+            <h4 className="name">Phòng Superior Đôi</h4>
             <p>
               <span className="span-one">$129</span>{" "}
-              <span className="spane-two">/ per night</span>
+              <span className="spane-two">/ mỗi đêm</span>
             </p>
           </div>
         </div>
@@ -114,11 +114,11 @@ const ReviewTwo = ({}) => {
       <div className="review-one-row-one">
         <div className="colum-one">
           <p className="highlinght"></p>
-          <p className="content">WELCOME TO OUR PHOTO GALLERYL</p>
-          <h1 className="title">Photo Gallery of Our Hotel</h1>
+          <p className="content">Chào mừng bạn đến với bộ sưu tập ảnh của chúng tôi</p>
+          <h1 className="title">Thư viện ảnh của khách sạn của chúng tôi</h1>
         </div>
         <div className="colum-two">
-          <PrimaryButton title="view gallery" />
+          <PrimaryButton title="Xem bộ sưu tập" />
         </div>
       </div>
       <div className="slider">

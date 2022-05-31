@@ -15,32 +15,32 @@ import "./heroSlider.scss";
 const items = [
   {
     type: "Authentic",
-    title: "Hello.Salut.Hola",
+    title: "Xin chào.Salut.Hola",
     description:
-      "Imagine the feeling of a home designed to fit your lifestyle and reflect your personality. The benefits are clear. When you combine a pleasing colour scheme; free-flowing and functional space; perfect mood lighting and clever storage, you get pleasurable home-experiences and a happier life.",
+      "Hãy tưởng tượng cảm giác của một ngôi nhà được thiết kế để phù hợp với lối sống của bạn và phản ánh tính cách của bạn. Những lợi ích là rõ ràng. Khi bạn kết hợp một bảng màu dễ chịu; Không gian chảy tự do và chức năng; Ánh sáng tâm trạng hoàn hảo và lưu trữ thông minh, bạn có được những trải nghiệm gia đình thú vị và một cuộc sống hạnh phúc hơn.",
     imageUrl:
       "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/standart-single-room-992x992.jpg",
   },
   {
     type: "Timeless",
-    title: "Interior designs",
+    title: "Thiết kế nội thất",
     description:
-      "Konsept was born in Vietnam in 2021, and is today a premium retail lifestyle brand. We design, produce and sell a range of contemporary Danish design furniture , accessories and lighting for the living room, dining room, bedroom, home-office and outdoor spaces.",
+      "Konsept được sinh ra tại Việt Nam vào năm 2021, và ngày nay là một thương hiệu phong cách sống bán lẻ cao cấp. Chúng tôi thiết kế, sản xuất và bán một loạt các đồ nội thất thiết kế đương đại của Đan Mạch, phụ kiện và ánh sáng cho phòng khách, phòng ăn, phòng ngủ, văn phòng tại nhà và không gian ngoài trời.",
     imageUrl:
       "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/superior-double-room-992x992.jpg",
   },
   {
     type: "Tailored",
-    title: "Classic interiors",
+    title: "Nội thất cổ điển",
     description:
-      "Today, the company continues to address new lifestyles with the creation of complete, harmonious interior decor solutions that embody the best contemporary design for all areas of the home.",
+      "Ngày nay, công ty tiếp tục giải quyết những lối sống mới với việc tạo ra các giải pháp trang trí nội thất hoàn chỉnh, hài hòa thể hiện thiết kế hiện đại tốt nhất cho tất cả các khu vực của ngôi nhà.",
     imageUrl:
       "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/classic-double-room-992x992.jpg",
   },
   {
-    title: "Made with love",
+    title: "Được trang trí tâm huyết",
     description:
-      "Imagine the feeling of a home designed to fit your lifestyle and reflect your personality. The benefits are clear. When you combine a pleasing colour scheme; free-flowing and functional space; perfect mood lighting and clever storage, you get pleasurable home-experiences and a happier life.",
+      "Hãy tưởng tượng cảm giác của một ngôi nhà được thiết kế để phù hợp với lối sống của bạn và phản ánh tính cách của bạn. Những lợi ích là rõ ràng. Khi bạn kết hợp một bảng màu dễ chịu; Không gian chảy tự do và chức năng; Ánh sáng tâm trạng hoàn hảo và lưu trữ thông minh, bạn có được những trải nghiệm gia đình thú vị và một cuộc sống hạnh phúc hơn.",
     imageUrl:
       "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/comfort-triple-room-1170x780.jpg",
   },
@@ -108,7 +108,7 @@ const HeroSliderItem = ({ data }) => {
           <h2 className="title">{data.title}</h2>
           <div className="description">{data.description}</div>
           <div className="read-more">
-            <OutlinedButton title="read more" />
+            <OutlinedButton title="Đọc thêm" />
           </div>
         </div>
       </div>
