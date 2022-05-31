@@ -5,13 +5,22 @@ import "./order.scss";
 import Detail from "../DetailOrder";
 import { AuthContext } from "../../../hooks/contexts/auth_context";
 import { APP_ROUTE } from "../../../routes/app.routes";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderByUserApi } from "../../../redux/Api/user";
 
 const Order = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const listOrders = useSelector((state) => state.user.orders);
   const {
     authState: { isAuthenticated, user },
     logoutUser,
   } = useContext(AuthContext);
+
+  useEffect(() => {
+    getOrderByUserApi(dispatch);
+  }, []);
+
   return (
     <div className="order">
       <div className="order-container">
@@ -35,19 +44,25 @@ const Order = () => {
               <div className="colum-two-container">
                 <h1 className="colum-two-container-title">Lịch sử đặt phòng</h1>
                 <p className="colum-two-container-description">
-                  No order found. Shopping now!
+                  Chưa có đơn đặt phòng nào.!
                 </p>
                 <div className="table-order">
                   <div className="table-order-row">
-                    <p className="table-order-colum-one table-title">ID</p>
-                    <p className="table-order-colum-one table-title">Date</p>
-                    <p className="table-order-colum-two table-title">Hotel</p>
-                    <p className="table-order-colum-two table-title">Total</p>
+                    {/* <p className="table-order-colum-one table-title">ID</p> */}
+                    <p className="table-order-colum-one table-title">
+                      Thời gian
+                    </p>
+                    <p className="table-order-colum-two table-title">
+                      Khách sạn
+                    </p>
+                    <p className="table-order-colum-three table-title">
+                      Tổng tiền
+                    </p>
                   </div>
-                  <Detail />
-                  <Detail />
-                  <Detail />
-                  <Detail />
+                  {listOrders &&
+                    listOrders.map((item, index) => {
+                      return <Detail key={index} order={item} />;
+                    })}
                 </div>
               </div>
             </div>

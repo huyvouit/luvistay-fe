@@ -1,17 +1,17 @@
-import React from 'react'
-import "./detailOrder.scss"
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import img_test from "../../../assets/images/profile.png"
-
-
+import React from "react";
+import "./detailOrder.scss";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import img_test from "../../../assets/images/profile.png";
+import Moment from "react-moment";
+import { formatter } from "../../../helper/format";
 
 const styles = (theme) => ({
   root: {
@@ -19,7 +19,7 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
@@ -32,7 +32,11 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -46,7 +50,6 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-
 const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
@@ -54,7 +57,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-const Detail = () => {
+const Detail = ({ order }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -67,43 +70,103 @@ const Detail = () => {
 
   return (
     <>
-      <div className='detail-row' onClick={handleClickOpen} >
-        <p className='detail-colum-one'>#1306552651656513516845</p>
-        <p className='detail-colum-one'>30/05/2022 - 05/06/2022</p>
-        <p className='detail-colum-two'>LuviStay</p>
-        <p className='detail-colum-two'>5.000.000 VNĐ</p>
+      <div className="detail-row" onClick={handleClickOpen}>
+        <p className="detail-colum-one">
+          <Moment format="DD/MM/YYYY ">
+            {order?.bookingCalendar[0]?.beginDate}
+          </Moment>
+          -{" "}
+          <Moment format="DD/MM/YYYY ">
+            {order?.bookingCalendar[0]?.endDate}
+          </Moment>
+        </p>
+        <p className="detail-colum-two">{order?.apartmentId?.name}</p>
+        <p className="detail-colum-three">
+          {formatter.format(order?.totalCost)}
+        </p>
       </div>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth maxWidth='md' >
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        fullWidth
+        maxWidth="md"
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Chi tiết hóa đơn
         </DialogTitle>
         <DialogContent dividers>
-          <div className='popup-detail-order'>
-            <h4 className='popup-detail-order-title'><span>Mã hóa đơn: </span>#5412154dsfg1dfsghgfdshfdgh</h4>
-            <div className='popup-detail-order-information'>
-              <p><span>Tên người đặt: </span>Nguyễn Trà Vi</p>
-              <p><span>SĐT:</span> 0123456789</p>
-              <p><span>Gmail: </span>10đ@gmail.com</p>
+          <div className="popup-detail-order">
+            <h4 className="popup-detail-order-title">
+              <span>Mã hóa đơn: </span>#{order?._id}
+            </h4>
+            <div className="popup-detail-order-information">
+              <p>
+                <span>Tên người đặt: </span>
+                {order?.userBookingInfos?.userName}
+              </p>
+              <p>
+                <span>SĐT: </span>
+                {order?.userBookingInfos?.phone}
+              </p>
+              <p>
+                <span>Gmail: </span>
+                {order?.userBookingInfos?.email}
+              </p>
             </div>
-            <div className='popup-detail-order-container'>
-              <img className='popup-detail-order-container-img' src={img_test}/>
-              <div className='popup-detail-order-container-description'>
-                <p><span>Tên khách sạn: </span>LuviStay</p>
-                <div className='popup-detail-order-container-description-box'>
-                  <p><span>Ngày nhận phòng: </span>10/10/2022</p>
-                  <p><span>Ngày trả phòng: </span>18/10/2022</p>
+            <div className="popup-detail-order-container">
+              <img
+                className="popup-detail-order-container-img"
+                src={order?.apartmentId?.thumbnail}
+                alt=""
+              />
+              <div className="popup-detail-order-container-description">
+                <p>
+                  <span>Tên khách sạn: </span>
+                  {order?.apartmentId?.name}
+                </p>
+                <div className="popup-detail-order-container-description-box">
+                  <p>
+                    <span>Ngày nhận phòng: </span>{" "}
+                    <Moment format="DD/MM/YYYY ">
+                      {order?.bookingCalendar[0]?.beginDate}
+                    </Moment>
+                  </p>
+                  <p>
+                    <span>Ngày trả phòng: </span>{" "}
+                    <Moment format="DD/MM/YYYY ">
+                      {order?.bookingCalendar[0]?.endDate}
+                    </Moment>
+                  </p>
                 </div>
-                <div className='popup-detail-order-container-description-box'>
-                  <p><span>Số phòng đặt: </span>1</p>
-                  <p><span>Số lượng người: </span>7</p>
+                <div className="popup-detail-order-container-description-box">
+                  <p>
+                    <span>Số phòng đặt: </span> {order?.bookingCalendar?.length}
+                  </p>
+                  <p>
+                    <span>Số lượng người: </span>
+                    {order?.totalBookingPeople}
+                  </p>
                 </div>
-                <div className='popup-detail-order-container-description-box'>
-                  <p><span>Tên phòng: </span>123</p>
-                  <p><span>Tên phòng: </span>123</p>
-                  <p><span>Tên phòng: </span>123</p>
+                <div className="popup-detail-order-container-description-box">
+                  {order?.bookingCalendar &&
+                    order?.bookingCalendar.map((item, index) => {
+                      return (
+                        <p key={index}>
+                          <span>Tên phòng: </span>
+                          {item?.room?.name}
+                        </p>
+                      );
+                    })}
                 </div>
-                <p><span>Ghi chú: </span>Phòng này không có Vi</p>
-                <p><span>Tổng tiền: </span>10000000 VNĐ</p>
+                <p>
+                  <span>Ghi chú: </span>
+                  {order?.note}
+                </p>
+                <p>
+                  <span>Tổng tiền: </span>
+                  {formatter.format(order?.totalCost)}
+                </p>
               </div>
             </div>
           </div>
@@ -115,7 +178,7 @@ const Detail = () => {
         </DialogActions>
       </Dialog>
     </>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;
