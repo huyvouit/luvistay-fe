@@ -56,7 +56,7 @@ const News = () => {
                 You have a chance to experience a piece of his life on your own!
               </p>
               <p className="more-tag-wrapper">
-                <a href="#" className="more-link">
+                <a href="/news/newdetail" className="more-link">
                   CONTINUE READING
                   <span className="screen-reader-text">
                     "Our Secret Island Boat Tour Is Just For You"
@@ -114,7 +114,7 @@ const News = () => {
                 You have a chance to experience a piece of his life on your own!
               </p>
               <p className="more-tag-wrapper">
-                <a href="#" className="more-link">
+                <a href="/news/newdetail" className="more-link">
                   CONTINUE READING
                   <span className="screen-reader-text">
                     "Our Secret Island Boat Tour Is Just For You"
@@ -172,7 +172,7 @@ const News = () => {
                 You have a chance to experience a piece of his life on your own!
               </p>
               <p className="more-tag-wrapper">
-                <a href="#" className="more-link">
+                <a href="/news/newdetail" className="more-link">
                   CONTINUE READING
                   <span className="screen-reader-text">
                     "Our Secret Island Boat Tour Is Just For You"
@@ -230,7 +230,7 @@ const News = () => {
                 You have a chance to experience a piece of his life on your own!
               </p>
               <p className="more-tag-wrapper">
-                <a href="#" className="more-link">
+                <a href="/news/newdetail" className="more-link">
                   CONTINUE READING
                   <span className="screen-reader-text">
                     "Our Secret Island Boat Tour Is Just For You"
@@ -288,7 +288,7 @@ const News = () => {
                 You have a chance to experience a piece of his life on your own!
               </p>
               <p className="more-tag-wrapper">
-                <a href="#" className="more-link">
+                <a href="/news/newdetail" className="more-link">
                   CONTINUE READING
                   <span className="screen-reader-text">
                     "Our Secret Island Boat Tour Is Just For You"

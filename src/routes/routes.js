@@ -30,6 +30,7 @@ import ChangePassword from "../components/Profile/ChangePassword";
 import NewsPage from "../pages/News";
 import BlogPage from "../pages/Blog";
 import MyBlog from "../components/Blog/MyBlog/";
+import NewDetailPage from "../pages/News/NewDetail";
 
 import ScrollToTop from "../helper/scrollToTop";
 import { AuthContext } from "../hooks/contexts/auth_context";
@@ -96,6 +97,8 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
               <Route path={APP_ROUTE.NEWS} element={<NewsPage />} />
+              <Route path={APP_ROUTE.NEWDETAIL} element={<NewDetailPage/>} />
+
             </Route>
 
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
