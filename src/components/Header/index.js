@@ -7,7 +7,7 @@ import logo from "../../assets/icons/logo-footer.svg";
 import { APP_ROUTE } from "../../routes/app.routes";
 import "./header.scss";
 import { AuthContext } from "../../hooks/contexts/auth_context";
-
+import userIcon from "../../assets/images/profile.png";
 const NAVLINK = [
   {
     route: "Trang chủ",
@@ -96,20 +96,46 @@ const Header = () => {
                     <div
                       key={index}
                       className={
-                        location === item.path
+                        location.pathname === item.path
                           ? "header-mobile-item-item header-mobile-item-item-active"
                           : "header-mobile-item-item"
                       }
-                      onClick={() => navigate(item.path)}
+                      onClick={() => {
+                        navigate(item.path);
+                        setOpenMenu(false);
+                      }}
                     >
                       <p>{item.route}</p>
                     </div>
                   );
                 })}
-
-                <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>Đăng nhập</p>
-                </section>
+                {user ? (
+                  <section
+                    className={
+                      location.pathname.includes("profile")
+                        ? "header-mobile-item-item "
+                        : "header-mobile-item-item"
+                    }
+                    onClick={() => {
+                      navigate(APP_ROUTE.PROFILE);
+                      setOpenMenu(false);
+                    }}
+                  >
+                    <img
+                      src={userIcon}
+                      width="20px"
+                      height="20px"
+                      alt="user icon"
+                    />
+                  </section>
+                ) : (
+                  <section
+                    className="header-mobile-item-item "
+                    onClick={() => navigate(APP_ROUTE.SIGNIN)}
+                  >
+                    <p>Đăng nhập</p>
+                  </section>
+                )}
               </div>
             </div>
           </div>
@@ -133,10 +159,10 @@ const Header = () => {
           <section className="divider navbar-item"></section>
           {user ? (
             <section
-              className="navbar-item"
+              className={"navbar-item "}
               onClick={() => navigate(APP_ROUTE.PROFILE)}
             >
-              <p>User</p>
+              <img src={userIcon} width="20px" height="20px" alt="user icon" />
             </section>
           ) : (
             <section
