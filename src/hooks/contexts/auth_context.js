@@ -69,12 +69,9 @@ const AuthContextProvider = ({ children }) => {
   // Register
   const registerUser = async (userForm) => {
     try {
-      console.log(userForm);
       const response = await authApi.postSignUp(userForm);
 
-      console.log(`data: ${response}`);
-
-      return response.data;
+      return response;
     } catch (error) {
       toast.error(error.response.data.message, {
         position: "top-right",
