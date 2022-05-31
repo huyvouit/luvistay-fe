@@ -50,7 +50,7 @@ const Posts = ({ blog }) => {
     content: "",
   });
   const checkSeen = () => setSeen(!seen);
-  const checkLike = () => setLike(!like);
+
   const checkComment = () => setComment(!comment);
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
@@ -233,7 +233,7 @@ const Posts = ({ blog }) => {
   };
 
   useEffect(() => {
-    setLike();
+    // setLike();
     fetchLikesByBlog();
     fetchCommentByBlog();
     return {};
