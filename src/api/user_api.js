@@ -6,6 +6,18 @@ const userApi = {
     return axiosClient.get(url, { params });
   },
 
+  getApartmentOfUser: () => {
+    const url = "/apartment/apartment-of-user";
+    return axiosClient.get(url);
+  },
+  updateApartmentOfUser: (body) => {
+    const url = "/apartment/update";
+    return axiosClient.post(url, body);
+  },
+  getRentsOfApartment: () => {
+    const url = "/apartment/apartment-of-user";
+    return axiosClient.get(url);
+  },
   postBooking: (body) => {
     const url = "/bill/create-bill";
     return axiosClient.post(url, body);

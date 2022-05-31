@@ -4,6 +4,8 @@ import {} from "../store";
 const initialState = {
   likeBlog: null,
   orders: null,
+  apartments: null,
+  rents: null,
 };
 
 const userSlice = createSlice({
@@ -16,9 +18,20 @@ const userSlice = createSlice({
     getOrderByUser: (state, action) => {
       return { ...state, orders: action.payload };
     },
+    getApartmentByUser: (state, action) => {
+      return { ...state, apartments: action.payload };
+    },
+    getRentApartmentByUser: (state, action) => {
+      return { ...state, rents: action.payload };
+    },
   },
 });
 
-export const { getLikeBlogByUser, getOrderByUser } = userSlice.actions;
+export const {
+  getLikeBlogByUser,
+  getOrderByUser,
+  getApartmentByUser,
+  getRentApartmentByUser,
+} = userSlice.actions;
 
 export default userSlice.reducer;
