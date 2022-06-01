@@ -28,7 +28,7 @@ const Host = () => {
   const apartments = useSelector((state) => state.user.apartments);
   const rents = useSelector((state) => state.user.rents);
   const loading = useSelector((state) => state.loading.loading);
-
+  const [isLoading, setIsLoading] = useState(false);
   const {
     authState: { isAuthenticated, user },
     logoutUser,
@@ -44,6 +44,14 @@ const Host = () => {
       getRentsOfApartmentApi(dispatch);
     }
   }, [tab]);
+
+  useEffect(() => {
+    if (apartments) {
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+    }
+  }, [apartments]);
 
   return (
     <div className="host">
@@ -64,7 +72,11 @@ const Host = () => {
                 </h2>
               </div>
             </div>
-            {apartment ? (
+            {isLoading ? (
+              <div className="colum-two">
+                <CircularProgress color="inherit" size={25} />
+              </div>
+            ) : apartments ? (
               <div className="colum-two">
                 <div className="colum-two-header">
                   <div className="colum-two-group">
