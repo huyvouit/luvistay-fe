@@ -1,138 +1,135 @@
-@use "../../../../scss/"as *;
-.add-apartment{
+@use "../../../../scss/" as *;
+.add-apartment {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 24px;
+  p {
+    width: max-content;
+    padding: 15px 25px;
+    background-color: #524d4b;
+    color: white;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.popup-add-apartment {
+  &-box {
     display: flex;
-    justify-content: end;
-    margin-bottom: 24px;
-    p{
-        width: max-content;
-        padding: 15px 25px;
-            background-color: #524d4b;
-            color: white;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 16px ;
-            cursor: pointer;
-    }
-}
-
-.popup-add-apartment{
-
-    &-box{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-bottom: 24px;
-        @include screen550 {
-            display: flex;
-            flex-direction: column;
-        }
-        &-name{
-            width: 65% ;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-
-        &-type{
-            width: 33%;
-            display: flex;
-            flex-direction: column;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-
-        &-rate{
-            width: 65%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-
-        &-p{
-            display: none;
-            @include screen550 {
-               display: block;
-                height: 24px;
-            }
-
-        }
-
-        &-number-room{
-            width: 23%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-        &-street{
-            width: 75%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-
-        &-one{
-            width: 32%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-    }
-
-    &-description{
-        width: 100%;
-    }
-
-    &-input-img{
-        width: 100%;
-        &-input{
-            display: none;
-        }
-
-        &-label-holder {
-            width: max-content;
-            margin-top: 24px;
-          &-label{
-              padding: 10px 25px;
-            background-color: #524d4b;
-            color: white;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 16px ;
-            cursor: pointer;
-            
-          }
-        }
-
-        &-result{
-            width: 100%;
-            display: flex;
-            margin-top: 8px;
-            justify-content: start;
-            flex-wrap: wrap;
-            &-img{
-                width: 33%;
-                object-fit: cover;
-                margin-left: 1px;
-                margin-top: 20px;
-            }
-        }
-    }
-}
-
-.popup-add-room{
+    justify-content: space-between;
     width: 100%;
-
-    &-title{
-        font-family: "Noto Serif", serif;
-        color: #222;
-        line-height: 1.4;
-        letter-spacing: -0.5px;
-        font-size: 20px;
-        margin-bottom: 12px;
-        margin-left: 12px;
-        font-weight: 550;
+    margin-bottom: 24px;
+    @include screen550 {
+      display: flex;
+      flex-direction: column;
     }
+    &-name {
+      width: 43%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+
+    &-type {
+      width: 33%;
+      display: flex;
+      // flex-direction: column;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+
+    &-room {
+      width: 20%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+
+    &-p {
+      display: none;
+      @include screen550 {
+        display: block;
+        height: 24px;
+      }
+    }
+
+    &-number-room {
+      width: 23%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+    &-street {
+      width: 75%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+
+    &-one {
+      width: 32%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+  }
+
+  &-description {
+    width: 100%;
+  }
+
+  &-input-img {
+    width: 100%;
+    &-input {
+      display: none;
+    }
+
+    &-label-holder {
+      width: max-content;
+      margin-top: 24px;
+      &-label {
+        padding: 10px 25px;
+        background-color: #524d4b;
+        color: white;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+
+    &-result {
+      width: 100%;
+      display: flex;
+      margin-top: 8px;
+      justify-content: start;
+      flex-wrap: wrap;
+      &-img {
+        width: 33%;
+        object-fit: cover;
+        margin-left: 1px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.popup-add-room {
+  width: 100%;
+
+  &-title {
+    font-family: "Noto Serif", serif;
+    color: #222;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    font-size: 20px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+    font-weight: 550;
+  }
 }

@@ -16,11 +16,7 @@ const MyBlog = () => {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    if (listMyBlog.length > 0) {
-      return;
-    } else {
-      getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
-    }
+    getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
   }, []);
   return (
     <div className="my-blog">

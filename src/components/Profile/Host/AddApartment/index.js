@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import "./addApartment.scss";
 import AddRoom from "../AddRoom";
+import provinceApi from "../../../../api/province_api";
+import { FormControl, IconButton, InputLabel, Select } from "@mui/material";
 
 const styles = (theme) => ({
   root: {
@@ -25,37 +26,6 @@ const styles = (theme) => ({
     color: theme.palette.grey[500],
   },
 });
-
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
 
 const currencies = [
   {
@@ -75,6 +45,103 @@ const currencies = [
 const AddApartment = () => {
   const [open, setOpen] = React.useState(false);
   const [continued, setContinued] = useState(false);
+  const [address, setAddress] = useState({
+    province: "",
+    district: "",
+    ward: "",
+  });
+  const [provinceList, setProvinceList] = useState([]);
+  const [districtList, setDistrictList] = useState([]);
+  const [wardList, setWardList] = useState([]);
+  //  useEffect(() => {
+  //     if (deliveryInfo) {
+
+  //     }
+  //  }, [deliveryInfo])
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await provinceApi.getProvinces();
+        setProvinceList(
+          res.data.map((item) => ({
+            label: item.name,
+            value: item.code,
+          }))
+        );
+      } catch (error) {
+        console.log("error to get province list", error);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (address) {
+      (async () => {
+        const province = address.province;
+        if (province) {
+          try {
+            const res = await provinceApi.getDistricts(province);
+            setDistrictList(
+              res.data.districts.map((item) => ({
+                label: item.name,
+                value: item.code,
+              }))
+            );
+          } catch (error) {
+            console.log("error to get province list", error);
+          }
+        }
+      })();
+      (async () => {
+        const district = address.district;
+        if (district) {
+          try {
+            const res = await provinceApi.getWards(district);
+            setWardList(
+              res.data.wards.map((item) => ({
+                label: item.name,
+                value: item.code,
+              }))
+            );
+          } catch (error) {
+            console.log("error to get province list", error);
+          }
+        }
+      })();
+    }
+  }, [address]);
+
+  const handleChangeProvince = async (e) => {
+    try {
+      const res = await provinceApi.getDistricts(e.target.value);
+      const districts = res.data.districts;
+      setDistrictList(
+        districts.map((item) => ({
+          label: item.name,
+          value: item.code,
+        }))
+      );
+      setWardList([]);
+      // setAddress({ ...address, ward: "" });
+    } catch (error) {
+      console.log("error to get district list", error);
+    }
+  };
+  const handleChangeDistrict = async (e) => {
+    try {
+      const res = await provinceApi.getWards(e.target.value);
+      const wards = res.data.wards;
+      setWardList(
+        wards.map((item) => ({
+          label: item.name,
+          value: item.code,
+        }))
+      );
+    } catch (error) {
+      console.log("error to get ward list", error);
+    }
+  };
   const handleClickOpen = () => {
     setOpen(true);
     setContinued(false);
@@ -150,9 +217,7 @@ const AddApartment = () => {
       >
         {continued ? (
           <>
-            <DialogTitle id="customized-dialog-title" onClose={handleClose1}>
-              Thêm phòng
-            </DialogTitle>
+            <DialogTitle id="customized-dialog-title">Thêm phòng</DialogTitle>
             <DialogContent dividers>
               {[...Array(Number(formApartment.numberRoom))].map(
                 (item, index) => (
@@ -198,10 +263,9 @@ const AddApartment = () => {
                       </MenuItem>
                     ))}
                   </TextField>
-                </div>
-                <div className="popup-add-apartment-box">
+                  <p className="popup-add-apartment-box-p"></p>
                   <TextField
-                    className="popup-add-apartment-box-type"
+                    className="popup-add-apartment-box-room"
                     required
                     id="number-room"
                     label="Số phòng cho thuê"
@@ -215,14 +279,8 @@ const AddApartment = () => {
                       })
                     }
                   />
-                  <p className="popup-add-apartment-box-p"></p>
-                  <TextField
-                    className="popup-add-apartment-box-rate"
-                    id="rating"
-                    label="Đánh giá của căn hộ"
-                    variant="outlined"
-                  />
                 </div>
+
                 <div className="popup-add-apartment-box">
                   <TextField
                     className="popup-add-apartment-box-number-room"
@@ -234,31 +292,76 @@ const AddApartment = () => {
                   <TextField
                     className="popup-add-apartment-box-street"
                     id="street"
-                    label="đường"
+                    label="Đường"
                     variant="outlined"
                   />
                 </div>
                 <div className="popup-add-apartment-box">
-                  <TextField
-                    className="popup-add-apartment-box-one"
-                    id="district"
-                    label="quận\huyện"
-                    variant="outlined"
-                  />
+                  <FormControl className="popup-add-apartment-box-one">
+                    <InputLabel>Tỉnh/Thành phố</InputLabel>
+                    <Select
+                      id="province"
+                      label="Tỉnh/Thành phố"
+                      variant="outlined"
+                      value={address.province}
+                      onChange={(e) => {
+                        setAddress({
+                          ...address,
+                          province: e.target.value,
+                          district: "",
+                          ward: "",
+                        });
+                        handleChangeProvince(e);
+                      }}
+                    >
+                      {provinceList?.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                   <p className="popup-add-apartment-box-p"></p>
-                  <TextField
-                    className="popup-add-apartment-box-one"
-                    id="province"
-                    label="tỉnh\thành phố"
-                    variant="outlined"
-                  />
+                  <FormControl className="popup-add-apartment-box-one">
+                    <InputLabel>Quận/Huyện</InputLabel>
+                    <Select
+                      label="Quận/Huyện"
+                      variant="outlined"
+                      value={address.district}
+                      onChange={(e) => {
+                        setAddress({
+                          ...address,
+                          district: e.target.value,
+                          ward: "",
+                        });
+                        handleChangeDistrict(e);
+                      }}
+                    >
+                      {districtList.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                   <p className="popup-add-apartment-box-p"></p>
-                  <TextField
-                    className="popup-add-apartment-box-one"
-                    id="country"
-                    label="Quốc gia"
-                    variant="outlined"
-                  />
+                  <FormControl className="popup-add-apartment-box-one">
+                    <InputLabel>Xã/Phường</InputLabel>
+                    <Select
+                      label="Xã/Phường"
+                      variant="outlined"
+                      value={address.ward}
+                      onChange={(e) => {
+                        setAddress({ ...address, ward: e.target.value });
+                      }}
+                    >
+                      {wardList.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </div>
                 <TextField
                   className="popup-add-apartment-description"

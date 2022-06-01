@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 
 import { CircularProgress, LinearProgress } from "@material-ui/core";
@@ -35,6 +35,7 @@ const imgs = [
 
 const Posts = ({ blog }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const {
     authState: { user },
@@ -307,31 +308,33 @@ const Posts = ({ blog }) => {
                 </p>
               </div>
             </div>
-            {blog?.author ? (
-              <FontAwesomeIcon
-                className="posts-container-row-one-icon"
-                onClick={handleClickMenu}
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                icon="fa-solid fa-ellipsis-vertical"
-                style={{ width: "30px", height: "30px !important" }}
-              />
+            {location?.pathname?.includes("my-blog") ? (
+              <>
+                <FontAwesomeIcon
+                  className="posts-container-row-one-icon"
+                  onClick={handleClickMenu}
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  icon="fa-solid fa-ellipsis-vertical"
+                  style={{ width: "30px", height: "30px !important" }}
+                />
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleCloseMenu2}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleCloseMenu}>Chỉnh sửa</MenuItem>
+                  <MenuItem onClick={handleCloseMenu1}>Xóa</MenuItem>
+                </Menu>
+              </>
             ) : (
               <div></div>
             )}
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleCloseMenu2}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
-            >
-              <MenuItem onClick={handleCloseMenu}>Chỉnh sửa</MenuItem>
-              <MenuItem onClick={handleCloseMenu1}>Xóa</MenuItem>
-            </Menu>
           </div>
           <p className="posts-container-title">
             <span
