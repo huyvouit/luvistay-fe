@@ -12,7 +12,15 @@ import MenuItem from "@mui/material/MenuItem";
 import "./addApartment.scss";
 import AddRoom from "../AddRoom";
 import provinceApi from "../../../../api/province_api";
-import { FormControl, IconButton, InputLabel, Select } from "@mui/material";
+import {
+  FormControl,
+  IconButton,
+  InputLabel,
+  LinearProgress,
+  Select,
+} from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import blogApi from "../../../../api/blog_api";
 
 const styles = (theme) => ({
   root: {
@@ -53,12 +61,11 @@ const AddApartment = () => {
   const [provinceList, setProvinceList] = useState([]);
   const [districtList, setDistrictList] = useState([]);
   const [wardList, setWardList] = useState([]);
-  //  useEffect(() => {
-  //     if (deliveryInfo) {
-
-  //     }
-  //  }, [deliveryInfo])
-
+  const [thumbnail, setThumbnail] = useState("");
+  const [pictures, setPictures] = useState([]);
+  const [isThumbnail, setIsThumbnail] = useState(false);
+  const [isPicture, setIsPicture] = useState(false);
+  const [currency, setCurrency] = React.useState("hotel");
   useEffect(() => {
     (async () => {
       try {
@@ -163,37 +170,75 @@ const AddApartment = () => {
     setContinued(true);
   };
 
-  const [currency, setCurrency] = React.useState("hotel");
-
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
-  //ảnh
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const handleImageChange = async (e) => {
+    e.preventDefault();
 
-  const handleImageChange = (e) => {
-    if (e.target.files) {
-      const filesArray = Array.from(e.target.files).map((file) =>
-        URL.createObjectURL(file)
-      );
+    const formData = new FormData();
+    for (var i = 0; i < e.target.files.length; i++) {
+      formData.append("thumbnail", e.target.files[i]);
+    }
 
-      setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-      Array.from(e.target.files).map(
-        (file) => URL.revokeObjectURL(file) // avoid memory leak
-      );
+    try {
+      if (e.target.files) {
+        setIsPicture(true);
+
+        const res = await blogApi.uploadImageBlog(formData);
+        if (res.success) {
+          setPictures([...pictures, ...res.data]);
+          setIsPicture(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
+  const handleThumbnailChange = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append("thumbnail", e.target.files[0]);
+
+    try {
+      if (e.target.files) {
+        setIsThumbnail(true);
+
+        const res = await blogApi.uploadImageBlog(formData);
+        if (res.success) {
+          setThumbnail(res.data);
+          setIsThumbnail(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteImage = (photo) => {
+    const temp = [...pictures].filter((item) => item !== photo);
+
+    setPictures(temp);
+  };
   const renderPhotos = (source) => {
-    return source.map((photo) => {
+    return source.map((photo, index) => {
       return (
-        <img
-          className="popup-add-apartment-input-img-result-img"
-          src={photo}
-          alt=""
-          key={photo}
-        />
+        <section
+          className="popup-add-apartment-input-img-result-list-img"
+          style={{ backgroundImage: `url(${photo})` }}
+          key={index}
+        >
+          <FontAwesomeIcon
+            icon="fa-solid fa-trash-can"
+            className="icon-trash"
+            color="red"
+            onClick={() => handleDeleteImage(photo)}
+          />
+        </section>
       );
     });
   };
@@ -237,7 +282,7 @@ const AddApartment = () => {
         ) : (
           <>
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-              Thêm Apartment
+              Thêm căn hộ
             </DialogTitle>
             <DialogContent dividers>
               <div className="popup-add-apartment">
@@ -373,24 +418,65 @@ const AddApartment = () => {
                 />
 
                 <div className="popup-add-apartment-input-img">
+                  <p>Ảnh chính</p>
                   <input
                     className="popup-add-apartment-input-img-input"
                     type="file"
                     id="file"
-                    multiple
-                    onChange={handleImageChange}
+                    onChange={handleThumbnailChange}
                   />
+
                   <div className="popup-add-apartment-input-img-label-holder">
                     <label
                       htmlFor="file"
                       className="popup-add-apartment-input-img-label-holder-label"
                     >
-                      <i className="material-icons">Thêm hình</i>
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-paperclip"
+                        color="black"
+                      />
                     </label>
                   </div>
-                  <div className="popup-add-apartment-input-img-result">
-                    {renderPhotos(selectedFiles)}
+                  {isThumbnail ? (
+                    <LinearProgress className="create-posts-input-img-result" />
+                  ) : (
+                    <div className="popup-add-apartment-input-img-result">
+                      <img
+                        className="popup-add-apartment-input-img-result-img"
+                        src={thumbnail}
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="popup-add-apartment-input-img">
+                  <p>Danh sách ảnh căn hộ</p>
+                  <input
+                    className="popup-add-apartment-input-img-input"
+                    type="file"
+                    id="list-file"
+                    multiple
+                    onChange={handleImageChange}
+                  />
+
+                  <div className="popup-add-apartment-input-img-label-holder">
+                    <label
+                      htmlFor="list-file"
+                      className="popup-add-apartment-input-img-label-holder-label"
+                    >
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-paperclip"
+                        color="black"
+                      />
+                    </label>
                   </div>
+                  {isPicture ? (
+                    <LinearProgress className="create-posts-input-img-result" />
+                  ) : (
+                    <div className="popup-add-apartment-input-img-result">
+                      {renderPhotos(pictures)}
+                    </div>
+                  )}
                 </div>
               </div>
             </DialogContent>

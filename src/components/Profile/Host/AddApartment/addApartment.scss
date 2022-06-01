@@ -84,20 +84,23 @@
 
   &-input-img {
     width: 100%;
+    // display: flex;
+    margin-top: 24px;
     &-input {
       display: none;
     }
 
     &-label-holder {
       width: max-content;
-      margin-top: 24px;
+
       &-label {
-        padding: 10px 25px;
-        background-color: #524d4b;
+        padding: 10px 10px;
+        // background-color: #524d4b;
+        // opacity: 0.4;
         color: white;
         border-radius: 12px;
-        display: grid;
-        place-items: center;
+        // display: grid;
+        // place-items: center;
         font-size: 16px;
         cursor: pointer;
       }
@@ -109,11 +112,58 @@
       margin-top: 8px;
       justify-content: start;
       flex-wrap: wrap;
+
       &-img {
         width: 33%;
         object-fit: cover;
         margin-left: 1px;
         margin-top: 20px;
+      }
+
+      &-list-img {
+        width: 33%;
+        height: 180px;
+        position: relative;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: 1px;
+        margin-top: 20px;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background-color: rgb(0, 0, 0, 0.4);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          // border-radius: $border-radius;
+        }
+        .icon-trash {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          transition: transform 0.3s ease;
+          z-index: 1;
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+        }
+        // &:hover{
+        //     opacity: 0.5;
+        // }
+        @media (hover: hover) and (pointer: fine) {
+          &:hover::before {
+            opacity: 0.8;
+          }
+
+          &:hover .icon-trash {
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
       }
     }
   }
@@ -131,5 +181,61 @@
     margin-bottom: 12px;
     margin-left: 12px;
     font-weight: 550;
+  }
+}
+
+.create-posts {
+  width: 90%;
+
+  &-box-information {
+    display: flex;
+    align-items: center;
+
+    &-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 90px;
+      object-fit: cover;
+    }
+
+    &-name {
+      font-family: "Noto Serif", serif;
+      color: #222;
+      font-weight: 600;
+      margin-left: 8px;
+      letter-spacing: -0.5px;
+      font-size: 19px;
+    }
+  }
+
+  &-input-content {
+    resize: none;
+    width: 500px;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #5f6060;
+    height: 12vw;
+    text-align: start;
+    letter-spacing: 0.75px;
+    color: #524d4b;
+  }
+
+  &-input-img {
+    width: 500px;
+    &-input {
+      display: none;
+    }
+
+    &-result {
+      width: 100%;
+      display: flex;
+      margin-top: 8px;
+      justify-content: start;
+      flex-wrap: wrap;
+      &-view {
+        // width: 33%;
+        position: relative;
+      }
+    }
   }
 }
