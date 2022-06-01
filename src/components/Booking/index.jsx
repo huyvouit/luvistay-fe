@@ -49,7 +49,7 @@ const Booking = (props) => {
       <section className="booking-input">
         <section className="inputField">
           <p className="inputField-title">
-            Check-in:<span>*</span>{" "}
+            Nhận phòng:<span>*</span>{" "}
           </p>
           <input
             // variant="outlined"
@@ -62,7 +62,7 @@ const Booking = (props) => {
         </section>
         <section className="inputField">
           <p className="inputField-title">
-            Check-out:<span>*</span>{" "}
+            Trả phòng:<span>*</span>{" "}
           </p>
           <input
             type="date"
@@ -95,7 +95,7 @@ const Booking = (props) => {
         )}
         <section className="inputField">
           <p className="inputField-title">
-            People:<span>*</span>{" "}
+            Số người:<span>*</span>{" "}
           </p>
           <Select
             defaultValue={people}
