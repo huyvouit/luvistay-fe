@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import apartmentApi from "../../api/aparment_api";
 import { APP_ROUTE } from "../../routes/app.routes";
 
@@ -56,4 +57,19 @@ const getApartmentBySearchApi = async (dispatch, body, action) => {
   }
 };
 
-export { getAllApartmentApi, getApartmentBySearchApi };
+const postAddApartment = async (body) => {
+  try {
+    const res = await apartmentApi.postAddApartment(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
+export { getAllApartmentApi, getApartmentBySearchApi, postAddApartment };

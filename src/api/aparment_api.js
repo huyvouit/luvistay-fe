@@ -45,6 +45,11 @@ const apartmentApi = {
     const url = `/apartment/avg-rating/${id}`;
     return axiosClient.get(url);
   },
+
+  postAddApartment: (body) => {
+    const url = `/apartment/add-new-apartment`;
+    return axiosClient.post(url, body);
+  },
 };
 
 export default apartmentApi;

@@ -21,6 +21,9 @@ import {
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import blogApi from "../../../../api/blog_api";
+import { postAddApartment } from "../../../../redux/Api/apartment";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../../../hooks/contexts/auth_context";
 
 const styles = (theme) => ({
   root: {
@@ -51,12 +54,15 @@ const currencies = [
 ];
 
 const AddApartment = () => {
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const [continued, setContinued] = useState(false);
   const [address, setAddress] = useState({
-    province: "",
-    district: "",
-    ward: "",
+    province: { label: "", value: "" },
+    district: { label: "", value: "" },
+    ward: { label: "", value: "" },
   });
   const [provinceList, setProvinceList] = useState([]);
   const [districtList, setDistrictList] = useState([]);
@@ -66,6 +72,16 @@ const AddApartment = () => {
   const [isThumbnail, setIsThumbnail] = useState(false);
   const [isPicture, setIsPicture] = useState(false);
   const [currency, setCurrency] = React.useState("hotel");
+
+  const [formAddAparment, setFormAddApartment] = useState({
+    apartmentNumber: "",
+    street: "",
+    name: "",
+    rating: "",
+    type: "",
+    owner: "",
+    description: "",
+  });
   useEffect(() => {
     (async () => {
       try {
@@ -85,7 +101,7 @@ const AddApartment = () => {
   useEffect(() => {
     if (address) {
       (async () => {
-        const province = address.province;
+        const province = address.province.value;
         if (province) {
           try {
             const res = await provinceApi.getDistricts(province);
@@ -101,7 +117,7 @@ const AddApartment = () => {
         }
       })();
       (async () => {
-        const district = address.district;
+        const district = address.district.value;
         if (district) {
           try {
             const res = await provinceApi.getWards(district);
@@ -123,6 +139,7 @@ const AddApartment = () => {
     try {
       const res = await provinceApi.getDistricts(e.target.value);
       const districts = res.data.districts;
+
       setDistrictList(
         districts.map((item) => ({
           label: item.name,
@@ -210,7 +227,8 @@ const AddApartment = () => {
 
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
-          setThumbnail(res.data);
+          console.log(res.data);
+          setThumbnail(res.data[0]);
           setIsThumbnail(false);
         }
       }
@@ -224,6 +242,7 @@ const AddApartment = () => {
 
     setPictures(temp);
   };
+
   const renderPhotos = (source) => {
     return source.map((photo, index) => {
       return (
@@ -247,6 +266,29 @@ const AddApartment = () => {
     numberRoom: "",
     pictures: "",
   });
+
+  const handleAddApartment = async (body) => {
+    console.log(body);
+    if (postAddApartment(body)) {
+      toast.success("Tạo mới căn hộ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } else {
+      toast.success("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -292,6 +334,13 @@ const AddApartment = () => {
                     id="name-apartment"
                     label="Tên apartment"
                     variant="outlined"
+                    value={formAddAparment.name}
+                    onChange={(e) =>
+                      setFormAddApartment({
+                        ...formAddAparment,
+                        name: e.target.value,
+                      })
+                    }
                   />
                   <p className="popup-add-apartment-box-p"></p>
                   <TextField
@@ -299,8 +348,13 @@ const AddApartment = () => {
                     id="outlined-select-currency"
                     select
                     label="Loại apartment"
-                    value={currency}
-                    onChange={handleChange}
+                    value={formAddAparment.type}
+                    onChange={(e) =>
+                      setFormAddApartment({
+                        ...formAddAparment,
+                        type: e.target.value,
+                      })
+                    }
                   >
                     {currencies.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -332,6 +386,13 @@ const AddApartment = () => {
                     id="apartment-number"
                     label="Số nhà"
                     variant="outlined"
+                    value={formAddAparment.apartmentNumber}
+                    onChange={(e) =>
+                      setFormAddApartment({
+                        ...formAddAparment,
+                        apartmentNumber: e.target.value,
+                      })
+                    }
                   />
                   <p className="popup-add-apartment-box-p"></p>
                   <TextField
@@ -339,6 +400,13 @@ const AddApartment = () => {
                     id="street"
                     label="Đường"
                     variant="outlined"
+                    value={formAddAparment.street}
+                    onChange={(e) =>
+                      setFormAddApartment({
+                        ...formAddAparment,
+                        street: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div className="popup-add-apartment-box">
@@ -348,11 +416,19 @@ const AddApartment = () => {
                       id="province"
                       label="Tỉnh/Thành phố"
                       variant="outlined"
-                      value={address.province}
+                      value={address.province.value}
                       onChange={(e) => {
+                        let info = provinceList.filter(
+                          (item) => item.value === e.target.value
+                        )[0].label;
+
                         setAddress({
                           ...address,
-                          province: e.target.value,
+                          province: {
+                            ...address.province,
+                            label: info,
+                            value: e.target.value,
+                          },
                           district: "",
                           ward: "",
                         });
@@ -372,11 +448,18 @@ const AddApartment = () => {
                     <Select
                       label="Quận/Huyện"
                       variant="outlined"
-                      value={address.district}
+                      value={address.district.value}
                       onChange={(e) => {
+                        let info = districtList.filter(
+                          (item) => item.value === e.target.value
+                        )[0].label;
                         setAddress({
                           ...address,
-                          district: e.target.value,
+                          district: {
+                            ...address.district,
+                            label: info,
+                            value: e.target.value,
+                          },
                           ward: "",
                         });
                         handleChangeDistrict(e);
@@ -395,9 +478,19 @@ const AddApartment = () => {
                     <Select
                       label="Xã/Phường"
                       variant="outlined"
-                      value={address.ward}
+                      value={address.ward.value}
                       onChange={(e) => {
-                        setAddress({ ...address, ward: e.target.value });
+                        let info = wardList.filter(
+                          (item) => item.value === e.target.value
+                        )[0].label;
+                        setAddress({
+                          ...address,
+                          ward: {
+                            ...address.ward,
+                            label: info,
+                            value: e.target.value,
+                          },
+                        });
                       }}
                     >
                       {wardList.map((option) => (
@@ -415,6 +508,13 @@ const AddApartment = () => {
                   id="description"
                   label="Mô tả căn hộ"
                   variant="outlined"
+                  value={formAddAparment.description}
+                  onChange={(e) =>
+                    setFormAddApartment({
+                      ...formAddAparment,
+                      description: e.target.value,
+                    })
+                  }
                 />
 
                 <div className="popup-add-apartment-input-img">
@@ -485,7 +585,24 @@ const AddApartment = () => {
                 Đóng
               </Button>
 
-              <Button autoFocus onClick={handleTwoFunction} color="primary">
+              <Button
+                autoFocus
+                onClick={() =>
+                  handleAddApartment({
+                    ...formAddAparment,
+                    province: address.province.label.split("Tỉnh ")[1],
+                    district: address.district.label,
+                    ward: address.ward.label,
+                    description: `<p>${formAddAparment.description}</p>`,
+                    apartmentNumber: Number(formAddAparment.apartmentNumber),
+                    country: "Việt Nam",
+                    thumbnail,
+                    pictures,
+                    owner: user?._id,
+                  })
+                }
+                color="primary"
+              >
                 Tiếp
               </Button>
             </DialogActions>
