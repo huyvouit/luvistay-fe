@@ -71,7 +71,6 @@ const AddApartment = () => {
   const [pictures, setPictures] = useState([]);
   const [isThumbnail, setIsThumbnail] = useState(false);
   const [isPicture, setIsPicture] = useState(false);
-  const [currency, setCurrency] = React.useState("hotel");
 
   const [formAddAparment, setFormAddApartment] = useState({
     apartmentNumber: "",
@@ -185,10 +184,6 @@ const AddApartment = () => {
     // setOpen1(true);
     // setOpen(false);
     setContinued(true);
-  };
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
   };
 
   const handleImageChange = async (e) => {
