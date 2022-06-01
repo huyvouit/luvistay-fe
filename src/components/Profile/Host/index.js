@@ -28,30 +28,32 @@ const Host = () => {
   const apartments = useSelector((state) => state.user.apartments);
   const rents = useSelector((state) => state.user.rents);
   const loading = useSelector((state) => state.loading.loading);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const {
     authState: { isAuthenticated, user },
     logoutUser,
   } = useContext(AuthContext);
-  const [apartment, setApartment] = useState(true);
+
+  const [listRents, setListRents] = useState([]);
   const [tab, setTab] = useState(true);
 
   useEffect(() => {
-    if (!apartments && tab) {
-      getApartmentByUserApi(dispatch);
-    }
-    if (!rents && !tab) {
-      getRentsOfApartmentApi(dispatch);
-    }
-  }, [tab]);
-
+    // if (!apartments && tab) {
+    getApartmentByUserApi(dispatch);
+    // }
+    // if (!rents && !tab) {
+    getRentsOfApartmentApi(dispatch);
+  }, []);
+  console.log(apartments);
   useEffect(() => {
-    if (apartments) {
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [apartments]);
+    setTimeout(() => {
+      if (apartments) {
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    }, 2000);
+  }, []);
 
   return (
     <div className="host">
