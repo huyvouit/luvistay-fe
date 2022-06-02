@@ -140,16 +140,6 @@ const SignInPage = () => {
 
           <button onClick={handleSubmitLogin}>Đăng nhập</button>
 
-          {/* <div className="sign-in-gg">
-            <img src={gg} />
-            <p>Đăng nhập với Google</p>
-          </div>
-
-          <div className="sign-in-fb">
-            <img src={fb} />
-            <p>Đăng nhập với Facebook</p>
-          </div> */}
-
           <Link to="/signup">
             <p className="to-sign-up">
               Nếu bạn không có một tài khoản?{" "}

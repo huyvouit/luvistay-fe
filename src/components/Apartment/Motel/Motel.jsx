@@ -8,6 +8,7 @@ import {
   InformationResultTwo,
 } from "../../InformationResult/InformationResult";
 import { flexbox } from "@mui/system";
+import { formatter } from "../../../helper/format";
 
 const Motel = ({ room, thumbnail }) => {
   return (
@@ -43,7 +44,8 @@ const Motel = ({ room, thumbnail }) => {
                 />
                 <InformationResultOne
                   icon="fa-solid fa-bookmark"
-                  title={room?.price}
+                  title={formatter.format(room?.price)}
+                  style={{ color: "black", fontWeight: 600 }}
                 />
               </section>
               {/* <InformationResultTwo

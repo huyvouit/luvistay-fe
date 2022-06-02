@@ -90,7 +90,7 @@ const CheckoutPage = () => {
       console.log(error);
     }
   };
-
+  console.log(location.state);
   const handleSubmitBooking = async () => {
     let roomIds = [];
     location.state.listSelectedRoom.listRoom.forEach((item) => {

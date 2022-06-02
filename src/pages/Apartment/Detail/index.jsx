@@ -45,7 +45,7 @@ const ApartmentDetailPage = () => {
     };
 
     searchRoomByApartmentApi(dispatch, body, () =>
-      navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: body } })
+      navigate(APP_ROUTE.SEARCH, { state: { infoDate: body } })
     );
   };
   return !isLoading ? (
@@ -73,21 +73,23 @@ const ApartmentDetailPage = () => {
           {detail.info?.pictures && (
             <ImageGallery listImage={detail.info.pictures.slice(1, 6)} />
           )}
-          <section className="detail-table">
-            <section>
-              <h2 className="detail-table-title">Danh sách phòng</h2>
+          {detail?.rooms && detail?.rooms.length > 0 && (
+            <section className="detail-table">
+              <section>
+                <h2 className="detail-table-title">Danh sách phòng</h2>
 
-              {detail.rooms.map((item, index) => {
-                return (
-                  <Motel
-                    room={item}
-                    key={index}
-                    thumbnail={detail.info.thumbnail}
-                  />
-                );
-              })}
+                {detail.rooms.map((item, index) => {
+                  return (
+                    <Motel
+                      room={item}
+                      key={index}
+                      thumbnail={detail.info.thumbnail}
+                    />
+                  );
+                })}
+              </section>
             </section>
-          </section>
+          )}
         </section>
         <section className="detail-body-right">
           <section className="detail-body-right-item">
