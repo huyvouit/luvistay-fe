@@ -92,7 +92,7 @@ const ApartmentDetailPage = () => {
         <section className="detail-body-right">
           <section className="detail-body-right-item">
             <Booking
-              textButton="Search"
+              textButton="Tìm kiếm"
               checkin={checkin}
               setCheckin={setCheckin}
               checkout={checkout}
