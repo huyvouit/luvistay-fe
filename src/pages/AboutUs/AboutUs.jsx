@@ -5,37 +5,41 @@ import "./aboutus.scss";
 const founders = [
   {
     name: "Võ Sỹ Huy",
-    avatar: "https://tinyurl.com/ye9p9jb4",
-    position: "Product Manger",
+    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Huy-Vo.jpg",
+    position: "Team Leader",
   },
   {
     name: "Nguyễn Trà Vi",
-    avatar: "https://tinyurl.com/3st9wnzk",
+    avatar:
+      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Tra-Vi_19522512-scaled.jpg",
     position: "Frontend Developer",
   },
   {
     name: "Nguyễn Ngọc Khôi",
-    avatar: "https://tinyurl.com/49p9eea6",
+    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Khoi.jpg",
     position: "Frontend Developer",
   },
   {
     name: "Nguyễn Trọng Phát",
-    avatar: "https://tinyurl.com/ywtmn4nh",
-    position: "",
+    avatar:
+      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Trong-Phat_-19521998.jpg",
+    position: "Frontend Developer",
   },
   {
     name: "Nguyễn Khuê",
-    avatar: "https://tinyurl.com/yc6xcr6m",
+    avatar:
+      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Khue-19521712-scaled.jpg",
     position: "Backend Leader",
   },
   {
     name: "Lê Khôi",
-    avatar: "https://tinyurl.com/2p8cvefy",
+    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Khoi-Le.jpg",
     position: "Backend Developer",
   },
   {
     name: "Nguyễn Hữu Long",
-    avatar: "https://tinyurl.com/2djcv7xz",
+    avatar:
+      "https://luvistay.com/wp-content/uploads/2022/05/NGUYEN-HUU-LONG_19521789-scaled.jpg",
     position: "Backend Developer",
   },
 ];
@@ -57,7 +61,7 @@ const AboutUsPage = () => {
         <hr className="mt-12 mb-0.5" />
         <hr className="mb-8" />
       </div>
-      {/* <Founders /> */}
+      <Founders />
     </>
   );
 };
