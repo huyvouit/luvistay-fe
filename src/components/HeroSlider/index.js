@@ -15,11 +15,11 @@ import "./heroSlider.scss";
 const items = [
   {
     type: "Authentic",
-    title: "Xin chào.Salut.Hola",
+    title: "Phòng khách sang trọng",
     description:
       "Hãy tưởng tượng cảm giác của một ngôi nhà được thiết kế để phù hợp với lối sống của bạn và phản ánh tính cách của bạn. Những lợi ích là rõ ràng. Khi bạn kết hợp một bảng màu dễ chịu; Không gian chảy tự do và chức năng; Ánh sáng tâm trạng hoàn hảo và lưu trữ thông minh, bạn có được những trải nghiệm gia đình thú vị và một cuộc sống hạnh phúc hơn.",
     imageUrl:
-      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/standart-single-room-992x992.jpg",
+      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-1-2560x1268.jpg",
   },
   {
     type: "Timeless",
@@ -27,7 +27,7 @@ const items = [
     description:
       "Konsept được sinh ra tại Việt Nam vào năm 2021, và ngày nay là một thương hiệu phong cách sống bán lẻ cao cấp. Chúng tôi thiết kế, sản xuất và bán một loạt các đồ nội thất thiết kế đương đại của Đan Mạch, phụ kiện và ánh sáng cho phòng khách, phòng ăn, phòng ngủ, văn phòng tại nhà và không gian ngoài trời.",
     imageUrl:
-      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/superior-double-room-992x992.jpg",
+      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-3-2560x1268.jpg",
   },
   {
     type: "Tailored",
@@ -35,22 +35,22 @@ const items = [
     description:
       "Ngày nay, công ty tiếp tục giải quyết những lối sống mới với việc tạo ra các giải pháp trang trí nội thất hoàn chỉnh, hài hòa thể hiện thiết kế hiện đại tốt nhất cho tất cả các khu vực của ngôi nhà.",
     imageUrl:
-      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/classic-double-room-992x992.jpg",
+      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-2-new-2560x1268.jpg",
   },
   {
     title: "Được trang trí tâm huyết",
     description:
       "Hãy tưởng tượng cảm giác của một ngôi nhà được thiết kế để phù hợp với lối sống của bạn và phản ánh tính cách của bạn. Những lợi ích là rõ ràng. Khi bạn kết hợp một bảng màu dễ chịu; Không gian chảy tự do và chức năng; Ánh sáng tâm trạng hoàn hảo và lưu trữ thông minh, bạn có được những trải nghiệm gia đình thú vị và một cuộc sống hạnh phúc hơn.",
     imageUrl:
-      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/comfort-triple-room-1170x780.jpg",
+      "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/Slide-4-2560x1268.jpg",
   },
 ];
 
 const images = [
-  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/standart-single-room-992x992.jpg",
-  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/superior-double-room-992x992.jpg",
-  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/classic-double-room-992x992.jpg",
-  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/06/comfort-triple-room-1170x780.jpg",
+  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-1-2560x1268.jpg",
+  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-3-2560x1268.jpg",
+  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/slide-2-new-2560x1268.jpg",
+  "https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/Slide-4-2560x1268.jpg",
 ];
 export default function App() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
