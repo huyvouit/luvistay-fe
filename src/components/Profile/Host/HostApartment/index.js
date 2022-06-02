@@ -48,7 +48,7 @@ const currencies = [
   },
 ];
 
-const HostApartment = ({ apartment }) => {
+const HostApartment = ({ apartment, action }) => {
   const [open, setOpen] = React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -131,9 +131,10 @@ const HostApartment = ({ apartment }) => {
     });
   };
 
-  const handleDisableApartment = () => {
+  const handleDisableApartment = async () => {
     const apartmentId = apartment._id;
-    if (disableApartment({ apartmentId })) {
+    const res = await disableApartment({ apartmentId });
+    if (res.success) {
       toast.success("Vô hiệu hóa căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -143,6 +144,7 @@ const HostApartment = ({ apartment }) => {
         draggable: true,
       });
       setOpen3(false);
+      action();
     } else {
       toast.success("Đã có lỗi xảy ra nha!", {
         position: "top-right",
@@ -154,9 +156,10 @@ const HostApartment = ({ apartment }) => {
       });
     }
   };
-  const handleActiveApartment = () => {
+  const handleActiveApartment = async () => {
     const apartmentId = apartment._id;
-    if (activedApartment({ apartmentId })) {
+    const res = await activedApartment({ apartmentId });
+    if (res.success) {
       toast.success("Kích hoạt lại căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -166,6 +169,7 @@ const HostApartment = ({ apartment }) => {
         draggable: true,
       });
       setOpen3(false);
+      action();
     } else {
       toast.success("Đã có lỗi xảy ra nha!", {
         position: "top-right",
@@ -287,6 +291,7 @@ const HostApartment = ({ apartment }) => {
           apartment={apartment}
           open={open2}
           setOpen={setOpen2}
+          action={action}
         />
       )}
       {/* xóa */}

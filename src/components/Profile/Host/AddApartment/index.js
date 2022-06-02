@@ -262,15 +262,9 @@ const AddApartment = () => {
 
   const handleAddApartment = async (body) => {
     console.log(body);
-    if (postAddApartment(body).success) {
-      toast.success("Tạo mới căn hộ thành công", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+    const res = await postAddApartment(body);
+    if (res.success) {
+      //  setContinued(true);
     } else {
       toast.error("Đã có lỗi xảy ra nha!", {
         position: "top-right",

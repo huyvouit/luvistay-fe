@@ -89,6 +89,37 @@ const postUpdateApartment = async (body) => {
   }
 };
 
+const disableRoom = async (body) => {
+  try {
+    const res = await apartmentApi.disableRoom(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
+
+const activedRoom = async (body) => {
+  try {
+    const res = await apartmentApi.activeRoom(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
 const disableApartment = async (body) => {
   try {
     const res = await apartmentApi.disableApartment(body);
@@ -160,6 +191,8 @@ export {
   postUpdateApartment,
   disableApartment,
   activedApartment,
+  disableRoom,
+  activedRoom,
   postUpdateRoom,
   postAddRoomForApartment,
 };

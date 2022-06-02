@@ -110,7 +110,13 @@ const Host = () => {
                     <CircularProgress color="inherit" size={25} />
                   ) : (
                     apartments?.map((item, index) => {
-                      return <HostApartment key={index} apartment={item} />;
+                      return (
+                        <HostApartment
+                          key={index}
+                          apartment={item}
+                          action={() => getApartmentByUserApi(dispatch)}
+                        />
+                      );
                     })
                   )
                 ) : loading ? (

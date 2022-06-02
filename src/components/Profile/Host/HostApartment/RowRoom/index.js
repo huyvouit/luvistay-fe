@@ -10,7 +10,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import AddRoom from "../../AddRoom";
 import { formatter } from "../../../../../helper/format";
-import { postUpdateRoom } from "../../../../../redux/Api/apartment";
+import {
+  activedRoom,
+  disableRoom,
+  postUpdateRoom,
+} from "../../../../../redux/Api/apartment";
 import { toast } from "react-toastify";
 
 const styles = (theme) => ({
@@ -54,9 +58,7 @@ const RowRoom = ({ room, apartment }) => {
     setOpen3(false);
   };
 
-  const handleCloseAndDelete = () => {
-    setOpen3(false);
-  };
+  const handleCloseAndDelete = () => {};
 
   const handleClickMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,6 +67,55 @@ const RowRoom = ({ room, apartment }) => {
   const handleCloseMenu1 = () => {
     setAnchorEl(null);
     setOpen2(true);
+  };
+
+  const handleDisableRoom = async () => {
+    const roomId = room._id;
+    const res = await disableRoom({ roomId });
+    if (res.success) {
+      toast.success("Vô hiệu hóa phòng thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen3(false);
+    } else {
+      toast.error("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
+  const handleActiveRoom = async () => {
+    const roomId = room._id;
+    const res = await activedRoom({ roomId });
+    if (res.success) {
+      toast.success("Kích hoạt lại phòng thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen3(false);
+    } else {
+      toast.error("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
   };
 
   const handleCloseMenu2 = () => {
@@ -114,6 +165,15 @@ const RowRoom = ({ room, apartment }) => {
           <p className="popup-detail-apartment-row-two-content-colum-two-price">
             {formatter.format(room?.price)}
           </p>
+          <p
+            className="popup-detail-apartment-row-two-content-colum-two-price"
+            style={{
+              color: room?.isDisable ? "red" : "green",
+              fontSize: "18px",
+            }}
+          >
+            {room?.isDisable ? "Tạm dừng hoạt động" : "Đang hoạt động"}
+          </p>
         </div>
         <FontAwesomeIcon
           className="posts-container-row-one-icon"
@@ -135,7 +195,10 @@ const RowRoom = ({ room, apartment }) => {
           }}
         >
           <MenuItem onClick={handleCloseMenu1}>Chỉnh sửa</MenuItem>
-          <MenuItem onClick={handleCloseMenu2}>Xóa</MenuItem>
+          <MenuItem onClick={handleCloseMenu2}>
+            {" "}
+            {room?.isDisable ? "Kích hoat" : "Vô hiệu hóa"}
+          </MenuItem>
         </Menu>
       </div>
 
@@ -173,15 +236,21 @@ const RowRoom = ({ room, apartment }) => {
       >
         <DialogContent>
           <div className="create-posts">
-            <h3>Bạn có thật sự muốn xóa phòng này ?</h3>
+            {room?.isDisable
+              ? "Bạn muốn kích hoạt lại phòng này?"
+              : "Bạn muốn vô hiệu hóa phòng này?"}
           </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose2} color="primary">
             Hủy
           </Button>
-          <button className="button-posts" onClick={handleCloseAndDelete}>
-            Xóa
+          <button
+            className="button-posts"
+            style={{ width: "100px" }}
+            onClick={room?.isDisable ? handleActiveRoom : handleDisableRoom}
+          >
+            {room?.isDisable ? "Kích hoat" : "Vô hiệu hóa"}
           </button>
         </DialogActions>
       </Dialog>

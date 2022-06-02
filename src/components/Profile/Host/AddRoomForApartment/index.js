@@ -59,11 +59,11 @@ const AddRoomForApartment = ({ listApartments }) => {
 
   const classes = useStyles();
 
-  const handleAddRoomForApartment = () => {
+  const handleAddRoomForApartment = async () => {
     const body = { ...formRoom };
-    console.log(body);
-    if (postAddRoomForApartment(body)) {
-      toast.success("Thêm mới phòng căn hộ thành công", {
+    const res = await postAddRoomForApartment(body);
+    if (res.success) {
+      toast.success("Thêm mới phòng thành công", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -73,7 +73,7 @@ const AddRoomForApartment = ({ listApartments }) => {
       });
       setOpen(false);
     } else {
-      toast.success("Đã có lỗi xảy ra nha!", {
+      toast.error("Đã có lỗi xảy ra nha!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

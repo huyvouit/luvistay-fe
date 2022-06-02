@@ -59,7 +59,7 @@ const apartmentApi = {
     const url = `/room`;
     return axiosClient.put(url, body);
   },
-  deleteRoom: (body) => {
+  disableRoom: (body) => {
     const url = `/room/disable-user-room`;
     return axiosClient.put(url, body);
   },

@@ -56,7 +56,7 @@ const currencies = [
   },
 ];
 
-const UpdateApartment = ({ apartment, open, setOpen }) => {
+const UpdateApartment = ({ apartment, open, setOpen, action }) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
@@ -300,7 +300,8 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
 
   const handleUpdateApartment = async (body) => {
     console.log(body);
-    if (postUpdateApartment(body)) {
+    const res = await postUpdateApartment(body);
+    if (res.success) {
       toast.success("Câp nhật căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -310,8 +311,9 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
         draggable: true,
       });
       setOpen(false);
+      action();
     } else {
-      toast.success("Đã có lỗi xảy ra nha!", {
+      toast.error("Đã có lỗi xảy ra nha!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -340,7 +342,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
               className="popup-add-apartment-box-name"
               style={{ width: "49%" }}
               id="name-apartment"
-              label="Tên apartment"
+              label="Tên căn hộ"
               variant="outlined"
               value={formAddAparment.name}
               onChange={(e) =>
@@ -356,7 +358,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
               style={{ width: "49%" }}
               id="outlined-select-currency"
               select
-              label="Loại apartment"
+              label="Loại căn hộ"
               value={formAddAparment.type}
               onChange={(e) =>
                 setFormAddApartment({
