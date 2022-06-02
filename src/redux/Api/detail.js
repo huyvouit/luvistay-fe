@@ -69,7 +69,7 @@ const getReviewByApartmentApi = async (dispatch, params) => {
       dispatch(getReviewByApartment(null));
     }
   } catch (error) {
-    dispatch(getReviewByApartment(null));
+    dispatch(getReviewByApartment({ reviews: null, maxPage: null }));
   }
 };
 

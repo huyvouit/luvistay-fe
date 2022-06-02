@@ -39,7 +39,7 @@ const apartmentApi = {
   },
   postReview: (body) => {
     const url = "/apartment/review";
-    return axiosClient.get(url, body);
+    return axiosClient.post(url, body);
   },
   getAvgRatingByApartment: (id) => {
     const url = `/apartment/avg-rating/${id}`;

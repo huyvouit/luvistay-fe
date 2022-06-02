@@ -40,9 +40,9 @@ const ReviewsDetail = ({ apartment }) => {
       getAvgRatingByApartmentApi(dispatch, apartment._id);
     }
   }, [apartment]);
-  console.log(reviews);
+
   useEffect(() => {
-    if (listReviews?.length > 0) {
+    if (listReviews && listReviews?.length > 0) {
       setReviews([...reviews, ...listReviews]);
     } else {
       setReviews([]);
@@ -51,6 +51,11 @@ const ReviewsDetail = ({ apartment }) => {
   const handleAddReview = async () => {
     try {
       setLoading(true);
+      console.log({
+        apartmentId: apartment._id,
+        content,
+        rating,
+      });
       const res = await apartmentApi.postReview({
         apartmentId: apartment._id,
         content,
@@ -64,6 +69,8 @@ const ReviewsDetail = ({ apartment }) => {
         });
         getAvgRatingByApartmentApi(dispatch, apartment._id);
         setLoading(false);
+        setContent("");
+        setRating(0);
       }
     } catch (error) {}
   };
@@ -121,7 +128,7 @@ const ReviewsDetail = ({ apartment }) => {
           />
         </section>
       )}
-      {reviews ? (
+      {reviews.length > 0 ? (
         <section className="reviews-comments">
           {reviews.map((item, index) => {
             return (
