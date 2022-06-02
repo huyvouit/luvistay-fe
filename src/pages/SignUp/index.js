@@ -4,14 +4,21 @@ import logo from "../../assets/icons/logoluviStay.svg";
 import gg from "../../assets/icons/gg.png";
 import fb from "../../assets/icons/fb.png";
 import "./signup.scss";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hooks/contexts/auth_context";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../../redux/Actions";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const SignUpPage = () => {
+  const {
+    loginUser,
+    authState: { authLoading, user },
+  } = useContext(AuthContext);
+  let navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
   const [formRegister, setFormRegister] = useState({
@@ -58,7 +65,17 @@ const SignUpPage = () => {
       dispatch(hideLoading());
     }
   };
-  return (
+
+  return authLoading ? (
+    <Backdrop
+      sx={{ color: "#c1b086", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      open={authLoading}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
+  ) : user ? (
+    <Navigate to={APP_ROUTE.HOME} state={{ from: location }} />
+  ) : (
     <div className="signup-page">
       <Backdrop
         sx={{ color: "#c1b086", zIndex: (theme) => theme.zIndex.drawer + 1 }}

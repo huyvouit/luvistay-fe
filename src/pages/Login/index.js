@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import { Backdrop, CircularProgress, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 
@@ -15,9 +15,10 @@ import { APP_ROUTE } from "../../routes/app.routes";
 const SignInPage = () => {
   const {
     loginUser,
-    authState: { authLoading },
+    authState: { authLoading, user },
   } = useContext(AuthContext);
   let navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
 
@@ -65,6 +66,8 @@ const SignInPage = () => {
     >
       <CircularProgress color="inherit" />
     </Backdrop>
+  ) : user ? (
+    <Navigate to={APP_ROUTE.HOME} state={{ from: location }} />
   ) : (
     <div className="login-page">
       <Backdrop

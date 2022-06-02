@@ -16,7 +16,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
+console.log(location.state);
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
 
@@ -122,14 +122,15 @@ const Search = () => {
           <section className="box-about">
             <h4 className="box-about-title">Điều khoản và điều kiện</h4>
             <p className="search-description box-about-descript">
-            Chúng tôi là một trong những nhà sản xuất kỳ nghỉ vui vẻ được công nhận nhiều nhất ở Việt Nam
-              - Chúng tôi cung cấp một loạt các ưu đãi tuyệt vời cho bất kỳ dịp nào kể từ khi
-              2015.
+              Chúng tôi là một trong những nhà sản xuất kỳ nghỉ vui vẻ được công
+              nhận nhiều nhất ở Việt Nam - Chúng tôi cung cấp một loạt các ưu
+              đãi tuyệt vời cho bất kỳ dịp nào kể từ khi 2015.
             </p>
             <p className="search-description box-about-descript">
-            Chúng tôi chấp nhận thanh toán theo bất kỳ cách nào thuận tiện cho bạn
+              Chúng tôi chấp nhận thanh toán theo bất kỳ cách nào thuận tiện cho
+              bạn
             </p>
-            <img className="box-about-img" src={LogoPayment} />
+            <img className="box-about-img" src={LogoPayment} alt="" />
           </section>
         </section>
       </section>

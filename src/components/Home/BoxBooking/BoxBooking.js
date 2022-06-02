@@ -55,7 +55,7 @@ const BoxBooking = () => {
             <input
               type="date"
               className="textField"
-              // min={disablePastDate()}
+              min={disablePastDate()}
               onChange={(event) => {
                 setFormSearch({
                   ...formSearch,
@@ -72,7 +72,7 @@ const BoxBooking = () => {
               type="date"
               className="textField"
               required
-              // min={handleCheckout(formSearch.checkinDate)}
+              min={handleCheckout(formSearch.checkinDate)}
               onChange={(event) => {
                 setFormSearch({
                   ...formSearch,

@@ -100,7 +100,6 @@ export default function AppRoutes() {
                 }
               />
 
-              {/* <Route path={APP_ROUTE.MY_BLOG} element={<A />} /> */}
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
               <Route path={APP_ROUTE.BLOG_DETAIL} element={<DetailBlog />} />
