@@ -15,7 +15,10 @@ import RowRoom from "./RowRoom";
 import TextField from "@mui/material/TextField";
 import UpdateApartment from "../UpdateApartment";
 import { toast } from "react-toastify";
-import { disableApartment } from "../../../../redux/Api/apartment";
+import {
+  activedApartment,
+  disableApartment,
+} from "../../../../redux/Api/apartment";
 
 const styles = (theme) => ({
   root: {
@@ -129,8 +132,8 @@ const HostApartment = ({ apartment }) => {
   };
 
   const handleDisableApartment = () => {
-    const apartmetnId = apartment._id;
-    if (disableApartment({ apartmetnId })) {
+    const apartmentId = apartment._id;
+    if (disableApartment({ apartmentId })) {
       toast.success("Vô hiệu hóa căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -139,7 +142,30 @@ const HostApartment = ({ apartment }) => {
         pauseOnHover: true,
         draggable: true,
       });
-      setOpen(false);
+      setOpen3(false);
+    } else {
+      toast.success("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
+  const handleActiveApartment = () => {
+    const apartmentId = apartment._id;
+    if (activedApartment({ apartmentId })) {
+      toast.success("Kích hoạt lại căn hộ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen3(false);
     } else {
       toast.success("Đã có lỗi xảy ra nha!", {
         position: "top-right",
@@ -287,7 +313,11 @@ const HostApartment = ({ apartment }) => {
             <button
               className="button-posts"
               style={{ width: "120px" }}
-              onClick={apartment?.isDisable ? () => {} : handleDisableApartment}
+              onClick={
+                apartment?.isDisable
+                  ? handleActiveApartment
+                  : handleDisableApartment
+              }
             >
               {apartment?.isDisable ? "Kích hoạt lại" : "Vô hiệu hóa"}
             </button>

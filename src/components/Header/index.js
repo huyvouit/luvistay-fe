@@ -162,7 +162,12 @@ const Header = () => {
               className={"navbar-item "}
               onClick={() => navigate(APP_ROUTE.PROFILE)}
             >
-              <img src={userIcon} width="20px" height="20px" alt="user icon" />
+              <img
+                src={user?.avatar}
+                width="20px"
+                height="20px"
+                alt="user icon"
+              />
             </section>
           ) : (
             <section

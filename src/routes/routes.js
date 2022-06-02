@@ -36,6 +36,7 @@ import MyBlog from "../components/Blog/MyBlog/";
 import ScrollToTop from "../helper/scrollToTop";
 import { AuthContext } from "../hooks/contexts/auth_context";
 import DetailBlog from "../pages/Blog/Detail";
+import { RegisterSuccess } from "../pages/SignUp/RegisterSuccess";
 
 const HomePage = lazy(() => import("../pages/Home"));
 export default function AppRoutes() {
@@ -102,6 +103,10 @@ export default function AppRoutes() {
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
               <Route path={APP_ROUTE.BLOG_DETAIL} element={<DetailBlog />} />
+              <Route
+                path={`${APP_ROUTE.REGISTER_SUCCESS}/:access/:refresh`}
+                element={<RegisterSuccess />}
+              />
             </Route>
 
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />

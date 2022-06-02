@@ -30,9 +30,9 @@ const SignInPage = () => {
     try {
       dispatch(showLoading());
       const loginData = await loginUser(loginForm);
-
+      console.log(loginData);
       if (loginData.success) {
-        toast.success(loginData.message, {
+        toast.success("Đăng nhập thành công", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -43,7 +43,7 @@ const SignInPage = () => {
         dispatch(hideLoading());
         navigate(APP_ROUTE.HOME);
       } else {
-        toast.error(loginData.error, {
+        toast.error("Đã có lỗi xảy ra. Hãy kiểm tra lại", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -51,6 +51,7 @@ const SignInPage = () => {
           pauseOnHover: true,
           draggable: true,
         });
+        dispatch(hideLoading());
       }
     } catch (error) {
       console.log(error);

@@ -59,17 +59,27 @@ const apartmentApi = {
     const url = `/room`;
     return axiosClient.put(url, body);
   },
+  deleteRoom: (body) => {
+    const url = `/room/disable-user-room`;
+    return axiosClient.put(url, body);
+  },
+
+  activeRoom: (body) => {
+    const url = `/room/activate-user-room`;
+    return axiosClient.put(url, body);
+  },
   postAddRoomForApartment: (body) => {
     const url = `/room`;
     return axiosClient.post(url, body);
   },
 
   disableApartment: (body) => {
-    const url = `/apartment/delete-apartment`;
+    const url = `/apartment/delete-user-apartment`;
     return axiosClient.put(url, body);
   },
+
   activeApartment: (body) => {
-    const url = `/apartment/delete-apartment`;
+    const url = `/apartment/activate-user-apartment`;
     return axiosClient.put(url, body);
   },
 };

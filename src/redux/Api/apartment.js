@@ -105,6 +105,22 @@ const disableApartment = async (body) => {
   }
 };
 
+const activedApartment = async (body) => {
+  try {
+    const res = await apartmentApi.activeApartment(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
+
 const postUpdateRoom = async (body) => {
   try {
     const res = await apartmentApi.postUpdateRoom(body);
@@ -143,6 +159,7 @@ export {
   postAddApartment,
   postUpdateApartment,
   disableApartment,
+  activedApartment,
   postUpdateRoom,
   postAddRoomForApartment,
 };

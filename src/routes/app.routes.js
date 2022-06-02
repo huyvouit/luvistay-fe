@@ -23,4 +23,5 @@ export const APP_ROUTE = {
   MY_BLOG: "/my-blog",
   CONTACT: "/contact",
   NEWS: "/news",
+  REGISTER_SUCCESS: "/register-success",
 };
