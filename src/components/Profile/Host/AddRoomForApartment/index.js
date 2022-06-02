@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddRoomForApartment = ({ listApartments }) => {
+const AddRoomForApartment = ({ listApartments, action }) => {
   const [open, setOpen] = React.useState(false);
 
   const [formRoom, setFormRoom] = useState({
@@ -71,6 +71,7 @@ const AddRoomForApartment = ({ listApartments }) => {
         pauseOnHover: true,
         draggable: true,
       });
+      action();
       setOpen(false);
     } else {
       toast.error("Đã có lỗi xảy ra nha!", {

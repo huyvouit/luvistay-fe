@@ -30,7 +30,7 @@ const styles = (theme) => ({
   },
 });
 
-const RowRoom = ({ room, apartment }) => {
+const RowRoom = ({ room, apartment, action }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open1 = Boolean(anchorEl);
   const [open2, setOpen2] = React.useState(false);
@@ -81,6 +81,7 @@ const RowRoom = ({ room, apartment }) => {
         pauseOnHover: true,
         draggable: true,
       });
+      action();
       setOpen3(false);
     } else {
       toast.error("Đã có lỗi xảy ra nha!", {
@@ -105,6 +106,7 @@ const RowRoom = ({ room, apartment }) => {
         pauseOnHover: true,
         draggable: true,
       });
+      action();
       setOpen3(false);
     } else {
       toast.error("Đã có lỗi xảy ra nha!", {
@@ -197,7 +199,7 @@ const RowRoom = ({ room, apartment }) => {
           <MenuItem onClick={handleCloseMenu1}>Chỉnh sửa</MenuItem>
           <MenuItem onClick={handleCloseMenu2}>
             {" "}
-            {room?.isDisable ? "Kích hoat" : "Vô hiệu hóa"}
+            {room?.isDisable ? "Kích hoạt" : "Vô hiệu hóa"}
           </MenuItem>
         </Menu>
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import logo from "../../assets/icons/logo-footer.svg";
+import logo from "../../assets/icons/logoluviStay.svg";
 
 import { APP_ROUTE } from "../../routes/app.routes";
 import "./header.scss";
@@ -45,7 +45,7 @@ const Header = () => {
           <img
             src={logo}
             alt=""
-            width={140}
+            width={180}
             onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}
           />

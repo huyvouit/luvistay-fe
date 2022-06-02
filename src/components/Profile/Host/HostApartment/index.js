@@ -273,7 +273,12 @@ const HostApartment = ({ apartment, action }) => {
                 Danh sách phòng hiện có
               </h4>
               {apartment?.rooms?.map((item, index) => (
-                <RowRoom key={index} room={item} apartment={apartment} />
+                <RowRoom
+                  key={index}
+                  room={item}
+                  apartment={apartment}
+                  action={action}
+                />
               ))}
             </div>
           </div>

@@ -101,7 +101,10 @@ const Host = () => {
                     </p>
                   </div>
                   <div className="colum-two-group">
-                    <AddRoomForApartment listApartments={apartments} />
+                    <AddRoomForApartment
+                      listApartments={apartments}
+                      action={() => getApartmentByUserApi(dispatch)}
+                    />
                     <AddApartment />
                   </div>
                 </div>
