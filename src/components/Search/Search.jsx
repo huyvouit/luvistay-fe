@@ -60,7 +60,7 @@ const Search = () => {
               />
             </section>
             <section className="page-header-title">
-              <h1 className="title">Search Results</h1>
+              <h1 className="title">Kết quả tìm kiếm</h1>
             </section>
           </section>
           {isLoading ? (
@@ -101,7 +101,7 @@ const Search = () => {
         <section className="search-colum-two">
           <section className="box-search">
             <Booking
-              textButton="Search"
+              textButton="Tìm kiếm"
               checkin={checkin}
               setCheckin={setCheckin}
               checkout={checkout}
@@ -114,20 +114,20 @@ const Search = () => {
             />
           </section>
           <section className="special-offers">
-            <h4 className="special-offers-title">Special Offers</h4>
+            <h4 className="special-offers-title">Ưu đãi đặc biệt</h4>
             <SpecialOffer />
             <SpecialOffer />
             <SpecialOffer />
           </section>
           <section className="box-about">
-            <h4 className="box-about-title">Terms & Conditions</h4>
+            <h4 className="box-about-title">Điều khoản và điều kiện</h4>
             <p className="search-description box-about-descript">
-              We are one of the most recognized happy vacation makers in Greece
-              – we provide a wide range of great offers for any occasion since
+            Chúng tôi là một trong những nhà sản xuất kỳ nghỉ vui vẻ được công nhận nhiều nhất ở Việt Nam
+              - Chúng tôi cung cấp một loạt các ưu đãi tuyệt vời cho bất kỳ dịp nào kể từ khi
               2015.
             </p>
             <p className="search-description box-about-descript">
-              We accept payments in any way convenient for you
+            Chúng tôi chấp nhận thanh toán theo bất kỳ cách nào thuận tiện cho bạn
             </p>
             <img className="box-about-img" src={LogoPayment} />
           </section>
