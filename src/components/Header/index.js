@@ -8,6 +8,7 @@ import { APP_ROUTE } from "../../routes/app.routes";
 import "./header.scss";
 import { AuthContext } from "../../hooks/contexts/auth_context";
 import userIcon from "../../assets/images/profile.png";
+import profile from "../../assets/images/profile.png";
 const NAVLINK = [
   {
     route: "Trang chủ",
@@ -122,7 +123,7 @@ const Header = () => {
                     }}
                   >
                     <img
-                      src={userIcon}
+                      src={user?.avatar || profile}
                       width="20px"
                       height="20px"
                       alt="user icon"
@@ -163,7 +164,7 @@ const Header = () => {
               onClick={() => navigate(APP_ROUTE.PROFILE)}
             >
               <img
-                src={user?.avatar}
+                src={user?.avatar || profile}
                 width="20px"
                 height="20px"
                 alt="user icon"

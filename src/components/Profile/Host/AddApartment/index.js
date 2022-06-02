@@ -52,7 +52,7 @@ const currencies = [
   },
 ];
 
-const AddApartment = () => {
+const AddApartment = ({ action }) => {
   const {
     authState: { user },
   } = useContext(AuthContext);
@@ -265,6 +265,16 @@ const AddApartment = () => {
     const res = await postAddApartment(body);
     if (res.success) {
       //  setContinued(true);
+      toast.success("Tạo mới căn hộ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen(false);
+      action();
     } else {
       toast.error("Đã có lỗi xảy ra nha!", {
         position: "top-right",
@@ -590,7 +600,7 @@ const AddApartment = () => {
                 }
                 color="primary"
               >
-                Tiếp
+                Tạo mới
               </Button>
             </DialogActions>
           </>

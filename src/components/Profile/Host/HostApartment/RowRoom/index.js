@@ -252,7 +252,7 @@ const RowRoom = ({ room, apartment, action }) => {
             style={{ width: "100px" }}
             onClick={room?.isDisable ? handleActiveRoom : handleDisableRoom}
           >
-            {room?.isDisable ? "Kích hoat" : "Vô hiệu hóa"}
+            {room?.isDisable ? "Kích hoạt" : "Vô hiệu hóa"}
           </button>
         </DialogActions>
       </Dialog>

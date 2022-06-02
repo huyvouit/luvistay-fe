@@ -105,7 +105,9 @@ const Host = () => {
                       listApartments={apartments}
                       action={() => getApartmentByUserApi(dispatch)}
                     />
-                    <AddApartment />
+                    <AddApartment
+                      action={() => getApartmentByUserApi(dispatch)}
+                    />
                   </div>
                 </div>
                 {tab ? (
@@ -144,11 +146,7 @@ const Host = () => {
                               </h4>
                               {item?.roomsCalendar?.map((item, index) => (
                                 <div className="list-rents">
-                                  <div className="list-rents-apartment">
-                                    {/* <h3 className="apartment-name">
-                                      {item?.room?.name}
-                                    </h3> */}
-                                  </div>
+                                  <div className="list-rents-apartment"></div>
                                   <FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-label">
                                       {item?.room?.name}
@@ -158,7 +156,6 @@ const Host = () => {
                                       label={item?.room?.name}
                                       labelId="demo-simple-select-label"
                                       id="demo-simple-select"
-                                      // disabled
                                     >
                                       {item?.calendar?.map((date, index) => {
                                         return (

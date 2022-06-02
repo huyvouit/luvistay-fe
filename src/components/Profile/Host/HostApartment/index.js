@@ -245,6 +245,7 @@ const HostApartment = ({ apartment, action }) => {
           </Menu>
         </div>
       </div>
+
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -311,7 +312,7 @@ const HostApartment = ({ apartment, action }) => {
               <h3>
                 {" "}
                 {apartment?.isDisable
-                  ? "Bạn có thật sự muốn kinh doanh lại khách sạn này ?"
+                  ? "Bạn có muốn kinh doanh lại khách sạn này ?"
                   : "Bạn có thật sự muốn tam dừng hoạt động khách sạn này ?"}
               </h3>
             </div>

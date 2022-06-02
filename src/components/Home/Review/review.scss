@@ -64,7 +64,8 @@
 
         .image {
           width: 100%;
-          height: 100%;
+          height: 250px;
+          object-fit: cover;
         }
       }
 
@@ -165,7 +166,6 @@
       }
 
       @include screen950 {
-
         .main-img-three,
         .main-img-four {
           display: none;
@@ -213,7 +213,6 @@
       padding: 10px;
       margin: 5px;
       border-radius: 15px;
-
     }
   }
 }
