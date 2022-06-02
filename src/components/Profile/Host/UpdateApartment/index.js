@@ -594,7 +594,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
                 description: `${formAddAparment.description}`,
                 apartmentNumber: Number(formAddAparment.apartmentNumber),
                 thumbnail,
-                pictures,
+                pictures: pictures,
                 owner: user?._id,
               },
             })

@@ -104,10 +104,28 @@ const disableApartment = async (body) => {
     });
   }
 };
+
+const postUpdateRoom = async (body) => {
+  try {
+    const res = await apartmentApi.postUpdateRoom(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
+
 export {
   getAllApartmentApi,
   getApartmentBySearchApi,
   postAddApartment,
   postUpdateApartment,
   disableApartment,
+  postUpdateRoom,
 };

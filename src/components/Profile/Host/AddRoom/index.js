@@ -15,13 +15,9 @@ const currencies = [
   },
 ];
 
-const AddRoom = (room) => {
+const AddRoom = ({ formRoom, setFormRoom }) => {
   const [currency, setCurrency] = React.useState("true");
-  const [formUpdate, setFormUpdate] = useState({
-    roomId: room?._id || "",
-    name: room?.name | "",
-    apartmentId: "",
-  });
+
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
@@ -53,14 +49,18 @@ const AddRoom = (room) => {
       );
     });
   };
+
   return (
     <div className="add-room">
       <div className="add-room-box">
         <TextField
+          type={"text"}
           className="add-room-box-two"
           id="name-room"
           label="Tên phòng"
           variant="outlined"
+          value={formRoom.name}
+          onChange={(e) => setFormRoom({ ...formRoom, name: e.target.value })}
         />
       </div>
       <div className="add-room-box">
@@ -69,6 +69,8 @@ const AddRoom = (room) => {
           id="square"
           label="Diện tích phòng"
           variant="outlined"
+          value={formRoom.square}
+          onChange={(e) => setFormRoom({ ...formRoom, square: e.target.value })}
         />
         <p className="add-room-box-p"></p>
         <TextField
@@ -76,6 +78,10 @@ const AddRoom = (room) => {
           id="capacity"
           label="Sức chứa của phòng"
           variant="outlined"
+          value={formRoom.capacity}
+          onChange={(e) =>
+            setFormRoom({ ...formRoom, capacity: e.target.value })
+          }
         />
         <p className="add-room-box-p"></p>
         <TextField
@@ -84,6 +90,8 @@ const AddRoom = (room) => {
           id="rate"
           label="Đánh giá"
           variant="outlined"
+          value={formRoom.rating}
+          onChange={(e) => setFormRoom({ ...formRoom, rating: e.target.value })}
         />
       </div>
       <div className="add-room-box">
@@ -92,6 +100,8 @@ const AddRoom = (room) => {
           id="price"
           label="Giá tiền"
           variant="outlined"
+          value={formRoom.price}
+          onChange={(e) => setFormRoom({ ...formRoom, price: e.target.value })}
         />
       </div>
 

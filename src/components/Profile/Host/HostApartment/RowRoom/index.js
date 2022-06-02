@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import AddRoom from "../../AddRoom";
 import { formatter } from "../../../../../helper/format";
+import { postUpdateRoom } from "../../../../../redux/Api/apartment";
+import { toast } from "react-toastify";
 
 const styles = (theme) => ({
   root: {
@@ -29,7 +31,15 @@ const RowRoom = ({ room, apartment }) => {
   const open1 = Boolean(anchorEl);
   const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
-
+  const [formRoom, setFormRoom] = useState({
+    roomId: room?._id || "",
+    name: room?.name || "",
+    apartmentId: room?.apartmentId,
+    price: room?.price || "",
+    square: room?.square || "",
+    capacity: room?.capacity || "",
+    rating: room?.rating || "",
+  });
   const handleClose1 = () => {
     setOpen2(false);
   };
@@ -63,6 +73,30 @@ const RowRoom = ({ room, apartment }) => {
     setAnchorEl(null);
   };
 
+  const handleUpdateRoom = async () => {
+    const body = { ...formRoom };
+    console.log(body);
+    if (postUpdateRoom(body)) {
+      toast.success("Câp nhật phòng thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen2(false);
+    } else {
+      toast.success("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
   return (
     <div className="popup-detail-apartment-row-two-content">
       <div className="popup-detail-apartment-row-two-content-colum-one">
@@ -115,14 +149,14 @@ const RowRoom = ({ room, apartment }) => {
           Chỉnh sửa phòng
         </DialogTitle>
         <DialogContent dividers>
-          <AddRoom room={room} apartment={apartment} />
+          <AddRoom formRoom={formRoom} setFormRoom={setFormRoom} />
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose1}>
             Hủy
           </Button>
 
-          <Button autoFocus onClick={handleCloseAndSave}>
+          <Button autoFocus onClick={handleUpdateRoom}>
             Lưu
           </Button>
         </DialogActions>
