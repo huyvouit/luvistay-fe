@@ -7,30 +7,43 @@ import "./search.scss";
 import SpecialOffer from "./SpecialOffer/SpecialOffer";
 import ResultSearch from "./ResultSearch/ResultSearch";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getApartmentBySearchApi } from "../../redux/Api/apartment";
 import { formatDate } from "../../helper/format";
+import { APP_ROUTE } from "../../routes/app.routes";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+console.log(location.state);
   const searchApartment = useSelector((state) => state.apartment.searchRoom);
   const isLoading = useSelector((state) => state.loading.loading);
-  console.log(searchApartment);
 
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [city, setCity] = useState("");
   const [people, setPeople] = useState(1);
+  const [listSelectedRoom, setListSelectedRoom] = useState({
+    apartment: {
+      apartmentId: "",
+      owner: "",
+    },
+    listRoom: [],
+  });
 
   const handleSearchRoom = () => {
     const body = {
-      checkinDate: formatDate(checkin),
-      checkoutDate: formatDate(checkout),
-      people: people,
+      checkinDate: location.state?.infoDate?.checkinDate || formatDate(checkin),
+      checkoutDate:
+        location.state?.infoDate?.checkoutDate || formatDate(checkout),
+      people: location.state?.infoDate?.people || people,
       city: city,
     };
-    console.log(body);
-    getApartmentBySearchApi(dispatch, body);
+
+    getApartmentBySearchApi(dispatch, body, () =>
+      navigate(APP_ROUTE.SEARCH, { state: { infoDate: body } })
+    );
   };
 
   return (
@@ -47,7 +60,7 @@ const Search = () => {
               />
             </section>
             <section className="page-header-title">
-              <h1 className="title">Search Results</h1>
+              <h1 className="title">Kết quả tìm kiếm</h1>
             </section>
           </section>
           {isLoading ? (
@@ -58,12 +71,26 @@ const Search = () => {
                 Lựa chon các phòng có sẵn theo từng căn hộ.
               </p>
               <section>
-                {searchApartment.length >= 2 ? (
+                {searchApartment.length >= 1 &&
+                Array.isArray(searchApartment) ? (
                   searchApartment.map((item, index) => {
-                    return <ResultSearch key={index} info={item} />;
+                    return (
+                      <ResultSearch
+                        key={index}
+                        info={item}
+                        listSelectedRoom={listSelectedRoom}
+                        setListSelectedRoom={setListSelectedRoom}
+                        infoDate={location?.state?.infoDate}
+                      />
+                    );
                   })
                 ) : (
-                  <ResultSearch info={searchApartment} />
+                  <ResultSearch
+                    info={searchApartment}
+                    listSelectedRoom={listSelectedRoom}
+                    setListSelectedRoom={setListSelectedRoom}
+                    infoDate={location?.state?.infoDate}
+                  />
                 )}
               </section>
             </>
@@ -74,7 +101,7 @@ const Search = () => {
         <section className="search-colum-two">
           <section className="box-search">
             <Booking
-              textButton="Search"
+              textButton="Tìm kiếm"
               checkin={checkin}
               setCheckin={setCheckin}
               checkout={checkout}
@@ -87,22 +114,23 @@ const Search = () => {
             />
           </section>
           <section className="special-offers">
-            <h4 className="special-offers-title">Special Offers</h4>
+            <h4 className="special-offers-title">Ưu đãi đặc biệt</h4>
             <SpecialOffer />
             <SpecialOffer />
             <SpecialOffer />
           </section>
           <section className="box-about">
-            <h4 className="box-about-title">Terms & Conditions</h4>
+            <h4 className="box-about-title">Điều khoản và điều kiện</h4>
             <p className="search-description box-about-descript">
-              We are one of the most recognized happy vacation makers in Greece
-              – we provide a wide range of great offers for any occasion since
-              2015.
+              Chúng tôi là một trong những nhà sản xuất kỳ nghỉ vui vẻ được công
+              nhận nhiều nhất ở Việt Nam - Chúng tôi cung cấp một loạt các ưu
+              đãi tuyệt vời cho bất kỳ dịp nào kể từ khi 2015.
             </p>
             <p className="search-description box-about-descript">
-              We accept payments in any way convenient for you
+              Chúng tôi chấp nhận thanh toán theo bất kỳ cách nào thuận tiện cho
+              bạn
             </p>
-            <img className="box-about-img" src={LogoPayment} />
+            <img className="box-about-img" src={LogoPayment} alt="" />
           </section>
         </section>
       </section>

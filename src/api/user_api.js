@@ -5,6 +5,45 @@ const userApi = {
     const url = "/apartment/";
     return axiosClient.get(url, { params });
   },
+
+  getApartmentOfUser: () => {
+    const url = "/apartment/apartment-of-user";
+    return axiosClient.get(url);
+  },
+  updateApartmentOfUser: (body) => {
+    const url = "/apartment/update";
+    return axiosClient.post(url, body);
+  },
+  getRentsOfApartment: () => {
+    const url = "/booking-calendar/get-calandar-user";
+    return axiosClient.get(url);
+  },
+  postBooking: (body) => {
+    const url = "/bill/create-bill";
+    return axiosClient.post(url, body);
+  },
+  getOrderByUser: () => {
+    const url = "/bill/get-user-bill";
+    return axiosClient.get(url);
+  },
+  postNewPassword: (body) => {
+    const url = "/user/reset-password";
+    return axiosClient.post(url, body);
+  },
+  putUpdateUser: (body) => {
+    const url = "/user/";
+    return axiosClient.put(url, body);
+  },
+
+  postForgotPass: (body) => {
+    const url = "/user/forgot-password";
+    return axiosClient.post(url, body);
+  },
+
+  postResetPass: (body) => {
+    const url = "/user/reset-password";
+    return axiosClient.post(url, body);
+  },
 };
 
 export default userApi;

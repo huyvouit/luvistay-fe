@@ -19,8 +19,15 @@ export const APP_ROUTE = {
   PROFILE_CHANGE_PASSWORD: "/change-password",
   FAVOURITES: "/favourites",
   BLOG: "/blog",
+  BLOG_DETAIL: "/blog/:id",
   MY_BLOG: "/my-blog",
   CONTACT: "/contact",
   NEWS: "/news",
-  NEWDETAIL: "/news/newdetail"
+
+  NEWDETAIL: "/news/newdetail",
+
+  REGISTER_SUCCESS: "/register-success",
+  FORGORPASS: "/forgot-password",
+  RESETPASS: "/user/reset-password/:reset",
+
 };

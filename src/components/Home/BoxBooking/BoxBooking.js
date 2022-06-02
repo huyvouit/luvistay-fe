@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MenuItem, Select,  } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 
 // import apartmentApi from "../../../api/aparment_api";
 import { disablePastDate, handleCheckout } from "../../../helper/minInput";
@@ -16,7 +16,7 @@ const BoxBooking = () => {
   const dispatch = useDispatch();
   // const isLoading = useSelector((state) => state.loading.loading);
   const listCity = useSelector((state) => state.city);
-  // console.log(listCity)
+
   const navigate = useNavigate();
   // const [listCity, setListCity] = useState([]);
   const [formSearch, setFormSearch] = useState({
@@ -26,9 +26,8 @@ const BoxBooking = () => {
     city: "",
   });
 
-  console.log(formSearch);
   const handleNavigate = () => {
-    navigate({pathname: APP_ROUTE.SEARCH });
+    navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: formSearch } });
   };
   const handleSubmitSearch = async () => {
     const body = {
@@ -37,7 +36,9 @@ const BoxBooking = () => {
       city: formSearch.city,
       people: formSearch.people,
     };
-    getApartmentBySearchApi(dispatch, body, handleNavigate);
+    getApartmentBySearchApi(dispatch, body, () =>
+      navigate(APP_ROUTE.SEARCH, { state: { infoDate: body } })
+    );
   };
   useEffect(() => {
     getAllCityApi(dispatch);
@@ -54,7 +55,7 @@ const BoxBooking = () => {
             <input
               type="date"
               className="textField"
-              min={disablePastDate()}
+              // min={disablePastDate()}
               onChange={(event) => {
                 setFormSearch({
                   ...formSearch,
@@ -69,8 +70,9 @@ const BoxBooking = () => {
             </p>
             <input
               type="date"
-              className="textField" required
-              min={handleCheckout(formSearch.checkinDate)}
+              className="textField"
+              required
+              // min={handleCheckout(formSearch.checkinDate)}
               onChange={(event) => {
                 setFormSearch({
                   ...formSearch,
@@ -123,7 +125,7 @@ const BoxBooking = () => {
           className="boxbooking-section-search"
           onClick={() => handleSubmitSearch(formSearch)}
         >
-          Search
+          Tìm kiếm
         </section>
       </section>
     </main>

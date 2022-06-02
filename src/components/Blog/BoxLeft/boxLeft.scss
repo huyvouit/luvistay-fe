@@ -1,4 +1,8 @@
+@use "../../../scss/"as *;
 .blog-a {
+    @include screen750 {
+        display: none;
+    }
     h2{
         width: 100%;
         color: #333;
@@ -9,6 +13,9 @@
     }
 }
 .blog-aSelect {
+    @include screen750 {
+        display: none;
+    }
     h2{
         width: 100%;
         color: #333;
@@ -21,6 +28,18 @@
 
 }
 
-.blog-a:focus, .blog-aSelect:focus {
+.blog-a:focus, .blog-aSelect:focus,.menu-icon:focus {
     text-decoration: none;
+    color: #333;
+}
+
+.menu-icon{
+    color: #333;
+    font-size: 14px;
+    width: max-content;
+    display: none;
+    cursor: pointer;
+    @include screen750 {
+        display: block;
+    }
 }

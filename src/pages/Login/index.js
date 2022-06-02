@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import { Backdrop, CircularProgress, TextField } from "@mui/material";
 import { toast } from "react-toastify";
 
@@ -15,9 +15,10 @@ import { APP_ROUTE } from "../../routes/app.routes";
 const SignInPage = () => {
   const {
     loginUser,
-    authState: { authLoading },
+    authState: { authLoading, user },
   } = useContext(AuthContext);
   let navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
 
@@ -25,13 +26,14 @@ const SignInPage = () => {
     email: "",
     password: "",
   });
+
   const handleSubmitLogin = async () => {
     try {
       dispatch(showLoading());
       const loginData = await loginUser(loginForm);
-
+      console.log(loginData);
       if (loginData.success) {
-        toast.success(loginData.message, {
+        toast.success("Đăng nhập thành công", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -42,7 +44,7 @@ const SignInPage = () => {
         dispatch(hideLoading());
         navigate(APP_ROUTE.HOME);
       } else {
-        toast.error(loginData.error, {
+        toast.error("Đã có lỗi xảy ra. Hãy kiểm tra lại", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -50,6 +52,7 @@ const SignInPage = () => {
           pauseOnHover: true,
           draggable: true,
         });
+        dispatch(hideLoading());
       }
     } catch (error) {
       console.log(error);
@@ -63,6 +66,8 @@ const SignInPage = () => {
     >
       <CircularProgress color="inherit" />
     </Backdrop>
+  ) : user ? (
+    <Navigate to={APP_ROUTE.HOME} state={{ from: location }} />
   ) : (
     <div className="login-page">
       <Backdrop
@@ -123,6 +128,14 @@ const SignInPage = () => {
               }
               required
             />
+          </div>
+          <div className="login-page-container-colum-two-box-input">
+            <label
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(APP_ROUTE.FORGORPASS)}
+            >
+              Quên mật khẩu
+            </label>
           </div>
 
           <button onClick={handleSubmitLogin}>Đăng nhập</button>

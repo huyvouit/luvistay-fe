@@ -16,6 +16,7 @@ axiosClient.interceptors.request.use(
     // Do something before request is sent
     // const user = JSON.parse(getCookie(COOKIE_USER));
     const token = localStorage.getItem(TOKEN_NAME);
+
     if (token) {
       config.headers.common["authorizationtoken"] = `Bearer ${token}`;
     }

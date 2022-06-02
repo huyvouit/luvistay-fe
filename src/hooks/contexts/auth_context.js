@@ -4,9 +4,12 @@ import { TOKEN_NAME, REFTOKEN } from "../../constants";
 
 import { toast } from "react-toastify";
 import authApi from "../../api/auth_api";
+import { useDispatch } from "react-redux";
+import { getLikeBlogByUserApi } from "../../redux/Api/user";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const dispatchRedux = useDispatch();
   const [authState, dispatch] = useReducer(authReducer, {
     authLoading: true,
     isAuthenticated: false,
@@ -28,6 +31,7 @@ const AuthContextProvider = ({ children }) => {
             user: response.data,
           },
         });
+        getLikeBlogByUserApi(dispatchRedux, { userId: response.data._id });
       }
     } catch (error) {
       localStorage.removeItem(TOKEN_NAME);
@@ -48,10 +52,8 @@ const AuthContextProvider = ({ children }) => {
       const response = await authApi.postSignIn(userForm);
 
       if (response.success) {
-        console.log(response.data.accessToken);
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
         localStorage.setItem(REFTOKEN, response.data.refreshToken);
-        // localStorage.setItem(REFTOKEN, response.data.refreshToken);
       }
 
       await loadUser();
@@ -67,12 +69,9 @@ const AuthContextProvider = ({ children }) => {
   // Register
   const registerUser = async (userForm) => {
     try {
-      console.log(userForm);
       const response = await authApi.postSignUp(userForm);
 
-      console.log(`data: ${response}`);
-
-      return response.data;
+      return response;
     } catch (error) {
       toast.error(error.response.data.message, {
         position: "top-right",
@@ -87,13 +86,14 @@ const AuthContextProvider = ({ children }) => {
   };
 
   // Logout;
-  const logoutUser = () => {
+  const logoutUser = (action) => {
     localStorage.removeItem(TOKEN_NAME);
     localStorage.removeItem(REFTOKEN);
     dispatch({
       type: "SET_AUTH",
       payload: { authLoading: false, isAuthenticated: false, user: null },
     });
+    action();
   };
 
   // Context data

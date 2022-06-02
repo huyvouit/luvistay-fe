@@ -32,19 +32,10 @@ const ApartmentDetailPage = () => {
   const [people, setPeople] = useState(1);
   const navigate = useNavigate();
   useEffect(() => {
-    // setIsLoading(true);
     getDetailApartmentApi(dispatch, id);
-    // setIsLoading(false);
   }, [id]);
-  // console.log(room);
-  console.log(
-    checkin,
-    moment(checkout, "YYYY-MM-DD").format("MM-DD-YYYY").replaceAll("-", "/"),
-    people
-  );
-  const handleNavigate = () => {
-    navigate({ pathname: APP_ROUTE.SEARCH });
-  };
+
+  const handleNavigate = () => {};
   const handleSearchRoom = () => {
     const body = {
       checkinDate: formatDate(checkin),
@@ -52,8 +43,10 @@ const ApartmentDetailPage = () => {
       people: people,
       apartmentId: id,
     };
-    console.log(body);
-    searchRoomByApartmentApi(dispatch, body, handleNavigate);
+
+    searchRoomByApartmentApi(dispatch, body, () =>
+      navigate({ pathname: APP_ROUTE.SEARCH, state: { infoDate: body } })
+    );
   };
   return !isLoading ? (
     <main className="detail-page">
@@ -99,7 +92,7 @@ const ApartmentDetailPage = () => {
         <section className="detail-body-right">
           <section className="detail-body-right-item">
             <Booking
-              textButton="Search"
+              textButton="Tìm kiếm"
               checkin={checkin}
               setCheckin={setCheckin}
               checkout={checkout}
@@ -113,8 +106,8 @@ const ApartmentDetailPage = () => {
         </section>
       </section>
 
-      <Relation />
-      <ReviewsDetail />
+      {/* <Relation /> */}
+      <ReviewsDetail apartment={detail?.info} />
     </main>
   ) : (
     <Backdrop

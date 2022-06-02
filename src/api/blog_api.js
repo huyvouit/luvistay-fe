@@ -5,8 +5,52 @@ const blogApi = {
     const url = "/blog/confirm";
     return axiosClient.get(url, { params });
   },
+  getAllBlogsByUser: () => {
+    const url = "/blog/my-blog";
+    return axiosClient.get(url);
+  },
+  postBlog: (body) => {
+    const url = "/blog/";
+    return axiosClient.post(url, body);
+  },
+  updateBlog: (body) => {
+    const url = "/blog/update";
+    return axiosClient.put(url, body);
+  },
   uploadImageBlog: (body) => {
     const url = "/blog/upload";
+    return axiosClient.post(url, body);
+  },
+  deleteBlog: (id) => {
+    const url = `/blog/user-delete/${id}`;
+    return axiosClient.delete(url);
+  },
+  getLikeBlogByUser: (params) => {
+    const url = `/blog/like`;
+    return axiosClient.get(url, { params });
+  },
+
+  getLikeByBlog: (id) => {
+    const url = `/blog/like/${id}`;
+    return axiosClient.get(url);
+  },
+  postLikeBlogByUser: (body) => {
+    const url = `/blog/like`;
+    return axiosClient.post(url, body);
+  },
+  deleteUnLikeBlogByUser: (body) => {
+    const url = `/blog/like`;
+    return axiosClient.delete(url, {
+      data: body,
+    });
+  },
+
+  getCommentByBlog: (params) => {
+    const url = "/blog/comment";
+    return axiosClient.get(url, { params });
+  },
+  postCommentToBlog: (body) => {
+    const url = `/blog/comment`;
     return axiosClient.post(url, body);
   },
 };

@@ -1,82 +1,161 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import { TextareaAutosize } from "@mui/material";
+import { CircularProgress, TextareaAutosize } from "@mui/material";
 
 import PrimaryButton from "../../PrimaryButton";
 import StarRating from "../../StarRating";
 
 import "./reviews.scss";
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import {
+  getAvgRatingByApartmentApi,
+  getReviewByApartmentApi,
+} from "../../../redux/Api/detail";
+import { useDispatch, useSelector } from "react-redux";
+import apartmentApi from "../../../api/aparment_api";
+import Moment from "react-moment";
 
-const ReviewsDetail = () => {
-  const [checkLogin, setCheckLogin] = useState(true);
-  const [isComment, setIsComment] = useState(false);
+const ReviewsDetail = ({ apartment }) => {
+  const dispatch = useDispatch();
+  const listReviews = useSelector((state) => state.detailApartment.reviews);
+  const maxPage = useSelector((state) => state.detailApartment.maxPageReview);
+  const avgRating = useSelector((state) => state.detailApartment.avgRating);
+  const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState("");
+  const [rating, setRating] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const {
+    authState: { isAuthenticated, authLoading, user },
+  } = useContext(AuthContext);
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    if (apartment) {
+      if (reviews?.length <= 0) {
+        getReviewByApartmentApi(dispatch, {
+          id: apartment._id,
+          page,
+          limit: 5,
+        });
+      }
+      getAvgRatingByApartmentApi(dispatch, apartment._id);
+    }
+  }, [apartment]);
+
+  useEffect(() => {
+    if (listReviews && listReviews?.length > 0) {
+      setReviews([...reviews, ...listReviews]);
+    } else {
+      setReviews([]);
+    }
+  }, [listReviews]);
+  const handleAddReview = async () => {
+    try {
+      setLoading(true);
+      console.log({
+        apartmentId: apartment._id,
+        content,
+        rating,
+      });
+      const res = await apartmentApi.postReview({
+        apartmentId: apartment._id,
+        content,
+        rating,
+      });
+      if (res.success) {
+        getReviewByApartmentApi(dispatch, {
+          id: apartment._id,
+          page,
+          limit: 5,
+        });
+        getAvgRatingByApartmentApi(dispatch, apartment._id);
+        setLoading(false);
+        setContent("");
+        setRating(0);
+      }
+    } catch (error) {}
+  };
+
+  const handleLoadMoreReview = () => {
+    getReviewByApartmentApi(dispatch, {
+      id: apartment._id,
+      page: page + 1,
+      limit: 5,
+    });
+    setPage(page + 1);
+  };
 
   return (
     <main className="reviews-detail-wrapper">
+      <h1 className="reviews-post-title">Đánh giá "{apartment?.name}"</h1>
       <section className="reviews-header">
         <section className="reviews-header-left">
-          <h1 className="reviews-header-quantity">2 Reviews</h1>
-          <StarRating ratingVote="5" isEditable={true} />
+          <h1 className="reviews-header-quantity">
+            {reviews?.length} Đánh giá
+          </h1>
+          <StarRating rating={avgRating.toString()} isEditable={false} />
         </section>
-        {checkLogin && isComment ? (
-          <PrimaryButton title="add review" action={() => {}} />
-        ) : (
+        {user && (
           <PrimaryButton
-            title="write a review"
-            action={() => setIsComment(true)}
+            title={
+              loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                "Đánh giá"
+              )
+            }
+            action={handleAddReview}
+            style={{ width: "150px" }}
           />
         )}
       </section>
-      {isComment && (
+      {user && (
         <section className="reviews-post">
-          <h1 className="reviews-post-title">Review "Standard Single Room"</h1>
-          {checkLogin ? (
-            <>
-              <section className="reviews-post-vote">
-                <p className="reviews-post-text">Your vote: </p>
-                <StarRating ratingVote="5" isEditable={true} />
-              </section>
-              <TextareaAutosize
-                maxRows={4}
-                placeholder="Please enter your review.!"
-                className="reviews-post-textarea"
-                required
-              />
-            </>
-          ) : (
-            <p
-              className="reviews-post-login"
-              onClick={() => console.log("run")}
-            >
-              You must be <span>logged in</span> to post a comment.
-            </p>
-          )}
+          <section className="reviews-post-vote">
+            <p className="reviews-post-text">Đánh giá của bạn: </p>
+            <StarRating
+              rating={rating}
+              isEditable={true}
+              setRating={setRating}
+            />
+          </section>
+          <TextareaAutosize
+            maxRows={4}
+            placeholder="Nhập đánh giá của bạn"
+            className="reviews-post-textarea"
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
         </section>
       )}
-      <section className="reviews-comments">
-        {[...Array(2)].map((star, index) => {
-          return (
-            <section className="reviews-comments-content" key={index}>
-              <img
-                src={`https://secure.gravatar.com/avatar/e913c28282474af166ee791c0f7fae7c?s=64&r=g`}
-                alt=""
-                className="reviews-avatar"
-              />
-              <section className="reviews-comments-body">
-                <p className="reviews-name">NATHAN REYNOLDS</p>
-                <p className="reviews-date">JULY 16, 2019 AT 2:04 PM</p>
-                <section className="reviews-rating">
-                  <StarRating ratingVote="5" />
+      {reviews.length > 0 ? (
+        <section className="reviews-comments">
+          {reviews.map((item, index) => {
+            return (
+              <section className="reviews-comments-content" key={index}>
+                <img
+                  src={`https://secure.gravatar.com/avatar/e913c28282474af166ee791c0f7fae7c?s=64&r=g`}
+                  alt=""
+                  className="reviews-avatar"
+                />
+                <section className="reviews-comments-body">
+                  <p className="reviews-name">{item?.user?.username}</p>
+                  <p className="reviews-date">
+                    <Moment format="hh:mm DD/MM/YYYY ">{item?.date}</Moment>
+                  </p>
+                  <section className="reviews-rating">
+                    <StarRating rating={item?.rating} />
+                  </section>
+                  <p className="reviews-desc">{item?.content}</p>
                 </section>
-                <p className="reviews-desc">
-                  Room is fully equipped and design is very modern and soothing.
-                  View from the window is breathtaking.
-                </p>
               </section>
-            </section>
-          );
-        })}
-      </section>
+            );
+          })}
+          {page < maxPage && <div>Xem thêm</div>}
+        </section>
+      ) : (
+        <div style={{ padding: "20px 0" }}>Chưa có đánh giá nào</div>
+      )}
     </main>
   );
 };

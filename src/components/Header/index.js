@@ -2,12 +2,13 @@ import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import logo from "../../assets/icons/logo-footer.svg";
+import logo from "../../assets/icons/logoluviStay.svg";
 
 import { APP_ROUTE } from "../../routes/app.routes";
 import "./header.scss";
 import { AuthContext } from "../../hooks/contexts/auth_context";
-
+import userIcon from "../../assets/images/profile.png";
+import profile from "../../assets/images/profile.png";
 const NAVLINK = [
   {
     route: "Trang chủ",
@@ -19,7 +20,7 @@ const NAVLINK = [
   },
   {
     route: "Review",
-    path: APP_ROUTE.NEWS,
+    path: APP_ROUTE.BLOG,
   },
   {
     route: "Về chúng tôi",
@@ -45,7 +46,7 @@ const Header = () => {
           <img
             src={logo}
             alt=""
-            width={140}
+            width={180}
             onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}
           />
@@ -96,20 +97,46 @@ const Header = () => {
                     <div
                       key={index}
                       className={
-                        location === item.path
+                        location.pathname === item.path
                           ? "header-mobile-item-item header-mobile-item-item-active"
                           : "header-mobile-item-item"
                       }
-                      onClick={() => navigate(item.path)}
+                      onClick={() => {
+                        navigate(item.path);
+                        setOpenMenu(false);
+                      }}
                     >
                       <p>{item.route}</p>
                     </div>
                   );
                 })}
-
-                <section className="header-mobile-item-item header-mobile-item-item-active">
-                  <p>Đăng nhập</p>
-                </section>
+                {user ? (
+                  <section
+                    className={
+                      location.pathname.includes("profile")
+                        ? "header-mobile-item-item "
+                        : "header-mobile-item-item"
+                    }
+                    onClick={() => {
+                      navigate(APP_ROUTE.PROFILE);
+                      setOpenMenu(false);
+                    }}
+                  >
+                    <img
+                      src={user?.avatar || profile}
+                      width="20px"
+                      height="20px"
+                      alt="user icon"
+                    />
+                  </section>
+                ) : (
+                  <section
+                    className="header-mobile-item-item "
+                    onClick={() => navigate(APP_ROUTE.SIGNIN)}
+                  >
+                    <p>Đăng nhập</p>
+                  </section>
+                )}
               </div>
             </div>
           </div>
@@ -117,7 +144,7 @@ const Header = () => {
         <section className="navbar">
           {NAVLINK.map((item, index) => {
             return (
-              <section
+              <div
                 key={index}
                 className={
                   location.pathname === item.path
@@ -127,16 +154,21 @@ const Header = () => {
                 onClick={() => navigate(item.path)}
               >
                 <p>{item.route}</p>
-              </section>
+              </div>
             );
           })}
           <section className="divider navbar-item"></section>
           {user ? (
             <section
-              className="navbar-item"
+              className={"navbar-item "}
               onClick={() => navigate(APP_ROUTE.PROFILE)}
             >
-              <p>User</p>
+              <img
+                src={user?.avatar || profile}
+                width="20px"
+                height="20px"
+                alt="user icon"
+              />
             </section>
           ) : (
             <section

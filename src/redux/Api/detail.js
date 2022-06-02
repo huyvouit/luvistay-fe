@@ -6,6 +6,8 @@ import {
   getRoom,
   hideLoading,
   searchRoomByApartment,
+  getReviewByApartment,
+  getAvgRatingByApartment,
   showLoading,
 } from "../Actions";
 
@@ -25,7 +27,6 @@ const getDetailApartmentApi = async (dispatch, params) => {
     }
   } catch (error) {
     dispatch(getApartment({}));
-    // window.alert(error);
   }
 };
 
@@ -33,25 +34,21 @@ const getRoomByApartmentApi = async (dispatch, id) => {
   try {
     const res = await apartmentApi.getRoomByApartment(id);
     if (res.success) {
-      //   console.log(res.data);
       dispatch(getRoom(res.data));
     } else {
       dispatch(getRoom([]));
-      //   console.log(res.data);
     }
   } catch (error) {
     dispatch(getRoom([]));
-    // window.alert(error);
   }
 };
-const searchRoomByApartmentApi = async (dispatch, body,action) => {
+const searchRoomByApartmentApi = async (dispatch, body, action) => {
   try {
     const res = await apartmentApi.searchRoomByApartment(body);
     if (res.success) {
       console.log(res.data);
       dispatch(getApartmentBySearch(res.data));
-      if(action){
-
+      if (action) {
         action();
       }
     } else {
@@ -59,13 +56,53 @@ const searchRoomByApartmentApi = async (dispatch, body,action) => {
       console.log(res.data);
     }
   } catch (error) {
-    // dispatch(searchRoomByApartment([]));
     window.alert(error);
   }
 };
 
+const getReviewByApartmentApi = async (dispatch, params) => {
+  try {
+    const res = await apartmentApi.getReviewByApartment(params);
+    if (res.success) {
+      dispatch(getReviewByApartment(res.data));
+    } else {
+      dispatch(getReviewByApartment(null));
+    }
+  } catch (error) {
+    dispatch(getReviewByApartment({ reviews: null, maxPage: null }));
+  }
+};
+
+const getAvgRatingByApartmentApi = async (dispatch, id) => {
+  try {
+    const res = await apartmentApi.getAvgRatingByApartment(id);
+    if (res.success) {
+      dispatch(getAvgRatingByApartment(res.data));
+    } else {
+      dispatch(getAvgRatingByApartment(0));
+    }
+  } catch (error) {
+    dispatch(getAvgRatingByApartment(0));
+  }
+};
+
+const postReviewApi = async (dispatch, body) => {
+  try {
+    const res = await apartmentApi.postReview(body);
+    if (res.success) {
+      return res;
+    } else {
+      return res;
+    }
+  } catch (error) {
+    return error;
+  }
+};
 export {
   getDetailApartmentApi,
   getRoomByApartmentApi,
   searchRoomByApartmentApi,
+  getReviewByApartmentApi,
+  getAvgRatingByApartmentApi,
+  postReviewApi,
 };

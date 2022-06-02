@@ -38,6 +38,9 @@
        flex: 1;
         padding-right: 20px;
         // border-right: 1px solid #e7e4e4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         @include screen950 {
           width: 100%;
           border-right: none;
@@ -48,7 +51,7 @@
           cursor: pointer;
           img{
             width: 100%;
-            height: 100%;
+            height: 220px;
           }
         }
         .result-search-img:hover .actions {
@@ -138,5 +141,74 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+.popup-login{
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+  img{
+    width: 50%;
+    height: 100%;
+    // text-align: center;
+    padding-bottom: 15px;
+  }
+  &-title{
+    // color: $brown25;
+    line-height: 20px;
+    font-family: "Noto Serif", serif !important;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .inputField{
+    padding: 10px 0 ;
+    fieldset {
+      visibility: hidden;
+    }
+    p{
+       
+    font-family: "Noto Serif", serif !important;
+    font-size: 18px;
+    font-weight: 600;
+    }
+    .textField{
+      min-width: 200px;
+      width: 100%;
+      //   height: 52px !important;
+      //   border-radius: 0 !important;
+      //   background-color: #252e59;
+      border: 1px solid black;
+      color: #a4a4a4;
+      margin-top: 10px;
+      input {
+        padding: 10px;
+      }
+    }
+   
+  }
+  .button-submit{
+    padding: 10px 10px;
+    background-color: #222;
+    color: #e0e0e0;
+    // margin: 0 15%;
+    width: 150px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 15px;
+    // border-radius: 8px;
+  }
+
+  .btn-signup{
+    font-family: "Noto Serif", serif !important;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 10px;
+    a{
+      color: #c1b086;
+      font-style: italic;
+    }
   }
 }

@@ -4,42 +4,45 @@ import "./introduce.scss";
 const data = [
   {
     id: 1,
-    title: "Italia Chicken",
-    desc: `With our Italian dishes cooked by
-    professional chefs you will be feeling as if
-    you are at authentic Italian restaurant. Olive
-    oil, vines and wheat bread are the keys of
-    Italian kitchen.`,
+    title: "Nhà bếp kiểu Ý",
+    desc: `Với các món ăn Ý của chúng tôi được nấu bởi
+    đầu bếp chuyên nghiệp, bạn sẽ cảm thấy như thể
+    bạn đang ở nhà hàng Ý chính thống. Ôliu
+    dầu, cây nho và bánh mì là chìa khóa của
+    Nhà bếp kiểu Ý.`,
     active: false,
   },
   {
     id: 2,
-    title: "Mexican Chicken",
-    desc: `Genuine Mexican prepared at out restaurant
-    is delicious, fresh and vibrant. Main feature
-    here is chilly - both dried and fresh. Also key
-    ingredients of Mexican kitchen are beans
-    and corn.`,
+    title: "Nhà bếp Mexico",
+    desc: `Món Mexico chính hiệu được chế biến tại nhà hàng ngoài trời
+    là ngon, tươi và sôi động. Tính năng chính
+    ở đây là lạnh - cả khô và tươi. Cũng chính
+    nguyên liệu của nhà bếp Mexico là đậu
+    và ngô.`,
     active: false,
   },
   {
     id: 3,
-    title: "Vietnam Chicken",
-    desc: `Genuine Mexican prepared at out restaurant
-    is delicious, fresh and vibrant. Main feature
-    here is chilly - both dried and fresh. Also key
-    ingredients of Mexican kitchen are beans
-    and corn.`,
+    title: "Nhà bếp Việt Nam",
+    desc: `Các nhà hàng buffet món Việt bây giờ ở Sài Gòn khá nhiều, 
+    nhưng để kiếm được một nhà hàng có món ăn đậm đà, 
+    giữ lại nguyên nét Việt mộc mạc trong đó thì mới là khó. 
+    Nhà hàng này ban đầu chỉ là một quán bán đồ ăn online nhưng dần được nhiều người 
+    biết đến với vị ngon nổi tiếng nên đã trở thành 1 nhà hàng buffet đích thị. 
+    Không gian nhà hàng được trang trí khá mộc mạc, bằng chính các vật dụng quen thuộc ngày xưa, 
+    những chiếc mẹt nhỏ bé, xinh xinh`,
     active: false,
   },
   {
     id: 4,
-    title: "Indian Chicken",
-    desc: `Genuine Mexican prepared at out restaurant
-    is delicious, fresh and vibrant. Main feature
-    here is chilly - both dried and fresh. Also key
-    ingredients of Mexican kitchen are beans
-    and corn.`,
+    title: "Nhà bếp Ấn Độ",
+    desc: `Nói chung, nhà bếp là thành phần quan trọng nhất của ngôi nhà của bạn. 
+    Chúng ta thường sử dụng rất nhiều thiết bị khác nhau trong nhà bếp mỗi ngày. 
+    Ngoài ra còn có nhiều công việc khó thực hiện và một số công cụ mới mà chúng 
+    tôi có thể sử dụng để tiết kiệm rất nhiều thời gian và công sức của chúng tôi. 
+    Những thiết bị này tuyệt vời đến nỗi khi bạn nhìn thấy chúng, bạn sẽ cần đến những tiện ích này. 
+    Những thiết bị này chắc chắn sẽ sửa đổi phương pháp nấu ăn của bạn và sẽ cải thiện nó.`,
     active: false,
   },
 ];
@@ -62,7 +65,7 @@ const Introduce = () => {
 
     setFakeData(Copy);
   };
-  console.log(fakeData);
+
   return (
     <section className="introduce">
       <section className="introduce-image">
@@ -72,9 +75,9 @@ const Introduce = () => {
         />
       </section>
       <section className="introduce-content">
-        <p className="introduce-content-title">Our Restaurant</p>
+        <p className="introduce-content-title">Nhà hàng của chúng tôi</p>
         <p className="introduce-content-subTitle">
-          {`The buffet breakfast is served in the lounge on the ground floor and also outside on our little patio.`}
+          {`Bữa sáng tự chọn được phục vụ trong sảnh khách ở tầng trệt và cả bên ngoài trên sân nhỏ của chúng tôi.`}
         </p>
         <section className="introduce-content-list">
           {fakeData.map((item, index) => {

@@ -1,18 +1,11 @@
-// div{
-//     // 750 đổi thành menu khi click vào sẽ hiện các option
-//     width: 70%;
-//     h2{
-//         width: 100%;
-//         color: #333;
-//         padding: 20px 0;
-//         cursor: pointer;
-//         padding-right: 20%;
-//         border-right: 1px solid #333 ;
-//     }
-// }
+@use "../../../scss/"as *;
 
 .sidebar-a {
+    @include screen750 {
+        display: none;
+    }
     h2{
+        font-family: "Noto Serif", serif;
         width: 100%;
         color: #333;
         padding: 20px 0;
@@ -22,7 +15,11 @@
     }
 }
 .sidebar-aSelect {
+    @include screen750 {
+        display: none;
+    }
     h2{
+        font-family: "Noto Serif", serif;
         width: 100%;
         color: #333;
         padding: 20px 0;

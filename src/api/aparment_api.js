@@ -32,6 +32,56 @@ const apartmentApi = {
     const url = `/apartment/apartment-cites`;
     return axiosClient.get(url);
   },
+
+  getReviewByApartment: (params) => {
+    const url = "/apartment/review";
+    return axiosClient.get(url, { params });
+  },
+  postReview: (body) => {
+    const url = "/apartment/review";
+    return axiosClient.post(url, body);
+  },
+  getAvgRatingByApartment: (id) => {
+    const url = `/apartment/avg-rating/${id}`;
+    return axiosClient.get(url);
+  },
+
+  postAddApartment: (body) => {
+    const url = `/apartment/add-new-apartment`;
+    return axiosClient.post(url, body);
+  },
+  postUpdateApartment: (body) => {
+    const url = `/apartment/update`;
+    return axiosClient.put(url, body);
+  },
+
+  postUpdateRoom: (body) => {
+    const url = `/room`;
+    return axiosClient.put(url, body);
+  },
+  disableRoom: (body) => {
+    const url = `/room/disable-user-room`;
+    return axiosClient.put(url, body);
+  },
+
+  activeRoom: (body) => {
+    const url = `/room/activate-user-room`;
+    return axiosClient.put(url, body);
+  },
+  postAddRoomForApartment: (body) => {
+    const url = `/room`;
+    return axiosClient.post(url, body);
+  },
+
+  disableApartment: (body) => {
+    const url = `/apartment/delete-user-apartment`;
+    return axiosClient.put(url, body);
+  },
+
+  activeApartment: (body) => {
+    const url = `/apartment/activate-user-apartment`;
+    return axiosClient.put(url, body);
+  },
 };
 
 export default apartmentApi;

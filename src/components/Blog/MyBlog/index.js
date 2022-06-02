@@ -1,27 +1,57 @@
-import React from 'react'
-import BoxLeft from '../BoxLeft'
-import Posts from '../Posts'
-import "./myBlog.scss"
+import { CircularProgress } from "@mui/material";
+import React, { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { getAllBlogByUserApi } from "../../../redux/Api/blog";
+import BoxLeft from "../BoxLeft";
+import Posts from "../Posts";
+import "./myBlog.scss";
 
 const MyBlog = () => {
-  return (
-    <div className='my-blog'>
-        <div className='my-blog-container'>
-            <div className='my-blog-container-colum-one'>
-                <BoxLeft/>
-            </div>
-            <div className='my-blog-container-colum-two'>
-                <Posts/>
-                <Posts/>
-                <Posts/>
-                <Posts/>
-                <Posts/>
-                <Posts/>
-                <Posts/>
-            </div>
-        </div>
-    </div>
-  )
-}
+  const dispatch = useDispatch();
+  const listMyBlog = useSelector((state) => state.blog.listBlogUser);
+  const loading = useSelector((state) => state.loading.loading);
+  const {
+    authState: { user, authLoading },
+  } = useContext(AuthContext);
 
-export default MyBlog
+  useEffect(() => {
+    getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
+  }, []);
+  return (
+    <div className="my-blog">
+      <div className="my-blog-container">
+        <div className="my-blog-container-colum-one">
+          <BoxLeft />
+        </div>
+        <div className="my-blog-container-colum-two">
+          {authLoading ? (
+            <div
+              className="blog-container-colum-two"
+              style={{ textAlign: "center" }}
+            >
+              <CircularProgress color="inherit" size={25} />
+            </div>
+          ) : user ? (
+            loading ? (
+              <div
+                className="blog-container-colum-two"
+                style={{ textAlign: "center" }}
+              >
+                <CircularProgress color="inherit" size={25} />
+              </div>
+            ) : (
+              listMyBlog?.map((item, index) => {
+                return <Posts key={index} blog={item} />;
+              })
+            )
+          ) : (
+            <div> Bạn không có quyền truy cập</div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MyBlog;

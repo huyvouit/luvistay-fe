@@ -34,6 +34,10 @@ import NewDetailPage from "../pages/News/NewDetail";
 
 import ScrollToTop from "../helper/scrollToTop";
 import { AuthContext } from "../hooks/contexts/auth_context";
+import DetailBlog from "../pages/Blog/Detail";
+import { RegisterSuccess } from "../pages/SignUp/RegisterSuccess";
+import { ForgotPassword } from "../pages/ForgotPass";
+import { ResetPassword } from "../pages/ResetPass";
 
 const HomePage = lazy(() => import("../pages/Home"));
 export default function AppRoutes() {
@@ -62,11 +66,14 @@ export default function AppRoutes() {
                 <Route path={APP_ROUTE.HOME_STAY} element={<HomeStayPage />} />
               </Route>
 
-              <Route path={APP_ROUTE.DETAIL} element={<ApartmentDetailPage />} />
+              <Route
+                path={APP_ROUTE.DETAIL}
+                element={<ApartmentDetailPage />}
+              />
 
               <Route path={APP_ROUTE.SEARCH} element={<SearchPage />} />
               <Route path={APP_ROUTE.CHECKOUT} element={<CheckoutPage />} />
-{/* <<<<<<< HEAD
+              {/* <<<<<<< HEAD
               <Route path={APP_ROUTE.PROFILE} element={<ProfilePage />} />
               <Route path={APP_ROUTE.PROFILE_ORDER} element={<Order />} />
               <Route path={APP_ROUTE.PROFILE_HOST} element={<Host />} />
@@ -96,8 +103,17 @@ export default function AppRoutes() {
 
               <Route path={APP_ROUTE.MY_BLOG} element={<MyBlog />} />
               <Route path={APP_ROUTE.BLOG} element={<BlogPage />} />
+              <Route path={APP_ROUTE.BLOG_DETAIL} element={<DetailBlog />} />
+
               <Route path={APP_ROUTE.NEWS} element={<NewsPage />} />
               <Route path={APP_ROUTE.NEWDETAIL} element={<NewDetailPage/>} />
+              
+              <Route
+                path={`${APP_ROUTE.REGISTER_SUCCESS}/:access/:refresh`}
+                element={<RegisterSuccess />}
+              />
+              <Route path={APP_ROUTE.FORGORPASS} element={<ForgotPassword />} />
+              <Route path={APP_ROUTE.RESETPASS} element={<ResetPassword />} />
 
             </Route>
 
@@ -118,7 +134,7 @@ function RequireAuth({ children }) {
   const {
     authState: { isAuthenticated, authLoading },
   } = useContext(AuthContext);
-  console.log("require", isAuthenticated);
+
   if (authLoading) return <div>Loading...</div>;
   if (!isAuthenticated) {
     return <Navigate to={APP_ROUTE.SIGNIN} state={{ from: location }} />;

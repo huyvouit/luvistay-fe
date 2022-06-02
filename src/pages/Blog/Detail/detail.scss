@@ -1,0 +1,92 @@
+@use "../../../scss/" as *;
+
+.blog-detail {
+  &-container {
+    height: 100%;
+    display: flex;
+    // justify-content: space-between;
+    @include screen750 {
+      flex-direction: column;
+    }
+  }
+  &-slides {
+    width: 65%;
+    // flex: 1;
+    height: 100%;
+    @include screen1000 {
+      width: 50%;
+    }
+    @include screen750 {
+      width: 100%;
+    }
+
+    .blog-icon-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+    .slide-show {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .slideshow {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        .mainImg {
+          width: 100%;
+          height: 100vh;
+          @include screen1199 {
+            height: 100vh;
+          }
+          transition: all 500ms;
+          object-fit: fill;
+        }
+
+        .actions {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          display: flex;
+          opacity: 1;
+          justify-content: space-between;
+        }
+
+        .actions button {
+          background: #ffffffa2;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          margin: 5px;
+          border-radius: 15px;
+        }
+
+        .actions button:active {
+          background: #000000a2;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          margin: 5px;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+
+  &-info {
+    width: 35%;
+    padding: 20px 10px 20px 10px;
+    @include screen1000 {
+      width: 50%;
+    }
+    @include screen750 {
+      width: 100%;
+    }
+  }
+}

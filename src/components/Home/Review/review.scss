@@ -2,10 +2,12 @@
 
 .review-one {
   padding: 60px 10%;
+
   &-row-one {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+
     .colum-one {
       .highlinght {
         width: 70px;
@@ -20,6 +22,7 @@
         font-size: 12px;
         color: #000;
       }
+
       .title {
         font-family: $titleFont;
         font-size: 1.9375rem;
@@ -30,6 +33,7 @@
         margin: 0;
       }
     }
+
     .colum-two {
       .btn {
         font-weight: 600;
@@ -47,102 +51,108 @@
     padding-top: 50px;
     display: flex;
     justify-content: space-between;
+
     .review-image {
-        margin: 0;
-        width: 30%;
-        height: 40%;
-        background-color: #f1eeee;
+      margin: 0;
+      width: 30%;
+      height: 40%;
+      background-color: #f1eeee;
 
-        .row-one {
-            width: 100%;
-            height: 70%;
+      .row-one {
+        width: 100%;
+        height: 70%;
 
-            .image {
-                width: 100%;
-                height: 100%;
-            }
+        .image {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+        }
+      }
+
+      .row-two {
+        padding: 1.875rem 2.5rem;
+
+        .name {
+          font-size: 23px;
+          text-align: left;
+          color: #222;
+          cursor: pointer;
+          font-family: "Noto Serif", serif;
+          line-height: 1.4;
+          font-weight: 400;
+          letter-spacing: -0.5px;
         }
 
-        .row-two {
-            padding: 1.875rem 2.5rem;
-
-            .name {
-                font-size: 23px;
-                text-align: left;
-                color: #222;
-                cursor: pointer;
-                font-family: "Noto Serif", serif;
-                line-height: 1.4;
-                font-weight: 400;
-                letter-spacing: -0.5px;
-            }
-
-            .name:hover {
-                color: #c1b086;
-            }
-
-            p {
-                padding-top: 5px;
-
-                .span-one {
-                    color: #222222;
-                    font-family: "Open Sans", sans-serif;
-                    font-size: 20px;
-                }
-
-                .span-two {
-                    color: #5f6060;
-                    font-family: "Open Sans", sans-serif;
-                    font-size: 14px;
-                    line-height: 1.75;
-                }
-            }
+        .name:hover {
+          color: #c1b086;
         }
+
+        p {
+          padding-top: 5px;
+
+          .span-one {
+            color: #222222;
+            font-family: "Open Sans", sans-serif;
+            font-size: 20px;
+          }
+
+          .span-two {
+            color: #5f6060;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            line-height: 1.75;
+          }
+        }
+      }
     }
 
     @include screen1199 {
-        .review-image {
-            .row-two {
-                .name {
-                    font-size: 20px;
-                }
+      .review-image {
+        .row-two {
+          .name {
+            font-size: 20px;
+          }
 
-                p {
-                    .span-one {
-                        font-size: 18px;
-                    }
-
-                    .span-two {
-                        font-size: 12px;
-                    }
-                }
+          p {
+            .span-one {
+              font-size: 18px;
             }
+
+            .span-two {
+              font-size: 12px;
+            }
+          }
         }
+      }
     }
 
     @include screen950 {
       display: block;
-        .review-image {
-            margin: auto;
-            width: 90%;
-            height: 40%;
-            .row-one {
-              margin-top: 25px;
-            }
+
+      .review-image {
+        margin: auto;
+        width: 90%;
+        height: 40%;
+
+        .row-one {
+          margin-top: 25px;
         }
+      }
     }
 
     @include screen750 {
-        padding-top: 45px;
+      padding-top: 45px;
     }
-}
+  }
 
   .slider {
     width: 100%;
     padding-top: 50px;
+
     @include screen750 {
       padding-top: 85px;
     }
+
     .slideshow {
       position: relative;
       display: flex;
@@ -172,11 +182,13 @@
           display: none;
           visibility: hidden;
         }
+
         .mainImg {
           width: 100%;
         }
       }
     }
+
     .actions {
       position: absolute;
       top: 50%;
@@ -186,14 +198,12 @@
     }
 
     .actions button {
-      background: #0000003d;
+      background: #ffffffa2;
       border: none;
       cursor: pointer;
       padding: 10px;
-      padding-top: 10px;
       margin: 5px;
       border-radius: 15px;
-      padding-top: 5px;
     }
 
     .actions button:active {
@@ -201,10 +211,8 @@
       border: none;
       cursor: pointer;
       padding: 10px;
-      padding-top: 10px;
       margin: 5px;
       border-radius: 15px;
-      padding-top: 5px;
     }
   }
 }

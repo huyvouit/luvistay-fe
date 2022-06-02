@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient.js";
 
 const authApi = {
   postSignUp: (body) => {
-    const url = "/user/signup";
+    const url = "/user/register";
     return axiosClient.post(url, body);
   },
 

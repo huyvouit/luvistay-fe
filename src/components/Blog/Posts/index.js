@@ -1,6 +1,27 @@
-import React, { useState } from "react";
-import { SRLWrapper } from "simple-react-lightbox";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import Moment from "react-moment";
+
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { AuthContext } from "../../../hooks/contexts/auth_context";
+import { getLikeBlogByUserApi } from "../../../redux/Api/user";
+import { APP_ROUTE } from "../../../routes/app.routes";
+import blogApi from "../../../api/blog_api";
+import avatar from "../../../assets/images/profile.png";
+
 import "./posts.scss";
+import { getAllBlogByUserApi } from "../../../redux/Api/blog";
+import { toast } from "react-toastify";
+import { CircularProgress, LinearProgress } from "@mui/material";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",
@@ -14,168 +35,589 @@ const imgs = [
 ];
 
 const Posts = ({ blog }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const {
+    authState: { user },
+  } = useContext(AuthContext);
+  const listLikeUser = useSelector((state) => state.user.likeBlog);
+
+  const [listComments, setListComments] = React.useState(null);
+  const [likes, setLikes] = React.useState(0);
   const [seen, setSeen] = useState(true);
-  const checkSeen = () => setSeen(!seen);
-
   const [like, setLike] = useState(false);
-  const checkLike = () => setLike(!like);
-
   const [comment, setComment] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formComment, setFormComment] = useState({
+    blogId: blog?._id,
+    content: "",
+  });
+  const checkSeen = () => setSeen(!seen);
   const checkComment = () => setComment(!comment);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const [isProgress, setIsProgress] = useState(false);
+  const [formPost, setFormPost] = useState({
+    content: blog?.content,
+    pictures: blog?.pictures,
+  });
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setOpen1(true);
+  };
+  const handleCloseMenu1 = () => {
+    setAnchorEl(null);
+    setOpen2(true);
+  };
+
+  const handleCloseMenu2 = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClickOpen = () => {
+    setOpen1(true);
+  };
+
+  const handleClose = () => {
+    setOpen1(false);
+  };
+
+  const handleCloseAndSave = async (blogId) => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.updateBlog({ blogId, data: formPost });
+      if (res.success) {
+        getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
+        toast.success("Bài viết đã được cập nhật", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setIsLoading(false);
+
+        setOpen1(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClose1 = () => {
+    setOpen2(false);
+  };
+
+  const handleCloseAndDelete = async (blogId) => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.deleteBlog(blogId);
+      if (res.success) {
+        getAllBlogByUserApi(dispatch, { page: 1, limit: 5 });
+        toast.success("Bài viết đã được xóa", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setIsLoading(false);
+
+        setOpen2(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Chỉnh sử ở đây thêm hàm cập nhật nữa
+  const handleImageChange = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    for (var i = 0; i < e.target.files.length; i++) {
+      formData.append("thumbnail", e.target.files[i]);
+    }
+
+    try {
+      if (e.target.files) {
+        setIsProgress(true);
+
+        const res = await blogApi.uploadImageBlog(formData);
+        if (res.success) {
+          setFormPost({
+            ...formPost,
+            pictures: [...formPost.pictures, ...res.data],
+          });
+          setIsProgress(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // xoá ảnh đã thêm
+  const handleDeleteImage = (photo) => {
+    const temp = [...formPost.pictures].filter((item) => item !== photo);
+
+    setFormPost({
+      ...formPost,
+      pictures: temp,
+    });
+  };
+
+  //render ảnh
+  const renderPhotos = (source) => {
+    return source
+      ? source.map((photo, index) => {
+          return (
+            <section
+              className="create-posts-input-img-result-img"
+              style={{ backgroundImage: `url(${photo})` }}
+            >
+              <FontAwesomeIcon
+                icon="fa-solid fa-trash-can"
+                className="icon-trash"
+                color="red"
+                onClick={() => handleDeleteImage(photo)}
+              />
+            </section>
+          );
+        })
+      : null;
+  };
+
+  // Tương tác với bài viết
+  const handleReactBlog = async (blogId) => {
+    if (listLikeUser?.some((item) => item.blogId?._id === blogId)) {
+      // setLike(true);
+      try {
+        const res = await blogApi.deleteUnLikeBlogByUser({ blogId: blog?._id });
+        if (res.success) {
+          setLike(true);
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
+          fetchLikesByBlog();
+        }
+      } catch (error) {
+        setLike(false);
+        console.log("error:", error);
+      }
+    } else {
+      try {
+        // setLike(false);
+        const res = await blogApi.postLikeBlogByUser({ blogId: blog?._id });
+        if (res.success) {
+          setLike(false);
+          if (user) {
+            getLikeBlogByUserApi(dispatch, { userId: user?._id });
+          }
+          fetchLikesByBlog();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const fetchLikesByBlog = async () => {
+    try {
+      const res = await blogApi.getLikeByBlog(blog._id);
+      if (res.success) {
+        // console.log(res);
+        setLikes(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchCommentByBlog = async () => {
+    try {
+      const res = await blogApi.getCommentByBlog({
+        blogId: blog?._id,
+        page: 1,
+        limit: 5,
+      });
+      if (res.success) {
+        // console.log(res);
+        setListComments(res.data);
+      }
+    } catch (error) {
+      console.log(error, "...error");
+    }
+  };
+  const handlePostCommentToBlog = async () => {
+    try {
+      setIsLoading(true);
+      const res = await blogApi.postCommentToBlog(formComment);
+      if (res.success) {
+        fetchCommentByBlog();
+        setIsLoading(false);
+        setFormComment({ ...formComment, content: "" });
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // setLike();
+    fetchLikesByBlog();
+    fetchCommentByBlog();
+    return {};
+  }, []);
+
+  useEffect(() => {
+    if (listLikeUser) {
+      setLike(listLikeUser?.some((item) => item.blogId?._id === blog._id));
+    }
+    return () => {
+      setLike(false);
+    };
+  }, [listLikeUser]);
 
   return (
-    <div className="posts">
-      <div className="posts-container">
-        <div className="posts-container-user">
-          <img className="posts-container-user-img" src={imgs[0]} alt="" />
-          <div className="posts-container-user-information">
-            <h2 className="posts-container-user-information-name">
-              {blog?.author?.username}
-            </h2>
-            <p className="posts-container-user-information-time">
-              12 phút trước
-            </p>
+    <>
+      <div className="posts">
+        <div className="posts-container">
+          <div className="posts-container-row-one">
+            <div className="posts-container-row-one-user">
+              <img
+                className="posts-container-row-one-user-img"
+                src={imgs[0]}
+                alt=""
+              />
+              <div className="posts-container-row-one-user-information">
+                <h2 className="posts-container-row-one-user-information-name">
+                  {blog?.author?.username || "Admin"}
+                </h2>
+                <p className="posts-container-row-one-user-information-time">
+                  <Moment format="hh:mm DD/MM/YYYY ">{blog?.date}</Moment>
+                </p>
+              </div>
+            </div>
+            {location?.pathname?.includes("my-blog") ? (
+              <>
+                <FontAwesomeIcon
+                  className="posts-container-row-one-icon"
+                  onClick={handleClickMenu}
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  icon="fa-solid fa-ellipsis-vertical"
+                  style={{ width: "30px", height: "30px !important" }}
+                />
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleCloseMenu2}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleCloseMenu}>Chỉnh sửa</MenuItem>
+                  <MenuItem onClick={handleCloseMenu1}>Xóa</MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <div></div>
+            )}
           </div>
-        </div>
-        <p className="posts-container-title">
-          <span
-            className={
-              seen
-                ? "posts-container-title-content-show"
-                : "posts-container-title-content-hide"
-            }
-          >
-            {blog?.content}
-          </span>{" "}
-          {blog?.content.length > 300 && (
+          <p className="posts-container-title">
             <span
-              className="posts-container-title-btn"
-              onClick={() => checkSeen(!seen)}
+              className={
+                seen
+                  ? "posts-container-title-content-show"
+                  : "posts-container-title-content-hide"
+              }
             >
-              {seen ? "Đọc tiếp" : "Ẩn bớt"}
+              {blog?.content}
             </span>
-          )}
-        </p>
-        <SRLWrapper>
-          <div className="posts-container-img">
-            {blog?.pictures.map((item, index) => {
-              if (imgs.length === 1) {
-                return <img className="posts-container-img-one" src={item} />;
-              } else if (imgs.length === 2) {
-                return <img className="posts-container-img-two" src={item} />;
-              } else if (imgs.length === 3) {
-                return <img className="posts-container-img-three" src={item} />;
-              } else {
-                if (index < 2) {
-                  return (
-                    <img className="posts-container-img-three" src={item} />
-                  );
-                } else if (index === 2) {
-                  return (
-                    <div className="posts-container-img-three">
-                      <img
-                        className="posts-container-img-three-img"
-                        src={item}
-                        alt=""
-                      />
-                      <p className="posts-container-img-three-number">
-                        +{imgs.length - 3}
-                      </p>
-                    </div>
-                  );
-                } else {
+            {blog?.content?.length > 300 && (
+              <span
+                className="posts-container-title-btn"
+                onClick={() => checkSeen(!seen)}
+              >
+                {seen ? "Đọc tiếp" : "Ẩn bớt"}
+              </span>
+            )}
+          </p>
+          <div
+            className="posts-container-img"
+            onClick={() => navigate(`/blog/${blog?._id}`, { state: { blog } })}
+          >
+            {blog?.pictures &&
+              blog?.pictures?.map((item, index) => {
+                if (blog?.pictures?.length === 1) {
                   return (
                     <img
-                      className="posts-container-img-hide"
+                      className="posts-container-img-one"
                       src={item}
+                      key={index}
                       alt=""
                     />
                   );
+                } else if (blog?.pictures?.length === 2) {
+                  return (
+                    <img
+                      className="posts-container-img-two"
+                      src={item}
+                      key={index}
+                      alt=""
+                    />
+                  );
+                } else if (blog?.pictures?.length === 3) {
+                  return (
+                    <img
+                      className="posts-container-img-three"
+                      src={item}
+                      key={index}
+                      alt=""
+                    />
+                  );
+                } else {
+                  if (index < 2) {
+                    return (
+                      <img
+                        className="posts-container-img-three"
+                        src={item}
+                        key={index}
+                        alt=""
+                      />
+                    );
+                  } else if (index === 2) {
+                    return (
+                      <div className="posts-container-img-three" key={index}>
+                        <img
+                          className="posts-container-img-three-img"
+                          src={item}
+                          alt=""
+                        />
+                        <p className="posts-container-img-three-number">
+                          +{blog?.pictures?.length - 3}
+                        </p>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <img
+                        className="posts-container-img-hide"
+                        src={item}
+                        key={index}
+                        alt=""
+                      />
+                    );
+                  }
                 }
-              }
-            })}
+              })}
           </div>
-        </SRLWrapper>
-        <div className="posts-container-report">
-          <div className="posts-container-report-box">
-            <h3
-              onClick={() => checkLike(!like)}
-              className={
-                like
-                  ? "posts-container-report-box-btn-like"
-                  : "posts-container-report-box-btn"
-              }
-            >
-              Thích
-            </h3>
-            <p className="posts-container-report-box-number">13</p>
-          </div>
-          <div className="posts-container-report-box">
-            <h3
-              className="posts-container-report-box-btn"
-              onClick={() => checkComment(!comment)}
-            >
-              Bình luận
-            </h3>
-            <p className="posts-container-report-box-number">7</p>
-          </div>
-        </div>
-
-        <div
-          className={
-            comment ? "posts-container-cmt" : "posts-container-cmt-hide"
-          }
-        >
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <input
-              className="posts-container-cmt-container-input"
-              placeholder="Viết bình luận..."
-            />
-            <button className="posts-container-cmt-container-btn">Gửi</button>
-          </div>
-
-          {/* show comment ở đây lặp cái này */}
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <div className="posts-container-cmt-container-box">
-              <div className="posts-container-cmt-container-box-information">
-                <h4 className="posts-container-cmt-container-box-information-name">
-                  Huy
-                </h4>
-                <p className="posts-container-cmt-container-box-information-time">
-                  7 phút trước
-                </p>
-              </div>
-              <p className="posts-container-cmt-container-box-description">
-                Như vầy được chưa
+          <div className="posts-container-report">
+            <div className="posts-container-report-box">
+              <h3
+                onClick={user ? () => handleReactBlog(blog?._id) : () => {}}
+                className={
+                  like
+                    ? "posts-container-report-box-btn-like"
+                    : "posts-container-report-box-btn"
+                }
+              >
+                <FontAwesomeIcon
+                  icon="fa-solid fa-thumbs-up"
+                  color={like ? "blue" : "gray"}
+                />
+              </h3>
+              <p className="posts-container-report-box-number">{likes}</p>
+            </div>
+            <div className="posts-container-report-box">
+              <h3
+                className="posts-container-report-box-btn"
+                onClick={() => checkComment(!comment)}
+              >
+                Bình luận
+              </h3>
+              <p className="posts-container-report-box-number">
+                {listComments?.comments?.length}
               </p>
             </div>
           </div>
 
-          <div className="posts-container-cmt-container">
-            <img className="posts-container-cmt-container-img" src={imgs[1]} />
-            <div className="posts-container-cmt-container-box">
-              <div className="posts-container-cmt-container-box-information">
-                <h4 className="posts-container-cmt-container-box-information-name">
-                  Huy
-                </h4>
-                <p className="posts-container-cmt-container-box-information-time">
-                  7 phút trước
-                </p>
+          <div
+            className={
+              comment ? "posts-container-cmt" : "posts-container-cmt-hide"
+            }
+          >
+            {user && (
+              <div className="posts-container-cmt-container">
+                <img
+                  className="posts-container-cmt-container-img"
+                  src={imgs[1]}
+                  alt=""
+                />
+                <input
+                  className="posts-container-cmt-container-input"
+                  placeholder="Viết bình luận..."
+                  type={"text"}
+                  value={formComment.content}
+                  onChange={(e) =>
+                    setFormComment({ ...formComment, content: e.target.value })
+                  }
+                />
+                <button
+                  className="posts-container-cmt-container-btn"
+                  onClick={handlePostCommentToBlog}
+                >
+                  {isLoading ? (
+                    <CircularProgress color="inherit" size={25} />
+                  ) : (
+                    "Gửi"
+                  )}
+                </button>
               </div>
-              <p className="posts-container-cmt-container-box-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl
-                tincidunt eget nullam non. Quis hendrerit dolor magna eget est
-                lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet
-                massa.
-              </p>
-            </div>
+            )}
+            {/* show comment ở đây lặp cái này */}
+            {listComments &&
+              listComments.comments?.length > 0 &&
+              listComments.comments?.map((item, index) => {
+                return (
+                  <div className="posts-container-cmt-container" key={index}>
+                    <img
+                      className="posts-container-cmt-container-img"
+                      src={imgs[1]}
+                      alt=""
+                    />
+                    <div className="posts-container-cmt-container-box">
+                      <div className="posts-container-cmt-container-box-information">
+                        <h4 className="posts-container-cmt-container-box-information-name">
+                          {item?.author?.username || "Admin"}
+                        </h4>
+                        <p className="posts-container-cmt-container-box-information-time">
+                          <Moment format="hh:mm DD/MM/YYYY ">
+                            {item?.date}
+                          </Moment>
+                        </p>
+                      </div>
+                      <p className="posts-container-cmt-container-box-description">
+                        {item?.content}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
-    </div>
+
+      {/* chỉnh sửa */}
+
+      <Dialog
+        open={open1}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogContent>
+          <div className="create-posts">
+            <div className="create-posts-box-information">
+              <img
+                src={avatar}
+                className="create-posts-box-information-img"
+                alt=""
+              />
+              <h3 className="create-posts-box-information-name">
+                {user && user?.username}
+              </h3>
+            </div>
+            <textarea
+              className="create-posts-input-content"
+              placeholder={`${user?.username} ơi, bạn đang nghĩ gì đó?`}
+              value={formPost.content}
+              onChange={(e) =>
+                setFormPost({ ...formPost, content: e.target.value })
+              }
+            />
+            <div className="create-posts-input-img">
+              <input
+                className="create-posts-input-img-input"
+                type="file"
+                id="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageChange}
+              />
+              <div className="create-posts-input-img-label-holder">
+                <label
+                  htmlFor="file"
+                  className="create-posts-input-img-label-holder-label"
+                >
+                  <i className="create-posts-input-img-label-holder-material-icons">
+                    Thêm Hình
+                  </i>
+                </label>
+              </div>
+              {isProgress ? (
+                <LinearProgress className="create-posts-input-img-result" />
+              ) : (
+                <div className="create-posts-input-img-result">
+                  {formPost.pictures && renderPhotos(formPost.pictures)}
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Hủy
+          </Button>
+          <button
+            className="button-posts"
+            onClick={() => handleCloseAndSave(blog._id)}
+          >
+            {isLoading ? (
+              <CircularProgress color="inherit" size={25} />
+            ) : (
+              "Cập nhật"
+            )}
+          </button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Xóa */}
+      <Dialog
+        open={open2}
+        onClose={handleClose1}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogContent>
+          <div className="create-posts">
+            <h3>Bạn có thật sự muốn xóa bài viết này ?</h3>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose1} color="primary">
+            Hủy
+          </Button>
+          <button
+            className="button-posts"
+            onClick={() => handleCloseAndDelete(blog._id)}
+          >
+            {isLoading ? <CircularProgress color="inherit" size={10} /> : "Xóa"}
+          </button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 
