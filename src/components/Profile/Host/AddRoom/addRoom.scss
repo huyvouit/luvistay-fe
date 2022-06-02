@@ -21,7 +21,7 @@
       }
     }
     &-two {
-      width: 100%;
+      width: 66%;
       @include screen550 {
         width: 100%;
       }
@@ -63,11 +63,8 @@
 
     &-label-holder {
       width: max-content;
-      margin-top: 24px;
+      margin-top: 5px;
       &-label {
-        padding: 10px 25px;
-        background-color: #524d4b;
-        color: white;
         border-radius: 12px;
         display: grid;
         place-items: center;

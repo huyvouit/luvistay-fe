@@ -39,6 +39,8 @@ const RowRoom = ({ room, apartment }) => {
     square: room?.square || "",
     capacity: room?.capacity || "",
     rating: room?.rating || "",
+    bedName: room?.bedName || "",
+    thumbnail: room?.thumbnail || "",
   });
   const handleClose1 = () => {
     setOpen2(false);

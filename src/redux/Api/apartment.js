@@ -121,6 +121,22 @@ const postUpdateRoom = async (body) => {
   }
 };
 
+const postAddRoomForApartment = async (body) => {
+  try {
+    const res = await apartmentApi.postAddRoomForApartment(body);
+    return res;
+  } catch (error) {
+    toast.error("Đã có lỗi xảy ra!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  }
+};
+
 export {
   getAllApartmentApi,
   getApartmentBySearchApi,
@@ -128,4 +144,5 @@ export {
   postUpdateApartment,
   disableApartment,
   postUpdateRoom,
+  postAddRoomForApartment,
 };

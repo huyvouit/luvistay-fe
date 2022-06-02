@@ -9,6 +9,9 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import AddRoom from "../AddRoom";
 
 import "./addRoomForApartment.scss";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { postAddRoomForApartment } from "../../../../redux/Api/apartment";
 
 const styles = (theme) => ({
   root: {
@@ -33,9 +36,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddRoomForApartment = () => {
+const AddRoomForApartment = ({ listApartments }) => {
   const [open, setOpen] = React.useState(false);
 
+  const [formRoom, setFormRoom] = useState({
+    name: "",
+    apartmentId: "",
+    price: "",
+    square: "",
+    capacity: "",
+    rating: "",
+    bedName: "",
+    thumbnail: "",
+  });
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -45,55 +58,82 @@ const AddRoomForApartment = () => {
   };
 
   const classes = useStyles();
-  const [apartment, setApartment] = React.useState("");
 
-  const handleChange = (event) => {
-    setApartment(event.target.value);
+  const handleAddRoomForApartment = () => {
+    const body = { ...formRoom };
+    console.log(body);
+    if (postAddRoomForApartment(body)) {
+      toast.success("Thêm mới phòng căn hộ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen(false);
+    } else {
+      toast.success("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
   };
-
   return (
     <>
       <div className="add-room-apartment">
         <p onClick={handleClickOpen}>Thêm phòng</p>
       </div>
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-        fullWidth
-        maxWidth="md"
-      >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Thêm phòng
-        </DialogTitle>
-        <DialogContent dividers>
-          <div>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="apartment">Apartment</InputLabel>
-              <Select
-                labelId="apartment"
-                id="select-apartment"
-                value={apartment}
-                onChange={handleChange}
-                label="Age"
-              >
-                <MenuItem value={10}>LuviStay</MenuItem>
-                <MenuItem value={20}>Bảo Ngọc</MenuItem>
-                <MenuItem value={30}>LK Hotel</MenuItem>
-              </Select>
-            </FormControl>
-            <AddRoom />
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Hủy
-          </Button>
-          <Button autoFocus onClick={handleClose}>
-            Thêm
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {open && (
+        <Dialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+          fullWidth
+          maxWidth="md"
+        >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            Thêm phòng
+          </DialogTitle>
+          <DialogContent dividers>
+            <div>
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="apartment">Căn hộ</InputLabel>
+                <Select
+                  labelId="apartment"
+                  id="select-apartment"
+                  label="Căn hô"
+                  value={formRoom.apartmentId}
+                  onChange={(e) =>
+                    setFormRoom({ ...formRoom, apartmentId: e.target.value })
+                  }
+                >
+                  {listApartments?.map((item, index) => {
+                    return (
+                      <MenuItem key={index} value={item._id}>
+                        {item.name}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+              <AddRoom formRoom={formRoom} setFormRoom={setFormRoom} />
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose}>
+              Hủy
+            </Button>
+            <Button autoFocus onClick={handleAddRoomForApartment}>
+              Thêm
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

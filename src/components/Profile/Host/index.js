@@ -101,7 +101,7 @@ const Host = () => {
                     </p>
                   </div>
                   <div className="colum-two-group">
-                    <AddRoomForApartment />
+                    <AddRoomForApartment listApartments={apartments} />
                     <AddApartment />
                   </div>
                 </div>
