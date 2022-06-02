@@ -11,11 +11,11 @@
       height: 100%;
       @include screen1199 {
         display: none;
-    }
+      }
       .login-slide-show {
         width: 100%;
         cursor: pointer;
-        
+
         .slideshow {
           position: relative;
           display: flex;
@@ -26,7 +26,7 @@
             height: 100vh;
             @include screen1199 {
               height: auto;
-          }
+            }
             transition: all 500ms;
             object-fit: fill;
           }
@@ -69,13 +69,13 @@
       width: 45%;
       @include screen1199 {
         width: 100%;
-    }
+      }
       &-logo {
         margin-top: 25px;
         @include screen1199 {
           margin: 0 auto;
           margin-top: 25px;
-      }
+        }
       }
 
       &-title {
@@ -89,13 +89,13 @@
         letter-spacing: -0.5px;
         @include screen1199 {
           text-align: center;
-      }
+        }
       }
 
       &-description {
         @include screen1199 {
           text-align: center;
-      }
+        }
         color: #222;
         font-family: "Open Sans", sans-serif;
         font-size: 16px;
@@ -109,19 +109,20 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-bottom: 10px;
         @include screen1199 {
           width: 30%;
           margin-left: 35%;
           margin-right: 35%;
           margin-bottom: 24px;
-      }
+        }
 
-      @include screen650 {
-        width: 50%;
-        margin-left: 25%;
-        margin-right: 25%;
-        margin-bottom: 24px;
-    }
+        @include screen650 {
+          width: 50%;
+          margin-left: 25%;
+          margin-right: 25%;
+          margin-bottom: 24px;
+        }
         width: 50%;
         margin: 0 15%;
         label {
@@ -180,7 +181,7 @@
         @include screen650 {
           width: 50%;
           margin-left: 25%;
-      }
+        }
 
         padding: 10px 20px;
         background-color: #222;
@@ -235,7 +236,7 @@
       .to-sign-up {
         @include screen1199 {
           text-align: center;
-      }
+        }
         margin: 0 15%;
         margin-top: 28px;
         color: #222;

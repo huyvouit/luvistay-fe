@@ -129,6 +129,14 @@ const SignInPage = () => {
               required
             />
           </div>
+          <div className="login-page-container-colum-two-box-input">
+            <label
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(APP_ROUTE.FORGORPASS)}
+            >
+              Quên mật khẩu
+            </label>
+          </div>
 
           <button onClick={handleSubmitLogin}>Đăng nhập</button>
 

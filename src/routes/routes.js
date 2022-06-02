@@ -38,6 +38,7 @@ import { AuthContext } from "../hooks/contexts/auth_context";
 import DetailBlog from "../pages/Blog/Detail";
 import { RegisterSuccess } from "../pages/SignUp/RegisterSuccess";
 import { ForgotPassword } from "../pages/ForgotPass";
+import { ResetPassword } from "../pages/ResetPass";
 
 const HomePage = lazy(() => import("../pages/Home"));
 export default function AppRoutes() {
@@ -109,6 +110,7 @@ export default function AppRoutes() {
                 element={<RegisterSuccess />}
               />
               <Route path={APP_ROUTE.FORGORPASS} element={<ForgotPassword />} />
+              <Route path={APP_ROUTE.RESETPASS} element={<ResetPassword />} />
             </Route>
 
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />

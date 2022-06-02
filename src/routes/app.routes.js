@@ -25,4 +25,5 @@ export const APP_ROUTE = {
   NEWS: "/news",
   REGISTER_SUCCESS: "/register-success",
   FORGORPASS: "/forgot-password",
+  RESETPASS: "/user/reset-password/:reset",
 };
