@@ -43,7 +43,7 @@ const founders = [
 const AboutUsPage = () => {
   return (
     <>
-      <div className="about-header-bg h-[35rem] w-full" />
+      <div className="about-header-bg h-[35rem] w-full "></div>
       <section className="flex flex-col pt-14 justify-center px-20 mb-10 leading-6 tracking-wide">
         <SectionOne />
         <SectionImage
@@ -57,7 +57,7 @@ const AboutUsPage = () => {
         <hr className="mt-12 mb-0.5" />
         <hr className="mb-8" />
       </div>
-      <Founders />
+      {/* <Founders /> */}
     </>
   );
 };
@@ -118,24 +118,42 @@ const SectionTwo = () => (
     </div>
     <div className="grid grid-cols-2 grid-rows-4 gap-2">
       <div className="row-start-1 row-span-2 row-end-3">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg"
+          alt=""
+        />
       </div>
       <div className="row-start-3 row-span-2 row-end-5">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg"
+          alt=""
+        />
       </div>
       <div className="row-start-2 row-span-2 row-end-4">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg"
+          alt=""
+        />
       </div>
     </div>
     <div className="grid grid-cols-2 grid-rows-4 gap-2">
       <div className="row-start-1 row-span-2 row-end-3">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-6-691x1024.jpg"
+          alt=""
+        />
       </div>
       <div className="row-start-3 row-span-2 row-end-5">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-4-691x1024.jpg"
+          alt=""
+        />
       </div>
       <div className="row-start-2 row-span-2 row-end-4">
-        <img src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg" />
+        <img
+          src="https://themes.getmotopress.com/luviana/wp-content/uploads/sites/27/2019/07/about-rooms-5-691x1024.jpg"
+          alt=""
+        />
       </div>
     </div>
   </div>

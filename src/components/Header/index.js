@@ -24,7 +24,7 @@ const NAVLINK = [
   },
   {
     route: "Về chúng tôi",
-    path: APP_ROUTE.CONTACT,
+    path: APP_ROUTE.ABOUT,
   },
 ];
 
