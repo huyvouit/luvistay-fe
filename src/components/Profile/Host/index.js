@@ -38,13 +38,10 @@ const Host = () => {
   const [tab, setTab] = useState(true);
 
   useEffect(() => {
-    // if (!apartments && tab) {
     getApartmentByUserApi(dispatch);
-    // }
-    // if (!rents && !tab) {
     getRentsOfApartmentApi(dispatch);
   }, []);
-  console.log(apartments);
+
   useEffect(() => {
     setTimeout(() => {
       if (apartments) {

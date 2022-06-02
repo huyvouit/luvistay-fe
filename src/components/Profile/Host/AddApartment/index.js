@@ -222,7 +222,6 @@ const AddApartment = () => {
 
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
-          console.log(res.data);
           setThumbnail(res.data[0]);
           setIsThumbnail(false);
         }
@@ -264,7 +263,7 @@ const AddApartment = () => {
 
   const handleAddApartment = async (body) => {
     console.log(body);
-    if (postAddApartment(body)) {
+    if (postAddApartment(body).success) {
       toast.success("Tạo mới căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
@@ -274,7 +273,7 @@ const AddApartment = () => {
         draggable: true,
       });
     } else {
-      toast.success("Đã có lỗi xảy ra nha!", {
+      toast.error("Đã có lỗi xảy ra nha!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

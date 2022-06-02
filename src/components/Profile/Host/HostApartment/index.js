@@ -176,7 +176,10 @@ const HostApartment = ({ apartment }) => {
           </p>
           <p>
             <span>Đánh giá: </span>
-            {apartment?.rating} sao
+
+            {apartment.rating === null || apartment?.rating === 0
+              ? "Chưa có đánh giá"
+              : `${apartment?.rating} sao`}
           </p>
           <p>
             <span>Số lượng phòng: </span>

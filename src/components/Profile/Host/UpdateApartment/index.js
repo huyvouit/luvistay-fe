@@ -21,7 +21,10 @@ import {
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import blogApi from "../../../../api/blog_api";
-import { postAddApartment } from "../../../../redux/Api/apartment";
+import {
+  postAddApartment,
+  postUpdateApartment,
+} from "../../../../redux/Api/apartment";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../../hooks/contexts/auth_context";
 
@@ -76,7 +79,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
     apartmentNumber: apartment?.address?.apartmentNumber,
     street: apartment?.address?.street,
     name: apartment?.name,
-    rating: apartment?.rating,
+    rating: apartment?.rating || 0,
     type: apartment?.type,
     owner: apartment?.owner,
     description: apartment?.description,
@@ -85,12 +88,29 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
     (async () => {
       try {
         const res = await provinceApi.getProvinces();
-        setProvinceList(
-          res.data.map((item) => ({
-            label: item.name,
-            value: item.code,
-          }))
-        );
+
+        if (res.status === 200) {
+          setProvinceList(
+            res.data.map((item) => ({
+              label: item.name,
+              value: item.code,
+            }))
+          );
+          if (address.province.value === "") {
+            let province = res.data.filter((item) =>
+              item.name.includes(address.province.label)
+            );
+            if (province?.length > 0) {
+              setAddress({
+                ...address,
+                province: {
+                  ...address.province,
+                  value: province[0].code,
+                },
+              });
+            }
+          }
+        }
       } catch (error) {
         console.log("error to get province list", error);
       }
@@ -98,28 +118,35 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
   }, []);
 
   useEffect(() => {
-    if (address) {
+    if (address.province.value !== "") {
       (async () => {
-        let province = provinceList.filter((item) =>
-          item.label.includes(address.province.label)
-        );
-        console.log(province);
+        let province = address.province;
+
         if (province) {
           try {
-            setAddress({
-              ...address,
-              province: {
-                ...address.province,
-                label: province.label,
-              },
-            });
             const res = await provinceApi.getDistricts(province.value);
-            setDistrictList(
-              res.data.districts.map((item) => ({
-                label: item.name,
-                value: item.code,
-              }))
-            );
+
+            if (res.status === 200) {
+              setDistrictList(
+                res.data.districts.map((item) => ({
+                  label: item.name,
+                  value: item.code,
+                }))
+              );
+              if (address.district.value === "") {
+                let district = res.data.districts.filter((item) =>
+                  item.name.includes(address.district.label)
+                );
+
+                setAddress({
+                  ...address,
+                  district: {
+                    ...address.district,
+                    value: district[0].code,
+                  },
+                });
+              }
+            }
           } catch (error) {
             console.log("error to get province list", error);
           }
@@ -130,12 +157,28 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
         if (district) {
           try {
             const res = await provinceApi.getWards(district);
-            setWardList(
-              res.data.wards.map((item) => ({
-                label: item.name,
-                value: item.code,
-              }))
-            );
+
+            if (res.status === 200) {
+              setWardList(
+                res.data.wards.map((item) => ({
+                  label: item.name,
+                  value: item.code,
+                }))
+              );
+              if (address.ward.value === "" && address.ward.label) {
+                let ward = res.data.wards.filter((item) =>
+                  item.name.includes(address.ward.label)
+                );
+
+                setAddress({
+                  ...address,
+                  ward: {
+                    ...address.ward,
+                    value: ward[0].code,
+                  },
+                });
+              }
+            }
           } catch (error) {
             console.log("error to get province list", error);
           }
@@ -156,11 +199,11 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
         }))
       );
       setWardList([]);
-      // setAddress({ ...address, ward: "" });
     } catch (error) {
       console.log("error to get district list", error);
     }
   };
+
   const handleChangeDistrict = async (e) => {
     try {
       const res = await provinceApi.getWards(e.target.value);
@@ -216,7 +259,6 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
 
         const res = await blogApi.uploadImageBlog(formData);
         if (res.success) {
-          console.log(res.data);
           setThumbnail(res.data[0]);
           setIsThumbnail(false);
         }
@@ -255,11 +297,11 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
     numberRoom: "",
     pictures: "",
   });
-
-  const handleAddApartment = async (body) => {
+  console.log(address.province.label);
+  const handleUpdateApartment = async (body) => {
     console.log(body);
-    if (postAddApartment(body)) {
-      toast.success("Tạo mới căn hộ thành công", {
+    if (postUpdateApartment(body)) {
+      toast.success("Câp nhật căn hộ thành công", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -267,6 +309,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
         pauseOnHover: true,
         draggable: true,
       });
+      setOpen(false);
     } else {
       toast.success("Đã có lỗi xảy ra nha!", {
         position: "top-right",
@@ -532,17 +575,28 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
         <Button
           autoFocus
           onClick={() =>
-            handleAddApartment({
-              ...formAddAparment,
-              province: address.province.label.split("Tỉnh ")[1],
-              district: address.district.label,
-              ward: address.ward.label,
-              description: `<p>${formAddAparment.description}</p>`,
-              apartmentNumber: Number(formAddAparment.apartmentNumber),
-              country: "Việt Nam",
-              thumbnail,
-              pictures,
-              owner: user?._id,
+            handleUpdateApartment({
+              apartmentId: apartment._id,
+              apartmentData: {
+                ...formAddAparment,
+                address: {
+                  province: address.province.label.includes("Tỉnh ")
+                    ? address.province.label.split("Tỉnh")[1]
+                    : address.province.label.includes("Thành phố ")
+                    ? address.province.label.split("Thành phố ")[1]
+                    : address.province.label,
+                  apartmentNumber: formAddAparment.apartmentNumber,
+                  street: formAddAparment.street,
+                  district: address.district.label,
+                  ward: address.ward.label,
+                  country: "Việt Nam",
+                },
+                description: `${formAddAparment.description}`,
+                apartmentNumber: Number(formAddAparment.apartmentNumber),
+                thumbnail,
+                pictures,
+                owner: user?._id,
+              },
             })
           }
           color="primary"

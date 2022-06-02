@@ -50,6 +50,10 @@ const apartmentApi = {
     const url = `/apartment/add-new-apartment`;
     return axiosClient.post(url, body);
   },
+  postAddApartment: (body) => {
+    const url = `/apartment/update`;
+    return axiosClient.put(url, body);
+  },
 };
 
 export default apartmentApi;
