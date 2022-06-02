@@ -138,9 +138,7 @@ const Detail = ({ order }) => {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="red">
-            Đóng
-          </Button>
+          <Button onClick={handleClose}>Đóng</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -273,7 +273,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
 
     setPictures(temp);
   };
-
+  console.log(pictures);
   const renderPhotos = (source) => {
     return source.map((photo, index) => {
       return (
@@ -297,7 +297,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
     numberRoom: "",
     pictures: "",
   });
-  console.log(address.province.label);
+
   const handleUpdateApartment = async (body) => {
     console.log(body);
     if (postUpdateApartment(body)) {
@@ -601,7 +601,7 @@ const UpdateApartment = ({ apartment, open, setOpen }) => {
           }
           color="primary"
         >
-          Tiếp
+          Cập nhật
         </Button>
       </DialogActions>
     </Dialog>

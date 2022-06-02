@@ -75,7 +75,7 @@ const postAddApartment = async (body) => {
 
 const postUpdateApartment = async (body) => {
   try {
-    const res = await apartmentApi.postAddApartment(body);
+    const res = await apartmentApi.postUpdateApartment(body);
     return res;
   } catch (error) {
     toast.error("Đã có lỗi xảy ra!", {
