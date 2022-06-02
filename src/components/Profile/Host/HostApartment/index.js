@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RowRoom from "./RowRoom";
 import TextField from "@mui/material/TextField";
 import UpdateApartment from "../UpdateApartment";
+import { toast } from "react-toastify";
+import { disableApartment } from "../../../../redux/Api/apartment";
 
 const styles = (theme) => ({
   root: {
@@ -159,6 +161,29 @@ const HostApartment = ({ apartment }) => {
     });
   };
 
+  const handleDisableApartment = () => {
+    const apartmetnId = apartment._id;
+    if (disableApartment({ apartmetnId })) {
+      toast.success("Vô hiệu hóa căn hộ thành công", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setOpen(false);
+    } else {
+      toast.success("Đã có lỗi xảy ra nha!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
   return (
     <>
       <div className="host-apartment">
@@ -187,7 +212,11 @@ const HostApartment = ({ apartment }) => {
           </p>
           <p>
             <span>Tình trạng: </span>
-            {apartment?.isPending ? "Đang chờ phê duyệt" : "Đang hoạt động"}
+            {apartment?.isDisable
+              ? "Tạm dừng hoạt động"
+              : apartment?.isPending
+              ? "Đang chờ phê duyệt"
+              : "Đang hoạt động"}
           </p>
         </div>
         <div className="host-apartment-show-detail">
@@ -211,7 +240,11 @@ const HostApartment = ({ apartment }) => {
           >
             <MenuItem onClick={handleCloseMenu}>Chi tiết</MenuItem>
             <MenuItem onClick={handleCloseMenu1}>Chỉnh sửa</MenuItem>
-            <MenuItem onClick={handleCloseMenu2}>Xóa</MenuItem>
+            {apartment?.isDisable ? (
+              <MenuItem onClick={handleCloseMenu2}>Kích hoạt</MenuItem>
+            ) : (
+              <MenuItem onClick={handleCloseMenu2}>Vô hiêu hóa</MenuItem>
+            )}
           </Menu>
         </div>
       </div>
@@ -272,15 +305,24 @@ const HostApartment = ({ apartment }) => {
         >
           <DialogContent>
             <div className="create-posts">
-              <h3>Bạn có thật sự muốn xóa khách sạn này ?</h3>
+              <h3>
+                {" "}
+                {apartment?.isDisable
+                  ? "Bạn có thật sự muốn kinh doanh lại khách sạn này ?"
+                  : "Bạn có thật sự muốn tam dừng hoạt động khách sạn này ?"}
+              </h3>
             </div>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose2} color="primary">
               Hủy
             </Button>
-            <button className="button-posts" onClick={handleCloseAndDelete}>
-              Xóa
+            <button
+              className="button-posts"
+              style={{ width: "120px" }}
+              onClick={apartment?.isDisable ? () => {} : handleDisableApartment}
+            >
+              {apartment?.isDisable ? "Kích hoạt lại" : "Vô hiệu hóa"}
             </button>
           </DialogActions>
         </Dialog>

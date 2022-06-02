@@ -50,8 +50,13 @@ const apartmentApi = {
     const url = `/apartment/add-new-apartment`;
     return axiosClient.post(url, body);
   },
-  postAddApartment: (body) => {
-    const url = `/apartment/update`;
+
+  disableApartment: (body) => {
+    const url = `/apartment/delete-apartment`;
+    return axiosClient.put(url, body);
+  },
+  activeApartment: (body) => {
+    const url = `/apartment/delete-apartment`;
     return axiosClient.put(url, body);
   },
 };
