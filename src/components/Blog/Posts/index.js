@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 
-import { CircularProgress, LinearProgress } from "@material-ui/core";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Dialog from "@material-ui/core/Dialog";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { AuthContext } from "../../../hooks/contexts/auth_context";
@@ -21,6 +21,7 @@ import avatar from "../../../assets/images/profile.png";
 import "./posts.scss";
 import { getAllBlogByUserApi } from "../../../redux/Api/blog";
 import { toast } from "react-toastify";
+import { CircularProgress, LinearProgress } from "@mui/material";
 
 const imgs = [
   "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500",

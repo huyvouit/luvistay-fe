@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, LinearProgress } from "@material-ui/core";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 
 import avatar from "../../assets/images/profile.png";
 import blogApi from "../../api/blog_api";
@@ -18,6 +19,7 @@ import { toast } from "react-toastify";
 
 import "./blog.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CircularProgress, LinearProgress } from "@mui/material";
 
 const BlogPage = () => {
   const dispatch = useDispatch();
