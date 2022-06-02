@@ -1,96 +1,93 @@
-@use "../../../../scss/"as *;
-.add-room{
-
+@use "../../../../scss/" as *;
+.add-room {
+  width: 100%;
+  padding: 15px;
+  border-radius: 9px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 24px;
+  &-box {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    padding: 15px;
-    border-radius: 9px;
-    border: 1px solid #e8e8e8;
     margin-bottom: 24px;
-    &-box{
-        display: flex;
-        justify-content: space-between;
+    @include screen550 {
+      display: flex;
+      flex-direction: column;
+    }
+    &-one {
+      width: 32%;
+      @include screen550 {
         width: 100%;
-        margin-bottom: 24px;
-        @include screen550 {
-            display: flex;
-            flex-direction: column;
-        }
-        &-one{
-            width: 32%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-        &-two{
-            width: 65%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-        &-p{
-            display: none;
-            @include screen550 {
-               display: block;
-                height: 24px;
-            }
-
-        }
-
-        &-three{
-            width: 33%;
-            @include screen550 {
-                width: 100%;
-            }
-        }
-
-        &-type{
-            width: 33%;
-            display: flex;
-            flex-direction: column;
-            @include screen550 {
-                width: 100%;
-            }
-        }
+      }
+    }
+    &-two {
+      width: 100%;
+      @include screen550 {
+        width: 100%;
+      }
+    }
+    &-p {
+      display: none;
+      @include screen550 {
+        display: block;
+        height: 24px;
+      }
     }
 
-    &-facilities{
+    &-three {
+      width: 33%;
+      @include screen550 {
         width: 100%;
+      }
     }
 
-    &-input-img{
+    &-type {
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      @include screen550 {
         width: 100%;
-        &-input{
-            display: none;
-        }
-
-        &-label-holder {
-            width: max-content;
-            margin-top: 24px;
-          &-label{
-              padding: 10px 25px;
-            background-color: #524d4b;
-            color: white;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 16px ;
-            cursor: pointer;
-            
-          }
-        }
-
-        &-result{
-            width: 100%;
-            display: flex;
-            margin-top: 8px;
-            justify-content: start;
-            flex-wrap: wrap;
-            &-img{
-                width: 33%;
-                object-fit: cover;
-                margin-left: 1px;
-                margin-top: 20px;
-            }
-        }
+      }
     }
+  }
+
+  &-facilities {
+    width: 100%;
+  }
+
+  &-input-img {
+    width: 100%;
+    &-input {
+      display: none;
+    }
+
+    &-label-holder {
+      width: max-content;
+      margin-top: 24px;
+      &-label {
+        padding: 10px 25px;
+        background-color: #524d4b;
+        color: white;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+
+    &-result {
+      width: 100%;
+      display: flex;
+      margin-top: 8px;
+      justify-content: start;
+      flex-wrap: wrap;
+      &-img {
+        width: 33%;
+        object-fit: cover;
+        margin-left: 1px;
+        margin-top: 20px;
+      }
+    }
+  }
 }

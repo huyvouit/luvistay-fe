@@ -15,8 +15,13 @@ const currencies = [
   },
 ];
 
-const AddRoom = () => {
+const AddRoom = (room) => {
   const [currency, setCurrency] = React.useState("true");
+  const [formUpdate, setFormUpdate] = useState({
+    roomId: room?._id || "",
+    name: room?.name | "",
+    apartmentId: "",
+  });
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
@@ -57,14 +62,6 @@ const AddRoom = () => {
           label="Tên phòng"
           variant="outlined"
         />
-        <p className="add-room-box-p"></p>
-        <TextField
-          className="add-room-box-three"
-          type={"number"}
-          id="number-bed"
-          label="Số giường"
-          variant="outlined"
-        />
       </div>
       <div className="add-room-box">
         <TextField
@@ -96,30 +93,8 @@ const AddRoom = () => {
           label="Giá tiền"
           variant="outlined"
         />
-        <p className="add-room-box-p"></p>
-        <Select
-          className="add-room-box-type"
-          id="isAvailable"
-          select
-          label="Trạng thái"
-          value={currency}
-          onChange={handleChange}
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
       </div>
-      <TextField
-        className="add-room-facilities"
-        id="facilities"
-        multiline
-        rows={3}
-        label="Danh sách cơ sở vật chất của phòng"
-        variant="outlined"
-      />
+
       <div className="add-room-input-img">
         <input
           className="add-room-input-img-input"

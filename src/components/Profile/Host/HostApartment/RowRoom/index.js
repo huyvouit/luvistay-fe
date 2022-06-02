@@ -24,7 +24,7 @@ const styles = (theme) => ({
   },
 });
 
-const RowRoom = ({ room }) => {
+const RowRoom = ({ room, apartment }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open1 = Boolean(anchorEl);
   const [open2, setOpen2] = React.useState(false);
@@ -115,7 +115,7 @@ const RowRoom = ({ room }) => {
           Chỉnh sửa phòng
         </DialogTitle>
         <DialogContent dividers>
-          <AddRoom />
+          <AddRoom room={room} apartment={apartment} />
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose1}>
