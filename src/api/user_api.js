@@ -34,6 +34,16 @@ const userApi = {
     const url = "/user/";
     return axiosClient.put(url, body);
   },
+
+  postForgotPass: (body) => {
+    const url = "/user/forgot-password";
+    return axiosClient.post(url, body);
+  },
+
+  postResetPass: (body) => {
+    const url = "/user/reset-password";
+    return axiosClient.post(url, body);
+  },
 };
 
 export default userApi;

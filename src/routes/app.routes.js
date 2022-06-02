@@ -24,4 +24,5 @@ export const APP_ROUTE = {
   CONTACT: "/contact",
   NEWS: "/news",
   REGISTER_SUCCESS: "/register-success",
+  FORGORPASS: "/forgot-password",
 };

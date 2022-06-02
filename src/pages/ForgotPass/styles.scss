@@ -1,0 +1,61 @@
+.auth {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+  }
+  &_title {
+    font-size: 45px;
+    font-weight: 600;
+    font-family: "Noto Serif", serif !important;
+    line-height: 20px;
+  }
+  &_content {
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+    font-family: "Noto Serif", serif !important;
+    line-height: 16px;
+  }
+
+  &_btn {
+    margin-top: 30px;
+  }
+}
+
+.input-field {
+  .form-label {
+    font-family: "Open Sans", serif;
+    color: #222;
+    line-height: 1.4;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+  fieldset {
+    visibility: hidden;
+  }
+  .textField {
+    min-width: 400px;
+    width: 100%;
+    //   height: 52px !important;
+    //   border-radius: 0 !important;
+    //   background-color: #252e59;
+    border: 1px solid black;
+    color: #a4a4a4;
+
+    input {
+      padding: 10px;
+    }
+    //   outline: none;
+    //   input:focus {
+    //     outline: #c1b086;
+    //     border: 1px solid black;
+    //   }
+    //   &:focus {
+    //     border: 1px solid #c1b086;
+    //   }
+  }
+}

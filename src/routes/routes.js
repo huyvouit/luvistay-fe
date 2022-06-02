@@ -37,6 +37,7 @@ import ScrollToTop from "../helper/scrollToTop";
 import { AuthContext } from "../hooks/contexts/auth_context";
 import DetailBlog from "../pages/Blog/Detail";
 import { RegisterSuccess } from "../pages/SignUp/RegisterSuccess";
+import { ForgotPassword } from "../pages/ForgotPass";
 
 const HomePage = lazy(() => import("../pages/Home"));
 export default function AppRoutes() {
@@ -107,6 +108,7 @@ export default function AppRoutes() {
                 path={`${APP_ROUTE.REGISTER_SUCCESS}/:access/:refresh`}
                 element={<RegisterSuccess />}
               />
+              <Route path={APP_ROUTE.FORGORPASS} element={<ForgotPassword />} />
             </Route>
 
             <Route path={APP_ROUTE.SIGNIN} element={<SignInPage />} />
