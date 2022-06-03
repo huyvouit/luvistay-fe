@@ -39,7 +39,7 @@ export const ResetPassword = () => {
         },
       });
       // console.log(formData.data);
-      if (formData.success) {
+      if (formData.data.success) {
         toast.success("Đã tạo mới mới khẩu", {
           position: "top-right",
           autoClose: 3000,
