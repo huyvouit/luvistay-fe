@@ -189,8 +189,8 @@ const ResultSearch = ({
                         color: listSelectedRoom.listRoom?.some(
                           (room) => room._id === item._id
                         )
-                          ? "red"
-                          : "blue",
+                          ? "#ff6057"
+                          : "#759cc9",
                       }}
                     >
                       {listSelectedRoom.listRoom?.some(
