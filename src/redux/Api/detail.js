@@ -56,7 +56,10 @@ const searchRoomByApartmentApi = async (dispatch, body, action) => {
       console.log(res.data);
     }
   } catch (error) {
-    window.alert(error);
+    dispatch(getApartmentBySearch(null));
+    if (action) {
+      action();
+    }
   }
 };
 
