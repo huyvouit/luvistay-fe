@@ -169,23 +169,23 @@ const CheckoutPage = () => {
   return location.state && isAuthenticated ? (
     infoApartment ? (
       <main className="checkout-page">
-        <PageHeader title="Booking Confirmation" />
+        <PageHeader title="Xác nhận đặt phòng" />
 
         <section className="checkout-detail">
           <section className="checkout-content">
             <section className="checkout-content-date">
-              <p className="checkout-title">Booking Details</p>
+              <p className="checkout-title">Chi tiết đặt phòng</p>
               <p className="checkout-key">
-                Check in :{" "}
+                Nhận phòng :{" "}
                 <span>
-                  <strong> {location.state.body.checkinDate}</strong>, from
+                  <strong> {location.state.body.checkinDate}</strong>, lúc
                   11:00 am
                 </span>
               </p>
               <p className="checkout-key">
-                Check out :{" "}
+                Trả Phòng :{" "}
                 <span>
-                  <strong>{location.state.body.checkoutDate}</strong>, from
+                  <strong>{location.state.body.checkoutDate}</strong>, lúc
                   10:00 am
                 </span>
               </p>
@@ -254,7 +254,7 @@ const CheckoutPage = () => {
               </section>
               <section className="inputField">
                 <p className="inputField-title">
-                  Number Phone:<span>*</span>{" "}
+                  Số điện thoại:<span>*</span>{" "}
                 </p>
                 <TextField
                   variant="outlined"
@@ -267,7 +267,7 @@ const CheckoutPage = () => {
               </section>
 
               <section className="inputField">
-                <p className="inputField-title">Note:</p>
+                <p className="inputField-title">Chú thích:</p>
                 <TextareaAutosize
                   className="textField"
                   minRows={3}
@@ -279,7 +279,7 @@ const CheckoutPage = () => {
           </section>
           <section className="checkout-content">
             <section className="checkout-payment">
-              <p className="checkout-title">Payment</p>
+              <p className="checkout-title">Thanh toán</p>
               <section className="payment-selection">
                 <section className="payment-item">
                   <Radio
@@ -290,10 +290,10 @@ const CheckoutPage = () => {
                     inputProps={{ "aria-label": "A" }}
                   />
                   <Typography className="payment-label">
-                    Pay on Arrival
+                  Trả tiền khi đến
                   </Typography>
                 </section>
-                <Typography>Pay with cash on arrival.</Typography>
+                <Typography>Trả tiền bằng tiền mặt khi đến.</Typography>
               </section>
               <section className="payment-selection">
                 <section className="payment-item">
@@ -305,18 +305,16 @@ const CheckoutPage = () => {
                     inputProps={{ "aria-label": "B" }}
                   />
                   <Typography className="payment-label">
-                    Pay via Momo
+                  Trả tiền qua Momo
                   </Typography>
                 </section>
                 <Typography>
-                  Visa, MasterCard, Discover, or American Express. Use the card
-                  number 5555555555554444 with CVC 123 and a valid expiration
-                  date to test a payment.
+                  Thanh toán tiền qua ví Momo với số điện thoại: 0123456789
                 </Typography>
               </section>
             </section>
             <section style={{ width: "200px", marginTop: 30 }}>
-              <PrimaryButton title="Book Now" action={handleSubmitBooking} />
+              <PrimaryButton title="Đặt phòng" action={handleSubmitBooking} />
             </section>
           </section>
         </section>
