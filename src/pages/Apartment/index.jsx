@@ -9,7 +9,6 @@ const ApartmentPage = () => {
   let location = useLocation();
   return (
     <main>
-      <Canonical title="Apartment | LuviStay" />
       <PageHeader title="Rooms & Suites" />
       <PageTitle title="The hotel is arranged on three floors, with\ut a lift. On the ground floor, apart from the reception, there is a comfortable lounge where you can sit and drink tea." />
       <Outlet />

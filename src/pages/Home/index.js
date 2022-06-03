@@ -16,7 +16,6 @@ import { Backdrop, CircularProgress } from "@mui/material";
 const HomePage = () => {
   return (
     <>
-      {/* <Canonical title="Trang chủ | LuviStay" /> */}
       <HeroSlider />
       <BoxBooking />
       <Welcome />
