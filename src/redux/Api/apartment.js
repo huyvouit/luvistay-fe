@@ -22,12 +22,13 @@ const getAllApartmentApi = async (dispatch, params, action) => {
         action();
       }
     } else {
-      dispatch(getAllApartment({}));
+      dispatch(getAllApartment(null));
       dispatch(hideLoading());
       //   console.log(res.data);
     }
   } catch (error) {
     dispatch(getAllApartment(null));
+    dispatch(hideLoading());
     // window.alert(error);
   }
 };

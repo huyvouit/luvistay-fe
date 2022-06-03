@@ -43,12 +43,16 @@ const currencies = [
     label: "Khách sạn",
   },
   {
-    value: "motel",
-    label: "Nhà nghỉ",
-  },
-  {
     value: "resort",
     label: "Resort",
+  },
+  {
+    value: "homestay",
+    label: "Homestay",
+  },
+  {
+    value: "motel",
+    label: "Nhà nghỉ",
   },
 ];
 
@@ -329,7 +333,7 @@ const AddApartment = ({ action }) => {
                   <TextField
                     className="popup-add-apartment-box-name"
                     id="name-apartment"
-                    label="Tên apartment"
+                    label="Tên căn hô"
                     variant="outlined"
                     value={formAddAparment.name}
                     onChange={(e) =>
@@ -344,7 +348,7 @@ const AddApartment = ({ action }) => {
                     className="popup-add-apartment-box-type"
                     id="outlined-select-currency"
                     select
-                    label="Loại apartment"
+                    label="Loại căn hộ"
                     value={formAddAparment.type}
                     onChange={(e) =>
                       setFormAddApartment({
