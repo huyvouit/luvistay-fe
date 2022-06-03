@@ -26,7 +26,7 @@ export const ForgotPassword = () => {
       setLoading(true);
       const formData = await userApi.postForgotPass(body);
       console.log(formData);
-      if (formData.data.success) {
+      if (formData.success) {
         toast.success(`Email đã được gửi tới ${email}`, {
           position: "top-right",
           autoClose: 3000,
