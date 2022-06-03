@@ -71,7 +71,7 @@ const ApartmentDetailPage = () => {
             dangerouslySetInnerHTML={{ __html: detail.info?.description }}
           ></div>
           {detail.info?.pictures && (
-            <ImageGallery listImage={detail.info.pictures.slice(1, 6)} />
+            <ImageGallery listImage={detail.info.pictures?.slice(1, 6)} />
           )}
           {detail?.rooms && detail?.rooms.length > 0 && (
             <section className="detail-table">

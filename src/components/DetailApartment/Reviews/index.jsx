@@ -39,11 +39,11 @@ const ReviewsDetail = ({ apartment }) => {
       }
       getAvgRatingByApartmentApi(dispatch, apartment._id);
     }
-  }, [apartment]);
+  }, []);
 
   useEffect(() => {
     if (listReviews && listReviews?.length > 0) {
-      setReviews([...reviews, ...listReviews]);
+      setReviews(listReviews);
     } else {
       setReviews([]);
     }
@@ -51,11 +51,7 @@ const ReviewsDetail = ({ apartment }) => {
   const handleAddReview = async () => {
     try {
       setLoading(true);
-      console.log({
-        apartmentId: apartment._id,
-        content,
-        rating,
-      });
+
       const res = await apartmentApi.postReview({
         apartmentId: apartment._id,
         content,
@@ -92,7 +88,9 @@ const ReviewsDetail = ({ apartment }) => {
           <h1 className="reviews-header-quantity">
             {reviews?.length} Đánh giá
           </h1>
-          <StarRating rating={avgRating.toString()} isEditable={false} />
+          {avgRating && (
+            <StarRating rating={avgRating.toString()} isEditable={false} />
+          )}
         </section>
         {user && (
           <PrimaryButton

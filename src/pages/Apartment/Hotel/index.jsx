@@ -52,7 +52,6 @@ const HotelPage = () => {
   const [type, setType] = useState("");
   const [page, setPage] = useState(0);
 
-  console.log(apartment);
   const [titlePage, setTitlePage] = useState("Tất cả căn hộ");
 
   useEffect(() => {

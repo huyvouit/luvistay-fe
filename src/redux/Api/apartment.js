@@ -27,7 +27,7 @@ const getAllApartmentApi = async (dispatch, params, action) => {
       //   console.log(res.data);
     }
   } catch (error) {
-    dispatch(getAllApartment(null));
+    dispatch(getAllApartment({ apartment: null, maxPage: null }));
     dispatch(hideLoading());
     // window.alert(error);
   }
@@ -35,8 +35,6 @@ const getAllApartmentApi = async (dispatch, params, action) => {
 
 const getApartmentBySearchApi = async (dispatch, body, action) => {
   try {
-    // const navigate = useNavigate();
-
     dispatch(showLoading());
     const res = await apartmentApi.searchRoom(body);
     if (res.success) {
@@ -46,7 +44,6 @@ const getApartmentBySearchApi = async (dispatch, body, action) => {
       if (action) {
         action();
       }
-      // navigate({pathname: APP_ROUTE.SEARCH,state: res.data});
     } else {
       dispatch(getApartmentBySearch([]));
       dispatch(hideLoading());
