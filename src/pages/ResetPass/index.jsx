@@ -8,6 +8,7 @@ import userApi from "../../api/user_api";
 import PrimaryButton from "../../components/PrimaryButton";
 import { CircularProgress, TextField } from "@mui/material";
 import "../ForgotPass/styles.scss";
+import { APP_ROUTE } from "../../routes/app.routes";
 export const ResetPassword = () => {
   const { reset } = useParams();
   console.log(reset);
@@ -20,9 +21,7 @@ export const ResetPassword = () => {
   const navigate = useNavigate();
 
   function handlePushHistory() {
-    navigate({
-      pathname: "/",
-    });
+    navigate(APP_ROUTE.HOME);
   }
 
   const submitPassword = async (event) => {
@@ -69,7 +68,8 @@ export const ResetPassword = () => {
         pauseOnHover: true,
         draggable: true,
       });
-      handlePushHistory();
+      // handlePushHistory();
+      setPassword("");
     }
   };
 
