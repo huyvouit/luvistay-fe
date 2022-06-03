@@ -189,7 +189,9 @@ const Host = () => {
                   trở thành chủ nhà trên LuviStay nào.
                 </h2>
                 <div className="colum-three-btn">
-                  <AddApartment />
+                  <AddApartment
+                    action={() => getApartmentByUserApi(dispatch)}
+                  />
                 </div>
               </div>
             )}
