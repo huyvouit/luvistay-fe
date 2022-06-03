@@ -22,7 +22,7 @@ const ReviewsDetail = ({ apartment }) => {
   const avgRating = useSelector((state) => state.detailApartment.avgRating);
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(5);
   const [reviews, setReviews] = useState([]);
   const {
     authState: { isAuthenticated, authLoading, user },

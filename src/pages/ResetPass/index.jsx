@@ -41,7 +41,7 @@ export const ResetPassword = () => {
       });
       // console.log(formData.data);
       if (formData.success) {
-        toast.success(formData.message, {
+        toast.success("Đã tạo mới mới khẩu", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -51,7 +51,7 @@ export const ResetPassword = () => {
         });
         handlePushHistory();
       } else {
-        toast.error(formData.error, {
+        toast.error("Đã có lỗi xảy ra!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -61,8 +61,7 @@ export const ResetPassword = () => {
         });
       }
     } catch (error) {
-      // console.log(error.response.data.error);
-      toast.error("Error", {
+      toast.error("Đã có lỗi xảy ra! Kiểm tra lại mật khẩu", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
