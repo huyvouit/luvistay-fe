@@ -9,8 +9,11 @@ import {
 } from "../../InformationResult/InformationResult";
 import { flexbox } from "@mui/system";
 import { formatter } from "../../../helper/format";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTE } from "../../../routes/app.routes";
 
 const Motel = ({ room, thumbnail }) => {
+  const navigate = useNavigate();
   return (
     <main className="motel">
       <section className="motel-container">
@@ -20,7 +23,13 @@ const Motel = ({ room, thumbnail }) => {
         <section className="motel-colum-two">
           <section className="motel-colum-two-container">
             <section className="colum-one">
-              <h2 className="colum-one-title">{room?.name}</h2>
+              <h2
+                className="colum-one-title"
+                onClick={() => navigate(`/apartment/detail/${room?._id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                {room?.name}
+              </h2>
               {/* <p className="colum-one-description">
                 Standard Single Rooms are designed in open-concept living area
                 and have many facilities.

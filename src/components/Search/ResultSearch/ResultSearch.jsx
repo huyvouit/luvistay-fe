@@ -137,7 +137,13 @@ const ResultSearch = ({
   return (
     <main className="result-search">
       <section className="result-search-container">
-        <h3 className="result-search-container-title">{info.name}</h3>
+        <h3
+          className="result-search-container-title"
+          onClick={() => navigate(`/apartment/${info?._id}`)}
+          style={{ cursor: "pointer" }}
+        >
+          {info.name}
+        </h3>
 
         <section className="result-search-container-one">
           <section className="colum-one">
