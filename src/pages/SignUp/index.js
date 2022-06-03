@@ -43,7 +43,7 @@ const SignUpPage = () => {
         });
         dispatch(hideLoading());
       } else {
-        toast.error("Đã xảy ra lỗi 1", {
+        toast.error("Đã xảy ra lỗi.", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -54,7 +54,7 @@ const SignUpPage = () => {
         dispatch(hideLoading());
       }
     } catch (error) {
-      toast.error("Đã xảy ra lỗi 2", {
+      toast.error("Đã xảy ra lỗi", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

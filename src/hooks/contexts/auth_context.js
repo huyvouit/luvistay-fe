@@ -73,14 +73,6 @@ const AuthContextProvider = ({ children }) => {
 
       return response;
     } catch (error) {
-      toast.error(error.response.data.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
       if (error.response.data) return error.response.data;
     }
   };
