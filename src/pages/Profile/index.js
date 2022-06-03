@@ -102,7 +102,7 @@ const ProfilePage = () => {
                     onChange={(e) =>
                       setInfoUserForm({
                         ...infoUserForm,
-                        username: e.target.value,
+                        phone: e.target.value,
                       })
                     }
                   />
