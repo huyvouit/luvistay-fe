@@ -5,41 +5,44 @@ import "./aboutus.scss";
 const founders = [
   {
     name: "Võ Sỹ Huy",
-    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Huy-Vo.jpg",
-    position: "Team Leader",
+    avatar:
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242024/Avatar/huy_wfz1x4.jpg",
+    position: "Project Manager",
   },
   {
     name: "Nguyễn Trà Vi",
     avatar:
-      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Tra-Vi_19522512-scaled.jpg",
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242169/Avatar/phat_zvfkeo.jpg",
     position: "Frontend Developer",
   },
   {
     name: "Nguyễn Ngọc Khôi",
-    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Khoi.jpg",
+    avatar:
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242014/Avatar/khoi_nguyen_q7xxda.jpg",
     position: "Frontend Developer",
   },
   {
     name: "Nguyễn Trọng Phát",
     avatar:
-      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Trong-Phat_-19521998.jpg",
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242210/Avatar/vi_zsilo8.jpg",
     position: "Frontend Developer",
   },
   {
     name: "Nguyễn Khuê",
     avatar:
-      "https://luvistay.com/wp-content/uploads/2022/05/Nguyen-Khue-19521712-scaled.jpg",
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242298/Avatar/Khue_bkbl9a.jpg",
     position: "Backend Leader",
   },
   {
     name: "Lê Khôi",
-    avatar: "https://luvistay.com/wp-content/uploads/2022/05/Khoi-Le.jpg",
+    avatar:
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242015/Avatar/le_khoi_tr8ydz.jpg",
     position: "Backend Developer",
   },
   {
     name: "Nguyễn Hữu Long",
     avatar:
-      "https://luvistay.com/wp-content/uploads/2022/05/NGUYEN-HUU-LONG_19521789-scaled.jpg",
+      "https://res.cloudinary.com/decscyfze/image/upload/v1654242167/Avatar/Long_cvzpgp.jpg",
     position: "Backend Developer",
   },
 ];
@@ -178,9 +181,6 @@ const SectionThree = () => (
             cả phải chăng, Huy Vô UIT đã lên ý tưởng và thành lập công ty
             Luvistay.
           </p>
-          <Link className="text-primary" to="/404">
-            Xem thêm
-          </Link>
         </section>
       </div>
     </section>

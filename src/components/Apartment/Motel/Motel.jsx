@@ -23,17 +23,8 @@ const Motel = ({ room, thumbnail }) => {
         <section className="motel-colum-two">
           <section className="motel-colum-two-container">
             <section className="colum-one">
-              <h2
-                className="colum-one-title"
-                onClick={() => navigate(`/apartment/detail/${room?._id}`)}
-                style={{ cursor: "pointer" }}
-              >
-                {room?.name}
-              </h2>
-              {/* <p className="colum-one-description">
-                Standard Single Rooms are designed in open-concept living area
-                and have many facilities.
-              </p> */}
+              <h2 className="colum-one-title">{room?.name}</h2>
+
               <section className="info-room-detail">
                 <InformationResultOne
                   title={`${room?.capacity} người`}

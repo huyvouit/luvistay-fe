@@ -79,7 +79,7 @@ const ReviewsDetail = ({ apartment }) => {
     });
     setPage(page + 1);
   };
-
+  console.log(avgRating);
   return (
     <main className="reviews-detail-wrapper">
       <h1 className="reviews-post-title">Đánh giá "{apartment?.name}"</h1>
@@ -88,8 +88,8 @@ const ReviewsDetail = ({ apartment }) => {
           <h1 className="reviews-header-quantity">
             {reviews?.length} Đánh giá
           </h1>
-          {avgRating && (
-            <StarRating rating={avgRating.toString()} isEditable={false} />
+          {avgRating > 0 && (
+            <StarRating rating={avgRating} isEditable={false} />
           )}
         </section>
         {user && (
