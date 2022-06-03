@@ -1,7 +1,7 @@
 # LuviStay - Booking Hotel
 
 #Thành viên: Nhóm 12
-Võ Sỹ Huy - 19521641
+Võ Sỹ Huy - 19521641 \n
 Lê Khôi - 19521707
 Nguyễn Ngọc Khôi - 19521709
 Nguyễn Khuê - 19521712
