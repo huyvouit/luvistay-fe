@@ -359,22 +359,6 @@ const AddApartment = ({ action }) => {
                       </MenuItem>
                     ))}
                   </TextField>
-                  <p className="popup-add-apartment-box-p"></p>
-                  <TextField
-                    className="popup-add-apartment-box-room"
-                    required
-                    id="number-room"
-                    label="Số phòng cho thuê"
-                    type={"number"}
-                    variant="outlined"
-                    value={formApartment.numberRoom}
-                    onChange={(e) =>
-                      setFormApartment({
-                        ...formApartment,
-                        numberRoom: e.target.value,
-                      })
-                    }
-                  />
                 </div>
 
                 <div className="popup-add-apartment-box">
@@ -587,7 +571,11 @@ const AddApartment = ({ action }) => {
                 onClick={() =>
                   handleAddApartment({
                     ...formAddAparment,
-                    province: address.province.label.split("Tỉnh ")[1],
+                    province: address.province.label.includes("Tỉnh ")
+                      ? address.province.label.split("Tỉnh")[1]
+                      : address.province.label.includes("Thành phố ")
+                      ? address.province.label.split("Thành phố ")[1]
+                      : address.province.label,
                     district: address.district.label,
                     ward: address.ward.label,
                     description: `<p>${formAddAparment.description}</p>`,
